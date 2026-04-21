@@ -19,17 +19,32 @@ export interface Topic {
   createdAt: string;
 }
 
-function readTopics(): Topic[] {
-  if (!fs.existsSync(DATA_FILE)) return [];
-  return JSON.parse(fs.readFileSync(DATA_FILE, "utf-8"));
+// インメモリストア（Vercelではfsへの書き込み不可のため）
+let topicsCache: Topic[] | null = null;
+
+function getTopics(): Topic[] {
+  if (topicsCache === null) {
+    try {
+      topicsCache = JSON.parse(fs.readFileSync(DATA_FILE, "utf-8"));
+    } catch {
+      topicsCache = [];
+    }
+  }
+  return topicsCache!;
 }
 
-function writeTopics(topics: Topic[]) {
-  fs.writeFileSync(DATA_FILE, JSON.stringify(topics, null, 2));
+function saveTopics(topics: Topic[]) {
+  topicsCache = topics;
+  // ローカル開発時のみファイル書き込み
+  try {
+    fs.writeFileSync(DATA_FILE, JSON.stringify(topics, null, 2));
+  } catch {
+    // Vercel等の読み取り専用環境では無視
+  }
 }
 
 export function getAllTopics(): Topic[] {
-  return readTopics().sort((a, b) => b.priority - a.priority || a.createdAt.localeCompare(b.createdAt));
+  return getTopics().sort((a, b) => b.priority - a.priority || a.createdAt.localeCompare(b.createdAt));
 }
 
 export function getPendingTopics(): Topic[] {
@@ -42,42 +57,42 @@ export function getNextPendingTopic(): Topic | null {
 }
 
 export function createTopic(topic: Omit<Topic, "id" | "createdAt">): Topic {
-  const topics = readTopics();
+  const topics = getTopics();
   const newTopic: Topic = {
     ...topic,
     id: `topic-${Date.now().toString(36)}`,
     createdAt: new Date().toISOString(),
   };
   topics.push(newTopic);
-  writeTopics(topics);
+  saveTopics(topics);
   return newTopic;
 }
 
 export function updateTopicStatus(id: string, status: TopicStatus): Topic | null {
-  const topics = readTopics();
+  const topics = getTopics();
   const idx = topics.findIndex((t) => t.id === id);
   if (idx === -1) return null;
   topics[idx].status = status;
-  writeTopics(topics);
+  saveTopics(topics);
   return topics[idx];
 }
 
 export function deleteTopic(id: string): boolean {
-  const topics = readTopics();
+  const topics = getTopics();
   const filtered = topics.filter((t) => t.id !== id);
   if (filtered.length === topics.length) return false;
-  writeTopics(filtered);
+  saveTopics(filtered);
   return true;
 }
 
 export function bulkCreateTopics(newTopics: Omit<Topic, "id" | "createdAt">[]): Topic[] {
-  const topics = readTopics();
+  const topics = getTopics();
   const created: Topic[] = newTopics.map((t, i) => ({
     ...t,
     id: `topic-${Date.now().toString(36)}-${i}`,
     createdAt: new Date().toISOString(),
   }));
   topics.push(...created);
-  writeTopics(topics);
+  saveTopics(topics);
   return created;
 }

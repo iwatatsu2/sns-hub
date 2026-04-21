@@ -1,9 +1,6 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
+import { getAllTopics, bulkCreateTopics } from "@/lib/topics";
 import type { Topic } from "@/lib/topics";
-
-const TOPICS_PATH = path.join(process.cwd(), "data", "topics.json");
 
 // 最新トレンドに基づくストック候補プール
 // /sns-stock コマンドやWebSearchで得た知見を元に定期的に更新
@@ -120,14 +117,9 @@ const stockPool: Omit<Topic, "id" | "status" | "createdAt">[] = [
 
 export async function POST() {
   try {
-    // 既存トピックを読み込み
-    const raw = fs.readFileSync(TOPICS_PATH, "utf-8");
-    const existing: Topic[] = JSON.parse(raw);
-
-    // 既存タイトルのセット
+    const existing = getAllTopics();
     const existingTitles = new Set(existing.map((t) => t.title));
 
-    // まだ追加されていないストックを抽出
     const newCandidates = stockPool.filter((s) => !existingTitles.has(s.title));
 
     if (newCandidates.length === 0) {
@@ -137,29 +129,18 @@ export async function POST() {
       });
     }
 
-    // 最大5件を追加
     const toAdd = newCandidates.slice(0, 5);
-    const maxId = existing.reduce((max, t) => {
-      const num = parseInt(t.id.replace("topic-", ""), 10);
-      return num > max ? num : max;
-    }, 0);
-
-    const newTopics: Topic[] = toAdd.map((s, i) => ({
+    const created = bulkCreateTopics(toAdd.map(s => ({
       ...s,
-      id: `topic-${String(maxId + 1 + i).padStart(2, "0")}`,
       status: "pending" as const,
-      createdAt: new Date(Date.now() + i * 60000).toISOString(),
-    }));
-
-    const updated = [...existing, ...newTopics];
-    fs.writeFileSync(TOPICS_PATH, JSON.stringify(updated, null, 2));
+    })));
 
     return NextResponse.json({
-      added: newTopics.length,
-      topics: newTopics.map((t) => ({ id: t.id, title: t.title, priority: t.priority })),
-      message: `${newTopics.length}件のストックを追加しました`,
+      added: created.length,
+      topics: created.map((t) => ({ id: t.id, title: t.title, priority: t.priority })),
+      message: `${created.length}件のストックを追加しました`,
     });
-  } catch (e) {
+  } catch {
     return NextResponse.json({ error: "ストック生成に失敗しました" }, { status: 500 });
   }
 }
