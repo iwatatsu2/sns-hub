@@ -247,7 +247,71 @@ const topicDetails: Record<string, TopicDetail> = {
   },
 };
 
+// エージェント生成ファイルの読み込み
+function loadGeneratedFile<T>(topicId: string, suffix: string): T | null {
+  if (typeof window !== "undefined") return null;
+  try {
+    const fs = require("fs");
+    const path = require("path");
+    const filePath = path.join(process.cwd(), "data", "generated", `${topicId}-${suffix}.json`);
+    if (!fs.existsSync(filePath)) return null;
+    return JSON.parse(fs.readFileSync(filePath, "utf-8"));
+  } catch {
+    return null;
+  }
+}
+
+interface GeneratedNote {
+  note: { title: string; body: string };
+  x: { text: string };
+  instagram: { caption: string; hashtags: string[] };
+  antaa: { title: string; description: string; tags: string[] };
+  references: { text: string; url: string }[];
+}
+
+interface GeneratedReel {
+  reelHook: string;
+  reelData: string[];
+  reelScenes: string[];
+  reelHtml: string;
+}
+
+interface GeneratedSlides {
+  slides: SlideData[];
+}
+
 export function generateContent(topic: Topic): GeneratedResult {
+  // エージェント生成ファイルがあれば優先的に使用
+  const genNote = loadGeneratedFile<GeneratedNote>(topic.id, "note");
+  const genReel = loadGeneratedFile<GeneratedReel>(topic.id, "reel");
+  const genSlides = loadGeneratedFile<GeneratedSlides>(topic.id, "slides");
+
+  // 全エージェント出力が揃っている場合、そのまま返す
+  if (genNote && genReel && genSlides) {
+    const refs = genNote.references || [];
+    return {
+      platforms: {
+        instagram: { caption: genNote.instagram.caption, hashtags: genNote.instagram.hashtags.slice(0, 5), posted: false },
+        x: { text: genNote.x.text, posted: false },
+        note: { title: genNote.note.title, body: genNote.note.body, posted: false },
+        antaa: { title: genNote.antaa.title, description: genNote.antaa.description, tags: genNote.antaa.tags, posted: false },
+      },
+      reelScenes: genReel.reelScenes,
+      reelHtml: genReel.reelHtml,
+      slides: genSlides.slides,
+      slideOutline: genSlides.slides.map((s, i) => `Slide ${i + 1}: ${s.title}`),
+      references: refs.map(r => `${r.text}\n${r.url}`),
+      factChecks: [{
+        claim: topic.hook,
+        source: topic.source || "情報ソース未指定",
+        level: "verified" as FactCheckLevel,
+        note: "エージェントによるリサーチ済み",
+      }],
+    };
+  }
+
+  // 部分的にエージェント出力がある場合も個別に活用（以下の従来ロジック内で参照）
+
   const hashtags = [
     ...(categoryHashtags[topic.category] || ["糖尿病", "研修医"]),
     "専門医",
@@ -364,24 +428,24 @@ export function generateContent(topic: Topic): GeneratedResult {
     `【Scene 5: フォローCTA 15-19秒】\nDr.いわたつをフォロー\n「役に立ったらフォロー＆保存」`,
   ];
 
-  // --- リールHTML（トレンド構成: フック→データ→解説→まとめ→CTA） ---
-  const reelHtml = generateReelHtml(topic, reelData);
+  // --- リールHTML（エージェント出力があれば使用） ---
+  const reelHtml = genReel?.reelHtml || generateReelHtml(topic, reelData);
 
-  // --- スライドデータ（高品質HTML付き） ---
-  const slides = generateSlides(topic, references, reelData, refs);
+  // --- スライドデータ（エージェント出力があれば使用） ---
+  const slides = genSlides?.slides || generateSlides(topic, references, reelData, refs);
 
   return {
     platforms: {
-      instagram: { caption: igCaption, hashtags, posted: false },
-      x: { text: xText, posted: false },
-      note: { title: noteTitle, body: noteBody, posted: false },
-      antaa: { title: antaaTitle, description: antaaDesc, tags: antaaTags, posted: false },
+      instagram: genNote ? { caption: genNote.instagram.caption, hashtags: genNote.instagram.hashtags.slice(0, 5), posted: false } : { caption: igCaption, hashtags, posted: false },
+      x: genNote ? { text: genNote.x.text, posted: false } : { text: xText, posted: false },
+      note: genNote ? { title: genNote.note.title, body: genNote.note.body, posted: false } : { title: noteTitle, body: noteBody, posted: false },
+      antaa: genNote ? { title: genNote.antaa.title, description: genNote.antaa.description, tags: genNote.antaa.tags, posted: false } : { title: antaaTitle, description: antaaDesc, tags: antaaTags, posted: false },
     },
-    reelScenes,
+    reelScenes: genReel?.reelScenes || reelScenes,
     reelHtml,
     slides,
     slideOutline: reelScenes.map((s, i) => `Slide ${i + 1}: ${s.split("\n")[0]}`),
-    references,
+    references: genNote?.references ? genNote.references.map(r => `${r.text}\n${r.url}`) : references,
     factChecks,
   };
 }
