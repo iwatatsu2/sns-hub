@@ -261,12 +261,89 @@ function loadGeneratedFile<T>(topicId: string, suffix: string): T | null {
   }
 }
 
-interface GeneratedNote {
-  note: { title: string; body: string };
-  x: { text: string };
-  instagram: { caption: string; hashtags: string[] };
-  antaa: { title: string; description: string; tags: string[] };
+// エージェント生成noteの正規化（構造がバラバラなため）
+interface NormalizedNote {
+  noteTitle: string;
+  noteBody: string;
+  xText: string;
+  igCaption: string;
+  igHashtags: string[];
+  antaaTitle: string;
+  antaaDesc: string;
+  antaaTags: string[];
   references: { text: string; url: string }[];
+}
+
+function normalizeNote(raw: Record<string, unknown>, topic: Topic): NormalizedNote | null {
+  // パターン1: {note: {title, body}, x: {text}, instagram: {...}, antaa: {...}, references: [...]}
+  // パターン2: {title, body, xPost, igCaption, antaaTitle, antaaDescription, ...}
+  // パターン3: {title, body, x_post, ig_caption, antaa_title, antaa_description, ...}
+
+  let noteTitle = "";
+  let noteBody = "";
+  let xText = "";
+  let igCaption = "";
+  let igHashtags: string[] = [];
+  let antaaTitle = "";
+  let antaaDesc = "";
+  let antaaTags: string[] = [];
+  let references: { text: string; url: string }[] = [];
+
+  // note title & body
+  if (raw.note && typeof raw.note === "object" && (raw.note as Record<string, unknown>).title) {
+    noteTitle = String((raw.note as Record<string, unknown>).title || "");
+    noteBody = String((raw.note as Record<string, unknown>).body || "");
+  } else {
+    noteTitle = String(raw.title || "");
+    noteBody = String(raw.body || "");
+  }
+
+  // X text
+  if (raw.x && typeof raw.x === "object") {
+    xText = String((raw.x as Record<string, unknown>).text || "");
+  } else {
+    xText = String(raw.xPost || raw.x_post || raw.xText || "");
+  }
+
+  // Instagram
+  if (raw.instagram && typeof raw.instagram === "object") {
+    const ig = raw.instagram as Record<string, unknown>;
+    igCaption = String(ig.caption || "");
+    igHashtags = Array.isArray(ig.hashtags) ? ig.hashtags.map(String) : [];
+  } else {
+    igCaption = String(raw.igCaption || raw.ig_caption || "");
+  }
+
+  // antaa
+  if (raw.antaa && typeof raw.antaa === "object") {
+    const a = raw.antaa as Record<string, unknown>;
+    antaaTitle = String(a.title || "");
+    antaaDesc = String(a.description || "");
+    antaaTags = Array.isArray(a.tags) ? a.tags.map(String) : [];
+  } else {
+    antaaTitle = String(raw.antaaTitle || raw.antaa_title || "");
+    antaaDesc = String(raw.antaaDescription || raw.antaa_description || "");
+  }
+
+  // references
+  if (Array.isArray(raw.references)) {
+    references = raw.references.map((r: unknown) => {
+      if (typeof r === "object" && r !== null) {
+        const ref = r as Record<string, unknown>;
+        return { text: String(ref.text || ""), url: String(ref.url || "") };
+      }
+      return { text: String(r), url: "" };
+    });
+  }
+
+  if (!noteBody || noteBody.length < 100) return null; // bodyが空なら使わない
+
+  // デフォルトハッシュタグ
+  if (igHashtags.length === 0) {
+    igHashtags = ["糖尿病", "研修医", "内科", "専門医", "医師"];
+  }
+
+  return { noteTitle, noteBody, xText, igCaption, igHashtags, antaaTitle, antaaDesc, antaaTags, references };
 }
 
 interface GeneratedReel {
@@ -282,25 +359,26 @@ interface GeneratedSlides {
 
 export function generateContent(topic: Topic): GeneratedResult {
   // エージェント生成ファイルがあれば優先的に使用
-  const genNote = loadGeneratedFile<GeneratedNote>(topic.id, "note");
+  const rawNote = loadGeneratedFile<Record<string, unknown>>(topic.id, "note");
+  const genNote = rawNote ? normalizeNote(rawNote, topic) : null;
   const genReel = loadGeneratedFile<GeneratedReel>(topic.id, "reel");
   const genSlides = loadGeneratedFile<GeneratedSlides>(topic.id, "slides");
 
-  // 全エージェント出力が揃っている場合、そのまま返す
-  if (genNote && genReel && genSlides) {
-    const refs = genNote.references || [];
+  // エージェント出力のnoteがあれば優先使用
+  if (genNote) {
+    const refs = genNote.references;
     return {
       platforms: {
-        instagram: { caption: genNote.instagram.caption, hashtags: genNote.instagram.hashtags.slice(0, 5), posted: false },
-        x: { text: genNote.x.text, posted: false },
-        note: { title: genNote.note.title, body: genNote.note.body, posted: false },
-        antaa: { title: genNote.antaa.title, description: genNote.antaa.description, tags: genNote.antaa.tags, posted: false },
+        instagram: { caption: genNote.igCaption || topic.hook, hashtags: genNote.igHashtags.slice(0, 5), posted: false },
+        x: { text: genNote.xText || topic.hook, posted: false },
+        note: { title: genNote.noteTitle, body: genNote.noteBody, posted: false },
+        antaa: { title: genNote.antaaTitle || topic.title, description: genNote.antaaDesc || topic.hook.slice(0, 120), tags: genNote.antaaTags.length > 0 ? genNote.antaaTags : ["糖尿病", "研修医"], posted: false },
       },
-      reelScenes: genReel.reelScenes,
-      reelHtml: genReel.reelHtml,
-      slides: genSlides.slides,
-      slideOutline: genSlides.slides.map((s, i) => `Slide ${i + 1}: ${s.title}`),
-      references: refs.map(r => `${r.text}\n${r.url}`),
+      reelScenes: genReel?.reelScenes || [`フック: ${topic.hook}`],
+      reelHtml: genReel?.reelHtml || "",
+      slides: genSlides?.slides || [],
+      slideOutline: genSlides?.slides?.map((s, i) => `Slide ${i + 1}: ${s.title}`) || [],
+      references: refs.length > 0 ? refs.map(r => `${r.text}\n${r.url}`) : (topic.source ? [topic.source] : []),
       factChecks: [{
         claim: topic.hook,
         source: topic.source || "情報ソース未指定",
@@ -310,7 +388,7 @@ export function generateContent(topic: Topic): GeneratedResult {
     };
   }
 
-  // 部分的にエージェント出力がある場合も個別に活用（以下の従来ロジック内で参照）
+  // エージェント出力がない場合は従来ロジックにフォールバック
 
   const hashtags = [
     ...(categoryHashtags[topic.category] || ["糖尿病", "研修医"]),
@@ -428,24 +506,24 @@ export function generateContent(topic: Topic): GeneratedResult {
     `【Scene 5: フォローCTA 15-19秒】\nDr.いわたつをフォロー\n「役に立ったらフォロー＆保存」`,
   ];
 
-  // --- リールHTML（エージェント出力があれば使用） ---
-  const reelHtml = genReel?.reelHtml || generateReelHtml(topic, reelData);
+  // --- リールHTML ---
+  const reelHtml = generateReelHtml(topic, reelData);
 
-  // --- スライドデータ（エージェント出力があれば使用） ---
-  const slides = genSlides?.slides || generateSlides(topic, references, reelData, refs);
+  // --- スライドデータ ---
+  const slides = generateSlides(topic, references, reelData, refs);
 
   return {
     platforms: {
-      instagram: genNote ? { caption: genNote.instagram.caption, hashtags: genNote.instagram.hashtags.slice(0, 5), posted: false } : { caption: igCaption, hashtags, posted: false },
-      x: genNote ? { text: genNote.x.text, posted: false } : { text: xText, posted: false },
-      note: genNote ? { title: genNote.note.title, body: genNote.note.body, posted: false } : { title: noteTitle, body: noteBody, posted: false },
-      antaa: genNote ? { title: genNote.antaa.title, description: genNote.antaa.description, tags: genNote.antaa.tags, posted: false } : { title: antaaTitle, description: antaaDesc, tags: antaaTags, posted: false },
+      instagram: { caption: igCaption, hashtags, posted: false },
+      x: { text: xText, posted: false },
+      note: { title: noteTitle, body: noteBody, posted: false },
+      antaa: { title: antaaTitle, description: antaaDesc, tags: antaaTags, posted: false },
     },
-    reelScenes: genReel?.reelScenes || reelScenes,
+    reelScenes,
     reelHtml,
     slides,
     slideOutline: reelScenes.map((s, i) => `Slide ${i + 1}: ${s.split("\n")[0]}`),
-    references: genNote?.references ? genNote.references.map(r => `${r.text}\n${r.url}`) : references,
+    references,
     factChecks,
   };
 }
