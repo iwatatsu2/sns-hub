@@ -1,0 +1,47 @@
+{
+  "topicId": "topic-06",
+  "title": "膵β細胞を増やす「分子スイッチ」発見",
+  "category": "diabetes",
+  "researchDate": "2026-04-22",
+  "background": "2型糖尿病の進行に伴い、膵β細胞量は徐々に減少し、インスリン分泌能が低下する。従来の糖尿病治療薬はインスリン抵抗性の改善やインスリン分泌促進を目的としていたが、β細胞そのものを増やす治療法は確立されていなかった。近年、iPS細胞やES細胞を用いた再生医療が進展しているが、内因性のβ細胞増殖を促す分子メカニズムの解明は十分ではなかった。ChREBP（Carbohydrate Response Element-Binding Protein）はグルコース応答性の転写因子で、脂肪合成遺伝子の調節因子として知られていたが、膵β細胞における役割は不明な点が多かった。",
+  "mechanism": "京都大学・岐阜大学の共同研究グループは、膵β細胞特異的ChREBP欠損マウスを作成し、様々な代謝ストレス下でのβ細胞増殖を解析した。S961（インスリン受容体拮抗薬）投与や高脂肪食負荷によるインスリン抵抗性・高血糖状態では、ChREBPが欠損するとβ細胞増殖が有意に抑制された。一方、妊娠に伴う生理的なインスリン抵抗性ではChREBP欠損の影響は限定的であった。これはChREBPが高血糖ストレス下でのβ細胞増殖に特異的に必要であることを示す。さらに、ChREBPの標的遺伝子Rgs16（Regulator of G-protein signaling 16）が高血糖下で誘導され、β細胞増殖に関与する可能性が示された。",
+  "latestData": "論文はJournal of Diabetes Investigation誌に2026年4月15日にオンライン掲載。膵β細胞特異的ChREBP欠損マウスにおいて、S961投与下および高脂肪食負荷下でβ細胞増殖が有意に抑制。妊娠モデルでは増殖への影響は限定的。標的遺伝子Rgs16は高血糖条件下でのみ発現が誘導された。ChREBPにはα（構成的発現）とβ（グルコース誘導性）の2つのアイソフォームが存在し、ChREBPβの過剰発現はグルコトキシシティによるβ細胞死を引き起こす一方、ChREBPαの活性化やNrf2経路はβ細胞保護に寄与する（Mount Sinai 2022年の先行研究）。",
+  "clinicalPearls": [
+    "ChREBPは高血糖ストレス下で膵β細胞増殖を促進する分子スイッチである",
+    "妊娠糖尿病とは異なるメカニズムでβ細胞量が調節されている",
+    "Rgs16がChREBPの下流でβ細胞増殖を媒介する新規標的候補",
+    "ChREBPαとChREBPβのバランスがβ細胞の生死を左右する",
+    "将来的にChREBP経路を標的とした新規糖尿病治療薬の開発が期待される",
+    "現時点ではマウスモデルでの知見であり、ヒトでの検証はこれから"
+  ],
+  "references": [
+    {
+      "authors": "Murakami T, Imaizumi T, Yabe D, et al.",
+      "title": "ChREBP drives β-cell proliferation under metabolic stress but not in pregnancy-induced β-cell expansion",
+      "journal": "Journal of Diabetes Investigation",
+      "year": 2026,
+      "doi": "https://doi.org/10.1111/jdi.70295"
+    },
+    {
+      "authors": "Zhang P, Kumar A, Katz LS, et al.",
+      "title": "Induction of the ChREBPβ isoform is essential for glucose-stimulated β-cell proliferation",
+      "journal": "Diabetes",
+      "year": 2015,
+      "doi": "https://doi.org/10.2337/db15-0239"
+    },
+    {
+      "authors": "Kumar A, Katz LS, Schulz AM, et al.",
+      "title": "Activation of Nrf2 is sufficient to counteract ChREBPβ-mediated glucolipotoxicity in β-cells",
+      "journal": "Diabetes",
+      "year": 2022,
+      "doi": "https://doi.org/10.2337/db22-0098"
+    },
+    {
+      "authors": "Saeedi P, Petersohn I, Salpea P, et al.",
+      "title": "Global and regional diabetes prevalence estimates for 2019 and projections for 2030 and 2045",
+      "journal": "Diabetes Research and Clinical Practice",
+      "year": 2019,
+      "doi": "https://doi.org/10.1016/j.diabres.2019.107843"
+    }
+  ]
+}

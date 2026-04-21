@@ -1,0 +1,98 @@
+{
+  "topicId": "topic-07",
+  "title": "GLP-1薬は「痩せ薬」じゃない。多臓器を守る薬だ",
+  "category": "obesity",
+  "researchDate": "2026-04-22",
+  "searches": [
+    {
+      "query": "GLP-1 心不全 SELECT STEP-HFpEF 2025 2026",
+      "keyFindings": [
+        "STEP-HFpEF試験: セマグルチドが肥満関連HFpEF患者の息切れ・体重・歩行能力を有意に改善",
+        "STEP-HFpEF DM試験: 糖尿病合併HFpEFでも同様の効果確認",
+        "GLP-1受容体作動薬はHFpEF患者の心血管死+心不全悪化の複合アウトカムを約40%低減（メタ解析）",
+        "ADA 2026ガイドライン: HFpEF症状改善にGrade A推奨、心不全悪化予防にGrade B推奨",
+        "2025年日本心不全診療ガイドライン: 肥満HFpEFにセマグルチド・チルゼパチドを考慮"
+      ]
+    },
+    {
+      "query": "semaglutide FLOW kidney NASH 2025 2026",
+      "keyFindings": [
+        "FLOW試験（NEJM 2024）: セマグルチドが2型糖尿病+CKD患者の腎アウトカムを24%低減",
+        "主要複合エンドポイント（腎イベント+心血管死+腎関連死）が有意に減少",
+        "eGFR低下速度の遅延を確認",
+        "主要心血管イベント18%減少、全死亡20%減少",
+        "SGLT2阻害薬併用下でも追加効果あり",
+        "GLP-1受容体作動薬初の腎アウトカム専用試験"
+      ]
+    },
+    {
+      "query": "semaglutide NASH MASH liver fibrosis 2025 2026",
+      "keyFindings": [
+        "ESSENCE試験（Phase 3, NEJM 2025）: セマグルチド2.4mgがMASH+中等度〜高度線維化の肝組織改善",
+        "72週時点でNASH消退（線維化悪化なし）: セマグルチド62.9% vs プラセボ34.3%",
+        "線維化改善（NASH悪化なし）: セマグルチド36.8% vs プラセボ22.4%",
+        "NASH消退+線維化改善の両方達成: 32.7% vs 16.1%",
+        "体重変化: セマグルチド群-10.5% vs プラセボ群-2.0%",
+        "2025年8月FDA承認（MASH+線維化に対する初のGLP-1RA適応）"
+      ]
+    },
+    {
+      "query": "tirzepatide SURMOUNT-OSA sleep apnea 2025 2026",
+      "keyFindings": [
+        "SURMOUNT-OSA試験（NEJM 2024）: チルゼパチドが中等〜重症OSA+肥満患者のAHIを25-30イベント/時間減少",
+        "約50%が寛解（AHI<5）または軽症（AHI 5-14）に到達",
+        "体重・低酸素負荷・hsCRP・収縮期血圧も改善",
+        "2024年FDA承認（OSA+肥満に対する初の薬物療法）",
+        "2026年Nature Medicine: 心代謝リスクの二次解析でも有意な改善確認"
+      ]
+    },
+    {
+      "query": "GLP-1受容体作動薬 多臓器保護 最新エビデンス",
+      "keyFindings": [
+        "GLP-1受容体は心臓・血管・腎臓など多臓器に存在",
+        "血管炎症抑制・血管拡張作用が報告",
+        "CVOT（心血管アウトカム試験）でMACE約14%減少",
+        "SELECT試験: 非糖尿病の肥満患者でもセマグルチドがMACE 20%減少",
+        "心血管・腎・肝・呼吸器にまたがる多臓器保護のエビデンスが蓄積"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "text": "Packer M, et al. Tirzepatide for Heart Failure with Preserved Ejection Fraction and Obesity. NEJM 2024.",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2410027",
+      "trial": "SUMMIT"
+    },
+    {
+      "text": "Kosiborod MN, et al. Semaglutide in Patients with Heart Failure with Preserved Ejection Fraction and Obesity. NEJM 2023.",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2306963",
+      "trial": "STEP-HFpEF"
+    },
+    {
+      "text": "Perkovic V, et al. Effects of Semaglutide on Chronic Kidney Disease in Patients with Type 2 Diabetes. NEJM 2024.",
+      "url": "https://www.nejm.org/doi/10.1056/NEJMoa2403347",
+      "trial": "FLOW"
+    },
+    {
+      "text": "Newsome PN, et al. Phase 3 Trial of Semaglutide in Metabolic Dysfunction-Associated Steatohepatitis. NEJM 2025.",
+      "url": "https://www.nejm.org/doi/10.1056/NEJMoa2413258",
+      "trial": "ESSENCE"
+    },
+    {
+      "text": "Malhotra A, et al. Tirzepatide for the Treatment of Obstructive Sleep Apnea and Obesity. NEJM 2024.",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2404881",
+      "trial": "SURMOUNT-OSA"
+    },
+    {
+      "text": "Lincoff AM, et al. Semaglutide and Cardiovascular Outcomes in Obesity without Diabetes. NEJM 2023.",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2307563",
+      "trial": "SELECT"
+    },
+    {
+      "text": "Sattar N, et al. Cardiovascular outcomes with semaglutide by severity of CKD in T2D: the FLOW trial. Eur Heart J 2024.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39211948/",
+      "trial": "FLOW sub-analysis"
+    }
+  ],
+  "summary": "GLP-1受容体作動薬は、血糖降下・体重減少にとどまらず、心血管（SELECT: MACE -20%、STEP-HFpEF: HFpEF症状改善）、腎臓（FLOW: 腎イベント -24%）、肝臓（ESSENCE: NASH消退63%）、睡眠時無呼吸（SURMOUNT-OSA: AHI 25-30減）と、多臓器にわたる保護効果が大規模RCTで実証されている。2025-2026年にかけてFDA承認やガイドライン改訂が相次ぎ、GLP-1薬の臨床的位置づけが「痩せ薬」から「多臓器保護薬」へと変化している。"
+}

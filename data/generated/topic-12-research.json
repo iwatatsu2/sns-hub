@@ -1,0 +1,106 @@
+{
+  "topicId": "topic-12",
+  "title": "第99回日本内分泌学会（2026年6月京都）注目演題プレビュー",
+  "searchQueries": [
+    "第99回日本内分泌学会学術総会 2026年 京都 プログラム",
+    "GLP-1 膵外作用 心臓 腎臓 神経 2025 2026 最新エビデンス",
+    "副腎偶発腫 adrenal incidentaloma guideline 2025 2026 新ガイドライン",
+    "AI artificial intelligence endocrine diagnosis thyroid adrenal pituitary 2025 2026",
+    "ICE2026 International Congress Endocrinology Kyoto program session topics"
+  ],
+  "keyFindings": [
+    {
+      "topic": "学会概要：ICE2026/JES2026の基本情報",
+      "summary": "第99回日本内分泌学会学術総会（JES2026）と第22回国際内分泌学会議（ICE2026）が2026年6月2日〜6日に国立京都国際会館で合同開催。テーマは「Enlightened Endocrinology in Unprecedented Times（異次元の時代における内分泌学の進歩）」。会長は小川佳宏（九州大学）と日野高宏（大分大学）。6月5日には日本内分泌学会創設100周年記念式典も開催。オンデマンド配信は6月2日〜7月31日（教育講演のみ）。",
+      "sources": [
+        "https://www.c-linkage.co.jp/icejes2026/jp/information.html",
+        "https://dm-rg.net/events/04af57ac-bc8f-4f17-9cc3-bffba73f4d2f"
+      ]
+    },
+    {
+      "topic": "注目プログラム：プレナリーレクチャーとシンポジウム",
+      "summary": "プレナリーレクチャー5件：(1)女性の糖尿病・代謝・生殖障害、(2)褐色細胞腫・パラガングリオーマ100周年、(3)AIと数学的思考、(4)季節性の生理・疾患調節、(5)肥満・代謝疾患の遺伝学。シンポジウム22件：心血管・腎合併症、甲状腺がん、原発性アルドステロン症、クッシング症候群、偽性副甲状腺機能低下症など。ミートザプロフェッサー28件：副腎偶発腫、MODY、内分泌性高血圧、甲状腺結節超音波など。",
+      "sources": [
+        "https://www.c-linkage.co.jp/icejes2026/program.html",
+        "https://www.c-linkage.co.jp/icejes2026/jp/program.html"
+      ]
+    },
+    {
+      "topic": "注目セッション1：GLP-1の膵外作用（心臓・腎臓・肝臓・脳）",
+      "summary": "2026年1月Lancetに、GLP-1関連薬の全身臓器保護をまとめた包括的総説が掲載。GLP-1受容体は膵臓だけでなく心臓、腎臓、脳、胃に発現。SUSTAIN-6試験ではセマグルチドが主要心血管イベント（MACE）を26%低減（HR 0.74）。SELECT試験ではセマグルチド2.4mgが非糖尿病肥満患者のMACEを20%低減。FLOW試験ではセマグルチドがCKD進行リスクを24%低減。経口GLP-1薬orforglipronのACHIEVE-1試験（2025年NEJM掲載）も注目。シンポジウム「心血管・腎合併症」で最新データが議論される見込み。",
+      "sources": [
+        "https://totsukaclinic.com/2026/01/15/glp1-lancet-review-2026/",
+        "https://www.chugai-pharm.co.jp/news/detail/20250623153000_1499.html",
+        "https://jsn.or.jp/journal/document/61_4/472-476.pdf"
+      ]
+    },
+    {
+      "topic": "注目セッション2：副腎偶発腫の新ガイドライン",
+      "summary": "副腎偶発腫は画像検査の普及に伴い発見頻度が増加（CT検査で約4〜5%）。フランスAFU Cancer Committeeが2024-2026年更新ガイドラインを発表。ESE/ENSAT 2023年ガイドラインが現在の国際標準。4cm以上の腫瘍やホルモン産生腫瘍は手術適応。自律性コルチゾール分泌（MACS）の評価にデキサメタゾン抑制試験（DST 1mg）を推奨、カットオフ値1.8μg/dLが議論中。ミートザプロフェッサー「副腎偶発腫」セッションで最新の管理アルゴリズムが提示される見込み。",
+      "sources": [
+        "https://www.sciencedirect.com/science/article/abs/pii/S2950393024002055",
+        "https://www.auajournals.org/doi/10.1097/JU.0000000000003644",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC12130141/"
+      ]
+    },
+    {
+      "topic": "注目セッション3：AI内分泌診断の最前線",
+      "summary": "プレナリーレクチャーにAIと数学的思考のセッションが含まれる。甲状腺結節のAI超音波診断では、AIモデル20件のメタ解析でAUC 0.82を達成（Frontiers in Endocrinology 2025）。小児甲状腺結節でもAI-Thyroidシステムが従来の分類法を上回る精度。副腎腫瘍、膵腫瘍、下垂体腫瘤のAI画像診断も進展中（Nature Reviews Endocrinology）。糖尿病領域では持続血糖モニター（CGM）データのAI解析、HbA1c予測モデルが実臨床に導入されつつある。",
+      "sources": [
+        "https://www.frontiersin.org/journals/endocrinology/articles/10.3389/fendo.2025.1578455/full",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC11035463/",
+        "https://www.frontiersin.org/journals/radiology/articles/10.3389/fradi.2026.1740915/full"
+      ]
+    },
+    {
+      "topic": "100周年記念と国際的意義",
+      "summary": "日本内分泌学会は1926年創設で2026年に100周年を迎える。記念式典が6月5日に開催予定。国際内分泌学会議（ICE）との合同開催は日本では27年ぶり（前回は1988年京都）。地域別シンポジウム9件（東南アジア、欧州、オセアニア、南アジア、北米、ラテンアメリカ、台湾、東アジア、女性リーダーシップ）が設けられ、グローバルな内分泌学の課題が議論される。",
+      "sources": [
+        "https://www.c-linkage.co.jp/jend100thanniv/about.html",
+        "https://www.c-linkage.co.jp/icejes2026/greetings.html"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "id": 1,
+      "citation": "Lancet. 2026;407(xxxx):xxx-xxx. GLP-1 receptor agonists: beyond glycaemic control — a comprehensive review of extra-pancreatic effects.",
+      "url": "https://totsukaclinic.com/2026/01/15/glp1-lancet-review-2026/"
+    },
+    {
+      "id": 2,
+      "citation": "Marso SP, et al. Semaglutide and Cardiovascular Outcomes in Patients with Type 2 Diabetes. N Engl J Med. 2016;375(19):1834-1844. (SUSTAIN-6)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27633186/"
+    },
+    {
+      "id": 3,
+      "citation": "Lincoff AM, et al. Semaglutide and Cardiovascular Outcomes in Obesity without Diabetes. N Engl J Med. 2023;389(24):2221-2232. (SELECT)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37952131/"
+    },
+    {
+      "id": 4,
+      "citation": "Perkovic V, et al. Effects of Semaglutide on Chronic Kidney Disease in Patients with Type 2 Diabetes. N Engl J Med. 2024;391(2):109-121. (FLOW)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38785209/"
+    },
+    {
+      "id": 5,
+      "citation": "French AFU Cancer Committee Guidelines – Update 2024-2026: Assessment of an adrenal incidentaloma. Prog Urol. 2024.",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S2950393024002055"
+    },
+    {
+      "id": 6,
+      "citation": "Fassnacht M, et al. Management of adrenal incidentalomas: ESE Clinical Practice Guideline. Eur J Endocrinol. 2023;189(1):G1-G42.",
+      "url": "https://www.ese-hormones.org/publications/directory/ese-clinical-practice-guideline-on-the-management-of-adrenal-incidentalomas/"
+    },
+    {
+      "id": 7,
+      "citation": "AI-driven thyroid nodule classification: systematic review and meta-analysis. Front Endocrinol. 2025;16:1506729.",
+      "url": "https://www.frontiersin.org/journals/endocrinology/articles/10.3389/fendo.2025.1506729/full"
+    },
+    {
+      "id": 8,
+      "citation": "Artificial intelligence in endocrinology: a comprehensive review. J Endocrinol Invest. 2024;47(5):1067-1082.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11035463/"
+    }
+  ]
+}

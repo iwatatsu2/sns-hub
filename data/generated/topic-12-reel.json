@@ -1,0 +1,37 @@
+{
+  "topicId": "topic-12",
+  "hook": "100年に一度",
+  "scenes": {
+    "scene1": {
+      "hookText": "100年に一度",
+      "subText": "日本内分泌学会が京都で記念大会"
+    },
+    "scene2": {
+      "title": "注目3セッション",
+      "cards": [
+        { "num": "01", "text": "GLP-1が心臓・腎臓を守る" },
+        { "num": "02", "text": "副腎偶発腫の新ガイドライン" },
+        { "num": "03", "text": "AI甲状腺診断 AUC 0.82" },
+        { "num": "04", "text": "ICE国際合同 27年ぶり" }
+      ]
+    },
+    "scene3": {
+      "title": "GLP-1の膵外作用",
+      "body": "心血管イベント26%減\n腎アウトカム24%減\n血糖以外の臓器保護が証明",
+      "source": "SUSTAIN-6 / SELECT / FLOW試験"
+    },
+    "scene4": {
+      "items": [
+        "GLP-1RAは臓器保護薬",
+        "副腎腫瘤→3つのホルモン検査",
+        "AI診断は支援ツールとして活用"
+      ]
+    },
+    "scene5": {
+      "name": "Dr.いわたつ",
+      "title": "糖尿病・内分泌専門医",
+      "cta": "フォローで学会情報をキャッチ"
+    }
+  },
+  "html": "<!DOCTYPE html><html lang=\"ja\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=1080,height=1920\"><title>Reel - topic-12</title><link href=\"https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap\" rel=\"stylesheet\"><script src=\"https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js\"></script><style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1920px;overflow:hidden;font-family:'Noto Sans JP',sans-serif}.comp{width:1080px;height:1920px;position:relative;background:linear-gradient(180deg,#0f172a 0%,#1e293b 50%,#312e81 100%)}.scene{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;padding:60px}.hook-text{font-size:100px;font-weight:900;color:#fff;text-align:center;line-height:1.2}.hook-sub{font-size:34px;color:#94a3b8;text-align:center;margin-top:30px}.data-section{width:100%;padding:0 40px}.data-title{font-size:44px;font-weight:700;color:#2dd4bf;text-align:center;margin-bottom:50px}.data-card{display:flex;align-items:center;gap:24px;background:rgba(255,255,255,0.06);border-radius:20px;padding:28px 36px;margin-bottom:24px;border-left:5px solid #14b8a6;opacity:0;transform:translateX(-60px)}.data-num{font-size:50px;font-weight:900;color:#14b8a6;min-width:70px}.data-text{font-size:36px;font-weight:700;color:#fff}.explain-box{background:rgba(20,184,166,0.08);border:2px solid rgba(20,184,166,0.3);border-radius:24px;padding:50px;width:90%}.explain-title{font-size:44px;font-weight:700;color:#2dd4bf;margin-bottom:30px;text-align:center}.explain-text{font-size:38px;color:#e2e8f0;line-height:1.8}.source-badge{display:inline-block;background:rgba(20,184,166,0.2);color:#2dd4bf;font-size:26px;padding:10px 24px;border-radius:30px;margin-top:30px}.summary-grid{width:90%}.summary-item{display:flex;align-items:flex-start;gap:20px;background:rgba(255,255,255,0.04);border-left:5px solid #14b8a6;border-radius:16px;padding:30px;margin-bottom:24px;opacity:0;transform:translateX(-40px)}.summary-check{font-size:42px;color:#2dd4bf;min-width:50px}.summary-text{font-size:34px;color:#fff;font-weight:700;line-height:1.5}.follow-section{text-align:center}.follow-avatar{width:260px;height:260px;border-radius:50%;border:5px solid #14b8a6;object-fit:cover;margin-bottom:30px;opacity:0;transform:scale(0.5)}.follow-name{font-size:56px;font-weight:900;color:#fff;margin-bottom:10px}.follow-title{font-size:30px;color:#94a3b8;margin-bottom:40px}.follow-btn{display:inline-block;background:linear-gradient(135deg,#14b8a6,#2dd4bf);color:#0f172a;font-size:44px;font-weight:700;padding:20px 80px;border-radius:60px}.follow-actions{margin-top:30px;display:flex;gap:40px;justify-content:center}.follow-action{color:#94a3b8;font-size:28px}</style></head><body><div class=\"comp\"><div class=\"scene\" id=\"scene1\"><div class=\"hook-text\">100年に一度</div><div class=\"hook-sub\">日本内分泌学会が京都で記念大会</div></div><div class=\"scene\" id=\"scene2\"><div class=\"data-section\"><div class=\"data-title\">注目3セッション</div><div class=\"data-card\"><span class=\"data-num\">01</span><span class=\"data-text\">GLP-1が心臓・腎臓を守る</span></div><div class=\"data-card\"><span class=\"data-num\">02</span><span class=\"data-text\">副腎偶発腫の新ガイドライン</span></div><div class=\"data-card\"><span class=\"data-num\">03</span><span class=\"data-text\">AI甲状腺診断 AUC 0.82</span></div><div class=\"data-card\"><span class=\"data-num\">04</span><span class=\"data-text\">ICE国際合同 27年ぶり</span></div></div></div><div class=\"scene\" id=\"scene3\"><div class=\"explain-box\"><div class=\"explain-title\">GLP-1の膵外作用</div><div class=\"explain-text\">心血管イベント26%減<br>腎アウトカム24%減<br>血糖以外の臓器保護が証明</div><div class=\"source-badge\">SUSTAIN-6 / SELECT / FLOW試験</div></div></div><div class=\"scene\" id=\"scene4\"><div class=\"summary-grid\"><div class=\"summary-item\"><span class=\"summary-check\">&#10003;</span><span class=\"summary-text\">GLP-1RAは臓器保護薬</span></div><div class=\"summary-item\"><span class=\"summary-check\">&#10003;</span><span class=\"summary-text\">副腎腫瘤→3つのホルモン検査</span></div><div class=\"summary-item\"><span class=\"summary-check\">&#10003;</span><span class=\"summary-text\">AI診断は支援ツールとして活用</span></div></div></div><div class=\"scene\" id=\"scene5\"><div class=\"follow-section\"><img class=\"follow-avatar\" src=\"/dr-iwatatsu.png\" alt=\"Dr.いわたつ\"><div class=\"follow-name\">Dr.いわたつ</div><div class=\"follow-title\">糖尿病・内分泌専門医</div><div class=\"follow-btn\">フォローする</div><div class=\"follow-actions\"><span class=\"follow-action\">&#9829; 保存</span><span class=\"follow-action\">&#9993; シェア</span></div></div></div></div><script>const tl=gsap.timeline({repeat:-1});tl.to('#scene1',{opacity:1,duration:0.5}).from('.hook-text',{scale:0.8,opacity:0,duration:0.8,ease:'back.out(1.7)'}).from('.hook-sub',{y:30,opacity:0,duration:0.6},'<0.3').to('#scene1',{opacity:0,duration:0.4},'+=2.5').to('#scene2',{opacity:1,duration:0.5}).from('.data-card',{x:-60,opacity:0,duration:0.6,stagger:0.8,ease:'power2.out'}).to('#scene2',{opacity:0,duration:0.4},'+=2').to('#scene3',{opacity:1,duration:0.5}).from('.explain-box',{y:40,opacity:0,duration:0.8,ease:'power2.out'}).to('#scene3',{opacity:0,duration:0.4},'+=3').to('#scene4',{opacity:1,duration:0.5}).from('.summary-item',{x:-40,opacity:0,duration:0.6,stagger:1.0,ease:'power2.out'}).to('#scene4',{opacity:0,duration:0.4},'+=2.5').to('#scene5',{opacity:1,duration:0.5}).from('.follow-avatar',{scale:0.5,opacity:0,duration:0.8,ease:'back.out(1.7)'}).from('.follow-name',{y:20,opacity:0,duration:0.5},'<0.3').from('.follow-title',{y:20,opacity:0,duration:0.5},'<0.2').from('.follow-btn',{scale:0.9,opacity:0,duration:0.5},'<0.3').from('.follow-actions',{opacity:0,duration:0.5},'<0.3').to('#scene5',{opacity:0,duration:0.4},'+=3');</script></body></html>"
+}

@@ -1,0 +1,66 @@
+{
+  "topicId": "topic-10",
+  "title": "糖尿病標準診療マニュアル2026、ここが変わった",
+  "searchQueries": [
+    "糖尿病標準診療マニュアル2026 改訂 変更点",
+    "糖尿病標準診療マニュアル2026 GLP-1 SGLT2阻害薬 心腎保護 変更",
+    "糖尿病標準診療マニュアル2026 第22版 公開 詳細 薬物療法フローチャート",
+    "糖尿病標準診療マニュアル2026 dm-rg.net 改訂ポイント 詳細",
+    "ADA Standards of Care Diabetes 2026 主な改訂 GLP-1 SGLT2 日本語"
+  ],
+  "keyFindings": [
+    {
+      "topic": "糖尿病標準診療マニュアル2026（第22版）の概要",
+      "summary": "日本糖尿病・生活習慣病ヒューマンデータ学会が2026年4月1日に公開。2010年初版から毎年改訂され第22版。一般クリニック・診療所での包括的2型糖尿病管理を念頭に、循環型地域診療連携推進を目指した内容。日本糖尿病対策推進会議『糖尿病治療のエッセンス』、日本糖尿病学会『糖尿病治療ガイド』『糖尿病診療ガイドライン』との併用・橋渡しを目的とする。",
+      "sources": ["https://human-data.or.jp/dm_manual", "https://dm-rg.net/news/eb28db65-31f7-4dcd-b51b-66936d5973d5"]
+    },
+    {
+      "topic": "GLP-1受容体作動薬の位置付け引き上げ",
+      "summary": "フローチャート「ステップ2：1剤上乗せ」のGLP-1受容体作動薬（経口薬）に対して、『心血管疾患の既往、肥満を有する場合は積極的に投与開始してよい』との注記が追加。これまで単なる選択肢の一つだったGLP-1 RAが、特定の患者群では優先的に使用すべき薬剤として明確に位置付けられた。",
+      "sources": ["https://dm-rg.net/news/eb28db65-31f7-4dcd-b51b-66936d5973d5", "https://human-data.or.jp/wp/wp-content/uploads/2026/03/dm_manual_2026.pdf"]
+    },
+    {
+      "topic": "GIP/GLP-1受容体作動薬の併用禁忌追記",
+      "summary": "一部薬剤の併用禁忌にGIP/GLP-1受容体作動薬が追記。『DPP-4阻害薬とGLP-1受容体作動薬やGIP/GLP-1受容体作動薬の併用は避ける』という記載に変更。チルゼパチド（マンジャロ）などのGIP/GLP-1 RAの普及に伴い、DPP-4阻害薬との併用リスクを明確化。",
+      "sources": ["https://dm-rg.net/news/eb28db65-31f7-4dcd-b51b-66936d5973d5"]
+    },
+    {
+      "topic": "SGLT2阻害薬の心腎保護エビデンス",
+      "summary": "SGLT2阻害薬は心腎エビデンスの蓄積により、病態によっては『最初から入れる薬』へと位置付けが変化。CKD・ASCVD・心不全を合併する場合、心腎ベネフィットのある薬を優先するという考え方が浸透。SGLT2阻害薬とGLP-1 RAの併用により、さらなる心血管保護効果・腎保護効果が期待される。",
+      "sources": ["https://note.com/dr_ukio/n/nbe86cd52c1fd", "https://dm-rg.net/news/eb28db65-31f7-4dcd-b51b-66936d5973d5"]
+    },
+    {
+      "topic": "ADA Standards of Care 2026との比較",
+      "summary": "米国ADAも2026年版で大幅改訂。GLP-1 RAがMASLD/MASH患者で推奨。1型糖尿病の肥満にもGLP-1 RAが選択肢に。SGLT2阻害薬はCKD進行リスク低減・心血管利益のための推奨が追加。uACR≧100mg/g・eGFR 30-90の患者にSGLT2阻害薬と非ステロイド性MRAの同時開始が可能に。日本の標準診療マニュアルもこの世界的潮流に沿った改訂。",
+      "sources": ["https://diabetesjournals.org/care/article/49/Supplement_1/S6/163930/Summary-of-Revisions-Standards-of-Care-in-Diabetes", "https://pmc.ncbi.nlm.nih.gov/articles/PMC12690167/"]
+    },
+    {
+      "topic": "薬物療法のステップ構成",
+      "summary": "薬物療法はステップ1（メトホルミン）から開始。処方できない場合はステップ2から。各ステップで目標未達成の原因を探求・対処した上で薬剤を上乗せ。2026年版ではステップ2の選択肢としてGLP-1 RAの重要性が増し、合併症に応じた薬剤選択がより明確に。",
+      "sources": ["https://human-data.or.jp/dm_manual", "https://human-data.or.jp/wp/wp-content/uploads/2026/03/dm_manual_2026.pdf"]
+    }
+  ],
+  "references": [
+    {
+      "text": "糖尿病標準診療マニュアル2026（第22版）. 日本糖尿病・生活習慣病ヒューマンデータ学会. 2026.",
+      "url": "https://human-data.or.jp/wp/wp-content/uploads/2026/03/dm_manual_2026.pdf"
+    },
+    {
+      "text": "「糖尿病標準診療マニュアル」2026年版を公開. 糖尿病リソースガイド.",
+      "url": "https://dm-rg.net/news/eb28db65-31f7-4dcd-b51b-66936d5973d5"
+    },
+    {
+      "text": "Summary of Revisions: Standards of Care in Diabetes-2026. Diabetes Care. 2026;49(Suppl 1):S6.",
+      "url": "https://diabetesjournals.org/care/article/49/Supplement_1/S6/163930/Summary-of-Revisions-Standards-of-Care-in-Diabetes"
+    },
+    {
+      "text": "ADA Standards of Care in Diabetes 2026 改訂ポイント. 糖尿病メモ.",
+      "url": "https://www.dm-memo.com/column-detail/%E2%98%85ada-standards-of-care-in-diabetes-%E2%80%93-2025%E3%80%80%E4%B8%BB%E3%81%AA%E6%94%B9%E5%AE%9A%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88"
+    },
+    {
+      "text": "Pharmacologic Approaches to Glycemic Treatment: Standards of Care in Diabetes-2026. Diabetes Care. 2026;49(Suppl 1).",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12690185/"
+    }
+  ],
+  "generatedAt": "2026-04-22T00:00:00Z"
+}

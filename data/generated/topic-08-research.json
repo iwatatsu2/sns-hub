@@ -1,0 +1,123 @@
+{
+  "topicId": "topic-08",
+  "title": "次世代肥満症薬3選：アミクレチン・survodutide・orforglipron",
+  "researchDate": "2026-04-22",
+  "drugs": [
+    {
+      "name": "Amycretin（アミクレチン）",
+      "company": "Novo Nordisk",
+      "mechanism": "GLP-1/アミリン受容体デュアルアゴニスト（単一分子）",
+      "route": "皮下注射（週1回）",
+      "phase": "Phase 3（2026年Q1開始）",
+      "keyData": {
+        "trial": "Phase 1b/2a（Lancet 2025年7月）",
+        "participants": 125,
+        "population": "過体重・肥満成人",
+        "results": {
+          "20mg_36weeks": "-22.0% vs placebo +1.9%",
+          "60mg_36weeks": "-24.3% vs placebo -1.1%",
+          "5mg_28weeks": "-16.2% vs placebo +2.3%",
+          "1.25mg_20weeks": "-9.7% vs placebo +2.0%"
+        },
+        "weightLossPlateauReached": false,
+        "safetyProfile": "消化器症状が主（軽度〜中等度、試験終了時までに回復）"
+      },
+      "T2D_data": {
+        "trial": "Phase 2（2025年11月）",
+        "HbA1c_reduction": "有意な低下",
+        "weightLoss": "-14.5% vs placebo -2.6%（baseline 99.2kg）"
+      },
+      "approvalEstimate": "米国2030年Q4、EU2031年Q1（GlobalData予測）"
+    },
+    {
+      "name": "Survodutide（スルボデュチド）",
+      "company": "Boehringer Ingelheim",
+      "mechanism": "GLP-1/グルカゴン受容体デュアルアゴニスト",
+      "route": "皮下注射（週1回）",
+      "phase": "Phase 3（SYNCHRONIZE-1, SYNCHRONIZE-2）",
+      "keyData": {
+        "obesityTrial": {
+          "trial": "Phase 2（Lancet Diabetes Endocrinol）",
+          "weightLoss": "最大-18.7%（4.8mg群、46週）",
+          "doseDependent": true
+        },
+        "MASHTrial": {
+          "trial": "Phase 2（NEJM 2024年6月）",
+          "MASHImprovement": {
+            "2.4mg": "47%",
+            "4.8mg": "62%",
+            "6.0mg": "43%",
+            "placebo": "14%"
+          },
+          "liverFatReduction30pct": {
+            "2.4mg": "63%",
+            "4.8mg": "67%",
+            "6.0mg": "57%",
+            "placebo": "14%"
+          },
+          "fibrosisImprovement1stage": {
+            "2.4mg": "34%",
+            "4.8mg": "36%",
+            "6.0mg": "34%",
+            "placebo": "22%"
+          }
+        },
+        "safetyProfile": "嘔気66% vs 23%、下痢49% vs 23%、嘔吐41%"
+      },
+      "phase3Design": {
+        "SYNCHRONIZE1": "肥満（T2Dなし）n=725、14カ国、2026年Q1終了見込み",
+        "SYNCHRONIZE2": "肥満+T2D"
+      }
+    },
+    {
+      "name": "Orforglipron（オルフォグリプロン）",
+      "company": "Eli Lilly",
+      "mechanism": "経口小分子GLP-1受容体アゴニスト（非ペプチド）",
+      "route": "経口（1日1回）",
+      "phase": "Phase 3完了、2026年グローバル申請",
+      "keyData": {
+        "ATTAIN1": {
+          "trial": "Phase 3（NEJM掲載）",
+          "population": "肥満・過体重（糖尿病なし）",
+          "duration": "72週",
+          "weightLoss_highest_dose": "-12.4%（平均-27.3 lbs）",
+          "pct_losing_10pct": "59.6%",
+          "pct_losing_15pct": "39.6%"
+        },
+        "ATTAIN2": {
+          "trial": "Phase 3（Lancet掲載）",
+          "population": "肥満・過体重+T2D",
+          "duration": "72週",
+          "weightLoss_highest_dose": "-10.5%（平均-22.9 lbs）",
+          "HbA1c_reduction": "-1.3〜-1.8%（baseline 8.1%）",
+          "HbA1c_target_6.5pct": "75%達成（最高用量）",
+          "cardiometabolic": "non-HDL-C、収縮期血圧、TG改善"
+        },
+        "safetyProfile": "他のGLP-1 RAと同等の消化器症状"
+      },
+      "uniqueAdvantage": "経口投与（注射不要）、冷蔵保存不要"
+    }
+  ],
+  "references": [
+    {
+      "text": "Amycretin Phase 1b/2a (Lancet 2025)",
+      "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)01185-7/abstract"
+    },
+    {
+      "text": "Survodutide Phase 2 MASH (NEJM 2024)",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2401755"
+    },
+    {
+      "text": "Orforglipron ATTAIN-1 (NEJM)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40960239/"
+    },
+    {
+      "text": "Orforglipron ATTAIN-2 (Lancet)",
+      "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)02165-8/abstract"
+    },
+    {
+      "text": "Survodutide SYNCHRONIZE-1 baseline (Diabetes Obes Metab 2026)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41187967/"
+    }
+  ]
+}

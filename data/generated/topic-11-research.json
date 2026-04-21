@@ -1,0 +1,53 @@
+{
+  "topicId": "topic-11",
+  "title": "AI糖尿病管理市場、2026年に10億ドル突破",
+  "searchQueries": [
+    "AI diabetes management market size 2026 billion dollars Grand View Research Fortune Business Insights",
+    "CGM data AI analysis prescription AI patient self-care AI diabetes 2026",
+    "artificial intelligence diabetes care market growth forecast CAGR 2025 2026 2030",
+    "Dexcom Abbott Libre AI glucose prediction algorithm 2025 2026 clinical trial results",
+    "AI糖尿病管理 日本 CGM AI解析 2025 2026",
+    "AI clinical decision support diabetes prescription HbA1c improvement RCT evidence 2024 2025"
+  ],
+  "keyFindings": [
+    {
+      "topic": "AI糖尿病管理市場の規模と成長予測",
+      "summary": "AI糖尿病管理市場は2025年の約8億ドルから2026年に10.6億ドルへ成長見込み（CAGR 33.2%）。2030年には50億ドル超に達する予測もある。広義のデジタル糖尿病管理市場は2030年に219億ドル規模。市場の3本柱はCGMデータAI解析、処方支援AI、患者セルフケアAI。Research and Marketsは2025年13.1億ドル→2026年17.2億ドル（CAGR 31.66%）と推計。",
+      "sources": ["https://www.grandviewresearch.com/industry-analysis/digital-diabetes-management-market", "https://www.researchandmarkets.com/report/artificial-intelligence-in-diabetes-management", "https://www.360iresearch.com/library/intelligence/artificial-intelligence-in-diabetes-management"]
+    },
+    {
+      "topic": "CGMデータのAI解析：Abbott Libre AssistとDexcom G7",
+      "summary": "AbbottはCES 2026でLibre Assistを発表。生成AIを活用し食事写真やテキスト入力から血糖への影響を予測（緑・黄・橙の3段階評価）。Dexcom G7はATTD 2026でレジストリデータを公開し、非インスリン使用の2型糖尿病患者でもA1C低下と体重管理に有効と報告。FreeDM2 RCTではFreeStyle Libre使用群で従来SMBG群比HbA1c 0.6%改善、1日2.5時間のTIR増加を実証。",
+      "sources": ["https://www.fiercebiotech.com/medtech/abbott-launches-ai-based-libre-assist-its-new-app-feature-meal-planning", "https://abbott.mediaroom.com/2026-03-12-Landmark-study-shows-Libre-technology-helps-people-with-Type-2-diabetes-on-basal-insulin-improve-glucose-management", "https://www.drugdeliverybusiness.com/biggest-diabetes-tech-news-attd-2026/"]
+    },
+    {
+      "topic": "処方支援AIとCDSS（臨床意思決定支援システム）",
+      "summary": "Dennis et al. (2025)は日常的臨床データから5種類の2型糖尿病薬の効果を個別予測するモデルを開発・検証。AI介入のシステマティックレビュー（17 RCT、介入群3381名vs対照群3176名）ではTIR改善とHbA1c低下が有意に確認。音声対話型AIによるインスリン漸増支援では最適用量到達時間短縮・アドヒアランス向上・血糖コントロール改善が報告。糖尿病自己管理アプリのメタ解析（41 RCT）ではHbA1c約0.5%の低下効果。",
+      "sources": ["https://pubmed.ncbi.nlm.nih.gov/41144242/", "https://pubmed.ncbi.nlm.nih.gov/40355304/", "https://pmc.ncbi.nlm.nih.gov/articles/PMC12672236/"]
+    },
+    {
+      "topic": "患者セルフケアAIとモバイルヘルス",
+      "summary": "Guardian Connect SystemはCGMデータからAIが低血糖を1時間前に予測しアラート。GarminウォッチとAI解析の組み合わせで夜間低血糖の早期検知の可能性が報告。AI駆動のライフスタイル介入vs人間コーチングのRCTも進行中。生成AIを活用した食事指導・血糖予測がコンシューマー向け糖尿病テクノロジーの新潮流に。",
+      "sources": ["https://pmc.ncbi.nlm.nih.gov/articles/PMC12968744/", "https://www.watch.impress.co.jp/docs/news/2066755.html", "https://www.diabetotech.com/blog/ces-2026-when-diabetes-technology-becomes-consumer-technology"]
+    },
+    {
+      "topic": "日本市場の動向",
+      "summary": "日本の糖尿病患者約1000万人（予備群含め約2000万人）。日本の糖尿病ケア機器市場は2025年に18.6億ドル、2030年に26.3億ドル見込み（年成長率7.26%）。ニプロが2025年9月にAIアルゴリズム搭載型植込み型インスリン注入マイクロポンプの全国臨床試験を開始。CGMデータのAI解析で2型糖尿病を4つのサブタイプに分類する研究も進行中。",
+      "sources": ["https://dm-rg.net/news/1a44f809-437d-4f03-870d-3bdea785c4d3", "https://www.ey.com/ja_jp/insights/life-sciences/what-can-we-learn-from-the-continuous-glucose-monitoring-device-market", "https://www.gii.co.jp/report/tbrc1970111-artificial-intelligence-diabetes-management-global.html"]
+    },
+    {
+      "topic": "課題と今後の方向性",
+      "summary": "データプライバシー、アルゴリズムバイアス、デバイス間相互運用性、AI医療の公平性が主要課題。生成AIの精度限界（Libre Assistも治療判断への使用は非推奨と明記）。規制対応（SaMD：Software as a Medical Device）の整備が各国で進行中。個別化医療の実現に向けたマルチモーダルAI（CGM+ウェアラブル+電子カルテ統合）が次のフロンティア。",
+      "sources": ["https://www.frontiersin.org/journals/endocrinology/articles/10.3389/fendo.2025.1583227/full", "https://pmc.ncbi.nlm.nih.gov/articles/PMC11672366/"]
+    }
+  ],
+  "references": [
+    {"text": "Grand View Research. Digital Diabetes Management Market Size, Share & Trends Analysis Report. 2025", "url": "https://www.grandviewresearch.com/industry-analysis/digital-diabetes-management-market"},
+    {"text": "Research and Markets. Artificial Intelligence in Diabetes Management Global Market Report 2026", "url": "https://www.researchandmarkets.com/report/artificial-intelligence-in-diabetes-management"},
+    {"text": "Abbott. Landmark FreeDM2 study: Libre technology improves glucose management in T2D. March 2026", "url": "https://abbott.mediaroom.com/2026-03-12-Landmark-study-shows-Libre-technology-helps-people-with-Type-2-diabetes-on-basal-insulin-improve-glucose-management"},
+    {"text": "Abdalrada AS, et al. Effectiveness of AI-driven interventions in glycemic control: A systematic review and meta-analysis of RCTs. PubMed 2025", "url": "https://pubmed.ncbi.nlm.nih.gov/40355304/"},
+    {"text": "Dennis JM, et al. AI-Powered Lifestyle Intervention vs Human Coaching in Diabetes. PubMed 2025", "url": "https://pubmed.ncbi.nlm.nih.gov/41144242/"},
+    {"text": "Frontiers in Endocrinology. Future horizons in diabetes: integrating AI and personalized care. 2025", "url": "https://www.frontiersin.org/journals/endocrinology/articles/10.3389/fendo.2025.1583227/full"}
+  ],
+  "createdAt": "2026-04-22"
+}

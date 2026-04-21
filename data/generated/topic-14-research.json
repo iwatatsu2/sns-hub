@@ -1,0 +1,52 @@
+{
+  "topicId": "topic-14",
+  "title": "メトホルミン、本当に第一選択でいいの？",
+  "searchQueries": [
+    "metformin first-line therapy type 2 diabetes ADA Standards of Care 2026 guidelines",
+    "日本人 2型糖尿病 メトホルミン 第一選択 欧米人との違い インスリン分泌能 2024 2025",
+    "metformin vs GLP-1 receptor agonist SGLT2 inhibitor first-line diabetes cardiovascular renal outcomes 2025 2026",
+    "UKPDS metformin cardiovascular benefit overweight diabetes landmark trial evidence",
+    "日本糖尿病学会 治療アルゴリズム 2024 2025 第一選択薬 patient-centered approach"
+  ],
+  "keyFindings": [
+    {
+      "topic": "ADA 2026ガイドラインにおけるメトホルミンの位置づけ",
+      "summary": "ADA Standards of Care 2026では、メトホルミンは依然として有効・安全・安価であり、微小血管合併症・心血管イベント・死亡リスクを低減するとされる。SU薬と比較して体重中立、低血糖なし、心血管死亡率低下の利点がある。DPP-4阻害薬よりもHbA1c・体重低下効果が優れる。ただし、ASCVD・心不全・CKDを有する患者には、HbA1cに関わらずSGLT2阻害薬やGLP-1 RAを推奨する方針が強化された。",
+      "sources": ["https://pmc.ncbi.nlm.nih.gov/articles/PMC12690185/", "https://diabetesjournals.org/care/article/49/Supplement_1/S183/163934/9-Pharmacologic-Approaches-to-Glycemic-Treatment"]
+    },
+    {
+      "topic": "日本人糖尿病の病態的特徴と欧米との違い",
+      "summary": "日本人は欧米人と比較してインスリン分泌能が低く、軽度の肥満でもインスリン抵抗性の増加に対応できず糖尿病を発症する。欧米型がインスリン抵抗性優位（肥満・メタボ型）であるのに対し、日本人はインスリン分泌障害優位の病態が多い。日本の実臨床では初回処方でDPP-4阻害薬が最も多く、メトホルミンは2番目。これはインスリン分泌促進が必要な非肥満症例が多いためである。また日本人糖尿病患者の心血管疾患罹患率は欧米より低く、SGLT2阻害薬やGLP-1 RAの心腎保護効果の絶対的ベネフィットは欧米ほど大きくない可能性がある。",
+      "sources": ["https://pro.boehringer-ingelheim.com/jp/product/trazenta/type2-diabetes-treatment-based-on-racial-differences", "https://www.dminfo.jp/pc/basic_info/mechanism/japanese/", "https://dm-rg.net/contents/guidance/020.html"]
+    },
+    {
+      "topic": "UKPDS 34: メトホルミンの心血管エビデンスの原点",
+      "summary": "UKPDS 34（1998年、Lancet）は新規診断の過体重2型糖尿病1,704例を対象に、メトホルミン強化療法 vs 食事療法のみを比較。メトホルミン群では糖尿病関連エンドポイント32%減、糖尿病関連死亡42%減、全死亡36%減、心筋梗塞39%減を達成。10年追跡（legacy effect）でも全死亡27%減、心筋梗塞33%減が持続。ただし対象が「過体重の白人」であり、日本人やアジア人を含む非肥満患者へのエビデンスの外挿には限界がある。",
+      "sources": ["https://pubmed.ncbi.nlm.nih.gov/9742977/", "https://pmc.ncbi.nlm.nih.gov/articles/PMC12140635/", "https://pmc.ncbi.nlm.nih.gov/articles/PMC2769819/"]
+    },
+    {
+      "topic": "SGLT2阻害薬・GLP-1 RAの台頭と心腎保護効果",
+      "summary": "SGLT2阻害薬（エンパグリフロジン、カナグリフロジン等）はMACE・心不全入院・腎アウトカムを有意に改善。GLP-1 RAもMACE減少のエビデンスが蓄積。ADA 2026ではASCVD・HF・CKDを有する患者にはメトホルミン使用の有無に関わらずこれらの薬剤を優先。低心血管リスク患者においても、SGLT2阻害薬はメトホルミンと同等の全死亡・心血管・腎イベントリスクを示す研究がある。早期併用療法（メトホルミン+SGLT2阻害薬）の有用性も報告されている。",
+      "sources": ["https://www.ahajournals.org/doi/10.1161/JAHA.123.032397", "https://pmc.ncbi.nlm.nih.gov/articles/PMC10772430/", "https://link.springer.com/article/10.1186/s40001-024-02241-4"]
+    },
+    {
+      "topic": "日本糖尿病学会の薬物療法アルゴリズム（第2版）",
+      "summary": "日本糖尿病学会は「2型糖尿病の薬物療法のアルゴリズム（第2版）」を公開。肥満の有無をまず評価し、肥満があればインスリン抵抗性改善（メトホルミン、SGLT2阻害薬、GLP-1 RA）、非肥満であればインスリン分泌促進（DPP-4阻害薬、グリニド薬等）を優先する。CKD・心不全・ASCVDを合併する場合はSGLT2阻害薬を積極的に推奨。チルゼパチドも追記された。欧米のように一律メトホルミン第一選択ではなく、病態に応じた個別化を重視する日本独自のアプローチ。",
+      "sources": ["https://dm-rg.net/news/9739084e-0990-4b27-9a8d-3de9f6ce3b52", "https://www.sugimoto-cl.info/2025/10/09/824/", "https://dm-rg.net/news/fda2fa6d-b555-4bc8-a158-3175006d3bc8"]
+    },
+    {
+      "topic": "メトホルミンの限界と注意点",
+      "summary": "メトホルミンはeGFR 30未満で禁忌、30-45で減量が必要。消化器症状（下痢、悪心）が5-30%に出現し、アドヒアランス低下の原因となる。乳酸アシドーシスは極めてまれだが、腎機能低下・脱水・造影剤使用時にリスクが上昇。ビタミンB12欠乏（長期使用で6-30%）にも注意。高齢者では腎機能のモニタリングが重要。また、メトホルミンには体重減少・ASCVD予防以外の臓器保護効果（心不全・CKD）の大規模RCTエビデンスが乏しく、SGLT2阻害薬やGLP-1 RAに劣る側面がある。",
+      "sources": ["https://pmc.ncbi.nlm.nih.gov/articles/PMC7317924/", "https://pmc.ncbi.nlm.nih.gov/articles/PMC12690185/"]
+    }
+  ],
+  "references": [
+    {"text": "ADA. 9. Pharmacologic Approaches to Glycemic Treatment: Standards of Care in Diabetes—2026. Diabetes Care 2026;49(Suppl 1):S183-S215", "url": "https://diabetesjournals.org/care/article/49/Supplement_1/S183/163934/9-Pharmacologic-Approaches-to-Glycemic-Treatment"},
+    {"text": "UK Prospective Diabetes Study (UKPDS) Group. Effect of intensive blood-glucose control with metformin on complications in overweight patients with type 2 diabetes (UKPDS 34). Lancet 1998;352:854-865", "url": "https://pubmed.ncbi.nlm.nih.gov/9742977/"},
+    {"text": "日本糖尿病学会. 2型糖尿病の薬物療法のアルゴリズム（第2版）. 糖尿病 2024", "url": "https://dm-rg.net/news/9739084e-0990-4b27-9a8d-3de9f6ce3b52"},
+    {"text": "日本糖尿病学会 編. 糖尿病治療ガイド2024-2025. 文光堂, 2024", "url": "https://www.bunkodo.co.jp/book/52BVY69UV1.html"},
+    {"text": "Chen YC, et al. Sodium Glucose Transporter 2 Inhibitors Versus Metformin on Cardiovascular and Renal Outcomes in Patients With Diabetes With Low Cardiovascular Risk. J Am Heart Assoc 2024;13:e032397", "url": "https://www.ahajournals.org/doi/10.1161/JAHA.123.032397"},
+    {"text": "Holman RR, et al. 10-year follow-up of intensive glucose control in type 2 diabetes. N Engl J Med 2008;359:1577-1589", "url": "https://pubmed.ncbi.nlm.nih.gov/18784090/"}
+  ],
+  "createdAt": "2026-04-22"
+}

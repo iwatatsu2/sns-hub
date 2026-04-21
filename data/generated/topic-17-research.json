@@ -1,0 +1,68 @@
+{
+  "topicId": "topic-17",
+  "title": "副腎偶発腫、どこまで精査する？",
+  "searchQueries": [
+    "副腎偶発腫 ガイドライン 日本内分泌学会 精査 フローチャート 2024 2025",
+    "adrenal incidentaloma workup guidelines ESE 2023 subclinical Cushing pheochromocytoma",
+    "副腎偶発腫 有病率 CT 頻度 褐色細胞腫 クッシング アルドステロン 鑑別",
+    "adrenal incidentaloma prevalence autopsy CT management algorithm MACS mild autonomous cortisol secretion outcomes",
+    "副腎偶発腫 デキサメタゾン抑制試験 メタネフリン 手術適応 サブクリニカルクッシング MACS フォローアップ"
+  ],
+  "keyFindings": [
+    {
+      "topic": "副腎偶発腫の疫学と有病率",
+      "summary": "副腎偶発腫はCT検査で約4%に発見され、剖検では約2.3-7%に認められる。年齢とともに頻度は増加し、70歳以上では7%以上となる。画像技術の進歩と健診CTの普及により発見頻度は増加傾向にある。内訳は非機能性腺腫51%、コルチゾール産生腺腫10.5%（うちサブクリニカルクッシング3.6%）、褐色細胞腫8.5%、アルドステロン産生腺腫5.1%、副腎皮質癌2-5%、転移性腫瘍2.5%。",
+      "sources": [
+        "https://www.j-endo.jp/modules/patient/index.php?content_id=33",
+        "https://www.ncbi.nlm.nih.gov/books/NBK279021/"
+      ]
+    },
+    {
+      "topic": "ESE/ENSAT 2023年ガイドラインの主要変更点",
+      "summary": "2023年ESE/ENSATガイドラインでは重要な変更が行われた。(1) CT値10HU以下の均一な腫瘤は良性であり、サイズにかかわらず追加画像フォローは不要。(2) サブクリニカルクッシングの代わりにMACS（mild autonomous cortisol secretion）の用語を推奨。(3) 全例に1mg DST（カットオフ1.8μg/dL）と血漿/尿メタネフリン測定を推奨。(4) 高血圧合併例にはアルドステロン/レニン比を追加。(5) 4cm以上かつCT値20HU超の不均一腫瘤は手術を考慮。MACSから顕性クッシングへの進展は1%未満。",
+      "sources": [
+        "https://academic.oup.com/ejendo/article/189/1/G1/7198474",
+        "https://pubmed.ncbi.nlm.nih.gov/37318239/"
+      ]
+    },
+    {
+      "topic": "画像診断のポイント：良悪性鑑別",
+      "summary": "単純CT値10HU以下は脂肪成分豊富な良性腺腫を示唆し、感度71%・特異度98%で腺腫を診断可能。造影CTではwashout率が重要で、絶対的washout率60%以上または相対的washout率40%以上で良性腺腫を示唆。悪性を疑う所見は、腫瘍径4cm以上、境界不明瞭、内部不均一（壊死・出血・石灰化）、CT値10HU超。MRIではchemical shift imagingで脂肪含有の評価が可能。FDG-PETは悪性腫瘍の鑑別に有用。",
+      "sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC10475962/",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC12130141/"
+      ]
+    },
+    {
+      "topic": "ホルモン精査のフローチャート",
+      "summary": "全例必須検査として、(1) 1mg overnight DST（コルチゾール>1.8μg/dLでMACS疑い、>5μg/dLでクッシング疑い）、(2) 血漿遊離メタネフリン分画または24時間尿中メタネフリン分画（褐色細胞腫除外）。高血圧患者にはアルドステロン/レニン比（ARR）を追加。MACSの追加評価として、血中ACTH基礎値（10pg/mL未満で抑制）、コルチゾール日内リズム（夜間5μg/dL以上で消失）、24時間尿中遊離コルチゾール。日本の新診断基準では、DST後コルチゾール1.8-5μg/dLの範囲でもACTH抑制やDHEA-S低値があればサブクリニカルクッシングと診断。",
+      "sources": [
+        "https://www.jstage.jst.go.jp/article/naika/108/10/108_2148/_pdf/-char/ja",
+        "https://minds.jcqhc.or.jp/summary/c00770/"
+      ]
+    },
+    {
+      "topic": "MACS（軽度自律性コルチゾール分泌）の臨床的意義と管理",
+      "summary": "MACSは副腎偶発腫で最も頻度の高い内分泌異常で、有病率5-30%。MACSの患者は糖尿病、高血圧、脂質異常症の有病率が15-40%高く、骨粗鬆症性骨折リスクも上昇する。ESE 2023ガイドラインでは、DST後コルチゾール>5μg/dLかつ関連合併症（2型糖尿病、高血圧、肥満、骨粗鬆症、脂質異常症）が2つ以上あり、そのうち1つ以上が内科的治療で不十分な場合に手術適応を検討。手術しない場合は2-4年間の内分泌専門医によるフォローアップが推奨。術後には副腎不全のリスクがあり、ステロイドカバーが必要。",
+      "sources": [
+        "https://pubmed.ncbi.nlm.nih.gov/38649778/",
+        "https://pubmed.ncbi.nlm.nih.gov/31206616/"
+      ]
+    },
+    {
+      "topic": "褐色細胞腫の見逃し防止",
+      "summary": "褐色細胞腫は副腎偶発腫の約8.5%を占め、約35%は無症候性である。見逃すと致命的な高血圧クリーゼを引き起こしうるため、全例でのメタネフリン測定が必須。CT値10HU以下の均一腫瘤では褐色細胞腫の可能性は極めて低いが、ESE 2023ガイドラインでは安全性の観点から測定を推奨。褐色細胞腫が疑われた場合は、α遮断薬による術前準備後に手術を行う。10%ルール（10%が両側性、10%が悪性、10%が副腎外）は現在では過小評価とされ、遺伝性（SDH変異など）は約40%に認められる。",
+      "sources": [
+        "https://www.do-yukai.com/medical/108.html",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC10475962/"
+      ]
+    }
+  ],
+  "guidelines": [
+    "ESE/ENSAT Clinical Practice Guideline on Management of Adrenal Incidentalomas (2023)",
+    "日本内分泌学会 副腎性サブクリニカルクッシング症候群 新診断基準",
+    "内分泌非活性副腎腫瘍診療ガイドライン 2022年版",
+    "褐色細胞腫・パラガングリオーマ診療ガイドライン 2025"
+  ],
+  "createdAt": "2026-04-22"
+}

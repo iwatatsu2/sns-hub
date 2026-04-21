@@ -1,0 +1,44 @@
+{
+  "topicId": "topic-15",
+  "title": "インスリン量の調整、自信ありますか？",
+  "searchQueries": [
+    "hospital insulin infusion protocol sliding scale basal bolus 2024 2025 guidelines",
+    "inpatient insulin management evidence based review continuous infusion to subcutaneous transition",
+    "病棟 インスリン持続静注 スライディングスケール 基礎ボーラス療法 ガイドライン 2024",
+    "RABBIT 2 trial basal bolus vs sliding scale surgery inpatient glycemic control Umpierrez",
+    "insulin dose calculation TDD weight based 0.5 units/kg inpatient hyperglycemia correction factor"
+  ],
+  "keyFindings": [
+    {
+      "topic": "ADA 2025ガイドライン：入院患者の血糖管理",
+      "summary": "ADA Standards of Care 2025では、重症患者にはインスリン持続静注を推奨。非重症患者で食事摂取可能な場合は基礎-追加-補正インスリン（Basal-Bolus-Correction）が推奨される。非重症患者で食事摂取不良の場合は基礎インスリン+補正インスリンが推奨。スライディングスケール単独使用は明確に非推奨とされ、特に長期間のスライディングスケール単独使用は強く非推奨。例外は軽度高血糖やストレス性高血糖の2型糖尿病患者のみ。",
+      "sources": ["https://diabetesjournals.org/care/article/48/Supplement_1/S321/157551/16-Diabetes-Care-in-the-Hospital-Standards-of-Care", "https://glytec.com/2025/04/28/2025-ada-guidelines-best-practices-for-inpatient-glycemic-management/"]
+    },
+    {
+      "topic": "RABBIT 2試験：基礎ボーラス法 vs スライディングスケール",
+      "summary": "Umpierrezらによる多施設RCT（RABBIT 2 / RABBIT 2 Surgery）。RABBIT 2 Surgery試験では外科入院2型糖尿病患者をグラルギン+グルリジン群（n=104）vs スライディングスケール群（n=107）に無作為割付。基礎ボーラス群では血糖140mg/dL未満達成率55% vs SSI群31%。平均1日インスリン量は基礎ボーラス群42単位 vs SSI群12単位。基礎ボーラス群で手術合併症が有意に減少。この結果がADAガイドライン変更の根拠となった。",
+      "sources": ["https://diabetesjournals.org/care/article/34/2/256/39131/Randomized-Study-of-Basal-Bolus-Insulin-Therapy-in", "https://pubmed.ncbi.nlm.nih.gov/17513708/"]
+    },
+    {
+      "topic": "インスリン持続静注から皮下注射への移行プロトコル",
+      "summary": "IV→皮下移行は血糖管理の最も危険なタイミングの一つ。推奨手順：(1)直近12時間のインスリン注入量から24時間必要量（TDD）を算出、(2)糖尿病既往なし：TDDの60-70%を皮下投与、糖尿病既往あり：TDDの70-80%を皮下投与、(3)50:50ルールで基礎:ボーラスに分割、(4)皮下インスリン開始後2時間は持続静注を継続（overlap）、(5)1型糖尿病では基礎インスリン投与前にIV中止は絶対禁忌（DKAリスク）。",
+      "sources": ["https://pmc.ncbi.nlm.nih.gov/articles/PMC4928222/", "https://pmc.ncbi.nlm.nih.gov/articles/PMC4523736/"]
+    },
+    {
+      "topic": "体重ベースのTDD計算と補正インスリン",
+      "summary": "入院患者のTDD計算：1型は約0.5単位/kg/日、2型は0.5-2.0単位/kg/日（インスリン抵抗性による）。AACE推奨は0.3-0.5単位/kg/日から開始し50:50で基礎/ボーラスに分割。低血糖リスク因子（高齢、腎不全、肝不全、低体重）がある場合は0.2-0.3単位/kg/日に減量。肥満やステロイド使用では0.5-0.6単位/kg/日以上に増量。補正インスリン（Correction Factor）はBMI別に感受性型（BMI<20 or TDD<50単位）、標準型（BMI 25-30 or TDD 50-90単位）、抵抗型（BMI>30 or TDD>90単位）に分類。",
+      "sources": ["https://www.ncbi.nlm.nih.gov/books/NBK278972/", "https://www.ncbi.nlm.nih.gov/books/NBK559540/"]
+    },
+    {
+      "topic": "スライディングスケールの問題点",
+      "summary": "スライディングスケールは「後追い」の治療であり、高血糖が起きてから対応するreactive approachである。基礎インスリンがないため血糖の乱高下（glycemic variability）が大きくなる。入院患者における血糖変動の増大は感染症リスク増加、創傷治癒遅延、死亡率上昇と関連。RABBIT 2試験ではSSI群の平均血糖が有意に高く、140mg/dL未満の達成率はわずか31%。ADA 2025ではSSI単独を「discouraged」、長期使用を「strongly discouraged」と明記。",
+      "sources": ["https://pmc.ncbi.nlm.nih.gov/articles/PMC8340956/", "https://www.aafp.org/pubs/afp/issues/2010/0501/p1130.html"]
+    },
+    {
+      "topic": "入院患者の血糖目標値",
+      "summary": "ADA 2025推奨：重症患者の血糖目標は140-180mg/dL。非重症患者の血糖目標は100-180mg/dL。低血糖（<70mg/dL）の回避が最重要。CGM（持続血糖モニタリング）の入院での使用に関するエビデンスが蓄積中。日本のガイドラインでも食前血糖140mg/dL未満、随時血糖180mg/dL未満が推奨されている。",
+      "sources": ["https://diabetesjournals.org/care/article/48/Supplement_1/S321/157551/16-Diabetes-Care-in-the-Hospital-Standards-of-Care", "https://hospitalhandbook.ucsf.edu/content/07-inpatient-diabetes-guidelines"]
+    }
+  ],
+  "summary": "入院患者のインスリン管理は、(1)インスリン持続静注（重症患者）、(2)基礎ボーラス法（非重症で食事可能）、(3)基礎+補正法（非重症で食事不可）の3つを使い分ける。スライディングスケール単独はエビデンスレベルで明確に非推奨。RABBIT 2試験により基礎ボーラス法の優位性が証明され、ADAガイドラインに反映された。TDD計算は体重ベース（0.3-0.5単位/kg/日）で開始し、50:50で基礎:ボーラスに分割。IV→皮下移行時は2時間のoverlap期間を設け、1型では基礎インスリン投与前のIV中止は絶対禁忌。"
+}

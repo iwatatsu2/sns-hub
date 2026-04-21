@@ -1,0 +1,51 @@
+{
+  "reelHook": "GLP-1の次",
+  "reelData": [
+    { "num": "01", "text": "アミクレチン：-22%減量" },
+    { "num": "02", "text": "survodutide：肝脂肪も改善" },
+    { "num": "03", "text": "orforglipron：飲み薬" },
+    { "num": "04", "text": "全てPhase 3段階" }
+  ],
+  "reelScenes": [
+    {
+      "scene": 1,
+      "timing": "0-4s",
+      "hook": "GLP-1の次",
+      "sub": "次世代肥満症薬が3つ来た"
+    },
+    {
+      "scene": 2,
+      "timing": "4-9s",
+      "title": "注目の3剤",
+      "cards": [
+        "01 アミクレチン：-22%減量",
+        "02 survodutide：肝脂肪も改善",
+        "03 orforglipron：飲み薬",
+        "04 全てPhase 3段階"
+      ]
+    },
+    {
+      "scene": 3,
+      "timing": "9-13s",
+      "title": "最大の衝撃",
+      "body": "アミクレチンは36週で-22%。プラトー未到達＝まだ減る",
+      "source": "Lancet 2025"
+    },
+    {
+      "scene": 4,
+      "timing": "13-18s",
+      "title": "まとめ",
+      "items": [
+        "GLP-1+アミリンで最強減量",
+        "グルカゴン併用で肝臓も守る",
+        "経口薬で注射バリア解消"
+      ]
+    },
+    {
+      "scene": 5,
+      "timing": "18-23s",
+      "cta": "フォローで最新薬剤情報をキャッチ"
+    }
+  ],
+  "reelHtml": "<!DOCTYPE html><html lang=\"ja\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=1080,height=1920\"><title>次世代肥満症薬リール</title><link href=\"https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap\" rel=\"stylesheet\"><script src=\"https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js\"></script><style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1920px;overflow:hidden;font-family:'Noto Sans JP',sans-serif}.comp{position:relative;width:1080px;height:1920px;background:linear-gradient(180deg,#0f172a 0%,#1e293b 50%,#312e81 100%)}.scene{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;opacity:0;padding:60px}.hook-text{font-size:100px;font-weight:900;color:#fff;text-align:center;line-height:1.2}.hook-sub{font-size:34px;font-weight:400;color:#94a3b8;margin-top:30px;text-align:center}.data-section{width:100%;padding:0 40px}.data-title{font-size:44px;font-weight:700;color:#2dd4bf;margin-bottom:40px;text-align:center}.data-card{display:flex;align-items:center;gap:24px;background:rgba(255,255,255,0.06);border:1px solid rgba(45,212,191,0.3);border-radius:20px;padding:28px 36px;margin-bottom:24px;opacity:0}.data-num{font-size:50px;font-weight:900;color:#14b8a6;min-width:70px}.data-text{font-size:36px;font-weight:700;color:#fff}.explain-box{background:rgba(20,184,166,0.1);border:2px solid rgba(45,212,191,0.4);border-radius:24px;padding:50px;width:90%;text-align:center}.explain-title{font-size:44px;font-weight:900;color:#2dd4bf;margin-bottom:30px}.explain-text{font-size:38px;font-weight:700;color:#fff;line-height:1.6}.source-badge{display:inline-block;margin-top:24px;padding:8px 20px;background:rgba(45,212,191,0.2);border-radius:30px;font-size:26px;color:#5eead4}.summary-grid{width:90%}.summary-item{display:flex;align-items:flex-start;gap:20px;background:rgba(255,255,255,0.05);border-left:4px solid #14b8a6;border-radius:0 16px 16px 0;padding:28px 32px;margin-bottom:24px;opacity:0}.summary-check{font-size:42px;color:#2dd4bf;min-width:50px}.summary-text{font-size:34px;font-weight:700;color:#fff;line-height:1.4}.follow-section{display:flex;flex-direction:column;align-items:center;gap:24px}.follow-avatar{width:260px;height:260px;border-radius:50%;border:4px solid #14b8a6;overflow:hidden;background:#1e293b}.follow-avatar img{width:100%;height:100%;object-fit:cover}.follow-name{font-size:56px;font-weight:900;color:#fff}.follow-title{font-size:30px;color:#94a3b8;text-align:center}.follow-btn{margin-top:16px;padding:20px 80px;background:linear-gradient(135deg,#14b8a6,#2dd4bf);border-radius:60px;font-size:44px;font-weight:900;color:#0f172a}.follow-actions{display:flex;gap:40px;margin-top:20px}.follow-action{font-size:28px;color:#5eead4;font-weight:700}</style></head><body><div class=\"comp\"><div class=\"scene\" id=\"scene1\"><div class=\"hook-text\">GLP-1の次</div><div class=\"hook-sub\">次世代肥満症薬が3つ来た</div></div><div class=\"scene\" id=\"scene2\"><div class=\"data-section\"><div class=\"data-title\">注目の3剤</div><div class=\"data-card\"><span class=\"data-num\">01</span><span class=\"data-text\">アミクレチン：-22%減量</span></div><div class=\"data-card\"><span class=\"data-num\">02</span><span class=\"data-text\">survodutide：肝脂肪も改善</span></div><div class=\"data-card\"><span class=\"data-num\">03</span><span class=\"data-text\">orforglipron：飲み薬</span></div><div class=\"data-card\"><span class=\"data-num\">04</span><span class=\"data-text\">全てPhase 3段階</span></div></div></div><div class=\"scene\" id=\"scene3\"><div class=\"explain-box\"><div class=\"explain-title\">最大の衝撃</div><div class=\"explain-text\">アミクレチンは<br>36週で-22%減量<br>プラトー未到達＝まだ減る</div><div class=\"source-badge\">Lancet 2025</div></div></div><div class=\"scene\" id=\"scene4\"><div class=\"data-title\" style=\"color:#2dd4bf;font-size:44px;font-weight:900;margin-bottom:40px\">まとめ</div><div class=\"summary-grid\"><div class=\"summary-item\"><span class=\"summary-check\">&#10003;</span><span class=\"summary-text\">GLP-1+アミリンで最強減量</span></div><div class=\"summary-item\"><span class=\"summary-check\">&#10003;</span><span class=\"summary-text\">グルカゴン併用で肝臓も守る</span></div><div class=\"summary-item\"><span class=\"summary-check\">&#10003;</span><span class=\"summary-text\">経口薬で注射バリア解消</span></div></div></div><div class=\"scene\" id=\"scene5\"><div class=\"follow-section\"><div class=\"follow-avatar\"><img src=\"/dr-iwatatsu.png\" alt=\"Dr.いわたつ\"></div><div class=\"follow-name\">Dr.いわたつ</div><div class=\"follow-title\">糖尿病・肥満症専門医<br>内分泌専門医 / 医学博士</div><div class=\"follow-btn\">フォローする</div><div class=\"follow-actions\"><span class=\"follow-action\">保存</span><span class=\"follow-action\">シェア</span></div></div></div></div><script>const tl=gsap.timeline({repeat:-1});tl.to('#scene1',{opacity:1,duration:0.5}).from('.hook-text',{scale:0.5,opacity:0,duration:0.8,ease:'back.out(1.7)'}).from('.hook-sub',{y:30,opacity:0,duration:0.6},'-=0.3').to('#scene1',{opacity:0,duration:0.4},'+=2.5').to('#scene2',{opacity:1,duration:0.5}).from('.data-title',{y:-20,opacity:0,duration:0.5}).from('.data-card',{x:-80,opacity:0,duration:0.6,stagger:0.8,ease:'power2.out'}).to('#scene2',{opacity:0,duration:0.4},'+=1.5').to('#scene3',{opacity:1,duration:0.5}).from('.explain-box',{y:40,opacity:0,duration:0.7,ease:'power2.out'}).from('.source-badge',{scale:0,duration:0.4},'-=0.2').to('#scene3',{opacity:0,duration:0.4},'+=2.5').to('#scene4',{opacity:1,duration:0.5}).from('.summary-item',{x:-60,opacity:0,duration:0.6,stagger:1.0,ease:'power2.out'}).to('#scene4',{opacity:0,duration:0.4},'+=2').to('#scene5',{opacity:1,duration:0.5}).from('.follow-avatar',{scale:0,duration:0.6,ease:'back.out(1.7)'}).from('.follow-name',{y:20,opacity:0,duration:0.4}).from('.follow-title',{y:20,opacity:0,duration:0.4},'-=0.2').from('.follow-btn',{scale:0.5,opacity:0,duration:0.5,ease:'back.out(1.7)'}).from('.follow-actions',{opacity:0,duration:0.4}).to('#scene5',{opacity:0,duration:0.4},'+=2.5');</script></body></html>"
+}

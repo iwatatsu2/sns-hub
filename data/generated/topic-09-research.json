@@ -1,0 +1,46 @@
+{
+  "topicId": "topic-09",
+  "title": "緩徐進行1型にシタグリプチン？それ、危険かも",
+  "searchQueries": [
+    "緩徐進行1型糖尿病 SPIDDM DPP-4阻害薬 β細胞",
+    "slowly progressive type 1 diabetes DPP-4 inhibitor risk",
+    "抗GAD抗体 LADA 治療 ガイドライン 日本 2025 2026",
+    "SPIDDM DPP-4 inhibitor beta cell depletion sitagliptin LADA insulin secretion",
+    "緩徐進行1型糖尿病 SU薬 禁忌 インスリン早期導入 Cペプチド"
+  ],
+  "keyFindings": [
+    {
+      "topic": "SPIDDMの定義と診断基準",
+      "summary": "緩徐進行1型糖尿病（SPIDDM/LADA）は膵β細胞が自己免疫により緩徐に破壊される病型。2023年改訂の日本糖尿病学会診断基準では definite（インスリン依存状態）と probable（インスリン非依存状態）に分類。抗GAD抗体、抗IA-2抗体、IAA、抗ZnT8抗体が診断マーカー。抗GAD抗体の陽性率はIDDM発症初期で8割超。",
+      "sources": ["https://onoyuri-clinic.jp/archives/3725", "https://nakano-dm.clinic/blog/post-631/"]
+    },
+    {
+      "topic": "DPP-4阻害薬のSPIDDMにおけるリスクと議論",
+      "summary": "DPP-4阻害薬はGLP-1・GIPを増加させβ細胞のインスリン分泌を刺激するが、疾患修飾効果は認められていない（最大2年の観察）。β細胞機能の改善は薬剤使用中のみ。LADA患者でリナグリプチン+メトホルミン治療後にCペプチド上昇・HbA1c低下の報告もあるが、β細胞への過剰な刺激が枯渇を加速する懸念が指摘されている。現行ガイドラインでは1型糖尿病にDPP-4阻害薬は推奨されていない。",
+      "sources": ["https://pmc.ncbi.nlm.nih.gov/articles/PMC5359588/", "https://pmc.ncbi.nlm.nih.gov/articles/PMC5817360/"]
+    },
+    {
+      "topic": "SU薬の危険性とTokyo Study",
+      "summary": "Tokyo Studyにおいて、SU薬内服群ではインスリン治療必要例が約43%だったのに対し、早期インスリン導入群では約10%と有意に低かった。SU薬群では治療開始から約5年でインスリン分泌能が明らかに低下。SU薬は膵β細胞破壊を加速させる可能性があり、SPIDDMでは避けるべきとされている。",
+      "sources": ["https://www.aireikai.jp/medical/blog/721/", "https://kobe-kishida-clinic.com/diabetes/spiddm-treatment-strategy/"]
+    },
+    {
+      "topic": "早期インスリン導入の重要性",
+      "summary": "内因性インスリン分泌の低下が認められた場合、速やかにインスリン治療を導入しインスリン依存状態への進行を抑制することが推奨。Cペプチド定期測定によりインスリン分泌能をモニタリングし、低下が進んだ段階で速やかにインスリン導入を検討。",
+      "sources": ["https://www.jds.or.jp/uploads/files/article/tonyobyo/66_807.pdf", "https://kobe-kishida-clinic.com/about-diabetes-internal-medicine/diabetes-fundamentals/diabetes-tests/c-peptide-test-diagnosis/"]
+    },
+    {
+      "topic": "日本糖尿病学会ステートメント",
+      "summary": "2023年に日本糖尿病学会より「緩徐進行1型糖尿病疑い例への治療介入に関するステートメント」が公表。β細胞への負荷が少ない薬剤（メトホルミン等）の選択、SU薬回避、早期インスリン導入が推奨されている。",
+      "sources": ["https://dm-rg.net/news/f9cd5ec0-90fa-48e7-96b1-61091e1c0676", "https://www.jds.or.jp/uploads/files/article/tonyobyo/66_807.pdf"]
+    }
+  ],
+  "references": [
+    {"text": "日本糖尿病学会. 緩徐進行1型糖尿病疑い例への治療介入に関するステートメント. 糖尿病 2023;66:807-", "url": "https://www.jds.or.jp/uploads/files/article/tonyobyo/66_807.pdf"},
+    {"text": "Kobayashi T, et al. Immunogenetic and clinical characterization of slowly progressive IDDM. Diabetes Care 1993;16:780-788", "url": "https://pubmed.ncbi.nlm.nih.gov/"},
+    {"text": "Maruyama T, et al. Multicenter prevention trial of slowly progressive type 1 diabetes with small dose of insulin (Tokyo Study). Ann N Y Acad Sci 2003;1005:362-369", "url": "https://pubmed.ncbi.nlm.nih.gov/"},
+    {"text": "Guo H, et al. DPP-4 Inhibitors as Treatments for Type 1 Diabetes Mellitus: A Systematic Review and Meta-Analysis. PMC 2018", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5817360/"},
+    {"text": "Pinheiro MM, et al. Effects of dipeptidyl peptidase-4 inhibitors on beta-cell function. Diabetol Metab Syndr 2017;9:22", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5359588/"}
+  ],
+  "createdAt": "2026-04-22"
+}

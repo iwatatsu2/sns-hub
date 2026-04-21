@@ -1,0 +1,60 @@
+{
+  "topic_id": "topic-16",
+  "title": "甲状腺機能異常、内科外来で見逃さないために",
+  "category": "endocrine",
+  "hook": "倦怠感、体重変動、動悸。「ストレスですね」で帰す前に甲状腺をチェックしていますか？",
+  "source": "日本甲状腺学会ガイドライン2024/2025",
+  "researched_at": "2026-04-22",
+  "key_findings": [
+    {
+      "topic": "有病率",
+      "details": "甲状腺機能異常の有病率は一般成人で1-10%。潜在性甲状腺機能低下症は健常人の4-20%に認められ、人間ドック受診者では4.7%（男性3.6%、女性5.8%）。カナダのデータでは45歳以上の10%が甲状腺機能異常と診断（女性16%、男性4%）。"
+    },
+    {
+      "topic": "見逃しの原因",
+      "details": "一般血液検査にTSH・FT4は含まれないため、医師が能動的に検査を提出しない限り見つからない。甲状腺機能異常の症状（倦怠感、体重変動、便秘、動悸）は不定愁訴と類似し、ストレスや加齢として片付けられやすい。"
+    },
+    {
+      "topic": "潜在性甲状腺機能低下症",
+      "details": "TSH高値（4.5μIU/mL以上）かつFT4・FT3正常の状態。抗甲状腺抗体陽性者では年間4.3%が顕性甲状腺機能低下症に進行（抗体陰性・TSH正常者の38倍）。主因は橋本病とヨウ素過剰摂取（昆布、ヨウ素含有うがい薬等）。"
+    },
+    {
+      "topic": "甲状腺機能亢進症の手がかり",
+      "details": "バセドウ病はTSH受容体に対する刺激型自己抗体（TRAb）により発症。動悸・頻脈・体重減少・手指振戦が主症状。高齢者では心房細動として初発し、循環器内科で発見されることも。低コレステロール血症もヒント。"
+    },
+    {
+      "topic": "甲状腺機能低下症の手がかり",
+      "details": "橋本病（慢性甲状腺炎）が最多原因。倦怠感・寒がり・便秘・体重増加・浮腫・うつ症状。LDLコレステロール高値、CK上昇、貧血（大球性）は甲状腺機能低下症を示唆。脂質異常症の二次性原因として甲状腺チェックが推奨。"
+    },
+    {
+      "topic": "スクリーニング推奨",
+      "details": "USPSTF/CTFPHCは無症状成人の一律スクリーニングは推奨せず（エビデンス不十分）。しかし日本甲状腺学会は、不定愁訴・脂質異常・心房細動・貧血などの患者に対する積極的なTSH測定を推奨。甲状腺触診の習慣化も重要。"
+    },
+    {
+      "topic": "診断フロー",
+      "details": "Step1: TSH測定（最も感度が高い）。Step2: TSH異常時にFT4・FT3追加。Step3: 病因検索（TRAb、TPO抗体、Tg抗体、エコー）。TSH低値→甲状腺中毒症（バセドウ病、亜急性甲状腺炎、無痛性甲状腺炎）。TSH高値→甲状腺機能低下症（橋本病、ヨウ素過剰）。"
+    }
+  ],
+  "references": [
+    {
+      "id": 1,
+      "citation": "日本甲状腺学会. 甲状腺疾患診断ガイドライン2024. https://www.japanthyroid.jp/doctor/guideline/japanese.html"
+    },
+    {
+      "id": 2,
+      "citation": "日本内分泌学会. 潜在性甲状腺機能異常. https://www.j-endo.jp/modules/patient/index.php?content_id=39"
+    },
+    {
+      "id": 3,
+      "citation": "Birtwhistle R, et al. Recommendation on screening adults for asymptomatic thyroid dysfunction in primary care. CMAJ. 2019;191(46):E1274-E1280."
+    },
+    {
+      "id": 4,
+      "citation": "LeFevre ML; U.S. Preventive Services Task Force. Screening for thyroid dysfunction: U.S. Preventive Services Task Force recommendation statement. Ann Intern Med. 2015;162(9):641-650."
+    },
+    {
+      "id": 5,
+      "citation": "赤水尚史. 潜在性甲状腺機能異常. 日本内科学会雑誌. 2010;99(4):707-712."
+    }
+  ]
+}
