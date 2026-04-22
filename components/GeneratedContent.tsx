@@ -1,9 +1,64 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import type { PlatformContent } from "@/lib/posts";
 import type { FactCheckItem, FactCheckLevel, SlideData } from "@/lib/content-types";
 import { POST_LINKS } from "@/lib/post-links";
+
+function AutoPostBtn({
+  platform,
+  text,
+  postId,
+}: {
+  platform: "x" | "instagram";
+  text: string;
+  postId?: string;
+}) {
+  const [loading, setLoading] = useState(false);
+  const [configured, setConfigured] = useState<boolean | null>(null);
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/posts/publish")
+      .then((r) => r.json())
+      .then((d) => setConfigured(d[platform] ?? false))
+      .catch(() => setConfigured(false));
+  }, [platform]);
+
+  if (configured !== true || done) return null;
+
+  const handlePost = async () => {
+    if (!confirm(`${platform === "x" ? "X" : "Instagram"}に投稿しますか？`)) return;
+    setLoading(true);
+    try {
+      const res = await fetch("/api/posts/publish", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ postId: postId || "pipeline", platform, text }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        setDone(true);
+        if (data.url) window.open(data.url, "_blank");
+      } else {
+        alert(`投稿エラー: ${data.error}`);
+      }
+    } catch (e) {
+      alert(`投稿エラー: ${e}`);
+    }
+    setLoading(false);
+  };
+
+  return (
+    <button
+      onClick={handlePost}
+      disabled={loading}
+      className="text-xs bg-teal-600 hover:bg-teal-500 disabled:opacity-50 text-white px-2 py-1 rounded transition"
+    >
+      {loading ? "投稿中..." : done ? "✓ 投稿済み" : "自動投稿"}
+    </button>
+  );
+}
 
 function CopyBtn({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -279,6 +334,7 @@ export default function GeneratedContent({
           <span className="font-bold text-white text-sm">𝕏 X</span>
           <div className="flex gap-2">
             <CopyBtn text={platforms.x.text} />
+            <AutoPostBtn platform="x" text={platforms.x.text} />
             <PostLink platform="x" />
           </div>
         </div>
@@ -307,6 +363,7 @@ export default function GeneratedContent({
           <span className="font-bold text-white text-sm">📷 Instagram</span>
           <div className="flex gap-2">
             <CopyBtn text={platforms.instagram.caption + "\n\n" + platforms.instagram.hashtags.map((h) => `#${h}`).join(" ")} />
+            <AutoPostBtn platform="instagram" text={platforms.instagram.caption + "\n\n" + platforms.instagram.hashtags.map((h) => `#${h}`).join(" ")} />
             <PostLink platform="instagram" />
           </div>
         </div>

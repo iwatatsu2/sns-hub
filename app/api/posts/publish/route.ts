@@ -3,10 +3,10 @@ import { getPostById, togglePlatformPosted } from "@/lib/posts";
 import { postToX, postToInstagram, isApiConfigured } from "@/lib/social-api";
 
 export async function POST(req: NextRequest) {
-  const { postId, platform } = await req.json();
+  const { postId, platform, text } = await req.json();
 
-  if (!postId || !platform) {
-    return NextResponse.json({ ok: false, error: "Missing postId or platform" }, { status: 400 });
+  if (!platform) {
+    return NextResponse.json({ ok: false, error: "Missing platform" }, { status: 400 });
   }
 
   if (platform !== "x" && platform !== "instagram") {
@@ -17,22 +17,32 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, error: `${platform} API not configured` }, { status: 400 });
   }
 
-  const post = getPostById(postId);
-  if (!post) {
-    return NextResponse.json({ ok: false, error: "Post not found" }, { status: 404 });
+  let postText: string;
+  if (text) {
+    postText = text;
+  } else if (postId) {
+    const post = getPostById(postId);
+    if (!post) {
+      return NextResponse.json({ ok: false, error: "Post not found" }, { status: 404 });
+    }
+    if (platform === "x") {
+      postText = post.platforms.x.text;
+    } else {
+      const ig = post.platforms.instagram;
+      postText = ig.caption + "\n\n" + ig.hashtags.map((h) => `#${h}`).join(" ");
+    }
+  } else {
+    return NextResponse.json({ ok: false, error: "Missing text or postId" }, { status: 400 });
   }
 
   let result;
   if (platform === "x") {
-    const text = post.platforms.x.text;
-    result = await postToX(text);
+    result = await postToX(postText);
   } else {
-    const ig = post.platforms.instagram;
-    const caption = ig.caption + "\n\n" + ig.hashtags.map((h) => `#${h}`).join(" ");
-    result = await postToInstagram(caption);
+    result = await postToInstagram(postText);
   }
 
-  if (result.ok) {
+  if (result.ok && postId && postId !== "pipeline") {
     togglePlatformPosted(postId, platform);
   }
 
