@@ -9,5 +9,10 @@ export async function POST(req: NextRequest) {
   if (!topic) return NextResponse.json({ error: "Topic not found" }, { status: 404 });
 
   const result = generateContent(topic);
-  return NextResponse.json(result);
+  // スライドのhtmlフィールドを除外（プレビューはテキストベースに変更済み）
+  const lightResult = {
+    ...result,
+    slides: result.slides.map(({ html, ...rest }) => rest),
+  };
+  return NextResponse.json(lightResult);
 }
