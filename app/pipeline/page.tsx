@@ -36,21 +36,28 @@ export default function PipelinePage() {
     if (!currentTopic) return;
     setLoading(true);
 
-    // Update topic status
-    await fetch("/api/topics", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ action: "updateStatus", id: currentTopic.id, status: "approved" }),
-    });
+    try {
+      // Update topic status
+      await fetch("/api/topics", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "updateStatus", id: currentTopic.id, status: "approved" }),
+      });
 
-    // Generate content via API
-    const res = await fetch("/api/topics/generate", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ topicId: currentTopic.id }),
-    });
-    const result = await res.json();
-    setGenerated(result);
+      // Generate content via API
+      const res = await fetch("/api/topics/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ topicId: currentTopic.id }),
+      });
+      const result = await res.json();
+      console.log("Generate result keys:", Object.keys(result));
+      console.log("Platforms keys:", result.platforms ? Object.keys(result.platforms) : "NO PLATFORMS");
+      setGenerated(result);
+    } catch (err) {
+      console.error("handleApprove error:", err);
+      alert("エラー: " + (err instanceof Error ? err.message : String(err)));
+    }
     setLoading(false);
   };
 
