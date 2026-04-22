@@ -263,107 +263,104 @@ export default function GeneratedContent({
   references: string[];
   factChecks: FactCheckItem[];
 }) {
+  const [showDetails, setShowDetails] = useState(false);
+
   return (
-    <div className="space-y-5 max-w-4xl mx-auto">
-      <h3 className="text-lg font-bold text-white">生成結果プレビュー</h3>
-
-      {/* ファクトチェック */}
-      <FactCheckSection items={factChecks} />
-
-      {/* 引用情報 */}
-      <ReferenceSection references={references} />
+    <div className="space-y-4 max-w-2xl mx-auto">
+      <h3 className="text-lg font-bold text-white">生成結果</h3>
 
       {/* X */}
       <div className="border-l-4 border-gray-400 bg-gray-800 rounded-lg p-4">
-        <div className="flex justify-between items-center mb-3">
-          <span className="font-bold text-white text-sm">𝕏 X（プロフィール誘導）</span>
+        <div className="flex justify-between items-center mb-2">
+          <span className="font-bold text-white text-sm">𝕏 X</span>
           <div className="flex gap-2">
             <CopyBtn text={platforms.x.text} />
             <PostLink platform="x" />
           </div>
         </div>
-        <div className="grid md:grid-cols-2 gap-4">
-          <pre className="text-gray-300 text-sm whitespace-pre-wrap font-sans">{platforms.x.text}</pre>
-          <XPreview text={platforms.x.text} />
-        </div>
-        <div className="text-xs text-gray-500 mt-2">{platforms.x.text.length}/280文字</div>
+        <pre className="text-gray-300 text-sm whitespace-pre-wrap font-sans">{platforms.x.text}</pre>
       </div>
 
       {/* note */}
       <div className="border-l-4 border-green-500 bg-gray-800 rounded-lg p-4">
-        <div className="flex justify-between items-center mb-3">
-          <span className="font-bold text-white text-sm">📝 note（長文記事）</span>
+        <div className="flex justify-between items-center mb-2">
+          <span className="font-bold text-white text-sm">📝 note</span>
           <div className="flex gap-2">
             <CopyBtn text={`${platforms.note.title}\n\n${platforms.note.body}`} />
             <PostLink platform="note" />
           </div>
         </div>
-        <div className="grid md:grid-cols-2 gap-4">
-          <div className="max-h-[500px] overflow-y-auto pr-2">
-            <div className="text-teal-400 font-bold text-sm mb-2">{platforms.note.title}</div>
-            <pre className="text-gray-300 text-sm whitespace-pre-wrap font-sans leading-relaxed">
-              {platforms.note.body}
-            </pre>
-          </div>
-          <NotePreview title={platforms.note.title} body={platforms.note.body} />
+        <div className="text-teal-400 font-bold text-sm mb-1">{platforms.note.title}</div>
+        <div className="max-h-[300px] overflow-y-auto">
+          <pre className="text-gray-300 text-sm whitespace-pre-wrap font-sans leading-relaxed">{platforms.note.body}</pre>
         </div>
-        <div className="text-xs text-gray-500 mt-2">
-          noteに貼り付けてそのまま投稿できます
-        </div>
+        <div className="text-xs text-gray-500 mt-1">{platforms.note.body.length}文字</div>
       </div>
 
-      {/* Instagram リール */}
+      {/* Instagram */}
       <div className="border-l-4 border-pink-500 bg-gray-800 rounded-lg p-4">
-        <div className="flex justify-between items-center mb-3">
-          <span className="font-bold text-white text-sm">📷 Instagram リール</span>
+        <div className="flex justify-between items-center mb-2">
+          <span className="font-bold text-white text-sm">📷 Instagram</span>
           <div className="flex gap-2">
-            <CopyBtn
-              text={platforms.instagram.caption + "\n\n" + platforms.instagram.hashtags.map((h) => `#${h}`).join(" ")}
-            />
+            <CopyBtn text={platforms.instagram.caption + "\n\n" + platforms.instagram.hashtags.map((h) => `#${h}`).join(" ")} />
             <PostLink platform="instagram" />
           </div>
         </div>
-        <div className="grid md:grid-cols-3 gap-4">
-          <div>
-            <pre className="text-gray-300 text-sm whitespace-pre-wrap font-sans">{platforms.instagram.caption}</pre>
-            <div className="flex gap-1 mt-2 flex-wrap">
-              {platforms.instagram.hashtags.map((h) => (
-                <span key={h} className="text-xs bg-pink-900 text-pink-300 px-2 py-0.5 rounded">#{h}</span>
-              ))}
-            </div>
-          </div>
-          <ReelPreview html={reelHtml} />
-          <div className="space-y-1">
-            <div className="text-xs font-bold text-gray-400 mb-1">シーン構成</div>
-            {reelScenes.map((s, i) => (
-              <div key={i} className="text-gray-500 text-[10px] bg-gray-700/50 rounded p-1.5 whitespace-pre-wrap">{s}</div>
-            ))}
-          </div>
+        <pre className="text-gray-300 text-sm whitespace-pre-wrap font-sans">{platforms.instagram.caption}</pre>
+        <div className="flex gap-1 mt-2 flex-wrap">
+          {platforms.instagram.hashtags.map((h) => (
+            <span key={h} className="text-xs bg-pink-900 text-pink-300 px-2 py-0.5 rounded">#{h}</span>
+          ))}
         </div>
       </div>
 
-      {/* antaa スライド */}
+      {/* antaa */}
       <div className="border-l-4 border-blue-500 bg-gray-800 rounded-lg p-4">
-        <div className="flex justify-between items-center mb-3">
-          <span className="font-bold text-white text-sm">🏥 antaa スライド</span>
+        <div className="flex justify-between items-center mb-2">
+          <span className="font-bold text-white text-sm">🏥 antaa</span>
           <div className="flex gap-2">
-            <CopyBtn text={`${platforms.antaa.title}\n${platforms.antaa.description}\nタグ: ${platforms.antaa.tags.join(", ")}`} />
+            <CopyBtn text={`${platforms.antaa.title}\n${platforms.antaa.description}`} />
             <PostLink platform="antaa" />
           </div>
         </div>
-        <div className="grid md:grid-cols-2 gap-4">
-          <div>
-            <div className="text-blue-300 font-bold text-sm">{platforms.antaa.title}</div>
-            <div className="text-gray-300 text-sm mt-1">{platforms.antaa.description}</div>
-            <div className="flex gap-1 mt-2 flex-wrap">
-              {platforms.antaa.tags.map((t) => (
-                <span key={t} className="text-xs bg-blue-900 text-blue-300 px-2 py-0.5 rounded">{t}</span>
-              ))}
-            </div>
-          </div>
-          <SlideCarousel slides={slides} />
+        <div className="text-blue-300 font-bold text-sm">{platforms.antaa.title}</div>
+        <div className="text-gray-300 text-sm mt-1">{platforms.antaa.description}</div>
+        <div className="flex gap-1 mt-2 flex-wrap">
+          {platforms.antaa.tags.map((t) => (
+            <span key={t} className="text-xs bg-blue-900 text-blue-300 px-2 py-0.5 rounded">{t}</span>
+          ))}
         </div>
       </div>
+
+      {/* 詳細セクション（折りたたみ） */}
+      <button
+        onClick={() => setShowDetails(!showDetails)}
+        className="w-full text-sm text-gray-400 hover:text-gray-200 py-2 transition"
+      >
+        {showDetails ? "▼ 詳細を閉じる" : "▶ リール・スライド・引用情報を表示"}
+      </button>
+
+      {showDetails && (
+        <div className="space-y-4">
+          <FactCheckSection items={factChecks} />
+          <ReferenceSection references={references} />
+
+          {/* リール */}
+          <div className="bg-gray-800 rounded-lg p-4">
+            <div className="font-bold text-white text-sm mb-2">🎬 リール構成</div>
+            {reelScenes.map((s, i) => (
+              <div key={i} className="text-gray-400 text-xs bg-gray-700/50 rounded p-2 mb-1">{s}</div>
+            ))}
+            <ReelPreview html={reelHtml} />
+          </div>
+
+          {/* スライド */}
+          <div className="bg-gray-800 rounded-lg p-4">
+            <div className="font-bold text-white text-sm mb-2">🏥 スライド構成</div>
+            <SlideCarousel slides={slides} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
