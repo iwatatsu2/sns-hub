@@ -176,20 +176,20 @@ function AntaaPreview({ title, description, tags }: { title: string; description
 
 function ReelPreview({ html }: { html: string }) {
   if (!html) return <div className="text-gray-500 text-xs text-center">リールHTML未生成</div>;
+  const openPreview = () => {
+    const w = window.open("", "_blank");
+    if (w) { w.document.write(html); w.document.close(); }
+  };
   return (
     <div className="flex justify-center">
-      <div className="relative" style={{ width: 216, height: 384 }}>
-        <div className="absolute inset-0 rounded-2xl bg-gray-900 border-2 border-gray-600 overflow-hidden">
-          <iframe
-            srcDoc={html}
-            title="Reel Preview"
-            className="border-0"
-            style={{ width: 1080, height: 1920, transform: "scale(0.2)", transformOrigin: "top left" }}
-            sandbox="allow-scripts"
-          />
-        </div>
-        <div className="absolute top-2 left-1/2 -translate-x-1/2 w-12 h-1 rounded bg-gray-600" />
-      </div>
+      <button
+        onClick={openPreview}
+        className="bg-gray-700 hover:bg-gray-600 text-gray-200 px-4 py-3 rounded-xl transition text-sm flex flex-col items-center gap-2"
+      >
+        <span className="text-2xl">🎬</span>
+        <span>リールプレビューを開く</span>
+        <span className="text-gray-400 text-xs">1080×1920 / 別タブで表示</span>
+      </button>
     </div>
   );
 }
