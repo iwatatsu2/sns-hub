@@ -230,26 +230,57 @@ function AntaaPreview({ title, description, tags }: { title: string; description
 /* ---------- リール動画プレビュー ---------- */
 
 function ReelPreview({ html }: { html: string }) {
+  const [showModal, setShowModal] = useState(false);
+
   if (!html) return <div className="text-gray-500 text-xs text-center">リールHTML未生成</div>;
-  const openPreview = () => {
-    const wrapper = `<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width"><style>body{margin:0;display:flex;justify-content:center;align-items:flex-start;min-height:100vh;background:#111}iframe{width:360px;height:640px;border:none;border-radius:16px;margin-top:20px}</style></head><body><iframe srcdoc="${html.replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}"></iframe></body></html>`;
-    const w = window.open("", "_blank");
-    if (w) {
-      w.document.write(`<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width"><style>body{margin:0;display:flex;justify-content:center;background:#111;min-height:100vh;padding:20px}#frame{width:360px;height:640px;border:3px solid #333;border-radius:24px;overflow:hidden;position:relative}#frame iframe{width:1080px;height:1920px;border:none;transform:scale(0.333);transform-origin:top left}</style></head><body><div id="frame"><iframe srcdoc='${html.replace(/'/g, "&#39;")}'></iframe></div></body></html>`);
-      w.document.close();
-    }
+
+  const downloadHtml = () => {
+    const blob = new Blob([html], { type: "text/html" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "reel.html";
+    a.click();
+    URL.revokeObjectURL(url);
   };
+
   return (
-    <div className="flex justify-center mt-2">
-      <button
-        onClick={openPreview}
-        className="bg-gray-700 hover:bg-gray-600 text-gray-200 px-4 py-3 rounded-xl transition text-sm flex flex-col items-center gap-2"
-      >
-        <span className="text-2xl">🎬</span>
-        <span>リールプレビューを開く</span>
-        <span className="text-gray-400 text-xs">スマホサイズで表示</span>
-      </button>
-    </div>
+    <>
+      <div className="flex justify-center mt-2 gap-3">
+        <button
+          onClick={() => setShowModal(true)}
+          className="bg-gray-700 hover:bg-gray-600 text-gray-200 px-4 py-3 rounded-xl transition text-sm flex flex-col items-center gap-2"
+        >
+          <span className="text-2xl">🎬</span>
+          <span>リールプレビュー</span>
+        </button>
+        <button
+          onClick={downloadHtml}
+          className="bg-gray-700 hover:bg-gray-600 text-gray-200 px-4 py-3 rounded-xl transition text-sm flex flex-col items-center gap-2"
+        >
+          <span className="text-2xl">💾</span>
+          <span>ダウンロード</span>
+        </button>
+      </div>
+      {showModal && (
+        <div className="fixed inset-0 z-50 bg-black/90 flex flex-col items-center" onClick={() => setShowModal(false)}>
+          <button
+            onClick={() => setShowModal(false)}
+            className="absolute top-4 right-4 z-50 bg-white/20 hover:bg-white/40 text-white text-xl w-10 h-10 rounded-full flex items-center justify-center"
+          >
+            ✕
+          </button>
+          <div className="flex-1 flex items-center justify-center p-4" onClick={(e) => e.stopPropagation()}>
+            <div style={{ width: 360, height: 640, border: "3px solid #333", borderRadius: 24, overflow: "hidden", position: "relative" }}>
+              <iframe
+                srcDoc={html}
+                style={{ width: 1080, height: 1920, border: "none", transform: "scale(0.333)", transformOrigin: "top left" }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
