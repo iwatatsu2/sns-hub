@@ -198,63 +198,24 @@ function ReelPreview({ html }: { html: string }) {
 
 function SlideCarousel({ slides }: { slides: SlideData[] }) {
   const [current, setCurrent] = useState(0);
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(0.4);
+
+  if (!slides || slides.length === 0) return <div className="text-gray-500 text-xs">スライド未生成</div>;
   const slide = slides[current];
   if (!slide) return null;
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  React.useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const update = () => setScale(el.clientWidth / 1280);
-    update();
-    const ro = new ResizeObserver(update);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-
-  const bgMap = {
-    dark: "bg-gradient-to-br from-[#0a1a1a] to-[#132e2e]",
-    light: "bg-gradient-to-br from-gray-50 to-gray-100",
-    accent: "bg-gradient-to-br from-teal-900 to-teal-800",
-  };
-  const textMap = {
-    dark: "text-white",
-    light: "text-gray-900",
-    accent: "text-white",
-  };
-
   return (
     <div>
-      {slide.html ? (
-        <div ref={containerRef} className="rounded-xl overflow-hidden aspect-video relative bg-gray-900">
-          <iframe
-            srcDoc={slide.html}
-            title={`Slide ${slide.num}`}
-            className="border-0 absolute top-0 left-0"
-            style={{ width: 1280, height: 720, transform: `scale(${scale})`, transformOrigin: "top left" }}
-            sandbox="allow-scripts"
-          />
+      <div className="bg-gradient-to-br from-[#0a1a1a] to-[#132e2e] rounded-xl aspect-video flex flex-col justify-center p-8 relative overflow-hidden">
+        <div className="absolute top-3 left-3 flex items-center gap-2">
+          <span className="text-xs font-bold px-2 py-0.5 rounded bg-teal-400/20 text-teal-300">{slide.num}</span>
+          <span className="text-xs text-teal-400 font-bold">DM Compass</span>
         </div>
-      ) : (
-        <div className={`${bgMap[slide.style]} rounded-xl aspect-video flex flex-col justify-center p-8 relative overflow-hidden`}>
-          <div className="absolute top-3 left-3 flex items-center gap-2">
-            <span className={`text-xs font-bold px-2 py-0.5 rounded ${slide.style === "light" ? "bg-teal-600 text-white" : "bg-teal-400/20 text-teal-300"}`}>
-              {slide.num}
-            </span>
-            <span className={`text-xs ${slide.style === "light" ? "text-teal-700" : "text-teal-400"} font-bold`}>
-              DM Compass
-            </span>
-          </div>
-          <h3 className={`text-xl font-black ${textMap[slide.style]} mb-3 mt-4`}>{slide.title}</h3>
-          <pre className={`text-sm whitespace-pre-wrap font-sans leading-relaxed ${slide.style === "light" ? "text-gray-700" : "text-gray-300"}`}>{slide.content}</pre>
-          <div className={`absolute bottom-2 left-3 right-3 flex justify-between text-[10px] ${slide.style === "light" ? "text-gray-400" : "text-gray-600"}`}>
-            <span>© Dr. いわたつ</span><span>DM Compass シリーズ</span>
-          </div>
+        <h3 className="text-xl font-black text-white mb-3 mt-4">{slide.title}</h3>
+        <pre className="text-sm whitespace-pre-wrap font-sans leading-relaxed text-gray-300">{slide.content}</pre>
+        <div className="absolute bottom-2 left-3 right-3 flex justify-between text-[10px] text-gray-600">
+          <span>© Dr. いわたつ</span><span>DM Compass シリーズ</span>
         </div>
-      )}
-      {/* Navigation */}
+      </div>
       <div className="flex items-center justify-between mt-2">
         <button
           onClick={() => setCurrent(Math.max(0, current - 1))}
@@ -265,9 +226,7 @@ function SlideCarousel({ slides }: { slides: SlideData[] }) {
         </button>
         <div className="flex gap-1">
           {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrent(i)}
+            <button key={i} onClick={() => setCurrent(i)}
               className={`w-2 h-2 rounded-full transition ${i === current ? "bg-teal-400" : "bg-gray-600"}`}
             />
           ))}
@@ -280,9 +239,7 @@ function SlideCarousel({ slides }: { slides: SlideData[] }) {
           次 →
         </button>
       </div>
-      <div className="text-center text-xs text-gray-500 mt-1">
-        {current + 1} / {slides.length} スライド
-      </div>
+      <div className="text-center text-xs text-gray-500 mt-1">{current + 1} / {slides.length} スライド</div>
     </div>
   );
 }
