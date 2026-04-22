@@ -1,51 +1,95 @@
 {
   "topicId": "topic-13",
-  "title": "SGLT2阻害薬の正常血糖DKA、見逃していませんか？",
-  "searchQueries": [
-    "SGLT2阻害薬 正常血糖DKA euglycemic diabetic ketoacidosis メカニズム 頻度",
-    "日本糖尿病学会 SGLT2阻害薬 適正使用 Recommendation ケトアシドーシス",
-    "euglycemic DKA SGLT2 inhibitor clinical features diagnosis management 2024 2025",
-    "SGLT2 inhibitor euglycemic DKA incidence rate perioperative risk factors trigger",
-    "Lee 2025 systematic review SGLT2 DKA meta-analysis outcomes mortality"
-  ],
-  "keyFindings": [
-    {
-      "topic": "正常血糖DKA（euDKA）の定義と疫学",
-      "summary": "正常血糖DKAは血糖250mg/dL未満でありながら、動脈血pH 7.3未満、血清重炭酸 18mEq/L未満、ケトン血症を呈する症候群。SGLT2阻害薬使用者におけるDKA発生率は0.1-0.3%だが、周術期には0.17%（待機手術）〜1.1%（緊急手術）に上昇。術後30日以内のDKA発生は非使用者の6倍。血糖が正常であるため発見が遅れやすく、通常のDKAより入院期間が長く、アニオンギャップ正常化に時間がかかる。",
-      "sources": ["https://www.ncbi.nlm.nih.gov/books/NBK554570/", "https://www.endocrinepractice.org/article/S1530-891X(22)00539-0/fulltext"]
-    },
-    {
-      "topic": "SGLT2阻害薬によるeuDKAの発症メカニズム",
-      "summary": "SGLT2阻害薬は尿糖排泄を増加させ血糖を下げるが、同時にグルカゴン分泌を刺激する。インスリン/グルカゴン比が低下し、肝臓での脂肪酸酸化とケトン体産生が亢進。尿糖排泄により血糖が上昇しないためDKAの典型的サインである高血糖が出現せず、「正常血糖」のままケトアシドーシスが進行する。さらにSGLT2阻害薬はケトン体の腎尿細管再吸収を促進する可能性も指摘されている。",
-      "sources": ["https://onlinelibrary.wiley.com/doi/full/10.1002/jja2.12805", "https://www.frontiersin.org/journals/endocrinology/articles/10.3389/fendo.2026.1777334/full"]
-    },
-    {
-      "topic": "誘因・リスク因子",
-      "summary": "主な誘因は(1)周術期の絶食、(2)感染症、(3)インスリンの減量・中断、(4)極端な糖質制限・脱水、(5)過度のアルコール摂取。1型糖尿病患者でのリスクが特に高く、EMAはBMI 27以上に限定承認、FDAは1型への適応を見送った。2型でもインスリン分泌が低下している症例や、シックデイには注意が必要。",
-      "sources": ["https://www.bjanaesthesia.org/article/S0007-0912(19)30233-8/fulltext", "https://pmc.ncbi.nlm.nih.gov/articles/PMC12376744/"]
-    },
-    {
-      "topic": "臨床症状と診断",
-      "summary": "Lee 2025年のシステマティックレビュー（9研究のメタアナリシス）によると、SGLT2阻害薬関連DKAの症状は悪心・嘔吐57.9-76.5%、腹痛42.1-83.3%、発熱16.7-50.0%、呼吸困難16.7-21.1%、意識障害12.5-29.4%。非使用者のDKAと比較して血糖・HbA1c・クレアチニン・乳酸値が低いのが特徴。診断は血液ガス（AG開大代謝性アシドーシス）+血中βヒドロキシ酪酸測定が必須。尿ケトンでは過小評価のリスクがある。",
-      "sources": ["https://dom-pubs.onlinelibrary.wiley.com/doi/10.1111/dom.16635", "https://www.ncbi.nlm.nih.gov/books/NBK554570/"]
-    },
-    {
-      "topic": "日本糖尿病学会Recommendation",
-      "summary": "日本糖尿病学会は2014年策定・2022年最終改訂の「SGLT2阻害薬の適正使用に関するRecommendation」を公表。ケトアシドーシスへの注意喚起として、(1)1型糖尿病でのインスリン減量に伴うDKAリスク、(2)シックデイ時の休薬、(3)手術前3日の休薬、(4)血中ケトン体測定用試験紙の処方（1型糖尿病患者）を推奨。2型でも体調不良時の服用中断を指導するよう求めている。",
-      "sources": ["https://fa.kyorin.co.jp/jds/uploads/recommendation_SGLT2.pdf", "https://dm-rg.net/news/3833a60c-3a60-4015-a3d7-551ac7b6899c"]
-    },
-    {
-      "topic": "治療と管理",
-      "summary": "euDKAの治療は(1)SGLT2阻害薬の即時中止、(2)十分な輸液（生理食塩水）、(3)ブドウ糖含有輸液+インスリン持続静注（正常血糖を維持しながらケトン産生を抑制）。通常のDKAと異なり、血糖ではなくケトン体・AG・pHを指標に治療効果を判定する。退院後はSGLT2阻害薬の再開を慎重に検討し、誘因が除去できない場合は他剤への変更を推奨。",
-      "sources": ["https://pmc.ncbi.nlm.nih.gov/articles/PMC12408655/", "https://www.mdanderson.org/content/dam/mdanderson/documents/for-physicians/algorithms/clinical-management/clin-management-mgmt-sglt2-web-algorithm.pdf"]
-    }
-  ],
-  "references": [
-    {"text": "日本糖尿病学会. SGLT2阻害薬の適正使用に関するRecommendation（2022年改訂）", "url": "https://fa.kyorin.co.jp/jds/uploads/recommendation_SGLT2.pdf"},
-    {"text": "Lee J, et al. Clinical features and outcomes of diabetic ketoacidosis in patients using SGLT2 inhibitors: A systematic review and meta-analysis. Diabetes Obes Metab 2025", "url": "https://dom-pubs.onlinelibrary.wiley.com/doi/10.1111/dom.16635"},
-    {"text": "Euglycemic Diabetic Ketoacidosis. StatPearls [Internet]. NCBI Bookshelf 2024", "url": "https://www.ncbi.nlm.nih.gov/books/NBK554570/"},
-    {"text": "Seki H, et al. Perioperative diabetic ketoacidosis associated with sodium-glucose co-transporter-2 inhibitors: a systematic review. Br J Anaesth 2019", "url": "https://www.bjanaesthesia.org/article/S0007-0912(19)30233-8/fulltext"},
-    {"text": "The SGLT2 inhibitor checklist: perioperative and acute phase safety management. Front Endocrinol 2026", "url": "https://www.frontiersin.org/journals/endocrinology/articles/10.3389/fendo.2026.1777334/full"}
-  ],
+  "topic": {
+    "title": "SGLT2阻害薬の正常血糖DKA、見逃していませんか？",
+    "category": "diabetes",
+    "hook": "血糖200未満なのにDKA。SGLT2阻害薬使用中の「正常血糖DKA」は見逃すと命に関わる",
+    "source": "日本糖尿病学会 SGLT2阻害薬適正使用に関するRecommendation"
+  },
+  "research": {
+    "background": "SGLT2阻害薬（エンパグリフロジン、ダパグリフロジン、カナグリフロジン等）は腎臓の近位尿細管でのグルコース再吸収を阻害し、尿糖排泄を促すことで血糖を下げる薬剤。心腎保護作用が注目され処方が急増している。通常のDKAは血糖250mg/dL以上で疑われるが、SGLT2阻害薬使用中は尿糖排泄が増加するため血糖が上昇せず、血糖200未満でもケトアシドーシスが進行する「正常血糖DKA（euglycemic DKA: euDKA）」が起こりうる。DKA入院の2.6〜3.2%がeuDKAとされる。2型糖尿病でのSGLT2阻害薬関連DKA発生率は1000人年あたり0.16〜0.76。",
+    "mechanism": "SGLT2阻害薬がeuDKAを引き起こすメカニズム: (1) 尿糖排泄増加により血糖が低下しインスリン分泌が抑制される (2) 相対的インスリン不足により脂肪分解が亢進しケトン体産生が増加 (3) SGLT2阻害薬が直接的に膵α細胞からのグルカゴン分泌を刺激 (4) 腎臓でのケトン体再吸収が促進される (5) 血糖が正常〜軽度上昇のためDKAの典型的サインが出現せず見逃される",
+    "latestData": [
+      {
+        "finding": "SGLT2阻害薬使用者はDKAリスクが2倍以上に上昇（RCTベース）",
+        "source": "Lee et al. 2025 Systematic review, Diabetes Obes Metab",
+        "numbers": "RR 2.27 (95%CI: 1.52-3.38)"
+      },
+      {
+        "finding": "観察研究でもDKAリスク上昇を確認",
+        "source": "Lee et al. 2025",
+        "numbers": "RR 1.33 (95%CI: 1.01-1.76)"
+      },
+      {
+        "finding": "ベースラインHbA1c 8.3%以上でDKAリスクがさらに上昇",
+        "source": "Lee et al. 2025",
+        "numbers": "RR 1.63 (95%CI: 1.46-1.81)"
+      },
+      {
+        "finding": "インスリン併用患者でDKAリスク上昇",
+        "source": "Lee et al. 2025",
+        "numbers": "RR 2.49 (95%CI: 1.38-4.51)"
+      },
+      {
+        "finding": "SGLT2阻害薬関連DKAの症状: 悪心嘔吐57.9-76.5%、腹痛42.1-83.3%",
+        "source": "Lee et al. 2025",
+        "numbers": "悪心嘔吐57.9-76.5%, 腹痛42.1-83.3%, 発熱16.7-50%, 意識障害12.5-29.4%"
+      },
+      {
+        "finding": "周術期DKA発生率: 待機手術0.17%, 緊急手術1.1%（非使用者の6倍）",
+        "source": "Seki et al. Br J Anaesth 2019",
+        "numbers": "待機手術0.17%, 緊急手術1.1%"
+      }
+    ],
+    "clinicalPearls": [
+      "SGLT2阻害薬内服中の患者が嘔気・嘔吐・倦怠感・腹痛を訴えたら、血糖が正常でもケトアシドーシスを疑う",
+      "診断は血液ガス（pH<7.3, HCO3-<18）＋血中β-ヒドロキシ酪酸（>3mmol/L）で確定。尿ケトンだけでは不十分",
+      "治療開始時から5%ブドウ糖液を点滴に加える（通常DKAと異なり低血糖リスクが高い）",
+      "インスリン持続静注は0.05-0.1U/kg/hrで開始、K>3.3を確認してから",
+      "SGLT2阻害薬は直ちに中止。効果が24-72時間持続するため改善に時間がかかる",
+      "周術期はSGLT2阻害薬を術前3日前に中止すべき（日本糖尿病学会推奨）",
+      "治療効果判定は血糖ではなくケトン体・AG・pHで行う（通常DKAと異なる）"
+    ],
+    "pitfalls": [
+      "血糖が正常だからDKAではないと除外してしまう（最大の落とし穴）",
+      "尿ケトン（アセト酢酸）だけで判断し、血中β-ヒドロキシ酪酸を測定しない",
+      "通常DKAプロトコルで治療開始し、ブドウ糖補充を怠り低血糖を起こす",
+      "SGLT2阻害薬中止後も24-72時間は効果が持続することを忘れ、早期退院してしまう",
+      "sick day（感染・嘔吐・下痢・食事摂取不良）時にSGLT2阻害薬を継続してしまう"
+    ],
+    "casePatterns": [
+      {
+        "scenario": "60歳女性、2型糖尿病でエンパグリフロジン内服中。胃腸炎で2日間食事摂取不良。嘔気・全身倦怠感で受診。血糖168mg/dL。",
+        "approach": "血糖は正常範囲だが、SGLT2阻害薬+sick dayの組み合わせでeuDKAを強く疑う。血液ガスでpH7.18, HCO3- 10mEq/L, 血中β-HB 5.2mmol/L→euDKA確定。SGLT2阻害薬中止、生食+5%ブドウ糖液で輸液、インスリン持続静注開始。"
+      },
+      {
+        "scenario": "45歳男性、2型糖尿病でダパグリフロジン内服中。糖質制限ダイエットを自己判断で開始。1週間後に倦怠感・多呼吸で受診。血糖142mg/dL。",
+        "approach": "極端な糖質制限＋SGLT2阻害薬の組み合わせはeuDKAの典型的トリガー。血液ガス・ケトン体測定を直ちに実施。患者教育として「SGLT2阻害薬内服中の極端な糖質制限は避ける」ことを指導。"
+      }
+    ],
+    "japanSpecific": "日本糖尿病学会のSGLT2阻害薬適正使用に関するRecommendation（2022年改訂）では、(1)1型糖尿病でのインスリン減量に伴うDKAリスク、(2)シックデイ時の休薬、(3)手術前3日の休薬、(4)血中ケトン体測定用試験紙の処方（1型糖尿病患者）を推奨。日本人は欧米人と比べて痩せ型糖尿病が多くインスリン分泌能が低い傾向があるため、euDKAのリスクが相対的に高い可能性がある。",
+    "references": [
+      {
+        "text": "Lee J et al. Clinical features and outcomes of diabetic ketoacidosis in patients using SGLT2 inhibitors: A systematic review and meta-analysis. Diabetes Obes Metab. 2025",
+        "url": "https://doi.org/10.1111/dom.16635"
+      },
+      {
+        "text": "Plewa MC et al. Euglycemic Diabetic Ketoacidosis. StatPearls. 2025",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK554570/"
+      },
+      {
+        "text": "日本糖尿病学会. SGLT2阻害薬の適正使用に関するRecommendation（2022年改訂）",
+        "url": "https://fa.kyorin.co.jp/jds/uploads/recommendation_SGLT2.pdf"
+      },
+      {
+        "text": "Seki H et al. Perioperative diabetic ketoacidosis associated with SGLT2 inhibitors: a systematic review. Br J Anaesth. 2019;122(1):27-36",
+        "url": "https://www.bjanaesthesia.org/article/S0007-0912(19)30233-8/fulltext"
+      },
+      {
+        "text": "Goldenberg RM et al. Euglycemic DKA Prevention in Surgical Patients Taking SGLT2 Inhibitors: An International Perspective. J Clin Anesth. 2025",
+        "url": "https://www.sciencedirect.com/science/article/pii/S2352344125002274"
+      }
+    ]
+  },
   "createdAt": "2026-04-22"
 }
