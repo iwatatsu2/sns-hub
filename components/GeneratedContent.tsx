@@ -348,9 +348,10 @@ export default function GeneratedContent({
           {/* リール */}
           <div className="bg-gray-800 rounded-lg p-4">
             <div className="font-bold text-white text-sm mb-2">🎬 リール構成</div>
-            {reelScenes.map((s, i) => (
-              <div key={i} className="text-gray-400 text-xs bg-gray-700/50 rounded p-2 mb-1">{s}</div>
-            ))}
+            {reelScenes.map((s, i) => {
+              const text = typeof s === "string" ? s : (typeof s === "object" && s !== null ? Object.values(s as Record<string, unknown>).join(" | ") : String(s));
+              return <div key={i} className="text-gray-400 text-xs bg-gray-700/50 rounded p-2 mb-1">{text}</div>;
+            })}
             <ReelPreview html={reelHtml} />
           </div>
 
