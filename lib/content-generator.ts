@@ -248,12 +248,8 @@ const topicDetails: Record<string, TopicDetail> = {
 };
 
 // エージェント生成コンテンツ（ビルド時にバンドルされる単一インデックス）
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-let generatedData: Record<string, { note: Record<string, unknown> | null; reel: unknown; slides: unknown }> = {};
-try {
-  // Dynamic require to handle case where file doesn't exist
-  generatedData = require("@/data/generated-index.json");
-} catch { /* index not yet generated */ }
+import generatedIndexData from "../data/generated-index.json";
+const generatedData = generatedIndexData as Record<string, { note: Record<string, unknown> | null; reel: unknown; slides: unknown }>;
 
 // エージェント生成noteの正規化（構造がバラバラなため）
 interface NormalizedNote {
