@@ -142,5 +142,65 @@
     "status": "approved",
     "priority": 3,
     "createdAt": "2026-04-21T10:06:00Z"
+  },
+  {
+    "title": "SGLT2阻害薬の正常血糖DKA、見逃していませんか？",
+    "category": "diabetes",
+    "hook": "血糖200未満なのにDKA。SGLT2阻害薬使用中の「正常血糖DKA」は見逃すと命に関わる",
+    "source": "日本糖尿病学会 SGLT2阻害薬適正使用に関するRecommendation",
+    "aiAngle": "",
+    "appTieIn": "DKA対応フローをDM Compassで即確認",
+    "priority": 5,
+    "id": "topic-13",
+    "status": "pending",
+    "createdAt": "2026-04-21T14:52:42.006Z"
+  },
+  {
+    "title": "メトホルミン、本当に第一選択でいいの？",
+    "category": "diabetes",
+    "hook": "世界中のガイドラインが「メトホルミン第一選択」。でも日本人の糖尿病は欧米と違う。本当にファーストチョイスでいいのか考え直す",
+    "source": "ADA Standards of Care 2026 / 糖尿病治療ガイド2024-2025",
+    "aiAngle": "",
+    "appTieIn": "糖尿病治療の選択肢をDr.いわたつが研修医目線で整理",
+    "priority": 4,
+    "id": "topic-14",
+    "status": "pending",
+    "createdAt": "2026-04-21T14:53:42.006Z"
+  },
+  {
+    "title": "インスリン量の調整、自信ありますか？",
+    "category": "diabetes",
+    "hook": "入院患者のインスリン持続静注、スライディングスケール、基礎ボーラス法。研修医が最も迷うインスリン調整を実践的に解説",
+    "source": "病棟での糖尿病管理 実践ガイド",
+    "aiAngle": "",
+    "appTieIn": "DM Compassでインスリン計算を3秒で。病棟のポケットツール",
+    "priority": 5,
+    "id": "topic-15",
+    "status": "pending",
+    "createdAt": "2026-04-21T14:54:42.006Z"
+  },
+  {
+    "title": "甲状腺機能異常、内科外来で見逃さないために",
+    "category": "endocrine",
+    "hook": "倦怠感、体重変動、動悸。「ストレスですね」で帰す前に甲状腺をチェックしていますか？",
+    "source": "日本甲状腺学会ガイドライン2025",
+    "aiAngle": "",
+    "appTieIn": "内分泌疾患の鑑別をDr.いわたつが実践的に解説",
+    "priority": 3,
+    "id": "topic-16",
+    "status": "pending",
+    "createdAt": "2026-04-21T14:55:42.006Z"
+  },
+  {
+    "title": "副腎偶発腫、どこまで精査する？",
+    "category": "endocrine",
+    "hook": "CTで偶然見つかった副腎腫瘤。放置でいい？クッシング？褐色細胞腫？研修医が知るべき精査フローチャート",
+    "source": "日本内分泌学会 副腎偶発腫ガイドライン",
+    "aiAngle": "",
+    "appTieIn": "副腎偶発腫の精査フローをDr.いわたつが解説",
+    "priority": 3,
+    "id": "topic-17",
+    "status": "pending",
+    "createdAt": "2026-04-21T14:56:42.006Z"
   }
 ]
