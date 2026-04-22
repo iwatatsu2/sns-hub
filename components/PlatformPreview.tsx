@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { PlatformContent, Platform } from "@/lib/posts";
-import { POST_LINKS } from "@/lib/content-generator";
+import { POST_LINKS } from "@/lib/post-links";
 
 const platformConfig: Record<Platform, { label: string; icon: string; color: string }> = {
   instagram: { label: "Instagram", icon: "📷", color: "border-pink-500" },

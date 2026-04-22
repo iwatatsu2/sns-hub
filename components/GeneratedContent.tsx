@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import type { PlatformContent } from "@/lib/posts";
 import type { FactCheckItem, FactCheckLevel, SlideData } from "@/lib/content-generator";
-import { POST_LINKS } from "@/lib/content-generator";
+import { POST_LINKS } from "@/lib/post-links";
 
 function CopyBtn({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
