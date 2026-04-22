@@ -175,14 +175,13 @@ function AntaaPreview({ title, description, tags }: { title: string; description
 /* ---------- リール動画プレビュー ---------- */
 
 function ReelPreview({ html }: { html: string }) {
-  const blob = new Blob([html], { type: "text/html" });
-  const url = URL.createObjectURL(blob);
+  if (!html) return <div className="text-gray-500 text-xs text-center">リールHTML未生成</div>;
   return (
     <div className="flex justify-center">
       <div className="relative" style={{ width: 216, height: 384 }}>
         <div className="absolute inset-0 rounded-2xl bg-gray-900 border-2 border-gray-600 overflow-hidden">
           <iframe
-            src={url}
+            srcDoc={html}
             title="Reel Preview"
             className="border-0"
             style={{ width: 1080, height: 1920, transform: "scale(0.2)", transformOrigin: "top left" }}
