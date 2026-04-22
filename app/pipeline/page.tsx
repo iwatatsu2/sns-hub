@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import TopicCard from "@/components/TopicCard";
 import GeneratedContent from "@/components/GeneratedContent";
 import type { Topic } from "@/lib/topics";
-import type { GeneratedResult } from "@/lib/content-generator";
+import type { GeneratedResult } from "@/lib/content-types";
 
 export default function PipelinePage() {
   const router = useRouter();
