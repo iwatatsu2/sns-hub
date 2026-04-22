@@ -247,19 +247,13 @@ const topicDetails: Record<string, TopicDetail> = {
   },
 };
 
-// エージェント生成ファイルの読み込み
-function loadGeneratedFile<T>(topicId: string, suffix: string): T | null {
-  if (typeof window !== "undefined") return null;
-  try {
-    const fs = require("fs");
-    const path = require("path");
-    const filePath = path.join(process.cwd(), "data", "generated", `${topicId}-${suffix}.json`);
-    if (!fs.existsSync(filePath)) return null;
-    return JSON.parse(fs.readFileSync(filePath, "utf-8"));
-  } catch {
-    return null;
-  }
-}
+// エージェント生成コンテンツ（ビルド時にバンドルされる単一インデックス）
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+let generatedData: Record<string, { note: Record<string, unknown> | null; reel: unknown; slides: unknown }> = {};
+try {
+  // Dynamic require to handle case where file doesn't exist
+  generatedData = require("@/data/generated-index.json");
+} catch { /* index not yet generated */ }
 
 // エージェント生成noteの正規化（構造がバラバラなため）
 interface NormalizedNote {
@@ -358,11 +352,12 @@ interface GeneratedSlides {
 }
 
 export function generateContent(topic: Topic): GeneratedResult {
-  // エージェント生成ファイルがあれば優先的に使用
-  const rawNote = loadGeneratedFile<Record<string, unknown>>(topic.id, "note");
+  // エージェント生成コンテンツをインデックスから取得
+  const entry = generatedData[topic.id];
+  const rawNote = entry?.note || null;
   const genNote = rawNote ? normalizeNote(rawNote, topic) : null;
-  const genReel = loadGeneratedFile<GeneratedReel>(topic.id, "reel");
-  const genSlides = loadGeneratedFile<GeneratedSlides>(topic.id, "slides");
+  const genReel = (entry?.reel as GeneratedReel) || null;
+  const genSlides = (entry?.slides as GeneratedSlides) || null;
 
   // エージェント出力のnoteがあれば優先使用
   if (genNote) {
