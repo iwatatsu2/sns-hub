@@ -6,18 +6,8 @@ const APP_URL = "https://iwatatsu2.github.io/dm-compass/";
 const MEDAPP_URL = "https://medapp-market.vercel.app/";
 const DR_IWATATSU_IMG = "/dr-iwatatsu.png";
 
-// iframe srcDoc内では相対パスが使えないため、実行時にData URIを生成
-let DR_IWATATSU_DATA_URI = "/dr-iwatatsu.png"; // fallback
-if (typeof window === "undefined") {
-  // Server-side: read and base64 encode
-  try {
-    const fs = require("fs");
-    const path = require("path");
-    const imgPath = path.join(process.cwd(), "public", "dr-iwatatsu.png");
-    const buf = fs.readFileSync(imgPath);
-    DR_IWATATSU_DATA_URI = `data:image/png;base64,${buf.toString("base64")}`;
-  } catch { /* fallback to path */ }
-}
+// iframe srcDoc内では相対パスが使えないため、デプロイ先の絶対URLを使用
+const DR_IWATATSU_DATA_URI = "https://sns-hub-five.vercel.app/dr-iwatatsu.png";
 
 // 各SNSの投稿画面URL
 export const POST_LINKS = {
