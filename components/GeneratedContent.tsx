@@ -431,7 +431,7 @@ function NoteBodyWithImages({ body }: { body: string }) {
 
 /* ---------- AI画像生成ボタン ---------- */
 
-function AiImageGen({ prompt, label, aspectHint }: { prompt: string; label: string; aspectHint?: string }) {
+function AiImageGen({ prompt, label, aspectHint, overlayTitle }: { prompt: string; label: string; aspectHint?: string; overlayTitle?: string }) {
   const [imgSrc, setImgSrc] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -444,7 +444,7 @@ function AiImageGen({ prompt, label, aspectHint }: { prompt: string; label: stri
     setLoading(true);
     setError("");
     try {
-      const fullPrompt = `${prompt}。スタイル: 清潔感のある医療系インフォグラフィック、プロフェッショナル、ミニマルデザイン、日本の医療テーマ、ティールとダークブルーの配色、日本語テキストを使用。重要: 日本語テキストは絶対に単語の途中で改行しないこと。必ず意味のまとまり（文節）で改行し、読みやすく配置する${aspectHint ? `。${aspectHint}` : ""}`;
+      const fullPrompt = `${prompt}。スタイル: 清潔感のある医療系インフォグラフィック、プロフェッショナル、ミニマルデザイン、ティールとダークブルーの配色。重要: テキストや文字は一切含めないこと。イラスト・アイコン・図形のみで構成する。文字なし${aspectHint ? `。${aspectHint}` : ""}`;
       const img = await puter.ai.txt2img(fullPrompt, { model: "dall-e-3" });
       setImgSrc(img.src);
     } catch (e) {
@@ -467,7 +467,22 @@ function AiImageGen({ prompt, label, aspectHint }: { prompt: string; label: stri
       {error && <p className="text-red-400 text-xs mt-1">{error}</p>}
       {imgSrc && (
         <div className="mt-2">
-          <img src={imgSrc} alt={label} className="rounded-lg border border-gray-700 max-w-full" />
+          <div className="relative rounded-lg border border-gray-700 overflow-hidden">
+            <img src={imgSrc} alt={label} className="max-w-full block" />
+            {overlayTitle && (
+              <div className="absolute inset-0 flex items-end">
+                <div className="w-full bg-gradient-to-t from-black/80 via-black/50 to-transparent p-4 pt-12">
+                  <div className="text-white font-black text-lg md:text-xl leading-tight drop-shadow-lg">{overlayTitle}</div>
+                  <div className="flex items-center gap-1.5 mt-2">
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 flex items-center justify-center">
+                      <span className="text-[7px] font-black text-white">Dr</span>
+                    </div>
+                    <span className="text-gray-300 text-xs font-bold">Dr.いわたつ｜糖尿病専門医</span>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
           <div className="flex gap-2 mt-1">
             <a href={imgSrc} download={`${label}.png`} className="text-xs text-teal-400 hover:text-teal-300">ダウンロード</a>
             <button onClick={() => { setImgSrc(null); }} className="text-xs text-gray-500 hover:text-gray-300">再生成</button>
@@ -507,9 +522,10 @@ function ThumbnailPreview({ topicId, title, subtitle }: { topicId: string; title
         </div>
       </div>
       <AiImageGen
-        prompt={`医療ブログ記事「${title || topicId}」のサムネイル画像。糖尿病専門医が解説するイメージ、信頼感のあるデザイン`}
+        prompt={`医療ブログ記事のサムネイル背景画像。テーマ: ${title || topicId}。糖尿病・医療をイメージするアイコンや図形のみ。文字は入れない`}
         label="AIサムネイル生成"
         aspectHint="横長 16:9 比率"
+        overlayTitle={title || topicId}
       />
     </div>
   );
@@ -599,9 +615,10 @@ export default function GeneratedContent({
           ))}
         </div>
         <AiImageGen
-          prompt={`Instagramカルーセルの表紙スライド「${platforms.instagram.caption.split("\n")[0]}」。糖尿病患者向け医療教育インフォグラフィック`}
+          prompt={`Instagramカルーセルの表紙背景画像。テーマ: ${platforms.instagram.caption.split("\n")[0]}。医療・健康をイメージするアイコンや図形のみ。文字は入れない`}
           label="AIカルーセル画像生成"
           aspectHint="正方形 1:1 比率、1080x1080px"
+          overlayTitle={platforms.instagram.caption.split("\n")[0]}
         />
       </div>
 
