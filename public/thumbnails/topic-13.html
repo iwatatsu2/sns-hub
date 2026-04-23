@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1280px;
+  height: 670px;
+  overflow: hidden;
+  font-family: -apple-system, "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif;
+}
+.container {
+  width: 1280px;
+  height: 670px;
+  background: linear-gradient(135deg, #0a1a1a 0%, #0d2626 40%, #143030 100%);
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+/* 背景装飾 */
+.bg-circle1 {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(20,184,166,0.12) 0%, transparent 70%);
+  top: -100px;
+  left: -100px;
+}
+.bg-circle2 {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(20,184,166,0.08) 0%, transparent 70%);
+  bottom: -80px;
+  right: 200px;
+}
+.bg-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 80px,
+    rgba(20,184,166,0.03) 80px,
+    rgba(20,184,166,0.03) 81px
+  );
+}
+/* 左側テキスト */
+.left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px 40px 50px 60px;
+  position: relative;
+  z-index: 2;
+}
+.tag {
+  display: inline-block;
+  background: rgba(20,184,166,0.2);
+  color: #5eead4;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  width: fit-content;
+  letter-spacing: 1px;
+}
+.impact {
+  font-size: 72px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 12px;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+.impact .highlight {
+  color: #2dd4bf;
+  position: relative;
+}
+.impact .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: rgba(45,212,191,0.3);
+  border-radius: 4px;
+}
+.sub {
+  font-size: 26px;
+  color: #94a3b8;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-top: 8px;
+}
+.sub strong {
+  color: #e2e8f0;
+  font-weight: 700;
+}
+.badge-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+}
+.badge {
+  background: rgba(255,255,255,0.08);
+  color: #94a3b8;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+/* 右側アバター */
+.right {
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  z-index: 2;
+  padding-bottom: 0;
+}
+.avatar-img {
+  height: 520px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 32px rgba(0,0,0,0.5));
+}
+.doctor-name {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  text-align: right;
+}
+.doctor-name .name {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+}
+.doctor-name .title {
+  font-size: 13px;
+  color: #5eead4;
+  font-weight: 600;
+  margin-top: 2px;
+}
+/* 上部ライン */
+.top-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #2dd4bf, #14b8a6, #0d9488);
+}
+/* DM Compassロゴ */
+.brand {
+  position: absolute;
+  bottom: 24px;
+  left: 60px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 3;
+}
+.brand-icon {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #2dd4bf, #14b8a6);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0a1a1a;
+  font-weight: 900;
+  font-size: 14px;
+}
+.brand-text {
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="top-accent"></div>
+  <div class="bg-circle1"></div>
+  <div class="bg-circle2"></div>
+  <div class="bg-line"></div>
+
+  <div class="left">
+    <div class="tag">⚠ 専門医が警告</div>
+    <div class="impact">
+      血糖<span class="highlight">正常</span>でも<br>
+      <span class="highlight">DKA</span>は起こる
+    </div>
+    <div class="sub">
+      SGLT2阻害薬の<strong>「隠れDKA」</strong><br>
+      あなたは見逃していませんか？
+    </div>
+    <div class="badge-row">
+      <span class="badge">SGLT2阻害薬</span>
+      <span class="badge">正常血糖DKA</span>
+      <span class="badge">リスク2.3倍</span>
+    </div>
+  </div>
+
+  <div class="right">
+    <img class="avatar-img" src="https://sns-hub-five.vercel.app/dr-iwatatsu.png" alt="Dr.いわたつ">
+  </div>
+
+  <div class="doctor-name">
+    <div class="name">Dr.いわたつ</div>
+    <div class="title">糖尿病専門医・指導医</div>
+  </div>
+
+  <div class="brand">
+    <div class="brand-icon">D</div>
+    <span class="brand-text">DM Compass</span>
+  </div>
+</div>
+</body>
+</html>

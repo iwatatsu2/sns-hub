@@ -344,6 +344,7 @@ export default function GeneratedContent({
   slideOutline,
   references,
   factChecks,
+  topicId,
 }: {
   platforms: PlatformContent;
   reelScenes: string[];
@@ -352,6 +353,7 @@ export default function GeneratedContent({
   slideOutline: string[];
   references: string[];
   factChecks: FactCheckItem[];
+  topicId?: string;
 }) {
   const [showDetails, setShowDetails] = useState(false);
 
@@ -387,6 +389,30 @@ export default function GeneratedContent({
         </div>
         <div className="text-xs text-gray-500 mt-1">{platforms.note.body.length}文字</div>
       </div>
+
+      {/* サムネイル */}
+      {topicId && (
+        <div className="border-l-4 border-yellow-500 bg-gray-800 rounded-lg p-4">
+          <div className="flex justify-between items-center mb-2">
+            <span className="font-bold text-white text-sm">🖼 noteサムネイル</span>
+            <a
+              href={`/thumbnails/${topicId}.html`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs bg-gray-600 hover:bg-gray-500 text-gray-300 px-2 py-1 rounded transition"
+            >
+              別タブで開く
+            </a>
+          </div>
+          <div className="rounded-lg overflow-hidden border border-gray-700" style={{ aspectRatio: "1280/670" }}>
+            <iframe
+              src={`/thumbnails/${topicId}.html`}
+              className="w-full h-full border-none"
+              style={{ transform: "scale(1)", transformOrigin: "top left" }}
+            />
+          </div>
+        </div>
+      )}
 
       {/* Instagram */}
       <div className="border-l-4 border-pink-500 bg-gray-800 rounded-lg p-4">

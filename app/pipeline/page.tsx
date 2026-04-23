@@ -180,6 +180,7 @@ export default function PipelinePage() {
             slides={generated.slides}
             references={generated.references}
             factChecks={generated.factChecks}
+            topicId={currentTopic?.id}
           />
           <div className="flex gap-3 mt-6 max-w-2xl mx-auto">
             <button
