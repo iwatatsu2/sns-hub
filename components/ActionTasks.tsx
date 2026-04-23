@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 interface Task {
   id: string;
@@ -9,13 +9,40 @@ interface Task {
   category: "profile" | "content" | "engagement";
   priority: number;
   done: boolean;
+  doneAt?: string;
 }
+
+const STORAGE_KEY = "sns-hub-task-done";
 
 const CATEGORY_ICONS: Record<string, { icon: string; label: string; color: string }> = {
   profile: { icon: "👤", label: "プロフィール", color: "text-purple-400" },
   content: { icon: "📝", label: "コンテンツ", color: "text-blue-400" },
   engagement: { icon: "💬", label: "エンゲージメント", color: "text-orange-400" },
 };
+
+/** localStorage から完了状態を取得 */
+function getDoneMap(): Record<string, string> {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+  } catch {
+    return {};
+  }
+}
+
+function saveDoneMap(map: Record<string, string>) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(map));
+  // カレンダーなど他コンポーネントに通知
+  window.dispatchEvent(new Event("tasks-updated"));
+}
+
+export function getCompletedTasks(): { id: string; doneAt: string }[] {
+  try {
+    const map = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    return Object.entries(map).map(([id, doneAt]) => ({ id, doneAt: doneAt as string }));
+  } catch {
+    return [];
+  }
+}
 
 export default function ActionTasks() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -24,24 +51,43 @@ export default function ActionTasks() {
   useEffect(() => {
     fetch("/api/tasks")
       .then((r) => r.json())
-      .then(setTasks);
+      .then((serverTasks: Task[]) => {
+        const doneMap = getDoneMap();
+        const merged = serverTasks.map((t) => ({
+          ...t,
+          done: !!doneMap[t.id],
+          doneAt: doneMap[t.id] || undefined,
+        }));
+        merged.sort((a, b) => {
+          if (a.done !== b.done) return a.done ? 1 : -1;
+          return b.priority - a.priority;
+        });
+        setTasks(merged);
+      });
   }, []);
 
-  const handleToggle = async (id: string) => {
-    await fetch("/api/tasks", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ action: "toggle", id }),
-    });
+  const handleToggle = useCallback((id: string) => {
+    const doneMap = getDoneMap();
+    if (doneMap[id]) {
+      delete doneMap[id];
+    } else {
+      doneMap[id] = new Date().toISOString().slice(0, 10);
+    }
+    saveDoneMap(doneMap);
+
     setTasks((prev) =>
       prev
-        .map((t) => (t.id === id ? { ...t, done: !t.done } : t))
+        .map((t) =>
+          t.id === id
+            ? { ...t, done: !t.done, doneAt: doneMap[id] || undefined }
+            : t
+        )
         .sort((a, b) => {
           if (a.done !== b.done) return a.done ? 1 : -1;
           return b.priority - a.priority;
         })
     );
-  };
+  }, []);
 
   const pending = tasks.filter((t) => !t.done);
   const done = tasks.filter((t) => t.done);
@@ -111,7 +157,13 @@ export default function ActionTasks() {
                     <div className="w-5 h-5 rounded border-2 border-green-500 bg-green-500/20 flex items-center justify-center flex-shrink-0">
                       <span className="text-green-400 text-xs">✓</span>
                     </div>
-                    <span className="text-sm text-gray-400 line-through">{task.title}</span>
+                    <div className="flex-1 min-w-0">
+                      <span className="text-sm text-gray-400 line-through">{task.title}</span>
+                      {task.doneAt && (
+                        <span className="text-xs text-gray-600 ml-2">{task.doneAt}</span>
+                      )}
+                    </div>
+                    <span className="text-xs text-gray-600 hover:text-gray-400">取消</span>
                   </div>
                 </button>
               ))}

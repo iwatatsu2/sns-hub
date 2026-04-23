@@ -40,6 +40,17 @@ const PLATFORM_COLORS: Record<string, string> = {
   antaa: "bg-blue-500/20 text-blue-400 border-blue-500/30",
 };
 
+// 曜日ごとの投稿プラットフォーム
+const WEEKLY_SCHEDULE: Record<string, string[]> = {
+  "月": ["x", "note"],
+  "火": ["x", "note"],
+  "水": ["instagram", "x"],
+  "木": ["instagram", "x", "antaa"],
+  "金": ["instagram", "x"],
+  "土": ["x"],
+  "日": ["instagram", "x"],
+};
+
 export default function TodayAction({ today, dayName, weekTheme, dailyTasks, weekProgress, recommendedTopics }: Props) {
   const autoTasks = dailyTasks.filter((t) => t.type === "auto");
   const manualTasks = dailyTasks.filter((t) => t.type === "manual");
@@ -118,14 +129,14 @@ export default function TodayAction({ today, dayName, weekTheme, dailyTasks, wee
         </div>
       )}
 
-      {/* Week Progress */}
+      {/* Weekly Schedule */}
       <div>
-        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">今週の投稿進捗</h4>
-        <div className="flex gap-1">
+        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">今週の投稿スケジュール</h4>
+        <div className="grid grid-cols-7 gap-1">
           {weekProgress.map((d) => (
             <div
               key={d.date}
-              className={`flex-1 text-center py-2 rounded-lg text-xs font-bold ${
+              className={`text-center rounded-lg text-xs font-bold p-2 ${
                 d.isToday
                   ? "ring-2 ring-teal-400 bg-teal-500/20 text-teal-300"
                   : d.done
@@ -133,8 +144,19 @@ export default function TodayAction({ today, dayName, weekTheme, dailyTasks, wee
                   : "bg-gray-800 text-gray-600"
               }`}
             >
-              <div>{d.day}</div>
-              <div className="text-lg mt-0.5">{d.done ? "✓" : d.isToday ? "●" : "−"}</div>
+              <div className="font-black">{d.day}</div>
+              <div className="text-lg my-0.5">{d.done ? "✓" : d.isToday ? "●" : "−"}</div>
+              {/* 曜日ごとのプラットフォームアイコン */}
+              <div className="flex flex-wrap justify-center gap-0.5 mt-1">
+                {(WEEKLY_SCHEDULE[d.day] || []).map((p, i) => (
+                  <span
+                    key={i}
+                    className={`text-[9px] font-black px-1 py-0.5 rounded ${PLATFORM_COLORS[p] || "bg-gray-700 text-gray-400"}`}
+                  >
+                    {PLATFORM_ICONS[p] || p}
+                  </span>
+                ))}
+              </div>
             </div>
           ))}
         </div>

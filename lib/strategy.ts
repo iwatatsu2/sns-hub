@@ -22,7 +22,7 @@ const WEEK_THEMES: WeekTheme[] = [
 ];
 
 // 曜日別タスク定義（0=日, 1=月, ..., 6=土）
-const DAILY_TASKS: Record<number, DailyTask[]> = {
+export const DAILY_TASKS: Record<number, DailyTask[]> = {
   0: [ // 日
     { platform: "instagram", action: "ストーリーズ（週まとめ）", type: "manual" },
     { platform: "x", action: "週の振り返り・来週告知", type: "auto" },
@@ -53,7 +53,7 @@ const DAILY_TASKS: Record<number, DailyTask[]> = {
   ],
 };
 
-const DAY_NAMES = ["日", "月", "火", "水", "木", "金", "土"];
+export const DAY_NAMES = ["日", "月", "火", "水", "木", "金", "土"];
 
 // 基準日（2026-04-20が月曜＝第4週スタート）から4週ローテーション判定
 const EPOCH = new Date("2026-04-20T00:00:00+09:00");
@@ -79,6 +79,22 @@ export function getTodayTasks(date?: Date): DailyTask[] {
 export function getDayName(date?: Date): string {
   const now = date || new Date();
   return DAY_NAMES[now.getDay()];
+}
+
+/** 指定オフセット（0=今週, -1=先週, +1=来週）の月〜日のDate配列を返す */
+export function getWeekDates(offset: number = 0, base?: Date): Date[] {
+  const now = base || new Date();
+  const dayOfWeek = now.getDay();
+  const mondayOffset = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+  const monday = new Date(now);
+  monday.setDate(monday.getDate() - mondayOffset + offset * 7);
+  monday.setHours(0, 0, 0, 0);
+
+  return Array.from({ length: 7 }, (_, i) => {
+    const d = new Date(monday);
+    d.setDate(d.getDate() + i);
+    return d;
+  });
 }
 
 export function getWeekProgressFixed(posts: { scheduledDate: string; status: string }[], date?: Date) {

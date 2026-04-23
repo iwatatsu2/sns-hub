@@ -1,14 +1,53 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import StatusBadge from "./StatusBadge";
 import type { Post } from "@/lib/posts";
 
-export default function Calendar({ posts }: { posts: Post[] }) {
+interface TaskMeta {
+  id: string;
+  title: string;
+  category: string;
+}
+
+const TASK_CATEGORY_COLORS: Record<string, string> = {
+  profile: "bg-purple-500/30 text-purple-300",
+  content: "bg-blue-500/30 text-blue-300",
+  engagement: "bg-orange-500/30 text-orange-300",
+};
+
+const STORAGE_KEY = "sns-hub-task-done";
+
+export default function Calendar({ posts, allTasks = [] }: { posts: Post[]; allTasks?: TaskMeta[] }) {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [tasksByDate, setTasksByDate] = useState<Record<string, (TaskMeta & { doneAt: string })[]>>({});
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
+
+  const loadCompletedTasks = useCallback(() => {
+    try {
+      const doneMap: Record<string, string> = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+      const byDate: Record<string, (TaskMeta & { doneAt: string })[]> = {};
+      for (const task of allTasks) {
+        const doneAt = doneMap[task.id];
+        if (doneAt) {
+          if (!byDate[doneAt]) byDate[doneAt] = [];
+          byDate[doneAt].push({ ...task, doneAt });
+        }
+      }
+      setTasksByDate(byDate);
+    } catch {
+      setTasksByDate({});
+    }
+  }, [allTasks]);
+
+  useEffect(() => {
+    loadCompletedTasks();
+    const handler = () => loadCompletedTasks();
+    window.addEventListener("tasks-updated", handler);
+    return () => window.removeEventListener("tasks-updated", handler);
+  }, [loadCompletedTasks]);
 
   const firstDay = new Date(year, month, 1).getDay();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -51,6 +90,7 @@ export default function Calendar({ posts }: { posts: Post[] }) {
           if (!day) return <div key={i} />;
           const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
           const dayPosts = postsByDate[dateStr] || [];
+          const dayTasks = tasksByDate[dateStr] || [];
           const isToday = dateStr === today;
           return (
             <div
@@ -70,6 +110,14 @@ export default function Calendar({ posts }: { posts: Post[] }) {
                 >
                   <StatusBadge status={p.status} /> {p.title}
                 </Link>
+              ))}
+              {dayTasks.map((t) => (
+                <div
+                  key={t.id}
+                  className={`text-xs rounded px-1 py-0.5 mb-0.5 truncate ${TASK_CATEGORY_COLORS[t.category] || "bg-gray-700 text-gray-300"}`}
+                >
+                  ✓ {t.title}
+                </div>
               ))}
             </div>
           );

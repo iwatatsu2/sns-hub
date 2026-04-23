@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
+import Script from "next/script";
 import Link from "next/link";
 import "./globals.css";
 
@@ -14,6 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ja" className={`${geistSans.variable} h-full antialiased`}>
       <body className="min-h-full bg-gray-900 text-gray-100">
+        <Script src="https://js.puter.com/v2/" strategy="lazyOnload" />
         <nav className="bg-gray-800 border-b border-gray-700">
           <div className="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center gap-x-4 gap-y-2 sm:gap-6">
             <Link href="/" className="text-teal-400 font-black text-lg">
@@ -28,6 +30,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </Link>
               <Link href="/posts" className="text-gray-400 hover:text-white text-xs sm:text-sm transition">
                 投稿一覧
+              </Link>
+              <Link href="/daily" className="text-amber-300 hover:text-white text-xs sm:text-sm font-bold transition">
+                デイリー
               </Link>
               <Link href="/history" className="text-gray-400 hover:text-white text-xs sm:text-sm transition">
                 履歴

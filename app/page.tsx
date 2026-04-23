@@ -1,6 +1,7 @@
 import { getAllPosts } from "@/lib/posts";
 import { getPendingTopics } from "@/lib/topics";
 import { getCurrentWeek, getTodayTasks, getDayName, getWeekProgressFixed } from "@/lib/strategy";
+import { getAllTasks } from "@/lib/tasks";
 import Calendar from "@/components/Calendar";
 import TodayAction from "@/components/TodayAction";
 import ActionTasks from "@/components/ActionTasks";
@@ -83,7 +84,7 @@ export default function Home() {
       </div>
 
       {/* カレンダー（フルワイド） */}
-      <Calendar posts={posts} />
+      <Calendar posts={posts} allTasks={getAllTasks().map(t => ({ id: t.id, title: t.title, category: t.category }))} />
     </div>
   );
 }

@@ -13,6 +13,7 @@ export interface Task {
   priority: number;
   done: boolean;
   createdAt: string;
+  doneAt?: string;
 }
 
 let tasksCache: Task[] | null = null;
@@ -58,6 +59,7 @@ export function toggleTaskDone(id: string): Task | null {
   const idx = tasks.findIndex((t) => t.id === id);
   if (idx === -1) return null;
   tasks[idx].done = !tasks[idx].done;
+  tasks[idx].doneAt = tasks[idx].done ? new Date().toISOString().slice(0, 10) : undefined;
   saveTasks(tasks);
   return tasks[idx];
 }

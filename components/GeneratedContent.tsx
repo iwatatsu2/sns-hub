@@ -295,13 +295,22 @@ function SlideCarousel({ slides }: { slides: SlideData[] }) {
 
   return (
     <div>
-      <div className="bg-gradient-to-br from-[#0a1a1a] to-[#132e2e] rounded-xl aspect-video flex flex-col justify-center p-8 relative overflow-hidden">
+      <div className="bg-gradient-to-br from-[#0a1a1a] to-[#132e2e] rounded-xl aspect-video flex items-center p-8 relative overflow-hidden">
         <div className="absolute top-3 left-3 flex items-center gap-2">
           <span className="text-xs font-bold px-2 py-0.5 rounded bg-teal-400/20 text-teal-300">{slide.num}</span>
           <span className="text-xs text-teal-400 font-bold">DM Compass</span>
         </div>
-        <h3 className="text-xl font-black text-white mb-3 mt-4">{slide.title}</h3>
-        <pre className="text-sm whitespace-pre-wrap font-sans leading-relaxed text-gray-300">{slide.content}</pre>
+        {/* 左側: コンテンツ */}
+        <div className="flex-1 mt-4">
+          <h3 className="text-xl font-black text-white mb-3">{slide.title}</h3>
+          <pre className="text-sm whitespace-pre-wrap font-sans leading-relaxed text-gray-300">{slide.content}</pre>
+        </div>
+        {/* 右側: Dr.いわたつイラスト（1枚目のみ） */}
+        {current === 0 && (
+          <div className="flex-shrink-0 w-[30%] h-full flex items-end justify-center">
+            <img src="/dr-iwatatsu.png" alt="Dr.いわたつ" className="max-h-[85%] object-contain drop-shadow-lg" />
+          </div>
+        )}
         <div className="absolute bottom-2 left-3 right-3 flex justify-between text-[10px] text-gray-600">
           <span>© Dr. いわたつ</span><span>DM Compass シリーズ</span>
         </div>
@@ -334,409 +343,174 @@ function SlideCarousel({ slides }: { slides: SlideData[] }) {
   );
 }
 
-/* ---------- note本文のSVGイラスト挿絵 ---------- */
+/* ---------- AIダメ出し（コンテンツレビュー） ---------- */
 
-type IllustTheme = "cell" | "molecule" | "research" | "clinical" | "practice" | "intro";
+function AiReview({ xText, noteTitle, noteBody, igCaption }: {
+  xText: string; noteTitle: string; noteBody: string; igCaption: string;
+}) {
+  const [review, setReview] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-const themeConfig: Record<IllustTheme, { grad: [string, string]; accent: string }> = {
-  cell:     { grad: ["#0d9488", "#06b6d4"], accent: "#67e8f9" },
-  molecule: { grad: ["#7c3aed", "#a78bfa"], accent: "#c4b5fd" },
-  research: { grad: ["#ea580c", "#f59e0b"], accent: "#fcd34d" },
-  clinical: { grad: ["#2563eb", "#60a5fa"], accent: "#93c5fd" },
-  practice: { grad: ["#059669", "#34d399"], accent: "#6ee7b7" },
-  intro:    { grad: ["#db2777", "#f472b6"], accent: "#f9a8d4" },
-};
+  const runReview = async () => {
+    if (typeof puter === "undefined") {
+      setError("Puter.js未読込。ページをリロードしてください");
+      return;
+    }
+    setLoading(true);
+    setError("");
+    try {
+      const prompt = `あなたはSNSマーケティングの専門家です。以下の医療系SNSコンテンツを厳しくレビューしてください。
 
-function detectTheme(text: string): IllustTheme {
-  const t = text.toLowerCase();
-  if (/β細胞|β-cell|膵臓|膵島|インスリン分泌|細胞死|アポトーシス|増殖/.test(t)) return "cell";
-  if (/メカニズム|転写因子|chrebp|rgs16|シグナル|遺伝子|アイソフォーム|dna|分子/.test(t)) return "molecule";
-  if (/エビデンス|研究|マウス|実験|論文|デザイン|モデル|データ|解析/.test(t)) return "research";
-  if (/臨床|hba1c|患者|治療|薬剤|投薬|外来|診療|glp|メトホルミン/.test(t)) return "clinical";
-  if (/実践|ポイント|まとめ|明日から|意識|説明|介入/.test(t)) return "practice";
-  return "intro";
-}
+■ X投稿（最初の140文字がフック）:
+${xText.slice(0, 500)}
 
-function extractSectionTitle(text: string): string {
-  const lines = text.trim().split("\n");
-  for (const line of lines) {
-    const cleaned = line.replace(/^[■#]{1,4}\s*/, "").trim();
-    if (cleaned.length > 0 && cleaned.length <= 40) return cleaned;
-  }
-  return lines[0]?.trim().slice(0, 30) || "ポイント";
-}
+■ note記事タイトル:
+${noteTitle}
 
-/* SVG illustrations per theme */
+■ note記事冒頭:
+${noteBody.slice(0, 500)}
 
-function CellIllust({ c }: { c: { grad: [string, string]; accent: string } }) {
-  const id = React.useId();
-  return (
-    <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id={`bg-${id}`} x1="0" y1="0" x2="400" y2="120" gradientUnits="userSpaceOnUse">
-          <stop stopColor={c.grad[0]} /><stop offset="1" stopColor={c.grad[1]} />
-        </linearGradient>
-        <radialGradient id={`glow-${id}`} cx="0.5" cy="0.5" r="0.5">
-          <stop stopColor={c.accent} stopOpacity="0.4" /><stop offset="1" stopColor={c.accent} stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <rect width="400" height="120" rx="12" fill={`url(#bg-${id})`} opacity="0.15" />
-      {/* 大きな細胞 */}
-      <circle cx="80" cy="60" r="35" fill={c.grad[0]} opacity="0.3" stroke={c.accent} strokeWidth="2" />
-      <circle cx="80" cy="60" r="12" fill={c.grad[1]} opacity="0.6" />
-      <circle cx="75" cy="55" r="4" fill={c.accent} opacity="0.8" />
-      {/* 細胞分裂の矢印 */}
-      <path d="M120 50 Q140 35 160 45" stroke={c.accent} strokeWidth="2" fill="none" strokeDasharray="4 3" />
-      <path d="M120 70 Q140 85 160 75" stroke={c.accent} strokeWidth="2" fill="none" strokeDasharray="4 3" />
-      <polygon points="158,42 165,46 158,50" fill={c.accent} />
-      <polygon points="158,72 165,76 158,80" fill={c.accent} />
-      {/* 分裂後の小さい細胞 */}
-      <circle cx="185" cy="42" r="20" fill={c.grad[0]} opacity="0.25" stroke={c.accent} strokeWidth="1.5" />
-      <circle cx="185" cy="42" r="7" fill={c.grad[1]} opacity="0.5" />
-      <circle cx="185" cy="82" r="20" fill={c.grad[0]} opacity="0.25" stroke={c.accent} strokeWidth="1.5" />
-      <circle cx="185" cy="82" r="7" fill={c.grad[1]} opacity="0.5" />
-      {/* 装飾: 小さな粒子 */}
-      {[240,260,280,300,320,340,360].map((x, i) => (
-        <circle key={i} cx={x} cy={30 + (i % 3) * 30} r={3 + (i % 2) * 2} fill={c.accent} opacity={0.15 + (i % 3) * 0.1} />
-      ))}
-      {/* インスリン分子のシンボル */}
-      <g transform="translate(300, 50)">
-        <rect x="-12" y="-15" width="24" height="30" rx="6" fill={c.grad[1]} opacity="0.3" stroke={c.accent} strokeWidth="1" />
-        <text x="0" y="5" textAnchor="middle" fill={c.accent} fontSize="14" fontWeight="bold">In</text>
-      </g>
-      {/* glow */}
-      <circle cx="80" cy="60" r="50" fill={`url(#glow-${id})`} />
-    </svg>
-  );
-}
+■ Instagramキャプション:
+${igCaption.slice(0, 300)}
 
-function MoleculeIllust({ c }: { c: { grad: [string, string]; accent: string } }) {
-  const id = React.useId();
-  return (
-    <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id={`bg-${id}`} x1="0" y1="0" x2="400" y2="120" gradientUnits="userSpaceOnUse">
-          <stop stopColor={c.grad[0]} /><stop offset="1" stopColor={c.grad[1]} />
-        </linearGradient>
-      </defs>
-      <rect width="400" height="120" rx="12" fill={`url(#bg-${id})`} opacity="0.12" />
-      {/* DNA二重螺旋 */}
-      {Array.from({ length: 12 }).map((_, i) => {
-        const x = 30 + i * 18;
-        const y1 = 60 + Math.sin(i * 0.8) * 25;
-        const y2 = 60 - Math.sin(i * 0.8) * 25;
-        return (
-          <React.Fragment key={i}>
-            <circle cx={x} cy={y1} r="4" fill={c.grad[0]} opacity="0.6" />
-            <circle cx={x} cy={y2} r="4" fill={c.grad[1]} opacity="0.6" />
-            {i % 2 === 0 && <line x1={x} y1={y1} x2={x} y2={y2} stroke={c.accent} strokeWidth="1" opacity="0.3" />}
-          </React.Fragment>
-        );
-      })}
-      {/* 分子スイッチ ON/OFF */}
-      <g transform="translate(270, 35)">
-        <rect x="0" y="0" width="60" height="28" rx="14" fill={c.grad[0]} opacity="0.4" stroke={c.accent} strokeWidth="1.5" />
-        <circle cx="42" cy="14" r="10" fill={c.accent} opacity="0.9" />
-        <text x="42" y="18" textAnchor="middle" fill={c.grad[0]} fontSize="8" fontWeight="bold">ON</text>
-      </g>
-      <g transform="translate(270, 72)">
-        <rect x="0" y="0" width="60" height="28" rx="14" fill="#374151" opacity="0.6" stroke="#6b7280" strokeWidth="1" />
-        <circle cx="18" cy="14" r="10" fill="#6b7280" opacity="0.7" />
-        <text x="18" y="18" textAnchor="middle" fill="#374151" fontSize="8" fontWeight="bold">OFF</text>
-      </g>
-      {/* 矢印 connecting */}
-      <path d="M248 50 L265 48" stroke={c.accent} strokeWidth="1.5" opacity="0.5" />
-      <path d="M248 75 L265 80" stroke="#6b7280" strokeWidth="1.5" opacity="0.3" />
-      {/* 装飾分子 */}
-      <g transform="translate(360, 60)">
-        <circle r="8" fill={c.grad[1]} opacity="0.3" />
-        <circle r="3" fill={c.accent} opacity="0.5" />
-      </g>
-    </svg>
-  );
-}
+以下の観点で採点（各10点満点）と改善提案を日本語で出してください:
+1. フック力（最初の3秒/140文字の引きつけ力）
+2. 構成力（PREP法/AIDA法則の準拠度）
+3. ターゲット適合性（糖尿病患者・医療者への訴求）
+4. CTA（行動喚起の明確さ）
+5. 独自性（他の医療アカウントとの差別化）
 
-function ResearchIllust({ c }: { c: { grad: [string, string]; accent: string } }) {
-  const id = React.useId();
-  return (
-    <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id={`bg-${id}`} x1="0" y1="0" x2="400" y2="120" gradientUnits="userSpaceOnUse">
-          <stop stopColor={c.grad[0]} /><stop offset="1" stopColor={c.grad[1]} />
-        </linearGradient>
-      </defs>
-      <rect width="400" height="120" rx="12" fill={`url(#bg-${id})`} opacity="0.12" />
-      {/* フラスコ */}
-      <g transform="translate(50, 15)">
-        <path d="M30 0 L30 30 L10 80 Q8 88 15 90 L45 90 Q52 88 50 80 L30 30" fill={c.grad[0]} opacity="0.25" stroke={c.accent} strokeWidth="1.5" />
-        <rect x="24" y="0" width="12" height="8" rx="2" fill={c.accent} opacity="0.5" />
-        {/* 液体 */}
-        <path d="M18 65 Q30 58 42 65 L50 80 Q52 88 45 90 L15 90 Q8 88 10 80 Z" fill={c.grad[1]} opacity="0.4" />
-        {/* 泡 */}
-        <circle cx="25" cy="72" r="3" fill={c.accent} opacity="0.4" />
-        <circle cx="35" cy="68" r="2" fill={c.accent} opacity="0.3" />
-        <circle cx="30" cy="62" r="2.5" fill={c.accent} opacity="0.35" />
-      </g>
-      {/* 棒グラフ */}
-      <g transform="translate(150, 20)">
-        {[0, 1, 2, 3, 4].map((i) => {
-          const h = [40, 65, 55, 75, 50][i];
-          return (
-            <rect key={i} x={i * 22} y={80 - h} width="16" height={h} rx="3" fill={c.grad[i % 2 === 0 ? 0 : 1]} opacity={0.3 + i * 0.08} stroke={c.accent} strokeWidth="0.5" />
-          );
-        })}
-        {/* トレンドライン */}
-        <path d="M8 55 L30 25 L52 35 L74 10 L96 20" stroke={c.accent} strokeWidth="2" fill="none" />
-        <circle cx="74" cy="10" r="3" fill={c.accent} />
-      </g>
-      {/* 顕微鏡シルエット */}
-      <g transform="translate(310, 20)">
-        <rect x="15" y="70" width="40" height="6" rx="3" fill={c.grad[0]} opacity="0.3" />
-        <rect x="30" y="10" width="10" height="60" rx="3" fill={c.grad[1]} opacity="0.3" />
-        <circle cx="35" cy="10" r="12" fill="none" stroke={c.accent} strokeWidth="2" opacity="0.5" />
-        <line x1="35" y1="22" x2="35" y2="35" stroke={c.accent} strokeWidth="1.5" opacity="0.3" />
-        <rect x="20" y="55" width="30" height="4" rx="2" fill={c.accent} opacity="0.3" />
-      </g>
-    </svg>
-  );
-}
+最後に「総合評価」と「具体的な修正案を3つ」出してください。遠慮なくダメ出ししてください。`;
 
-function ClinicalIllust({ c }: { c: { grad: [string, string]; accent: string } }) {
-  const id = React.useId();
-  return (
-    <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id={`bg-${id}`} x1="0" y1="0" x2="400" y2="120" gradientUnits="userSpaceOnUse">
-          <stop stopColor={c.grad[0]} /><stop offset="1" stopColor={c.grad[1]} />
-        </linearGradient>
-      </defs>
-      <rect width="400" height="120" rx="12" fill={`url(#bg-${id})`} opacity="0.12" />
-      {/* 聴診器 */}
-      <g transform="translate(40, 15)">
-        <path d="M25 0 Q25 50 45 65" fill="none" stroke={c.accent} strokeWidth="3" strokeLinecap="round" />
-        <path d="M35 0 Q35 45 50 60" fill="none" stroke={c.accent} strokeWidth="3" opacity="0.5" strokeLinecap="round" />
-        <circle cx="48" cy="70" r="15" fill={c.grad[0]} opacity="0.3" stroke={c.accent} strokeWidth="2" />
-        <circle cx="48" cy="70" r="6" fill={c.accent} opacity="0.4" />
-      </g>
-      {/* 心電図ライン */}
-      <g transform="translate(130, 40)">
-        <path d="M0 30 L30 30 L40 10 L50 50 L60 5 L70 45 L80 25 L90 30 L200 30" stroke={c.accent} strokeWidth="2" fill="none" opacity="0.6" />
-      </g>
-      {/* カルテ/チャートアイコン */}
-      <g transform="translate(320, 20)">
-        <rect x="0" y="0" width="50" height="70" rx="5" fill={c.grad[0]} opacity="0.2" stroke={c.accent} strokeWidth="1.5" />
-        <rect x="8" y="10" width="34" height="3" rx="1.5" fill={c.accent} opacity="0.4" />
-        <rect x="8" y="20" width="28" height="3" rx="1.5" fill={c.accent} opacity="0.3" />
-        <rect x="8" y="30" width="32" height="3" rx="1.5" fill={c.accent} opacity="0.25" />
-        <rect x="8" y="40" width="20" height="3" rx="1.5" fill={c.accent} opacity="0.2" />
-        {/* チェックマーク */}
-        <path d="M15 55 L22 62 L38 48" stroke={c.accent} strokeWidth="2.5" fill="none" strokeLinecap="round" />
-      </g>
-    </svg>
-  );
-}
-
-function PracticeIllust({ c }: { c: { grad: [string, string]; accent: string } }) {
-  const id = React.useId();
-  return (
-    <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id={`bg-${id}`} x1="0" y1="0" x2="400" y2="120" gradientUnits="userSpaceOnUse">
-          <stop stopColor={c.grad[0]} /><stop offset="1" stopColor={c.grad[1]} />
-        </linearGradient>
-      </defs>
-      <rect width="400" height="120" rx="12" fill={`url(#bg-${id})`} opacity="0.12" />
-      {/* ターゲット */}
-      <g transform="translate(60, 60)">
-        <circle r="35" fill="none" stroke={c.accent} strokeWidth="1.5" opacity="0.2" />
-        <circle r="25" fill="none" stroke={c.accent} strokeWidth="1.5" opacity="0.3" />
-        <circle r="15" fill="none" stroke={c.accent} strokeWidth="2" opacity="0.4" />
-        <circle r="5" fill={c.accent} opacity="0.7" />
-      </g>
-      {/* チェックリスト */}
-      <g transform="translate(150, 18)">
-        {[0, 1, 2, 3].map((i) => (
-          <React.Fragment key={i}>
-            <rect x="0" y={i * 22} width="16" height="16" rx="3" fill={c.grad[0]} opacity="0.2" stroke={c.accent} strokeWidth="1" />
-            <path d={`M3 ${i * 22 + 8} L7 ${i * 22 + 12} L13 ${i * 22 + 4}`} stroke={c.accent} strokeWidth="2" fill="none" strokeLinecap="round" opacity={i < 3 ? 0.7 : 0.2} />
-            <rect x="24" y={i * 22 + 4} width={60 - i * 8} height="8" rx="4" fill={c.accent} opacity={0.12 + i * 0.03} />
-          </React.Fragment>
-        ))}
-      </g>
-      {/* 上昇矢印 */}
-      <g transform="translate(300, 20)">
-        <path d="M20 80 L20 20 L10 35 M20 20 L30 35" stroke={c.accent} strokeWidth="3" fill="none" strokeLinecap="round" opacity="0.5" />
-        <circle cx="20" cy="15" r="8" fill={c.accent} opacity="0.3" />
-        <path d="M16 15 L19 18 L25 12" stroke={c.accent} strokeWidth="2" fill="none" strokeLinecap="round" />
-      </g>
-      {/* 装飾星 */}
-      {[260,340,370].map((x, i) => (
-        <g key={i} transform={`translate(${x}, ${40 + i * 25})`}>
-          <path d="M0 -5 L1.5 -1.5 L5 0 L1.5 1.5 L0 5 L-1.5 1.5 L-5 0 L-1.5 -1.5 Z" fill={c.accent} opacity={0.2 + i * 0.1} />
-        </g>
-      ))}
-    </svg>
-  );
-}
-
-function IntroIllust({ c }: { c: { grad: [string, string]; accent: string } }) {
-  const id = React.useId();
-  return (
-    <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id={`bg-${id}`} x1="0" y1="0" x2="400" y2="120" gradientUnits="userSpaceOnUse">
-          <stop stopColor={c.grad[0]} /><stop offset="1" stopColor={c.grad[1]} />
-        </linearGradient>
-      </defs>
-      <rect width="400" height="120" rx="12" fill={`url(#bg-${id})`} opacity="0.12" />
-      {/* 本 */}
-      <g transform="translate(50, 20)">
-        <path d="M30 0 L0 10 L0 80 L30 70 L60 80 L60 10 Z" fill={c.grad[0]} opacity="0.2" stroke={c.accent} strokeWidth="1.5" />
-        <line x1="30" y1="0" x2="30" y2="70" stroke={c.accent} strokeWidth="1" opacity="0.4" />
-        {/* ページの線 */}
-        {[20, 32, 44, 56].map((y) => (
-          <React.Fragment key={y}>
-            <line x1="6" y1={y} x2="26" y2={y - 3} stroke={c.accent} strokeWidth="0.8" opacity="0.2" />
-            <line x1="34" y1={y - 3} x2="54" y2={y} stroke={c.accent} strokeWidth="0.8" opacity="0.2" />
-          </React.Fragment>
-        ))}
-      </g>
-      {/* 虫眼鏡 */}
-      <g transform="translate(170, 30)">
-        <circle cx="25" cy="25" r="20" fill="none" stroke={c.accent} strokeWidth="2.5" opacity="0.5" />
-        <line x1="40" y1="40" x2="55" y2="55" stroke={c.accent} strokeWidth="3" strokeLinecap="round" opacity="0.5" />
-        <circle cx="25" cy="25" r="12" fill={c.accent} opacity="0.08" />
-        {/* ハイライト */}
-        <path d="M15 18 Q18 12 25 12" stroke="white" strokeWidth="1.5" fill="none" opacity="0.3" strokeLinecap="round" />
-      </g>
-      {/* 浮遊する知識の光 */}
-      {[{x:270,y:30,r:6},{x:300,y:55,r:8},{x:330,y:35,r:5},{x:355,y:70,r:7},{x:280,y:80,r:5},{x:320,y:90,r:4}].map((p, i) => (
-        <circle key={i} cx={p.x} cy={p.y} r={p.r} fill={c.accent} opacity={0.1 + (i % 3) * 0.08} />
-      ))}
-      {/* 接続線 */}
-      <path d="M270 30 L300 55 L330 35 L355 70" stroke={c.accent} strokeWidth="1" opacity="0.15" strokeDasharray="3 3" />
-    </svg>
-  );
-}
-
-const illustMap: Record<IllustTheme, React.FC<{ c: { grad: [string, string]; accent: string } }>> = {
-  cell: CellIllust,
-  molecule: MoleculeIllust,
-  research: ResearchIllust,
-  clinical: ClinicalIllust,
-  practice: PracticeIllust,
-  intro: IntroIllust,
-};
-
-function SectionIllustration({ text, colorIndex }: { text: string; colorIndex: number }) {
-  const theme = detectTheme(text);
-  const title = extractSectionTitle(text);
-  const config = themeConfig[theme];
-  const Illust = illustMap[theme];
-  // Rotate through color configs for variety when same theme repeats
-  const themes = Object.keys(themeConfig) as IllustTheme[];
-  const altTheme = themes[(colorIndex + themes.indexOf(theme)) % themes.length];
-  const finalConfig = colorIndex > 0 && theme === detectTheme("") ? themeConfig[altTheme] : config;
+      const res = await puter.ai.chat(prompt);
+      setReview(res.message.content);
+    } catch (e) {
+      setError("レビュー失敗: " + (e instanceof Error ? e.message : String(e)));
+    }
+    setLoading(false);
+  };
 
   return (
-    <div className="my-5 rounded-xl overflow-hidden">
-      <Illust c={finalConfig} />
-      <div className="text-center -mt-1 pb-2" style={{ background: `linear-gradient(90deg, ${finalConfig.grad[0]}15, ${finalConfig.grad[1]}15)` }}>
-        <span className="text-xs font-bold" style={{ color: finalConfig.accent }}>{title}</span>
+    <div className="border-l-4 border-amber-500 bg-gray-800 rounded-lg p-4">
+      <div className="flex items-center justify-between mb-2">
+        <span className="font-bold text-white text-sm">🔍 AIダメ出し</span>
+        {!review && (
+          <button
+            onClick={runReview}
+            disabled={loading}
+            className="bg-amber-600 hover:bg-amber-500 disabled:opacity-50 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition"
+          >
+            {loading ? "レビュー中..." : "ダメ出しを受ける"}
+          </button>
+        )}
       </div>
+      {error && <p className="text-red-400 text-xs">{error}</p>}
+      {review && (
+        <div>
+          <pre className="text-gray-300 text-xs whitespace-pre-wrap font-sans leading-relaxed max-h-[400px] overflow-y-auto">
+            {review}
+          </pre>
+          <button
+            onClick={() => { setReview(null); }}
+            className="mt-2 text-xs text-gray-500 hover:text-gray-300"
+          >
+            再レビュー
+          </button>
+        </div>
+      )}
     </div>
   );
 }
 
-function NoteBodyWithImages({ body }: { body: string }) {
-  // ■ で始まるセクション見出し or ## 見出しで分割
-  const sections = body.split(/(?=^(?:■|#{2,4})\s)/m).filter(s => s.trim());
+/* ---------- note本文表示（プレーンテキスト） ---------- */
 
-  if (sections.length <= 1) {
-    const fallbackSections = body.split(/\n{2,}/).filter(s => s.trim());
-    if (fallbackSections.length <= 2) {
-      return <pre className="text-gray-300 text-sm whitespace-pre-wrap font-sans leading-relaxed">{body}</pre>;
+function NoteBodyWithImages({ body }: { body: string }) {
+  return <pre className="text-gray-300 text-sm whitespace-pre-wrap font-sans leading-relaxed">{body}</pre>;
+}
+
+/* ---------- AI画像生成ボタン ---------- */
+
+function AiImageGen({ prompt, label, aspectHint }: { prompt: string; label: string; aspectHint?: string }) {
+  const [imgSrc, setImgSrc] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const generate = async () => {
+    if (typeof puter === "undefined") {
+      setError("Puter.js未読込。ページをリロードしてください");
+      return;
     }
-    const groups: string[][] = [];
-    for (let i = 0; i < fallbackSections.length; i += 3) {
-      groups.push(fallbackSections.slice(i, i + 3));
+    setLoading(true);
+    setError("");
+    try {
+      const fullPrompt = `${prompt}。スタイル: 清潔感のある医療系インフォグラフィック、プロフェッショナル、ミニマルデザイン、日本の医療テーマ、ティールとダークブルーの配色、日本語テキストを使用。重要: 日本語テキストは絶対に単語の途中で改行しないこと。必ず意味のまとまり（文節）で改行し、読みやすく配置する${aspectHint ? `。${aspectHint}` : ""}`;
+      const img = await puter.ai.txt2img(fullPrompt, { model: "dall-e-3" });
+      setImgSrc(img.src);
+    } catch (e) {
+      setError("生成失敗: " + (e instanceof Error ? e.message : String(e)));
     }
-    return (
-      <div>
-        {groups.map((group, gi) => (
-          <React.Fragment key={gi}>
-            <pre className="text-gray-300 text-sm whitespace-pre-wrap font-sans leading-relaxed">{group.join("\n\n")}</pre>
-            {gi < groups.length - 1 && (
-              <SectionIllustration text={group.join("\n")} colorIndex={gi} />
-            )}
-          </React.Fragment>
-        ))}
-      </div>
-    );
-  }
+    setLoading(false);
+  };
 
   return (
-    <div>
-      {sections.map((section, i) => (
-        <React.Fragment key={i}>
-          <pre className="text-gray-300 text-sm whitespace-pre-wrap font-sans leading-relaxed">{section}</pre>
-          {i < sections.length - 1 && (
-            <SectionIllustration text={sections[i + 1]} colorIndex={i} />
-          )}
-        </React.Fragment>
-      ))}
+    <div className="mt-3">
+      {!imgSrc && (
+        <button
+          onClick={generate}
+          disabled={loading}
+          className="bg-violet-700 hover:bg-violet-600 disabled:opacity-50 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition"
+        >
+          {loading ? "AI画像生成中..." : `🎨 ${label}`}
+        </button>
+      )}
+      {error && <p className="text-red-400 text-xs mt-1">{error}</p>}
+      {imgSrc && (
+        <div className="mt-2">
+          <img src={imgSrc} alt={label} className="rounded-lg border border-gray-700 max-w-full" />
+          <div className="flex gap-2 mt-1">
+            <a href={imgSrc} download={`${label}.png`} className="text-xs text-teal-400 hover:text-teal-300">ダウンロード</a>
+            <button onClick={() => { setImgSrc(null); }} className="text-xs text-gray-500 hover:text-gray-300">再生成</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
 /* ---------- サムネイルプレビュー（レスポンシブ） ---------- */
 
-function ThumbnailPreview({ topicId }: { topicId: string }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(0.5);
-
-  const updateScale = useCallback(() => {
-    if (containerRef.current) {
-      const containerWidth = containerRef.current.offsetWidth;
-      setScale(containerWidth / 1280);
-    }
-  }, []);
-
-  useEffect(() => {
-    updateScale();
-    window.addEventListener("resize", updateScale);
-    return () => window.removeEventListener("resize", updateScale);
-  }, [updateScale]);
-
+function ThumbnailPreview({ topicId, title, subtitle }: { topicId: string; title?: string; subtitle?: string }) {
   return (
     <div className="border-l-4 border-yellow-500 bg-gray-800 rounded-lg p-4">
-      <div className="flex flex-wrap justify-between items-center gap-2 mb-2">
-        <span className="font-bold text-white text-sm">🖼 noteサムネイル</span>
-        <a
-          href={`/thumbnails/${topicId}.html`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-xs bg-gray-600 hover:bg-gray-500 text-gray-300 px-2 py-1 rounded transition"
-        >
-          別タブで開く
-        </a>
-      </div>
-      <div
-        ref={containerRef}
-        className="rounded-lg overflow-hidden border border-gray-700 relative"
-        style={{ paddingBottom: `${(670 / 1280) * 100}%` }}
+      <span className="font-bold text-white text-sm mb-3 block">🖼 noteサムネイル</span>
+      <div className="rounded-xl overflow-hidden border border-gray-700"
+        style={{ aspectRatio: "1280/670", background: "linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #312e81 100%)" }}
       >
-        <iframe
-          src={`/thumbnails/${topicId}.html`}
-          className="absolute top-0 left-0 border-none"
-          style={{
-            width: 1280,
-            height: 670,
-            transform: `scale(${scale})`,
-            transformOrigin: "top left",
-          }}
-        />
+        <div className="h-full flex items-center relative p-6">
+          <div className="absolute top-3 left-3 w-24 h-24 rounded-full bg-teal-500/10 blur-2xl" />
+          <div className="absolute bottom-3 right-[30%] w-20 h-20 rounded-full bg-violet-500/10 blur-2xl" />
+          <div className="flex-1 pr-4 z-10">
+            <div className="bg-teal-500/20 text-teal-300 border border-teal-500/30 text-[10px] font-black px-2 py-0.5 rounded-full mb-2 tracking-wider inline-block">専門医が解説</div>
+            <div className="text-white font-black text-sm md:text-base leading-tight mb-2">{title || topicId}</div>
+            {subtitle && <div className="text-gray-400 text-[10px] leading-relaxed line-clamp-2">{subtitle}</div>}
+            <div className="flex items-center gap-1.5 mt-3">
+              <div className="w-4 h-4 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 flex items-center justify-center">
+                <span className="text-[6px] font-black text-white">Dr</span>
+              </div>
+              <span className="text-gray-400 text-[9px] font-bold">Dr.いわたつ｜糖尿病専門医×アプリ開発者</span>
+            </div>
+          </div>
+          <div className="flex-shrink-0 w-[35%] h-full flex items-end justify-center relative">
+            <img src="/dr-iwatatsu.png" alt="Dr.いわたつ" className="max-h-full object-contain drop-shadow-lg" style={{ maxHeight: "90%" }} />
+          </div>
+        </div>
       </div>
+      <AiImageGen
+        prompt={`医療ブログ記事「${title || topicId}」のサムネイル画像。糖尿病専門医が解説するイメージ、信頼感のあるデザイン`}
+        label="AIサムネイル生成"
+        aspectHint="横長 16:9 比率"
+      />
     </div>
   );
 }
@@ -762,7 +536,7 @@ export default function GeneratedContent({
   factChecks: FactCheckItem[];
   topicId?: string;
 }) {
-  const [showDetails, setShowDetails] = useState(false);
+  const [showDetails, setShowDetails] = useState(true);
 
   return (
     <div className="space-y-4 max-w-2xl mx-auto">
@@ -798,7 +572,15 @@ export default function GeneratedContent({
       </div>
 
       {/* サムネイル */}
-      {topicId && <ThumbnailPreview topicId={topicId} />}
+      {topicId && <ThumbnailPreview topicId={topicId} title={platforms.note.title} subtitle={platforms.note.body.split("\n")[0]} />}
+
+      {/* AIダメ出し */}
+      <AiReview
+        xText={platforms.x.text}
+        noteTitle={platforms.note.title}
+        noteBody={platforms.note.body}
+        igCaption={platforms.instagram.caption}
+      />
 
       {/* Instagram */}
       <div className="border-l-4 border-pink-500 bg-gray-800 rounded-lg p-4">
@@ -816,6 +598,11 @@ export default function GeneratedContent({
             <span key={h} className="text-xs bg-pink-900 text-pink-300 px-2 py-0.5 rounded">#{h}</span>
           ))}
         </div>
+        <AiImageGen
+          prompt={`Instagramカルーセルの表紙スライド「${platforms.instagram.caption.split("\n")[0]}」。糖尿病患者向け医療教育インフォグラフィック`}
+          label="AIカルーセル画像生成"
+          aspectHint="正方形 1:1 比率、1080x1080px"
+        />
       </div>
 
       {/* antaa */}

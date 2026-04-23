@@ -404,61 +404,86 @@ export function generateContent(topic: Topic): GeneratedResult {
     });
   }
 
-  // --- X: 完全な文章 + プロフィールリンク誘導 ---
+  // --- X: ガイドライン準拠フック構造（140文字以内で興味→権威性→ベネフィット→誘導） ---
   const xBaseText = details?.xText || topic.hook;
   const xText = truncate(
     `${xBaseText}\n\n` +
+      `糖尿病専門医が解説します。\n\n` +
       (topic.source ? `📚 ${topic.source}\n\n` : "") +
-      `詳しくはプロフィールのリンクから\n` +
-      `Dr.いわたつ｜糖尿病専門医`,
+      `👇 詳しくはプロフィールのリンクから\n` +
+      `Dr.いわたつ｜糖尿病専門医×アプリ開発者`,
     280
   );
 
   // --- note: クリーンな文章（マークダウンアーティファクトなし） ---
   const noteTitle = `【専門医が解説】${topic.title}`;
-  const intro = details?.noteIntro || topic.hook;
-  const body = details?.noteBody || `${topic.hook}\n\nこのテーマについて詳しく解説します。`;
-  const data = details?.noteData || "";
-  const clinical = details?.noteClinical || "";
+  const intro = details?.noteIntro || generateFallbackIntro(topic);
+  const body = details?.noteBody || generateFallbackBody(topic);
+  const data = details?.noteData || generateFallbackData(topic);
+  const clinical = details?.noteClinical || generateFallbackClinical(topic);
 
+  // --- note本文: プレーンテキスト（#や*などのマークダウン記法を使わない） ---
   const noteBody =
+    // リード文（悩み代弁→メリット→権威性→結論チラ見せ）
     `${topic.hook}\n\n` +
-    `こんにちは、糖尿病・肥満症専門医のDr.いわたつです。\n\n` +
+    `こんにちは、糖尿病・肥満症専門医のDr.いわたつです。\n` +
+    `月間1,000人以上の患者さんを診察する中で、このテーマは本当によく聞かれます。\n\n` +
     `${intro}\n\n` +
-    `研修医や一般内科の先生が明日の外来・病棟で使える知識を、基礎から整理してお伝えします。\n\n` +
-    `\n` +
-    `この話題の背景\n\n` +
+    `この記事を読めば、${topic.title}について基礎知識から最新データ、明日の外来で使える実践ポイントまでわかります。\n\n` +
+    `先に結論を言うと——${topic.hook.split("。")[0]}。その理由と対策を、エビデンスとともに解説します。\n\n` +
+    // セクション: この話題の背景
+    `━━━━━━━━━━━━━━━\n` +
+    `■ この話題の背景\n` +
+    `━━━━━━━━━━━━━━━\n\n` +
     (topic.source ? `${topic.source}で注目されているテーマです。\n\n` : "") +
     `${body}\n\n` +
-    `\n` +
-    `臨床で使えるデータ\n\n` +
+    // セクション: 臨床で使えるデータ
+    `━━━━━━━━━━━━━━━\n` +
+    `■ 臨床で押さえておくべきデータ\n` +
+    `━━━━━━━━━━━━━━━\n\n` +
     `${data}\n\n` +
-    `\n` +
-    `明日からの実践ポイント\n\n` +
+    // セクション: 明日からの実践ポイント
+    `━━━━━━━━━━━━━━━\n` +
+    `■ 明日からの外来で使える実践ポイント\n` +
+    `━━━━━━━━━━━━━━━\n\n` +
     `${clinical}\n\n` +
-    `\n` +
-    `まとめ\n\n` +
-    `${topic.hook.split("。")[0]}。\n` +
-    `明日の臨床から、ぜひ意識してみてください。\n\n` +
-    `\n` +
+    // セクション: まとめ
+    `━━━━━━━━━━━━━━━\n` +
+    `■ まとめ\n` +
+    `━━━━━━━━━━━━━━━\n\n` +
+    `${topic.hook.split("。")[0]}。\n\n` +
+    `この記事のポイントを整理すると：\n\n` +
+    `・${topic.title}は今後さらに注目されるテーマ\n` +
+    `・日本人特有のデータを踏まえた判断が必要\n` +
+    `・明日の外来から意識できるアクションがある\n\n` +
+    `ぜひ保存して、次の外来の前に見返してください。\n\n` +
+    // 参考文献
     (refs.length > 0
-      ? `参考文献\n\n${refs.map((r, i) => `${i + 1}. ${r.text}\n   ${r.url}`).join("\n\n")}\n\n` +
-        `\n`
+      ? `━━━━━━━━━━━━━━━\n■ 参考文献\n━━━━━━━━━━━━━━━\n\n${refs.map((r, i) => `${i + 1}. ${r.text}\n   ${r.url}`).join("\n\n")}\n\n`
       : "") +
-    `著者について\n\n` +
-    `Dr.いわたつ（糖尿病専門医・指導医 / 内分泌専門医 / 医学博士）\n\n` +
+    // 著者プロフィール
+    `━━━━━━━━━━━━━━━\n\n` +
+    `著者: Dr.いわたつ\n` +
+    `糖尿病専門医・指導医 / 内分泌専門医 / 肥満症専門医 / 医学博士\n\n` +
     `研修医が病棟で迷わないための実践ツール「DM Compass」を開発・無料公開中。\n` +
     `糖尿病・肥満症について、実臨床で使える情報を発信しています。\n\n` +
     `Instagram: @dr.iwatatsu\n` +
-    `X: @kenkyu1019799\n\n` +
+    `X: @kenkyu1019799\n` +
+    `公式サイト: driwatatsu.readdy.co\n\n` +
     `フォローで応援してもらえると嬉しいです！`;
 
   // --- Instagram: キャプション + ハッシュタグ ---
+  // --- IG: ガイドライン準拠（保存率重視CTA） ---
   const igCaption =
     `${topic.hook}\n\n` +
-    (topic.source ? `参考: ${topic.source}\n\n` : "") +
-    `Dr.いわたつをフォローして最新情報をチェック\n` +
-    `保存して後で見返してください`;
+    (topic.source ? `📚 参考: ${topic.source}\n\n` : "") +
+    `━━━━━━━━━━━━━━━\n` +
+    `💾 後で見返すなら【保存】\n` +
+    `❤️ 参考になったら【いいね】\n` +
+    `👤 もっと知りたいなら【フォロー】\n` +
+    `━━━━━━━━━━━━━━━\n\n` +
+    `Dr.いわたつ｜糖尿病専門医×アプリ開発者\n` +
+    `📍 プロフィールのリンクから詳しい記事が読めます`;
 
   // --- antaa: スライドタイトル + 説明 ---
   const antaaTitle = `${topic.title}｜実践ガイド`;
@@ -898,6 +923,103 @@ function addLineBreaks(s: string): string {
 
 function escHtml(s: string): string {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+// --- topicDetailsがないトピック用のフォールバック文章生成 ---
+
+const categoryLabels: Record<string, string> = {
+  diabetes: "糖尿病",
+  obesity: "肥満症",
+  ai: "AI医療",
+  endocrine: "内分泌",
+  app: "医療アプリ",
+};
+
+function generateFallbackIntro(topic: Topic): string {
+  const cat = categoryLabels[topic.category] || "医療";
+  // ガイドライン準拠リード文: 悩み代弁→メリット→権威性→結論チラ見せ
+  return (
+    `「${topic.title}って、結局どうなの？」——${cat}の外来で患者さんからもよく聞かれるテーマです。\n\n` +
+    `SNSでは断片的な情報が飛び交っていますが、臨床に活かすには体系的な理解が必要です。\n\n` +
+    `この記事を読めば、基礎知識から最新エビデンス、明日の外来で使えるアクションリストまで一気にわかります。\n\n` +
+    `${cat}専門医として日々患者さんを診察している立場から、「結局どうすればいいのか」を明確にお伝えします。`
+  );
+}
+
+function generateFallbackBody(topic: Topic): string {
+  const sections: string[] = [];
+
+  sections.push(
+    `■ なぜ今このテーマが重要なのか\n\n` +
+    `${topic.hook}\n\n` +
+    (topic.source ? `${topic.source}が情報ソースです。この領域は急速に進展しており、最新のエビデンスを把握しておくことが臨床判断の質を左右します。\n\n` : "") +
+    `臨床現場では「知っているかどうか」で対応が大きく変わる場面が増えています。特に研修医や若手の先生には、このテーマの全体像を掴んでおくことをお勧めします。`
+  );
+
+  sections.push(
+    `\n\n■ 基礎知識の整理\n\n` +
+    `${topic.title}を理解するためのポイントを整理します。\n\n` +
+    `このテーマに関連する病態生理、薬理学的背景、疫学データを踏まえて、なぜ臨床で重要なのかを解説します。\n\n` +
+    `日本人のデータと欧米のデータでは異なる点も多く、「海外のガイドラインをそのまま適用していいのか」を常に考える必要があります。\n\n` +
+    `特に日本人はインスリン分泌能が欧米人の約半分であること、BMI 25未満でも代謝異常を起こしやすいことは、あらゆる糖尿病・代謝疾患の議論の前提として押さえておくべきです。`
+  );
+
+  if (topic.aiAngle) {
+    sections.push(
+      `\n\n■ AI・テクノロジーの活用\n\n` +
+      `${topic.aiAngle}\n\n` +
+      `AIやデジタルヘルスの進歩により、従来は専門医の経験に依存していた判断が、データ駆動でより精度高く行えるようになりつつあります。\n\n` +
+      `ただし、AIはあくまでツールであり、臨床判断を代替するものではありません。AIの出力を「なぜそう判断したのか」を理解した上で活用することが重要です。`
+    );
+  }
+
+  if (topic.appTieIn) {
+    sections.push(
+      `\n\n■ 実践ツールの活用\n\n` +
+      `${topic.appTieIn}\n\n` +
+      `臨床知識を「知っている」だけでなく「すぐに使える」状態にしておくことが、忙しい臨床の中で差をつけるポイントです。`
+    );
+  }
+
+  return sections.join("");
+}
+
+function generateFallbackData(topic: Topic): string {
+  const cat = categoryLabels[topic.category] || "医療";
+  return (
+    `■ 押さえておくべきエビデンス\n\n` +
+    (topic.source ? `本テーマの主要なエビデンスは「${topic.source}」で報告されています。\n\n` : "") +
+    `${cat}領域では、RCT（ランダム化比較試験）のデータと実臨床（リアルワールドデータ）の間にギャップがあることも多く、「論文に書いてあることが自分の患者にそのまま当てはまるか」を常に考える姿勢が大切です。\n\n` +
+    `■ 日本人データの特殊性\n\n` +
+    `日本人を含む東アジア人は、欧米のRCTデータがそのまま適用できないケースが多々あります。\n\n` +
+    `具体的には：\n` +
+    `・体格（BMI）の分布が異なる\n` +
+    `・インスリン分泌能・感受性のベースラインが異なる\n` +
+    `・食生活（炭水化物中心 vs 脂質中心）が異なる\n` +
+    `・薬物代謝酵素の遺伝的多型が異なる\n\n` +
+    `日本のガイドラインと海外のガイドラインで推奨が異なる場合は、なぜ異なるのかを理解した上で判断しましょう。`
+  );
+}
+
+function generateFallbackClinical(topic: Topic): string {
+  return (
+    `■ 明日からの外来で使えるアクションリスト\n\n` +
+    `1. このテーマに関連する患者が来たら、まず最新のエビデンスを確認する\n` +
+    `2. 患者への説明は「なぜこの治療が必要なのか」を平易な言葉で\n` +
+    `3. ガイドラインの推奨と実臨床の間のギャップを意識する\n` +
+    `4. 不明点は専門医にコンサルト — 迷ったら相談が正解\n\n` +
+    `■ 患者説明のテンプレート\n\n` +
+    `「${topic.title}について、最新の研究でわかってきたことがあります。` +
+    `あなたの場合は○○なので、△△というアプローチが適しています。` +
+    `一緒に治療を進めていきましょう」\n\n` +
+    `■ よくある質問への回答例\n\n` +
+    `Q: 「ネットで調べたのですが、この治療は危なくないですか？」\n` +
+    `A: 「インターネットの情報は玉石混交です。このテーマについては○○という大規模な研究データがあり、` +
+    `安全性も確認されています。ご心配な点があればいつでも聞いてください」\n\n` +
+    `Q: 「最新の薬は使えますか？」\n` +
+    `A: 「新しい薬には確かに期待できる点がありますが、あなたの状態に合っているかを慎重に判断する必要があります。` +
+    `まずは現在の治療の効果を確認して、必要に応じて最適な選択肢を一緒に考えましょう」`
+  );
 }
 
 function truncate(text: string, maxLen: number): string {
