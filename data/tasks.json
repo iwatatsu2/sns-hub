@@ -1,0 +1,74 @@
+[
+  {
+    "id": "task-01",
+    "title": "全SNSプロフィール名を「Dr. いわたつ｜糖尿病専門医×アプリ開発者」に統一",
+    "description": "Instagram, X, note, antaa, 公式サイトすべてのプロフィール名を統一する",
+    "category": "profile",
+    "priority": 5,
+    "done": false,
+    "createdAt": "2026-04-23T00:00:00Z"
+  },
+  {
+    "id": "task-02",
+    "title": "全プロフィールに公式サイトURL（driwatatsu.readdy.co）を追加",
+    "description": "Instagram, X, note, antaaのプロフィール欄に公式サイトのリンクを設定",
+    "category": "profile",
+    "priority": 5,
+    "done": false,
+    "createdAt": "2026-04-23T00:01:00Z"
+  },
+  {
+    "id": "task-03",
+    "title": "プロフィール文を統一：糖尿病専門医・指導医 / 内分泌専門医 / 肥満症専門医 / 医学博士 | 医療×テクノロジー",
+    "description": "キャッチフレーズ「糖尿病専門医が作る、医療とテクノロジーの架け橋」を各プラットフォームに反映",
+    "category": "profile",
+    "priority": 5,
+    "done": false,
+    "createdAt": "2026-04-23T00:02:00Z"
+  },
+  {
+    "id": "task-04",
+    "title": "antaaスライドのプロフィール欄に全SNSリンクを追加",
+    "description": "X, Instagram, note, 公式サイトのURLをantaaプロフィールに記載",
+    "category": "profile",
+    "priority": 4,
+    "done": false,
+    "createdAt": "2026-04-23T00:03:00Z"
+  },
+  {
+    "id": "task-05",
+    "title": "既存antaaスライドの末尾にCTAページを追加",
+    "description": "「詳しくはnoteで」「DM Compassを使ってみよう」等のCTAスライドを追加",
+    "category": "content",
+    "priority": 4,
+    "done": false,
+    "createdAt": "2026-04-23T00:04:00Z"
+  },
+  {
+    "id": "task-06",
+    "title": "Xリプライ戦略を開始：医師・テック系アカウントに質の高いリプライ1日5-10件",
+    "description": "フォロワーの多い医師・テック系アカウントの投稿に専門知識を活かしたリプライを行う",
+    "category": "engagement",
+    "priority": 4,
+    "done": false,
+    "createdAt": "2026-04-23T00:05:00Z"
+  },
+  {
+    "id": "task-07",
+    "title": "過去のIG投稿で反応が良かったものを特定し、カルーセルにリライト候補を選定",
+    "description": "Instagramインサイトで保存数・エンゲージメントが高い投稿を確認",
+    "category": "content",
+    "priority": 3,
+    "done": false,
+    "createdAt": "2026-04-23T00:06:00Z"
+  },
+  {
+    "id": "task-08",
+    "title": "Instagramストーリーズでフォロワーの関心テーマをアンケート調査",
+    "description": "「どのテーマが気になりますか？」等のアンケートをストーリーズで実施",
+    "category": "engagement",
+    "priority": 3,
+    "done": false,
+    "createdAt": "2026-04-23T00:07:00Z"
+  }
+]

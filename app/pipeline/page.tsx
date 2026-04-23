@@ -16,6 +16,7 @@ export default function PipelinePage() {
   const [pendingCount, setPendingCount] = useState(0);
   const [stockLoading, setStockLoading] = useState(false);
   const [stockMessage, setStockMessage] = useState("");
+  const [autoRegister, setAutoRegister] = useState(true);
 
   const fetchTopics = useCallback(async () => {
     const res = await fetch("/api/topics?filter=pending");
@@ -51,9 +52,33 @@ export default function PipelinePage() {
         body: JSON.stringify({ topicId: currentTopic.id }),
       });
       const result = await res.json();
-      console.log("Generate result keys:", Object.keys(result));
-      console.log("Platforms keys:", result.platforms ? Object.keys(result.platforms) : "NO PLATFORMS");
       setGenerated(result);
+
+      // 自動登録モードの場合、3秒プレビュー後に自動で投稿予定に登録
+      if (autoRegister && result.platforms) {
+        setTimeout(async () => {
+          const scheduledDate = new Date(Date.now() + 2 * 86400000).toISOString().slice(0, 10);
+          await fetch("/api/posts", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              title: currentTopic.title,
+              theme: currentTopic.hook,
+              status: "scheduled",
+              scheduledDate,
+              platforms: result.platforms,
+              assets: [],
+            }),
+          });
+          await fetch("/api/topics", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ action: "updateStatus", id: currentTopic.id, status: "generated" }),
+          });
+          router.push("/posts");
+          router.refresh();
+        }, 3000);
+      }
     } catch (err) {
       console.error("handleApprove error:", err);
       alert("エラー: " + (err instanceof Error ? err.message : String(err)));
@@ -151,6 +176,19 @@ export default function PipelinePage() {
         </div>
       </div>
 
+      {/* 自動登録トグル */}
+      <div className="flex items-center gap-3 mb-4 bg-gray-800 rounded-lg px-4 py-3">
+        <button
+          onClick={() => setAutoRegister(!autoRegister)}
+          className={`relative w-12 h-6 rounded-full transition-colors ${autoRegister ? "bg-teal-500" : "bg-gray-600"}`}
+        >
+          <span className={`absolute top-0.5 w-5 h-5 rounded-full bg-white transition-transform ${autoRegister ? "left-6" : "left-0.5"}`} />
+        </button>
+        <span className="text-sm text-gray-300">
+          {autoRegister ? "自動登録 ON — 承認→生成→3秒後に自動で投稿予定に登録" : "自動登録 OFF — 生成後に手動で確認・登録"}
+        </span>
+      </div>
+
       {!currentTopic && !generated && (
         <div className="text-center py-20">
           <div className="text-4xl mb-4">📭</div>
@@ -167,6 +205,7 @@ export default function PipelinePage() {
           onApprove={handleApprove}
           onReject={handleReject}
           loading={loading}
+          approveLabel={autoRegister ? "承認して自動登録" : undefined}
         />
       )}
 

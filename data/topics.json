@@ -24,30 +24,6 @@
     "createdAt": "2026-04-21T00:01:00Z"
   },
   {
-    "id": "topic-03",
-    "title": "AI×糖尿病：5つのサブタイプ分類",
-    "category": "ai",
-    "hook": "世界初、AIで糖尿病患者を診断時に5つのサブタイプに分類。将来の透析リスクまで予測できるプラットフォームが公開",
-    "source": "福島県立医科大学 2026年3月発表",
-    "aiAngle": "診断時の健診データだけでAIが将来の腎不全リスクを個人単位で推計",
-    "appTieIn": "DM Compassも研修医向けAI時代の臨床ツール。MedApp Marketで他のAI医療アプリもチェック",
-    "status": "approved",
-    "priority": 4,
-    "createdAt": "2026-04-21T00:02:00Z"
-  },
-  {
-    "id": "topic-04",
-    "title": "DKAのケトン体、血中vs尿どっち？",
-    "category": "diabetes",
-    "hook": "DKAを疑った時、尿ケトン体だけ見てませんか？尿が見ているのはアセト酢酸。本当に測るべきはβ-ヒドロキシ酪酸",
-    "source": "DM Compass Vol.2 antaaスライド",
-    "aiAngle": "POCTデバイス＋AIアルゴリズムで、ケトン体測定の自動判定・アラートが実現間近",
-    "appTieIn": "DM Compassでβ-HB判定基準をいつでもポケットから確認。antaaスライドで詳細解説",
-    "status": "approved",
-    "priority": 4,
-    "createdAt": "2026-04-21T00:03:00Z"
-  },
-  {
     "id": "topic-05",
     "title": "マンジャロ vs ウゴービ 専門医が本音で比較",
     "category": "obesity",
@@ -84,18 +60,6 @@
     "createdAt": "2026-04-21T10:01:00Z"
   },
   {
-    "id": "topic-08",
-    "title": "次世代肥満症薬3選：アミクレチン・survodutide・orforglipron",
-    "category": "obesity",
-    "hook": "GLP-1だけじゃない。GLP-1/アミリン、GLP-1/グルカゴン、経口GLP-1。次世代薬のパイプラインが熱い",
-    "source": "Zetasen社・Boehringer Ingelheim・Eli Lilly Phase 3データ",
-    "aiAngle": "AIによるドラッグリポジショニングが、肥満症薬の新ターゲットを次々と発掘中",
-    "appTieIn": "肥満症治療の選択肢が爆増する時代。Dr.いわたつが専門医目線で整理します",
-    "status": "approved",
-    "priority": 4,
-    "createdAt": "2026-04-21T10:02:00Z"
-  },
-  {
     "id": "topic-09",
     "title": "緩徐進行1型にシタグリプチン？それ、危険かも",
     "category": "diabetes",
@@ -106,6 +70,66 @@
     "status": "approved",
     "priority": 5,
     "createdAt": "2026-04-21T10:03:00Z"
+  },
+  {
+    "title": "SGLT2阻害薬の正常血糖DKA、見逃していませんか？",
+    "category": "diabetes",
+    "hook": "血糖200未満なのにDKA。SGLT2阻害薬使用中の「正常血糖DKA」は見逃すと命に関わる",
+    "source": "日本糖尿病学会 SGLT2阻害薬適正使用に関するRecommendation",
+    "aiAngle": "",
+    "appTieIn": "DKA対応フローをDM Compassで即確認",
+    "priority": 5,
+    "id": "topic-13",
+    "status": "approved",
+    "createdAt": "2026-04-21T14:52:42.006Z"
+  },
+  {
+    "title": "インスリン量の調整、自信ありますか？",
+    "category": "diabetes",
+    "hook": "入院患者のインスリン持続静注、スライディングスケール、基礎ボーラス法。研修医が最も迷うインスリン調整を実践的に解説",
+    "source": "病棟での糖尿病管理 実践ガイド",
+    "aiAngle": "",
+    "appTieIn": "DM Compassでインスリン計算を3秒で。病棟のポケットツール",
+    "priority": 5,
+    "id": "topic-15",
+    "status": "approved",
+    "createdAt": "2026-04-21T14:54:42.006Z"
+  },
+  {
+    "id": "topic-03",
+    "title": "AI×糖尿病：5つのサブタイプ分類",
+    "category": "ai",
+    "hook": "世界初、AIで糖尿病患者を診断時に5つのサブタイプに分類。将来の透析リスクまで予測できるプラットフォームが公開",
+    "source": "福島県立医科大学 2026年3月発表",
+    "aiAngle": "診断時の健診データだけでAIが将来の腎不全リスクを個人単位で推計",
+    "appTieIn": "DM Compassも研修医向けAI時代の臨床ツール。MedApp Marketで他のAI医療アプリもチェック",
+    "status": "approved",
+    "priority": 4,
+    "createdAt": "2026-04-21T00:02:00Z"
+  },
+  {
+    "id": "topic-04",
+    "title": "DKAのケトン体、血中vs尿どっち？",
+    "category": "diabetes",
+    "hook": "DKAを疑った時、尿ケトン体だけ見てませんか？尿が見ているのはアセト酢酸。本当に測るべきはβ-ヒドロキシ酪酸",
+    "source": "DM Compass Vol.2 antaaスライド",
+    "aiAngle": "POCTデバイス＋AIアルゴリズムで、ケトン体測定の自動判定・アラートが実現間近",
+    "appTieIn": "DM Compassでβ-HB判定基準をいつでもポケットから確認。antaaスライドで詳細解説",
+    "status": "approved",
+    "priority": 4,
+    "createdAt": "2026-04-21T00:03:00Z"
+  },
+  {
+    "id": "topic-08",
+    "title": "次世代肥満症薬3選：アミクレチン・survodutide・orforglipron",
+    "category": "obesity",
+    "hook": "GLP-1だけじゃない。GLP-1/アミリン、GLP-1/グルカゴン、経口GLP-1。次世代薬のパイプラインが熱い",
+    "source": "Zetasen社・Boehringer Ingelheim・Eli Lilly Phase 3データ",
+    "aiAngle": "AIによるドラッグリポジショニングが、肥満症薬の新ターゲットを次々と発掘中",
+    "appTieIn": "肥満症治療の選択肢が爆増する時代。Dr.いわたつが専門医目線で整理します",
+    "status": "approved",
+    "priority": 4,
+    "createdAt": "2026-04-21T10:02:00Z"
   },
   {
     "id": "topic-10",
@@ -132,30 +156,6 @@
     "createdAt": "2026-04-21T10:05:00Z"
   },
   {
-    "id": "topic-12",
-    "title": "第99回日本内分泌学会（2026年6月京都）注目演題プレビュー",
-    "category": "endocrine",
-    "hook": "2026年6月、京都で日本内分泌学会開催。GLP-1の内分泌学的メカニズム、副腎偶発腫のAI診断など注目演題を先取り",
-    "source": "第99回日本内分泌学会学術総会 2026年6月 京都",
-    "aiAngle": "学会抄録をAIで自動要約・トレンド分析。参加前に注目セッションを効率的にピックアップ",
-    "appTieIn": "学会で得た知見もDr.いわたつが速報解説。フォローして最新情報をキャッチ",
-    "status": "approved",
-    "priority": 3,
-    "createdAt": "2026-04-21T10:06:00Z"
-  },
-  {
-    "title": "SGLT2阻害薬の正常血糖DKA、見逃していませんか？",
-    "category": "diabetes",
-    "hook": "血糖200未満なのにDKA。SGLT2阻害薬使用中の「正常血糖DKA」は見逃すと命に関わる",
-    "source": "日本糖尿病学会 SGLT2阻害薬適正使用に関するRecommendation",
-    "aiAngle": "",
-    "appTieIn": "DKA対応フローをDM Compassで即確認",
-    "priority": 5,
-    "id": "topic-13",
-    "status": "pending",
-    "createdAt": "2026-04-21T14:52:42.006Z"
-  },
-  {
     "title": "メトホルミン、本当に第一選択でいいの？",
     "category": "diabetes",
     "hook": "世界中のガイドラインが「メトホルミン第一選択」。でも日本人の糖尿病は欧米と違う。本当にファーストチョイスでいいのか考え直す",
@@ -168,16 +168,16 @@
     "createdAt": "2026-04-21T14:53:42.006Z"
   },
   {
-    "title": "インスリン量の調整、自信ありますか？",
-    "category": "diabetes",
-    "hook": "入院患者のインスリン持続静注、スライディングスケール、基礎ボーラス法。研修医が最も迷うインスリン調整を実践的に解説",
-    "source": "病棟での糖尿病管理 実践ガイド",
-    "aiAngle": "",
-    "appTieIn": "DM Compassでインスリン計算を3秒で。病棟のポケットツール",
-    "priority": 5,
-    "id": "topic-15",
-    "status": "pending",
-    "createdAt": "2026-04-21T14:54:42.006Z"
+    "id": "topic-12",
+    "title": "第99回日本内分泌学会（2026年6月京都）注目演題プレビュー",
+    "category": "endocrine",
+    "hook": "2026年6月、京都で日本内分泌学会開催。GLP-1の内分泌学的メカニズム、副腎偶発腫のAI診断など注目演題を先取り",
+    "source": "第99回日本内分泌学会学術総会 2026年6月 京都",
+    "aiAngle": "学会抄録をAIで自動要約・トレンド分析。参加前に注目セッションを効率的にピックアップ",
+    "appTieIn": "学会で得た知見もDr.いわたつが速報解説。フォローして最新情報をキャッチ",
+    "status": "approved",
+    "priority": 3,
+    "createdAt": "2026-04-21T10:06:00Z"
   },
   {
     "title": "甲状腺機能異常、内科外来で見逃さないために",
@@ -202,5 +202,101 @@
     "id": "topic-17",
     "status": "pending",
     "createdAt": "2026-04-21T14:56:42.006Z"
+  },
+  {
+    "id": "topic-18",
+    "title": "ゼップバウンド完全ガイド：ウゴービとどう違う？",
+    "category": "obesity",
+    "hook": "2025年4月発売のゼップバウンド（チルゼパチド）。マンジャロと同じ成分なのに適応が違う。保険適用の条件、ウゴービとの使い分けを専門医が本音で解説",
+    "source": "ゼップバウンド最適使用推進ガイドライン 厚労省 2025年",
+    "aiAngle": "AI体組成分析で「誰にゼップバウンドが最も効くか」を予測する研究が進行中",
+    "appTieIn": "肥満症治療の選択肢をDr.いわたつが専門医目線で整理。MedApp Marketで関連アプリもチェック",
+    "status": "pending",
+    "priority": 5,
+    "createdAt": "2026-04-23T00:00:00Z"
+  },
+  {
+    "id": "topic-19",
+    "title": "糖尿病の未来をAIが10秒で予測する時代",
+    "category": "ai",
+    "hook": "福島医大が開発した「糖尿病未来予測ナビ」。健診データを入力するだけで5つのサブタイプに分類し、将来の透析リスクまで予測する。しかも無料",
+    "source": "福島県立医科大学 2026年3月 糖尿病未来予測ナビ公開",
+    "aiAngle": "AIが診断時データだけで5サブタイプ分類＋腎不全リスク予測。精度は数秒で従来の専門医判断と同等",
+    "appTieIn": "DM Compassも臨床で使えるAIツール。MedApp Marketで糖尿病AIアプリを一覧チェック",
+    "status": "pending",
+    "priority": 5,
+    "createdAt": "2026-04-23T00:01:00Z"
+  },
+  {
+    "id": "topic-20",
+    "title": "糖尿病標準診療マニュアル2026、研修医が押さえるべき5つの変更点",
+    "category": "diabetes",
+    "hook": "2026年4月1日に改訂された糖尿病標準診療マニュアル。GLP-1薬の位置付け変更、SGLT2iの心腎保護推奨強化など、研修医がすぐ使える5つのポイント",
+    "source": "日本糖尿病・生活習慣病ヒューマンデータ学会 2026年4月公開",
+    "aiAngle": "AIがガイドライン改訂を自動要約→臨床現場に即反映。情報のタイムラグゼロの時代へ",
+    "appTieIn": "改訂ポイントをDM Compassに反映予定。研修医の病棟ツールとして活用を",
+    "status": "pending",
+    "priority": 5,
+    "createdAt": "2026-04-23T00:02:00Z"
+  },
+  {
+    "id": "topic-21",
+    "title": "Dexcom G6販売終了へ：G7移行で知っておくべきこと",
+    "category": "diabetes",
+    "hook": "2026年6月30日でDexcom G6の販売が終了。G7への移行で何が変わる？精度・装着感・アプリ連携の違いを専門医が解説",
+    "source": "Dexcom社 2026年 G6販売終了・G7移行通知",
+    "aiAngle": "G7のリアルタイムデータ×AIアルゴリズムで、低血糖予測精度が飛躍的に向上",
+    "appTieIn": "CGMの選び方・使い方はDr.いわたつをフォロー。DM Compassで血糖管理の基礎も確認",
+    "status": "pending",
+    "priority": 4,
+    "createdAt": "2026-04-23T00:03:00Z"
+  },
+  {
+    "id": "topic-22",
+    "title": "GLP-1薬をやめたらリバウンドする？専門医が語る継続戦略",
+    "category": "obesity",
+    "hook": "GLP-1薬の中止後、「減った速度と同じペースで体重が戻る」データが出ている。じゃあ一生打ち続けるの？専門医が現実的な継続戦略を解説",
+    "source": "STEP 1延長試験 セマグルチド中止後データ / チルゼパチドSURMOUNT-4",
+    "aiAngle": "AIで個人の代謝プロファイルを解析し、減薬タイミングを最適化する研究が進む",
+    "appTieIn": "肥満症治療の長期管理をDr.いわたつが解説。フォローして継続的に学ぼう",
+    "status": "pending",
+    "priority": 4,
+    "createdAt": "2026-04-23T00:04:00Z"
+  },
+  {
+    "id": "topic-23",
+    "title": "2026年診療報酬改定でAIが「加算」に。医師が知るべき新ルール",
+    "category": "ai",
+    "hook": "生成AIで退院サマリー作成→医師事務作業補助の配置基準が柔軟化。AI導入が診療報酬に直結する時代が始まった",
+    "source": "2026年度診療報酬改定 厚生労働省",
+    "aiAngle": "AI文書作成・音声入力が診療報酬上の評価に。医師のAIリテラシーが経営にも直結する",
+    "appTieIn": "医師×AIの実践例をDr.いわたつが発信中。MedApp Marketで業務効率化アプリもチェック",
+    "status": "pending",
+    "priority": 4,
+    "createdAt": "2026-04-23T00:05:00Z"
+  },
+  {
+    "id": "topic-24",
+    "title": "第99回日本内分泌学会×国際内分泌学会議（京都）直前ガイド",
+    "category": "endocrine",
+    "hook": "2026年6月、京都で日本内分泌学会と国際内分泌学会議が史上初の合同開催。テーマは「Enlightened Endocrinology」。注目セッションを先取り解説",
+    "source": "第99回日本内分泌学会学術総会 / ICE-JES2026 京都",
+    "aiAngle": "学会抄録1000件超をAIで自動クラスタリング。注目トレンドを可視化する手法を紹介",
+    "appTieIn": "学会速報はDr.いわたつのX・noteでリアルタイム発信。フォローして学会に行かなくてもキャッチアップ",
+    "status": "pending",
+    "priority": 4,
+    "createdAt": "2026-04-23T00:06:00Z"
+  },
+  {
+    "id": "topic-25",
+    "title": "ヒューマリンN・3/7販売中止：移行先のインスリンどう選ぶ？",
+    "category": "diabetes",
+    "hook": "2026年4月15日、リリー社がヒューマリンN・ヒューマリン3/7バイアルの販売中止を発表。長年使ってきた患者の移行先をどう選ぶか",
+    "source": "日本イーライリリー 2026年4月15日 販売中止通知",
+    "aiAngle": "AIによるインスリン治療最適化が、製剤切替時の用量調整をサポートする未来",
+    "appTieIn": "インスリンの種類と使い分けはDM Compassで確認。病棟での切替にも対応",
+    "status": "pending",
+    "priority": 4,
+    "createdAt": "2026-04-23T00:07:00Z"
   }
 ]

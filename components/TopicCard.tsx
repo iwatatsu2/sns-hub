@@ -87,11 +87,13 @@ export default function TopicCard({
   onApprove,
   onReject,
   loading,
+  approveLabel,
 }: {
   topic: Topic;
   onApprove: () => void;
   onReject: () => void;
   loading: boolean;
+  approveLabel?: string;
 }) {
   const cat = categoryLabels[topic.category] || categoryLabels.diabetes;
 
@@ -143,14 +145,14 @@ export default function TopicCard({
         <button
           onClick={onApprove}
           disabled={loading}
-          className="flex-1 bg-teal-600 hover:bg-teal-500 disabled:opacity-50 text-white font-bold py-3 rounded-xl transition text-lg"
+          className="flex-1 bg-teal-600 hover:bg-teal-500 disabled:opacity-50 text-white font-bold py-3 rounded-xl transition text-sm sm:text-lg"
         >
-          {loading ? "生成中..." : "✓ OK → 全プラットフォーム生成"}
+          {loading ? "生成中..." : approveLabel || "✓ OK → 全生成"}
         </button>
         <button
           onClick={onReject}
           disabled={loading}
-          className="px-6 bg-gray-700 hover:bg-gray-600 disabled:opacity-50 text-gray-300 font-bold py-3 rounded-xl transition"
+          className="px-4 sm:px-6 bg-gray-700 hover:bg-gray-600 disabled:opacity-50 text-gray-300 font-bold py-3 rounded-xl transition text-sm sm:text-base"
         >
           ✗ ボツ
         </button>

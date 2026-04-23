@@ -113,12 +113,12 @@ function PlatformCard({
 
   return (
     <div className={`border-l-4 ${cfg.color} bg-gray-800 rounded-lg p-4`}>
-      <div className="flex items-center justify-between mb-2">
+      <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
         <div className="flex items-center gap-2">
           <span className="text-lg">{cfg.icon}</span>
           <span className="font-bold text-white text-sm">{cfg.label}</span>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 flex-wrap">
           <CopyButton text={displayText} />
           {(platform === "x" || platform === "instagram") && (
             <AutoPostButton
