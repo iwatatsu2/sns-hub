@@ -28,6 +28,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Link href="/posts" className="text-gray-400 hover:text-white text-sm transition">
               投稿一覧
             </Link>
+            <Link href="/history" className="text-gray-400 hover:text-white text-sm transition">
+              履歴
+            </Link>
             <Link
               href="/posts/new"
               className="ml-auto bg-teal-600 hover:bg-teal-500 text-white text-sm font-bold px-3 py-1.5 rounded transition"
