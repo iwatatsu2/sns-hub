@@ -429,6 +429,112 @@ function NoteBodyWithImages({ body }: { body: string }) {
   return <pre className="text-gray-300 text-sm whitespace-pre-wrap font-sans leading-relaxed">{body}</pre>;
 }
 
+/* ---------- AI note本文生成 ---------- */
+
+function AiNoteSection({ title, body: initialBody }: { title: string; body: string }) {
+  const [body, setBody] = useState(initialBody);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const generateWithAi = async () => {
+    if (typeof puter === "undefined") {
+      setError("Puter.js未読込。ページをリロードしてください");
+      return;
+    }
+    setLoading(true);
+    setError("");
+    try {
+      const prompt = `あなたは糖尿病・肥満症専門医「Dr.いわたつ」です。以下のタイトルでnote記事を書いてください。
+
+タイトル: ${title}
+
+━━━ 執筆ルール ━━━
+1. マークダウン記法（#, *, **）は絶対に使わない
+2. 見出しは「━━━━━━━━━━━━━━━」と「■ 見出し」で装飾する
+3. 3000〜5000文字の読み応えのある記事にする
+4. 具体的なデータ、数字、研究名、薬剤名を入れる（一般名使用）
+5. 「〜について解説します」のような空虚な文は禁止。必ず具体的な内容を書く
+6. 同じフレーズの繰り返しは禁止
+7. 薬の否定は禁止、医師法遵守
+
+━━━ 構成 ━━━
+リード文（4要素: 悩み代弁→メリット→権威性→結論チラ見せ）
+
+━━━━━━━━━━━━━━━
+■ この話題の背景
+━━━━━━━━━━━━━━━
+（なぜ今このテーマが重要か、具体的な背景・最新動向）
+
+━━━━━━━━━━━━━━━
+■ 知っておくべきポイント
+━━━━━━━━━━━━━━━
+（3〜5つの具体的なポイントを詳しく解説。各ポイントに具体的データや臨床エピソードを含める）
+
+━━━━━━━━━━━━━━━
+■ 日本人特有の注意点
+━━━━━━━━━━━━━━━
+（日本人と欧米人の違い、日本のガイドラインの特徴）
+
+━━━━━━━━━━━━━━━
+■ 明日からの外来で使える実践ポイント
+━━━━━━━━━━━━━━━
+（具体的なアクション3〜5つ）
+
+━━━━━━━━━━━━━━━
+■ まとめ
+━━━━━━━━━━━━━━━
+（要点整理、保存を促す）
+
+━━━━━━━━━━━━━━━
+
+著者: Dr.いわたつ
+糖尿病専門医・指導医 / 内分泌専門医 / 肥満症専門医 / 医学博士
+
+研修医が病棟で迷わないための実践ツール「DM Compass」を開発・無料公開中。
+糖尿病・肥満症について、実臨床で使える情報を発信しています。
+
+Instagram: @dr.iwatatsu
+X: @kenkyu1019799
+
+フォローで応援してもらえると嬉しいです！
+
+━━━ 重要 ━━━
+テンプレートの穴埋めではなく、専門医として本当に伝えたい内容を、具体的なデータとエビデンスを交えて書いてください。読者が「保存したい」と思える情報密度の高い記事にしてください。`;
+
+      const res = await puter.ai.chat(prompt);
+      setBody(res.message.content);
+    } catch (e) {
+      setError("生成失敗: " + (e instanceof Error ? e.message : String(e)));
+    }
+    setLoading(false);
+  };
+
+  return (
+    <div className="border-l-4 border-green-500 bg-gray-800 rounded-lg p-4">
+      <div className="flex flex-wrap justify-between items-center gap-2 mb-2">
+        <span className="font-bold text-white text-sm">📝 note</span>
+        <div className="flex gap-1.5 flex-wrap">
+          <button
+            onClick={generateWithAi}
+            disabled={loading}
+            className="bg-green-700 hover:bg-green-600 disabled:opacity-50 text-white text-xs font-bold px-3 py-1 rounded transition"
+          >
+            {loading ? "AI執筆中..." : "🤖 AI本文生成"}
+          </button>
+          <CopyBtn text={`${title}\n\n${body}`} />
+          <PostLink platform="note" />
+        </div>
+      </div>
+      {error && <p className="text-red-400 text-xs mb-2">{error}</p>}
+      <div className="text-teal-400 font-bold text-sm mb-1">{title}</div>
+      <div className="max-h-[500px] overflow-y-auto">
+        <NoteBodyWithImages body={body} />
+      </div>
+      <div className="text-xs text-gray-500 mt-1">{body.length}文字</div>
+    </div>
+  );
+}
+
 /* ---------- AI画像生成ボタン ---------- */
 
 function AiImageGen({ prompt, label, aspectHint, overlayTitle }: { prompt: string; label: string; aspectHint?: string; overlayTitle?: string }) {
@@ -572,20 +678,7 @@ export default function GeneratedContent({
       </div>
 
       {/* note */}
-      <div className="border-l-4 border-green-500 bg-gray-800 rounded-lg p-4">
-        <div className="flex flex-wrap justify-between items-center gap-2 mb-2">
-          <span className="font-bold text-white text-sm">📝 note</span>
-          <div className="flex gap-1.5 flex-wrap">
-            <CopyBtn text={`${platforms.note.title}\n\n${platforms.note.body}`} />
-            <PostLink platform="note" />
-          </div>
-        </div>
-        <div className="text-teal-400 font-bold text-sm mb-1">{platforms.note.title}</div>
-        <div className="max-h-[500px] overflow-y-auto">
-          <NoteBodyWithImages body={platforms.note.body} />
-        </div>
-        <div className="text-xs text-gray-500 mt-1">{platforms.note.body.length}文字</div>
-      </div>
+      <AiNoteSection title={platforms.note.title} body={platforms.note.body} />
 
       {/* サムネイル */}
       {topicId && <ThumbnailPreview topicId={topicId} title={platforms.note.title} subtitle={platforms.note.body.split("\n")[0]} />}
