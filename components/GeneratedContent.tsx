@@ -404,11 +404,11 @@ export default function GeneratedContent({
               別タブで開く
             </a>
           </div>
-          <div className="rounded-lg overflow-hidden border border-gray-700" style={{ aspectRatio: "1280/670" }}>
+          <div className="rounded-lg overflow-hidden border border-gray-700 relative" style={{ paddingBottom: "52.34%" }}>
             <iframe
               src={`/thumbnails/${topicId}.html`}
-              className="w-full h-full border-none"
-              style={{ transform: "scale(1)", transformOrigin: "top left" }}
+              className="absolute top-0 left-0 border-none"
+              style={{ width: 1280, height: 670, transform: "scale(0.5)", transformOrigin: "top left" }}
             />
           </div>
         </div>
