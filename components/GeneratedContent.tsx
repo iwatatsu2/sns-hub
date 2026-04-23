@@ -472,7 +472,7 @@ function AiImageGen({ prompt, label, aspectHint, overlayTitle }: { prompt: strin
             {overlayTitle && (
               <div className="absolute inset-0 flex items-end">
                 <div className="w-full bg-gradient-to-t from-black/80 via-black/50 to-transparent p-4 pt-12">
-                  <div className="text-white font-black text-lg md:text-xl leading-tight drop-shadow-lg">{overlayTitle}</div>
+                  <div className="text-white font-black text-lg md:text-xl leading-tight drop-shadow-lg" style={{ wordBreak: "keep-all", overflowWrap: "anywhere" }}>{overlayTitle}</div>
                   <div className="flex items-center gap-1.5 mt-2">
                     <div className="w-5 h-5 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 flex items-center justify-center">
                       <span className="text-[7px] font-black text-white">Dr</span>
