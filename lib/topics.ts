@@ -48,7 +48,16 @@ export function getAllTopics(): Topic[] {
 }
 
 export function getPendingTopics(): Topic[] {
-  return getAllTopics().filter((t) => t.status === "pending");
+  // 投稿一覧に保存済みのタイトルを除外
+  let savedTitles: Set<string>;
+  try {
+    const postsFile = path.join(process.cwd(), "data", "posts.json");
+    const posts: { title: string }[] = JSON.parse(fs.readFileSync(postsFile, "utf-8"));
+    savedTitles = new Set(posts.map((p) => p.title));
+  } catch {
+    savedTitles = new Set();
+  }
+  return getAllTopics().filter((t) => t.status === "pending" && !savedTitles.has(t.title));
 }
 
 export function getNextPendingTopic(): Topic | null {
