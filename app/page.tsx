@@ -379,6 +379,9 @@ export default function Home() {
           />
         </div>
       )}
+
+      {/* Manusタスク（ブランディング施策） */}
+      <ManusTaskList />
     </div>
   );
 }
@@ -508,4 +511,77 @@ function buildReviewPrompt(topic: Topic): string {
 5. 独自性（他の医療アカウントとの差別化）
 
 最後に「総合評価」と「具体的な修正案を3つ」出してください。遠慮なくダメ出ししてください。`;
+}
+
+/* ---------- Manusブランディングタスク ---------- */
+
+const MANUS_TASKS = [
+  // プロフィール統一（最優先）
+  { id: "m1", cat: "プロフィール", text: "全SNSのプロフィール名を「Dr. いわたつ｜糖尿病専門医×アプリ開発者」に統一", priority: 5 },
+  { id: "m2", cat: "プロフィール", text: "全プロフィールに公式サイトURL（driwatatsu.readdy.co）を追加", priority: 5 },
+  { id: "m3", cat: "プロフィール", text: "プロフィール文を統一：キャッチフレーズ「糖尿病専門医が作る、医療とテクノロジーの架け橋」を反映", priority: 5 },
+  { id: "m4", cat: "プロフィール", text: "antaaプロフィール欄にX・IG・note・公式サイトのリンクを追加", priority: 4 },
+  // コンテンツ施策
+  { id: "m5", cat: "コンテンツ", text: "既存antaaスライド末尾にCTAページ追加（「詳しくはnoteで」「DM Compassを使ってみよう」）", priority: 4 },
+  { id: "m6", cat: "コンテンツ", text: "過去のIG投稿で反応が良かったものをカルーセルにリライト", priority: 3 },
+  { id: "m7", cat: "コンテンツ", text: "note記事の無料→有料段階戦略を設計（300円〜3,000円）", priority: 3 },
+  // エンゲージメント施策
+  { id: "m8", cat: "エンゲージメント", text: "Xリプライ戦略開始：医師・テック系アカウントに質の高いリプライ1日5-10件", priority: 4 },
+  { id: "m9", cat: "エンゲージメント", text: "IGストーリーズで毎日Q&A・アンケート実施（テーマ選定・ニーズ調査）", priority: 4 },
+  { id: "m10", cat: "エンゲージメント", text: "X投稿後15-30分のコメントに即座に返信（会話成立で75x評価ブースト）", priority: 4 },
+  // クロスプラットフォーム
+  { id: "m11", cat: "クロスPF", text: "1ソース・マルチユース運用：note → IGカルーセル → リール → Xスレッド の流れを毎週実行", priority: 5 },
+  { id: "m12", cat: "クロスPF", text: "各プラットフォーム間の相互誘導リンクを投稿に必ず含める", priority: 4 },
+  // KPI
+  { id: "m13", cat: "KPI", text: "3ヶ月目標: IG +500 / X +200 / note +100フォロワー / アプリ月2,000アクセス", priority: 3 },
+];
+
+function ManusTaskList() {
+  const [done, setDone] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    const saved = localStorage.getItem("sns-hub-manus-tasks");
+    if (saved) setDone(JSON.parse(saved));
+  }, []);
+
+  const toggle = (id: string) => {
+    const next = { ...done, [id]: !done[id] };
+    setDone(next);
+    localStorage.setItem("sns-hub-manus-tasks", JSON.stringify(next));
+  };
+
+  const cats = ["プロフィール", "コンテンツ", "エンゲージメント", "クロスPF", "KPI"];
+  const doneCount = MANUS_TASKS.filter((t) => done[t.id]).length;
+
+  return (
+    <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
+      <div className="flex justify-between items-center mb-3">
+        <span className="font-bold text-white text-sm">📋 Manusブランディング施策</span>
+        <span className="text-xs text-gray-500">{doneCount}/{MANUS_TASKS.length} 完了</span>
+      </div>
+      <div className="w-full bg-gray-700 rounded-full h-1.5 mb-4">
+        <div className="bg-teal-500 h-1.5 rounded-full transition-all" style={{ width: `${(doneCount / MANUS_TASKS.length) * 100}%` }} />
+      </div>
+      <div className="space-y-4">
+        {cats.map((cat) => {
+          const items = MANUS_TASKS.filter((t) => t.cat === cat);
+          return (
+            <div key={cat}>
+              <div className="text-xs font-bold text-gray-500 mb-1.5">{cat}</div>
+              <div className="space-y-1">
+                {items.map((t) => (
+                  <button key={t.id} onClick={() => toggle(t.id)}
+                    className={`w-full text-left px-3 py-2 rounded-lg text-xs transition ${done[t.id] ? "bg-gray-700/30 text-gray-600 line-through" : "bg-gray-700/50 text-gray-300 hover:bg-gray-700"}`}
+                  >
+                    <span className="mr-2">{done[t.id] ? "✓" : "○"}</span>
+                    {t.text}
+                  </button>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
 }
