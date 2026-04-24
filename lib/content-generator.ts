@@ -108,7 +108,7 @@ interface TopicDetail {
   };
 }
 
-const topicDetails: Record<string, TopicDetail> = {
+const topicDetails: Record<string, Partial<TopicDetail>> = {
   "topic-01": {
     xText: "経口GLP-1肥満薬がついにFDA審査へ。注射が苦手な患者にとって「飲むだけで痩せる薬」は革命的。2026年4月、初の経口GLP-1肥満薬の審査が行われた。",
     reelHook: "飲むだけで痩せる薬、ついに来た",
@@ -234,6 +234,46 @@ const topicDetails: Record<string, TopicDetail> = {
         "β-HB > 3.0 mmol/Lで DKAを強く疑う",
       ],
     },
+  },
+  "topic-26": {
+    reelHook: "血糖値が高め？",
+    reelData: ["健診で要精密検査→まず内科・糖尿病内科へ", "空腹時血糖126以上orHbA1c6.5以上で糖尿病", "放置すると5年で合併症リスク2倍", "早期発見なら食事・運動だけで改善も可能"],
+  },
+  "topic-27": {
+    reelHook: "ご飯を減らすだけ？",
+    reelData: ["糖質制限だけでは不十分な理由がある", "食べる順番で食後血糖が30%改善", "タンパク質と食物繊維を先に摂る", "1日3食規則正しく食べることが最重要"],
+  },
+  "topic-28": {
+    reelHook: "HbA1cって何？",
+    reelData: ["HbA1c=過去1-2ヶ月の平均血糖値", "6.5%以上で糖尿病と診断", "7.0%未満が治療目標の基本", "0.1%下がるだけで合併症リスク低下"],
+  },
+  "topic-29": {
+    reelHook: "痩せる注射の真実",
+    reelData: ["GLP-1受容体作動薬＝医療用の肥満治療薬", "平均10-15%の体重減少効果", "吐き気などの副作用に要注意", "保険適用には厳格な条件あり"],
+  },
+  "topic-30": {
+    reelHook: "家族が糖尿病に",
+    reelData: ["まず本人の気持ちを受け止める", "食事管理は家族全員で取り組む", "低血糖の対処法を家族も覚えておく", "定期通院のサポートが最も大切"],
+  },
+  "topic-31": {
+    reelHook: "糖尿病でも旅行OK",
+    reelData: ["薬・インスリンは手荷物に（預け荷物NG）", "時差がある場合の薬の調整法あり", "補食用の糖質を常に携帯する", "主治医に旅行計画を事前相談"],
+  },
+  "topic-32": {
+    reelHook: "運動で血糖値は下がる",
+    reelData: ["食後30分のウォーキングで血糖値20%低下", "週150分の有酸素運動が推奨", "筋トレ併用でインスリン感受性UP", "まずは1日10分の「ちょい足し」から"],
+  },
+  "topic-33": {
+    reelHook: "薬は一生？",
+    reelData: ["早期なら薬を減量・中止できるケースあり", "HbA1c改善+生活習慣改善が条件", "自己判断での中止は絶対NG", "主治医と相談しながら減薬を目指す"],
+  },
+  "topic-34": {
+    reelHook: "低血糖のサイン",
+    reelData: ["冷や汗・手の震え・動悸が初期症状", "血糖70mg/dL未満で低血糖", "ブドウ糖10gまたはジュース150mLで対処", "重症低血糖は意識消失→救急車を"],
+  },
+  "topic-35": {
+    reelHook: "ストレスで血糖上昇",
+    reelData: ["コルチゾール分泌→インスリン抵抗性UP", "睡眠不足でHbA1cが0.3%悪化する報告", "マインドフルネスで血糖改善のRCTあり", "ストレス管理も立派な糖尿病治療"],
   },
 };
 
@@ -426,7 +466,7 @@ export function generateContent(topic: Topic): GeneratedResult {
   const noteBody =
     // リード文（悩み代弁→メリット→権威性→結論チラ見せ）
     `${topic.hook}\n\n` +
-    `こんにちは、糖尿病・肥満症専門医のDr.いわたつです。\n` +
+    `こんにちは、糖尿病専門医のDr.いわたつです。\n` +
     `月間1,000人以上の患者さんを診察する中で、このテーマは本当によく聞かれます。\n\n` +
     `${intro}\n\n` +
     `この記事を読めば、${topic.title}について基礎知識から最新データ、明日の外来で使える実践ポイントまでわかります。\n\n` +
@@ -464,9 +504,9 @@ export function generateContent(topic: Topic): GeneratedResult {
     // 著者プロフィール
     `━━━━━━━━━━━━━━━\n\n` +
     `著者: Dr.いわたつ\n` +
-    `糖尿病専門医・指導医 / 内分泌専門医 / 肥満症専門医 / 医学博士\n\n` +
+    `糖尿病専門医・指導医 / 内分泌専門医 / 医学博士\n\n` +
     `研修医が病棟で迷わないための実践ツール「DM Compass」を開発・無料公開中。\n` +
-    `糖尿病・肥満症について、実臨床で使える情報を発信しています。\n\n` +
+    `糖尿病について、実臨床で使える情報を発信しています。\n\n` +
     `Instagram: @dr.iwatatsu\n` +
     `X: @kenkyu1019799\n` +
     `公式サイト: driwatatsu.readdy.co\n\n` +
@@ -498,12 +538,19 @@ export function generateContent(topic: Topic): GeneratedResult {
   ].filter((v, i, a) => a.indexOf(v) === i).slice(0, 6);
 
   // --- リールシーン構成 ---
-  const reelData = details?.reelData || [
-    topic.hook.split("。")[0],
-    topic.title,
-    topic.aiAngle || topic.appTieIn,
-    "Dr.いわたつをフォロー",
-  ];
+  // hookから意味のある文を抽出し、足りない場合はトピック情報から補完
+  const hookSentences = topic.hook.split(/[。！？]/).filter(s => s.trim().length > 5);
+  const fallbackPoints: string[] = [];
+  // hookの文をまず追加
+  for (const s of hookSentences) {
+    if (fallbackPoints.length < 4) fallbackPoints.push(s.trim());
+  }
+  // 足りなければトピック情報から補完
+  if (fallbackPoints.length < 4 && topic.source) fallbackPoints.push(`エビデンス: ${topic.source}`);
+  if (fallbackPoints.length < 4 && topic.aiAngle) fallbackPoints.push(topic.aiAngle);
+  if (fallbackPoints.length < 4) fallbackPoints.push(`専門医が${topic.title}を徹底解説`);
+  if (fallbackPoints.length < 4) fallbackPoints.push("詳しくはプロフィールのリンクから");
+  const reelData = details?.reelData || fallbackPoints.slice(0, 4);
   const reelScenes = [
     `【Scene 1: フック 0-3秒】\n「${topic.hook.split("。").slice(0, 2).join("。")}」\nフルスクリーン、テキスト中央、衝撃的なフック`,
     `【Scene 2: データ提示 3-7秒】\n${reelData.slice(0, 2).join("\n")}\n数字やデータをカードで視覚的に表示`,
@@ -547,6 +594,7 @@ function generateReelHtml(topic: Topic, reelData: string[]): string {
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino Sans','Hiragino Kaku Gothic ProN',sans-serif}
+*{word-break:keep-all;overflow-wrap:break-word;line-break:strict}
 .comp{position:relative;width:1080px;height:1920px;transform-origin:top left;
   background:linear-gradient(180deg,#0f172a 0%,#1e293b 50%,#312e81 100%)}
 .scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 80px;opacity:0}
@@ -555,14 +603,14 @@ body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino San
 .bg-c1{width:600px;height:600px;background:#14b8a6;top:-200px;right:-200px}
 .bg-c2{width:500px;height:500px;background:#8b5cf6;bottom:-100px;left:-150px}
 /* Scene 1: Hook - 大きくインパクト、行間広め */
-.hook-text{color:#fff;font-size:100px;font-weight:900;text-align:center;line-height:1.4;letter-spacing:3px;max-width:950px}
+.hook-text{color:#fff;font-size:80px;font-weight:900;text-align:center;line-height:1.5;letter-spacing:2px;max-width:920px}
 .hook-sub{color:#94a3b8;font-size:34px;margin-top:48px;text-align:center;letter-spacing:0.5px;line-height:1.6;max-width:850px}
 /* Scene 2: Data cards - カード内テキスト読みやすく */
 .data-section{width:100%;max-width:940px}
 .data-title{color:#2dd4bf;font-size:44px;font-weight:900;text-align:center;margin-bottom:40px;letter-spacing:1px}
 .data-card{background:rgba(20,184,166,0.08);border:2px solid rgba(20,184,166,0.25);border-radius:24px;padding:36px 40px;margin-bottom:24px;display:flex;align-items:center;gap:28px}
 .data-num{color:#2dd4bf;font-size:50px;font-weight:900;min-width:60px;text-align:center}
-.data-text{color:#e2e8f0;font-size:36px;line-height:1.5;font-weight:700;letter-spacing:0.3px}
+.data-text{color:#e2e8f0;font-size:34px;line-height:1.6;font-weight:700;letter-spacing:0.3px}
 /* Scene 3: Explanation - 余白多め、段落分け */
 .explain-box{background:rgba(255,255,255,0.05);border-radius:28px;padding:56px 48px;width:100%;max-width:940px}
 .explain-title{color:#fff;font-size:44px;font-weight:900;margin-bottom:32px;text-align:center;letter-spacing:1px}
@@ -575,8 +623,8 @@ body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino San
 .summary-text{color:#e2e8f0;font-size:34px;line-height:1.5;font-weight:700;letter-spacing:0.3px}
 /* Scene 5: Follow CTA */
 .follow-container{text-align:center}
-.follow-avatar{width:260px;height:260px;border-radius:50%;border:6px solid #14b8a6;margin:0 auto 32px;overflow:hidden;background:#1e293b}
-.follow-avatar img{width:100%;height:100%;object-fit:cover}
+.follow-avatar{width:280px;height:280px;margin:0 auto 24px;background:transparent}
+.follow-avatar img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.4))}
 .follow-name{color:#fff;font-size:56px;font-weight:900;margin-bottom:12px;letter-spacing:2px}
 .follow-title{color:#94a3b8;font-size:30px;margin-bottom:40px;letter-spacing:0.5px}
 .follow-btn{background:linear-gradient(135deg,#14b8a6,#0d9488);color:#fff;font-size:44px;font-weight:900;padding:28px 80px;border-radius:20px;display:inline-block;letter-spacing:2px}
@@ -584,6 +632,9 @@ body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino San
 .follow-action{background:rgba(255,255,255,0.08);border:2px solid rgba(255,255,255,0.15);border-radius:20px;padding:28px 44px;text-align:center}
 .follow-action-icon{font-size:48px;margin-bottom:10px}
 .follow-action-label{color:#fff;font-size:28px;font-weight:700;letter-spacing:1px}
+/* Dr.いわたつ 右下固定イラスト（Scene1-4） */
+.dr-avatar-fixed{position:absolute;bottom:40px;right:40px;width:400px;height:400px;z-index:10;pointer-events:none}
+.dr-avatar-fixed img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 16px rgba(0,0,0,0.5))}
 </style></head><body>
 <div class="comp" id="comp">
 <div class="bg-circle bg-c1"></div>
@@ -593,6 +644,7 @@ body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino San
 <div class="scene" id="s1">
   <div class="hook-text">${escHtml(shortHook)}</div>
   <div class="hook-sub">${escHtml(hookSub)}</div>
+  <div class="dr-avatar-fixed"><img src="${DR_IWATATSU_DATA_URI}" alt="Dr.いわたつ"></div>
 </div>
 
 <!-- Scene 2: Data -->
@@ -601,15 +653,18 @@ body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino San
     <div class="data-title">${escHtml(topic.title)}</div>
     ${d.slice(0, 4).map((item, i) => `<div class="data-card"><div class="data-num">${i + 1}</div><div class="data-text">${escHtml(item)}</div></div>`).join("\n    ")}
   </div>
+  <div class="dr-avatar-fixed"><img src="${DR_IWATATSU_DATA_URI}" alt="Dr.いわたつ"></div>
 </div>
 
 <!-- Scene 3: Explanation -->
 <div class="scene" id="s3">
   <div class="explain-box">
     <div class="explain-title">知っておくべきポイント</div>
-    <div class="explain-text">${addLineBreaks(escHtml(d[2] || d[0] || topic.hook.split("。")[0]))}</div>
+    <div class="explain-text">${addLineBreaks(escHtml(d[2] || topic.aiAngle || "専門医が最新エビデンスをもとに解説"))}</div>
+    <div style="color:#94a3b8;font-size:30px;line-height:1.6;text-align:center;margin-top:24px">${addLineBreaks(escHtml(d[3] || topic.appTieIn || ""))}</div>
     <div style="text-align:center"><span class="source-badge">${escHtml(src)}</span></div>
   </div>
+  <div class="dr-avatar-fixed"><img src="${DR_IWATATSU_DATA_URI}" alt="Dr.いわたつ"></div>
 </div>
 
 <!-- Scene 4: Summary -->
@@ -618,6 +673,7 @@ body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino San
   <div class="summary-grid">
     ${d.slice(0, 3).map((item) => `<div class="summary-item"><div class="summary-check">✓</div><div class="summary-text">${escHtml(item)}</div></div>`).join("\n    ")}
   </div>
+  <div class="dr-avatar-fixed"><img src="${DR_IWATATSU_DATA_URI}" alt="Dr.いわたつ"></div>
 </div>
 
 <!-- Scene 5: Follow CTA -->

@@ -353,38 +353,25 @@ function AiReview({ xText, noteTitle, noteBody, igCaption }: {
   const [error, setError] = useState("");
 
   const runReview = async () => {
-    if (typeof puter === "undefined") {
-      setError("Puter.js未読込。ページをリロードしてください");
-      return;
-    }
     setLoading(true);
     setError("");
     try {
-      const prompt = `あなたはSNSマーケティングの専門家です。以下の医療系SNSコンテンツを厳しくレビューしてください。
+      const prompt = `あなたはSNSマーケティングの専門家です。以下の医療系SNSコンテンツをレビューしてください。
 
-■ X投稿（最初の140文字がフック）:
-${xText.slice(0, 500)}
+■ X投稿: ${xText.slice(0, 500)}
+■ note記事タイトル: ${noteTitle}
+■ note記事冒頭: ${noteBody.slice(0, 500)}
+■ IGキャプション: ${igCaption.slice(0, 300)}
 
-■ note記事タイトル:
-${noteTitle}
+採点（各10点満点）: フック力・構成力・ターゲット適合性・CTA・独自性。良い点を先に、改善提案は最大2つ。`;
 
-■ note記事冒頭:
-${noteBody.slice(0, 500)}
-
-■ Instagramキャプション:
-${igCaption.slice(0, 300)}
-
-以下の観点で採点（各10点満点）と改善提案を日本語で出してください:
-1. フック力（最初の3秒/140文字の引きつけ力）
-2. 構成力（PREP法/AIDA法則の準拠度）
-3. ターゲット適合性（糖尿病患者・医療者への訴求）
-4. CTA（行動喚起の明確さ）
-5. 独自性（他の医療アカウントとの差別化）
-
-最後に「総合評価」と「具体的な修正案を3つ」出してください。遠慮なくダメ出ししてください。`;
-
-      const res = await puter.ai.chat(prompt);
-      setReview(res.message.content);
+      const res = await fetch("/api/generate-ai", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ notePrompt: "", notePublicPrompt: "", xPrompt: "", reviewPrompt: prompt }),
+      });
+      const data = await res.json();
+      setReview(data.review || "レビュー失敗");
     } catch (e) {
       setError("レビュー失敗: " + (e instanceof Error ? e.message : String(e)));
     }
@@ -437,72 +424,18 @@ function AiNoteSection({ title, body: initialBody }: { title: string; body: stri
   const [error, setError] = useState("");
 
   const generateWithAi = async () => {
-    if (typeof puter === "undefined") {
-      setError("Puter.js未読込。ページをリロードしてください");
-      return;
-    }
     setLoading(true);
     setError("");
     try {
-      const prompt = `あなたは糖尿病・肥満症専門医「Dr.いわたつ」です。以下のタイトルでnote記事を書いてください。
+      const prompt = `あなたは糖尿病専門医「Dr.いわたつ」です。「${title}」でnote記事を書いてください。マークダウン禁止、■と━━━で装飾、3000-5000文字、具体的データ必須。`;
 
-タイトル: ${title}
-
-━━━ 執筆ルール ━━━
-1. マークダウン記法（#, *, **）は絶対に使わない
-2. 見出しは「━━━━━━━━━━━━━━━」と「■ 見出し」で装飾する
-3. 3000〜5000文字の読み応えのある記事にする
-4. 具体的なデータ、数字、研究名、薬剤名を入れる（一般名使用）
-5. 「〜について解説します」のような空虚な文は禁止。必ず具体的な内容を書く
-6. 同じフレーズの繰り返しは禁止
-7. 薬の否定は禁止、医師法遵守
-
-━━━ 構成 ━━━
-リード文（4要素: 悩み代弁→メリット→権威性→結論チラ見せ）
-
-━━━━━━━━━━━━━━━
-■ この話題の背景
-━━━━━━━━━━━━━━━
-（なぜ今このテーマが重要か、具体的な背景・最新動向）
-
-━━━━━━━━━━━━━━━
-■ 知っておくべきポイント
-━━━━━━━━━━━━━━━
-（3〜5つの具体的なポイントを詳しく解説。各ポイントに具体的データや臨床エピソードを含める）
-
-━━━━━━━━━━━━━━━
-■ 日本人特有の注意点
-━━━━━━━━━━━━━━━
-（日本人と欧米人の違い、日本のガイドラインの特徴）
-
-━━━━━━━━━━━━━━━
-■ 明日からの外来で使える実践ポイント
-━━━━━━━━━━━━━━━
-（具体的なアクション3〜5つ）
-
-━━━━━━━━━━━━━━━
-■ まとめ
-━━━━━━━━━━━━━━━
-（要点整理、保存を促す）
-
-━━━━━━━━━━━━━━━
-
-著者: Dr.いわたつ
-糖尿病専門医・指導医 / 内分泌専門医 / 肥満症専門医 / 医学博士
-
-研修医が病棟で迷わないための実践ツール「DM Compass」を開発・無料公開中。
-糖尿病・肥満症について、実臨床で使える情報を発信しています。
-
-Instagram: @dr.iwatatsu
-X: @kenkyu1019799
-
-フォローで応援してもらえると嬉しいです！
-
-━━━ 重要 ━━━
-テンプレートの穴埋めではなく、専門医として本当に伝えたい内容を、具体的なデータとエビデンスを交えて書いてください。読者が「保存したい」と思える情報密度の高い記事にしてください。`;
-
-      const res = await puter.ai.chat(prompt);
-      setBody(res.message.content);
+      const res = await fetch("/api/generate-ai", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ notePrompt: prompt, notePublicPrompt: "", xPrompt: "", reviewPrompt: "" }),
+      });
+      const data = await res.json();
+      setBody(data.noteBody || initialBody);
     } catch (e) {
       setError("生成失敗: " + (e instanceof Error ? e.message : String(e)));
     }
@@ -535,69 +468,6 @@ X: @kenkyu1019799
   );
 }
 
-/* ---------- AI画像生成ボタン ---------- */
-
-function AiImageGen({ prompt, label, aspectHint, overlayTitle }: { prompt: string; label: string; aspectHint?: string; overlayTitle?: string }) {
-  const [imgSrc, setImgSrc] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  const generate = async () => {
-    if (typeof puter === "undefined") {
-      setError("Puter.js未読込。ページをリロードしてください");
-      return;
-    }
-    setLoading(true);
-    setError("");
-    try {
-      const fullPrompt = `${prompt}。スタイル: 清潔感のある医療系インフォグラフィック、プロフェッショナル、ミニマルデザイン、ティールとダークブルーの配色。重要: テキストや文字は一切含めないこと。イラスト・アイコン・図形のみで構成する。文字なし${aspectHint ? `。${aspectHint}` : ""}`;
-      const img = await puter.ai.txt2img(fullPrompt, { model: "dall-e-3" });
-      setImgSrc(img.src);
-    } catch (e) {
-      setError("生成失敗: " + (e instanceof Error ? e.message : String(e)));
-    }
-    setLoading(false);
-  };
-
-  return (
-    <div className="mt-3">
-      {!imgSrc && (
-        <button
-          onClick={generate}
-          disabled={loading}
-          className="bg-violet-700 hover:bg-violet-600 disabled:opacity-50 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition"
-        >
-          {loading ? "AI画像生成中..." : `🎨 ${label}`}
-        </button>
-      )}
-      {error && <p className="text-red-400 text-xs mt-1">{error}</p>}
-      {imgSrc && (
-        <div className="mt-2">
-          <div className="relative rounded-lg border border-gray-700 overflow-hidden">
-            <img src={imgSrc} alt={label} className="max-w-full block" />
-            {overlayTitle && (
-              <div className="absolute inset-0 flex items-end">
-                <div className="w-full bg-gradient-to-t from-black/80 via-black/50 to-transparent p-4 pt-12">
-                  <div className="text-white font-black text-lg md:text-xl leading-tight drop-shadow-lg" style={{ wordBreak: "keep-all", overflowWrap: "anywhere" }}>{overlayTitle}</div>
-                  <div className="flex items-center gap-1.5 mt-2">
-                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 flex items-center justify-center">
-                      <span className="text-[7px] font-black text-white">Dr</span>
-                    </div>
-                    <span className="text-gray-300 text-xs font-bold">Dr.いわたつ｜糖尿病専門医</span>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-          <div className="flex gap-2 mt-1">
-            <a href={imgSrc} download={`${label}.png`} className="text-xs text-teal-400 hover:text-teal-300">ダウンロード</a>
-            <button onClick={() => { setImgSrc(null); }} className="text-xs text-gray-500 hover:text-gray-300">再生成</button>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
 
 /* ---------- サムネイルプレビュー（レスポンシブ） ---------- */
 
@@ -627,12 +497,6 @@ function ThumbnailPreview({ topicId, title, subtitle }: { topicId: string; title
           </div>
         </div>
       </div>
-      <AiImageGen
-        prompt={`医療ブログ記事のサムネイル背景画像。テーマ: ${title || topicId}。糖尿病・医療をイメージするアイコンや図形のみ。文字は入れない`}
-        label="AIサムネイル生成"
-        aspectHint="横長 16:9 比率"
-        overlayTitle={title || topicId}
-      />
     </div>
   );
 }
@@ -707,12 +571,6 @@ export default function GeneratedContent({
             <span key={h} className="text-xs bg-pink-900 text-pink-300 px-2 py-0.5 rounded">#{h}</span>
           ))}
         </div>
-        <AiImageGen
-          prompt={`Instagramカルーセルの表紙背景画像。テーマ: ${platforms.instagram.caption.split("\n")[0]}。医療・健康をイメージするアイコンや図形のみ。文字は入れない`}
-          label="AIカルーセル画像生成"
-          aspectHint="正方形 1:1 比率、1080x1080px"
-          overlayTitle={platforms.instagram.caption.split("\n")[0]}
-        />
       </div>
 
       {/* antaa */}
