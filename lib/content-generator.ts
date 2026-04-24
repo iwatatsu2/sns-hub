@@ -8,6 +8,53 @@ const DR_IWATATSU_IMG = "/dr-iwatatsu.png";
 
 // iframe srcDoc内では相対パスが使えないため、デプロイ先の絶対URLを使用
 const DR_IWATATSU_DATA_URI = "https://sns-hub-five.vercel.app/dr-iwatatsu.png";
+const VERCEL_BASE = "https://sns-hub-five.vercel.app";
+
+// Dr.いわたつポーズバリエーション
+const DR_POSES = {
+  explain:   `${VERCEL_BASE}/dr-pose-explain.png`,    // 人差し指UP解説
+  think:     `${VERCEL_BASE}/dr-pose-think.png`,       // 顎に手、疑問
+  hello:     `${VERCEL_BASE}/dr-pose-hello.png`,       // 手振り挨拶
+  confident: `${VERCEL_BASE}/dr-pose-confident.png`,   // 腕組み解説
+  thumbsup:  `${VERCEL_BASE}/dr-pose-thumbsup.png`,    // サムズアップ
+  pc:        `${VERCEL_BASE}/dr-pose-pc.png`,           // PC操作
+  warning:   `${VERCEL_BASE}/dr-pose-warning.png`,      // 注意喚起
+  point:     `${VERCEL_BASE}/dr-pose-point.png`,        // 人差し指+クリップボード
+  clipboard: `${VERCEL_BASE}/dr-pose-clipboard.png`,    // クリップボード微笑み
+  great:     `${VERCEL_BASE}/dr-pose-great.png`,        // サムズアップ+キラキラ
+} as const;
+type PoseKey = keyof typeof DR_POSES;
+
+// トピック内容からポーズを自動選択
+function selectPose(topic: { title: string; category: string; hook: string }, scene: "cover" | "problem" | "insight" | "practice" | "takehome" | "profile"): string {
+  // シーン別デフォルト
+  if (scene === "profile") return DR_POSES.great;
+  if (scene === "takehome") return DR_POSES.thumbsup;
+  if (scene === "problem") return DR_POSES.think;
+  if (scene === "practice") return DR_POSES.point;
+
+  // カテゴリ別
+  if (topic.category === "ai") return DR_POSES.pc;
+
+  // タイトル・フックのキーワードで判定
+  const text = `${topic.title} ${topic.hook}`;
+  if (/危険|注意|見逃|誤診|リスク|警告/.test(text)) return DR_POSES.warning;
+  if (/？|疑問|本当に|いいの|どう/.test(text)) return DR_POSES.think;
+  if (/最新|革命|ついに|発見|新/.test(text)) return DR_POSES.hello;
+  if (/ガイドライン|マニュアル|データ|診断/.test(text)) return DR_POSES.clipboard;
+
+  // デフォルト: 解説ポーズ
+  return DR_POSES.explain;
+}
+
+// スライドのシーンに応じた4ポーズセットを返す
+function selectPoseSet(topic: { title: string; category: string; hook: string }): [string, string, string, string] {
+  const cover = selectPose(topic, "cover");
+  const problem = selectPose(topic, "problem");
+  const insight = selectPose(topic, "insight");
+  const practice = selectPose(topic, "practice");
+  return [cover, problem, insight, practice];
+}
 
 // サムネイルタイトルのインパクトワードをハイライト
 const IMPACT_KEYWORDS = [
@@ -664,7 +711,7 @@ body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino San
 <div class="scene" id="s1">
   <div class="hook-text">${escHtml(shortHook)}</div>
   <div class="hook-sub">${escHtml(hookSub)}</div>
-  <div class="dr-avatar-fixed"><img src="${DR_IWATATSU_DATA_URI}" alt="Dr.いわたつ"></div>
+  <div class="dr-avatar-fixed"><img src="${selectPose(topic, "cover")}" alt="Dr.いわたつ"></div>
 </div>
 
 <!-- Scene 2: Data -->
@@ -673,7 +720,7 @@ body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino San
     <div class="data-title">${escHtml(topic.title)}</div>
     ${d.slice(0, 4).map((item, i) => `<div class="data-card"><div class="data-num">${i + 1}</div><div class="data-text">${escHtml(item)}</div></div>`).join("\n    ")}
   </div>
-  <div class="dr-avatar-fixed"><img src="${DR_IWATATSU_DATA_URI}" alt="Dr.いわたつ"></div>
+  <div class="dr-avatar-fixed"><img src="${selectPose(topic, "problem")}" alt="Dr.いわたつ"></div>
 </div>
 
 <!-- Scene 3: Explanation -->
@@ -684,7 +731,7 @@ body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino San
     <div style="color:#94a3b8;font-size:30px;line-height:1.6;text-align:center;margin-top:24px">${addLineBreaks(escHtml(d[3] || topic.appTieIn || ""))}</div>
     <div style="text-align:center"><span class="source-badge">${escHtml(src)}</span></div>
   </div>
-  <div class="dr-avatar-fixed"><img src="${DR_IWATATSU_DATA_URI}" alt="Dr.いわたつ"></div>
+  <div class="dr-avatar-fixed"><img src="${selectPose(topic, "insight")}" alt="Dr.いわたつ"></div>
 </div>
 
 <!-- Scene 4: Summary -->
@@ -693,13 +740,13 @@ body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino San
   <div class="summary-grid">
     ${d.slice(0, 3).map((item) => `<div class="summary-item"><div class="summary-check">✓</div><div class="summary-text">${escHtml(item)}</div></div>`).join("\n    ")}
   </div>
-  <div class="dr-avatar-fixed"><img src="${DR_IWATATSU_DATA_URI}" alt="Dr.いわたつ"></div>
+  <div class="dr-avatar-fixed"><img src="${selectPose(topic, "takehome")}" alt="Dr.いわたつ"></div>
 </div>
 
 <!-- Scene 5: Follow CTA -->
 <div class="scene" id="s5">
   <div class="follow-container">
-    <div class="follow-avatar"><img src="${DR_IWATATSU_DATA_URI}" alt="Dr.いわたつ"></div>
+    <div class="follow-avatar"><img src="${selectPose(topic, "profile")}" alt="Dr.いわたつ"></div>
     <div class="follow-name">Dr.いわたつ</div>
     <div class="follow-title">糖尿病専門医・指導医 / 医学博士</div>
     <div class="follow-btn">フォローする</div>
@@ -861,7 +908,7 @@ function generateSlideHtml(
     </div>
     <div class="divider"></div>
     <div class="right-panel">
-      <div class="avatar-circle"><img src="${DR_IWATATSU_DATA_URI}" alt="Dr.いわたつ"></div>
+      <img src="${selectPose(topic, "cover")}" alt="Dr.いわたつ" style="max-height:520px;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.4))">
     </div>
   </div>
   <div class="footer"><span>© Dr.いわたつ</span><span>Dr.いわたつシリーズ</span></div>
@@ -981,7 +1028,7 @@ function generateSlideHtml(
     </div>
     <div class="divider"></div>
     <div class="right-panel">
-      <div class="avatar-circle"><img src="${DR_IWATATSU_DATA_URI}" alt="Dr.いわたつ"></div>
+      <img src="${selectPose(topic, "profile")}" alt="Dr.いわたつ" style="max-height:520px;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.4))">
     </div>
   </div>
   <div class="footer"><span>© Dr.いわたつ</span><span>役に立ったらフォロー＆保存</span></div>
