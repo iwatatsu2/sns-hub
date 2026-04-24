@@ -1,7 +1,7 @@
 [
   {
     "id": "task-01",
-    "title": "全SNSプロフィール名を「Dr. いわたつ｜糖尿病専門医×アプリ開発者」に統一",
+    "title": "全SNSプロフィール名を「Dr. いわたつ｜AIで医療アプリを作る糖尿病専門医」に統一",
     "description": "Instagram, X, note, antaa, 公式サイトすべてのプロフィール名を統一する",
     "category": "profile",
     "priority": 5,
@@ -20,7 +20,7 @@
   {
     "id": "task-03",
     "title": "プロフィール文を統一：糖尿病専門医・指導医 / 内分泌専門医 / 肥満症専門医 / 医学博士 | 医療×テクノロジー",
-    "description": "キャッチフレーズ「糖尿病専門医が作る、医療とテクノロジーの架け橋」を各プラットフォームに反映",
+    "description": "キャッチフレーズ「AIで医療アプリを作る糖尿病専門医」を各プラットフォームに反映",
     "category": "profile",
     "priority": 5,
     "done": false,

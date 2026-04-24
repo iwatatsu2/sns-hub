@@ -619,7 +619,7 @@ function ThumbnailPreview({ topicId, title, subtitle }: { topicId: string; title
               <div className="w-4 h-4 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 flex items-center justify-center">
                 <span className="text-[6px] font-black text-white">Dr</span>
               </div>
-              <span className="text-gray-400 text-[9px] font-bold">Dr.いわたつ｜糖尿病専門医×アプリ開発者</span>
+              <span className="text-gray-400 text-[9px] font-bold">Dr.いわたつ｜AIで医療アプリを作る糖尿病専門医</span>
             </div>
           </div>
           <div className="flex-shrink-0 w-[35%] h-full flex items-end justify-center relative">

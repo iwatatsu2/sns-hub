@@ -312,7 +312,7 @@ export default function Home() {
                     <div className="w-4 h-4 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 flex items-center justify-center">
                       <span className="text-[6px] font-black text-white">Dr</span>
                     </div>
-                    <span className="text-gray-400 text-[9px] font-bold">Dr.いわたつ｜糖尿病専門医×アプリ開発者</span>
+                    <span className="text-gray-400 text-[9px] font-bold">Dr.いわたつ｜AIで医療アプリを作る糖尿病専門医</span>
                   </div>
                 </div>
                 <div className="flex-shrink-0 w-[35%] h-full flex items-end justify-center">
@@ -517,9 +517,9 @@ function buildReviewPrompt(topic: Topic): string {
 
 const MANUS_TASKS = [
   // プロフィール統一（最優先）
-  { id: "m1", cat: "プロフィール", text: "全SNSのプロフィール名を「Dr. いわたつ｜糖尿病専門医×アプリ開発者」に統一", priority: 5 },
+  { id: "m1", cat: "プロフィール", text: "全SNSのプロフィール名を「Dr. いわたつ｜AIで医療アプリを作る糖尿病専門医」に統一", priority: 5 },
   { id: "m2", cat: "プロフィール", text: "全プロフィールに公式サイトURL（driwatatsu.readdy.co）を追加", priority: 5 },
-  { id: "m3", cat: "プロフィール", text: "プロフィール文を統一：キャッチフレーズ「糖尿病専門医が作る、医療とテクノロジーの架け橋」を反映", priority: 5 },
+  { id: "m3", cat: "プロフィール", text: "プロフィール文を統一：キャッチフレーズ「AIで医療アプリを作る糖尿病専門医」を反映", priority: 5 },
   { id: "m4", cat: "プロフィール", text: "antaaプロフィール欄にX・IG・note・公式サイトのリンクを追加", priority: 4 },
   // コンテンツ施策
   { id: "m5", cat: "コンテンツ", text: "既存antaaスライド末尾にCTAページ追加（「詳しくはnoteで」「DM Compassを使ってみよう」）", priority: 4 },

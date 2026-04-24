@@ -411,7 +411,7 @@ export function generateContent(topic: Topic): GeneratedResult {
       `糖尿病専門医が解説します。\n\n` +
       (topic.source ? `📚 ${topic.source}\n\n` : "") +
       `👇 詳しくはプロフィールのリンクから\n` +
-      `Dr.いわたつ｜糖尿病専門医×アプリ開発者`,
+      `Dr.いわたつ｜AIで医療アプリを作る糖尿病専門医`,
     280
   );
 
@@ -482,7 +482,7 @@ export function generateContent(topic: Topic): GeneratedResult {
     `❤️ 参考になったら【いいね】\n` +
     `👤 もっと知りたいなら【フォロー】\n` +
     `━━━━━━━━━━━━━━━\n\n` +
-    `Dr.いわたつ｜糖尿病専門医×アプリ開発者\n` +
+    `Dr.いわたつ｜AIで医療アプリを作る糖尿病専門医\n` +
     `📍 プロフィールのリンクから詳しい記事が読めます`;
 
   // --- antaa: スライドタイトル + 説明 ---
