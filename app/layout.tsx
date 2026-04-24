@@ -21,21 +21,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Link href="/" className="text-teal-400 font-black text-lg">
               SNS Hub
             </Link>
-            <div className="flex items-center gap-3 sm:gap-6 flex-wrap order-3 sm:order-none w-full sm:w-auto">
-              <Link href="/" className="text-gray-400 hover:text-white text-xs sm:text-sm transition">
-                カレンダー
-              </Link>
-              <Link href="/pipeline" className="text-teal-300 hover:text-white text-xs sm:text-sm font-bold transition">
-                パイプライン
-              </Link>
+            <div className="flex items-center gap-3 sm:gap-6 order-3 sm:order-none">
               <Link href="/posts" className="text-gray-400 hover:text-white text-xs sm:text-sm transition">
                 投稿一覧
-              </Link>
-              <Link href="/daily" className="text-amber-300 hover:text-white text-xs sm:text-sm font-bold transition">
-                デイリー
-              </Link>
-              <Link href="/history" className="text-gray-400 hover:text-white text-xs sm:text-sm transition">
-                履歴
               </Link>
             </div>
             <Link
