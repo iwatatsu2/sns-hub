@@ -9,6 +9,26 @@ const DR_IWATATSU_IMG = "/dr-iwatatsu.png";
 // iframe srcDoc内では相対パスが使えないため、デプロイ先の絶対URLを使用
 const DR_IWATATSU_DATA_URI = "https://sns-hub-five.vercel.app/dr-iwatatsu.png";
 
+// サムネイルタイトルのインパクトワードをハイライト
+const IMPACT_KEYWORDS = [
+  "糖尿病", "血糖値", "HbA1c", "インスリン", "低血糖", "高血糖",
+  "肥満", "GLP-1", "SGLT2", "DPP-4", "CGM", "FGM",
+  "AI", "DM Compass", "ケトアシドーシス", "DKA",
+  "危険", "注意", "最新", "革命", "必須", "重要", "緊急",
+  "合併症", "透析", "失明", "壊疽", "腎症", "網膜症", "神経障害",
+  "健康診断", "専門医", "新薬", "ガイドライン",
+];
+function highlightTitle(title: string): string {
+  let result = escHtml(title);
+  for (const kw of IMPACT_KEYWORDS) {
+    result = result.replace(
+      new RegExp(`(${kw})`, "g"),
+      `<span style="color:#5eead4;text-shadow:0 0 20px rgba(94,234,212,0.4)">$1</span>`
+    );
+  }
+  return result;
+}
+
 // 各SNSの投稿画面URL
 export const POST_LINKS = {
   x: "https://x.com/compose/post",
@@ -791,7 +811,7 @@ function generateSlideHtml(
     .slide{width:1280px;height:720px;position:relative;overflow:hidden;display:flex}
     .slide-dark{background:linear-gradient(135deg,#0a1a1a,#132e2e)}
     .slide-light{background:linear-gradient(135deg,#f8fffe,#e6f7f5)}
-    .slide-accent{background:linear-gradient(135deg,#0d4a4a,#14b8a6)}
+    .slide-accent{background:linear-gradient(135deg,#0a2e2e 0%,#0d4a4a 40%,#14b8a6 100%)}
     .header{position:absolute;top:0;left:0;right:0;height:56px;display:flex;align-items:center;padding:0 40px;gap:12px}
     .badge{background:#14b8a6;color:#fff;font-size:16px;font-weight:900;padding:5px 14px;border-radius:6px}
     .logo{color:#5eead4;font-size:16px;font-weight:700}
@@ -800,7 +820,7 @@ function generateSlideHtml(
     .main{flex:1;display:flex;align-items:center;padding:70px 60px 50px}
     .left-panel{flex:1}
     .right-panel{width:400px;display:flex;align-items:center;justify-content:center}
-    h1{font-size:48px;font-weight:900;line-height:1.35;margin-bottom:18px;letter-spacing:0.5px}
+    h1{font-size:64px;font-weight:900;line-height:1.3;margin-bottom:18px;letter-spacing:1px}
     h2{font-size:36px;font-weight:900;line-height:1.35;margin-bottom:22px;letter-spacing:0.5px}
     .subtitle{font-size:24px;line-height:1.6;margin-bottom:22px;letter-spacing:0.3px}
     .body-text{font-size:24px;line-height:1.7;letter-spacing:0.3px}
@@ -832,8 +852,8 @@ function generateSlideHtml(
   <div class="main">
     <div class="left-panel">
       <div class="tag" style="margin-bottom:16px">${escHtml(topic.category)}</div>
-      <h1 class="text-white">${escHtml(topic.title)}</h1>
-      <div class="subtitle text-white" style="opacity:0.8">対象：研修医・病棟担当医</div>
+      <h1 class="text-white" style="font-size:68px;line-height:1.25;text-shadow:0 4px 12px rgba(0,0,0,0.3)">${highlightTitle(topic.title)}</h1>
+      <div class="subtitle text-white" style="opacity:0.8;font-size:20px">糖尿病専門医が徹底解説</div>
       <div style="margin-top:24px">
         <div class="text-white" style="font-size:22px;font-weight:700">Dr.いわたつ</div>
         <div class="text-muted" style="font-size:17px">糖尿病専門医・指導医 / 医学博士</div>
