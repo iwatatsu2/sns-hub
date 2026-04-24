@@ -6,8 +6,12 @@ import "./globals.css";
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "SNS Content Hub",
+  title: "SNS Hub - Dr.いわたつ",
   description: "Dr.いわたつ SNS管理ダッシュボード",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -24,12 +28,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 投稿一覧
               </Link>
             </div>
-            <Link
-              href="/posts/new"
-              className="ml-auto order-2 sm:order-none bg-teal-600 hover:bg-teal-500 text-white text-xs sm:text-sm font-bold px-3 py-1.5 rounded transition"
-            >
-              + 新規
-            </Link>
           </div>
         </nav>
         <main className="max-w-6xl mx-auto px-4 py-6">{children}</main>
