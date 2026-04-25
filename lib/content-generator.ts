@@ -70,7 +70,7 @@ function highlightTitle(title: string): string {
   for (const kw of IMPACT_KEYWORDS) {
     result = result.replace(
       new RegExp(`(${kw})`, "g"),
-      `<span style="color:#5eead4;text-shadow:0 0 20px rgba(94,234,212,0.4)">$1</span>`
+      `<span style="color:#2dd4bf;background:rgba(20,184,166,0.15);padding:0 6px;border-radius:4px;text-shadow:0 0 24px rgba(45,212,191,0.5)">$1</span>`
     );
   }
   return result;
@@ -899,11 +899,10 @@ function generateSlideHtml(
   <div class="main">
     <div class="left-panel">
       <div class="tag" style="margin-bottom:16px">${escHtml(topic.category)}</div>
-      <h1 class="text-white" style="font-size:68px;line-height:1.25;text-shadow:0 4px 12px rgba(0,0,0,0.3)">${highlightTitle(topic.title)}</h1>
-      <div class="subtitle text-white" style="opacity:0.8;font-size:20px">糖尿病専門医が徹底解説</div>
-      <div style="margin-top:24px">
+      <h1 class="text-white" style="font-size:88px;line-height:1.15;text-shadow:0 4px 16px rgba(0,0,0,0.4);letter-spacing:-1px">${highlightTitle(topic.title)}</h1>
+      <div style="margin-top:20px;display:flex;align-items:center;gap:12px">
         <div class="text-white" style="font-size:22px;font-weight:700">Dr.いわたつ</div>
-        <div class="text-muted" style="font-size:17px">糖尿病専門医・指導医 / 医学博士</div>
+        <div class="text-muted" style="font-size:16px">糖尿病専門医・指導医</div>
       </div>
     </div>
     <div class="divider"></div>
