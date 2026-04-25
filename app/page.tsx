@@ -40,6 +40,51 @@ function CopyBtn({ text, label }: { text: string; label?: string }) {
   );
 }
 
+const IMPACT_KW = [
+  "糖尿病", "血糖値", "HbA1c", "インスリン", "低血糖", "高血糖",
+  "肥満", "GLP-1", "SGLT2", "DPP-4", "CGM", "FGM",
+  "AI", "DKA", "ケトアシドーシス",
+  "危険", "注意", "最新", "革命", "必須", "重要", "緊急",
+  "合併症", "透析", "失明", "壊疽", "腎症", "網膜症",
+  "健康診断", "専門医", "新薬", "ガイドライン",
+  "甲状腺", "副腎", "内分泌", "メトホルミン",
+];
+
+function ThumbTitle({ title, color }: { title: string; color: "teal" | "orange" }) {
+  const highlight = color === "teal"
+    ? "text-teal-300 bg-teal-400/20 px-1 rounded"
+    : "text-orange-300 bg-orange-400/20 px-1 rounded";
+
+  const parts: React.ReactNode[] = [];
+  let remaining = title;
+  let key = 0;
+  while (remaining.length > 0) {
+    let earliest = -1;
+    let matchedKw = "";
+    for (const kw of IMPACT_KW) {
+      const idx = remaining.indexOf(kw);
+      if (idx !== -1 && (earliest === -1 || idx < earliest)) {
+        earliest = idx;
+        matchedKw = kw;
+      }
+    }
+    if (earliest === -1) {
+      parts.push(<span key={key++}>{remaining}</span>);
+      break;
+    }
+    if (earliest > 0) parts.push(<span key={key++}>{remaining.slice(0, earliest)}</span>);
+    parts.push(<span key={key++} className={highlight}>{matchedKw}</span>);
+    remaining = remaining.slice(earliest + matchedKw.length);
+  }
+
+  return (
+    <div className="text-white font-black text-lg md:text-2xl lg:text-3xl leading-tight"
+      style={{ wordBreak: "keep-all", overflowWrap: "anywhere", textShadow: "0 2px 8px rgba(0,0,0,0.4)" }}>
+      {parts}
+    </div>
+  );
+}
+
 function PostLink({ platform }: { platform: keyof typeof POST_LINKS }) {
   return (
     <a href={POST_LINKS[platform]} target="_blank" rel="noopener noreferrer"
@@ -256,21 +301,18 @@ export default function Home() {
             </div>
             {/* 医師向けサムネイル（ティール） */}
             <div className="rounded-xl overflow-hidden border border-gray-700 mb-3"
-              style={{ aspectRatio: "1280/670", background: "linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #312e81 100%)" }}>
-              <div className="h-full flex items-center relative p-6">
-                <div className="absolute top-3 left-3 w-24 h-24 rounded-full bg-teal-500/10 blur-2xl" />
-                <div className="flex-1 pr-4 z-10">
-                  <div className="bg-teal-500/20 text-teal-300 border border-teal-500/30 text-[10px] font-black px-2 py-0.5 rounded-full mb-2 tracking-wider inline-block">専門医が解説｜医師向け</div>
-                  <div className="text-white font-black text-sm md:text-base leading-tight mb-2" style={{ wordBreak: "keep-all", overflowWrap: "anywhere" }}>{result.noteTitle}</div>
-                  <div className="flex items-center gap-1.5 mt-3">
-                    <div className="w-4 h-4 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 flex items-center justify-center">
-                      <span className="text-[6px] font-black text-white">Dr</span>
-                    </div>
-                    <span className="text-gray-400 text-[9px] font-bold">Dr.いわたつ｜AIで医療アプリを作る糖尿病専門医</span>
+              style={{ aspectRatio: "1280/670", background: "linear-gradient(135deg, #0a2e2e 0%, #0d4a4a 40%, #14b8a6 100%)" }}>
+              <div className="h-full flex items-center relative p-4 md:p-6">
+                <div className="absolute top-0 left-0 w-32 h-32 rounded-full bg-teal-400/20 blur-3xl" />
+                <div className="absolute bottom-0 right-1/3 w-24 h-24 rounded-full bg-cyan-400/10 blur-2xl" />
+                <div className="flex-1 pr-2 z-10">
+                  <ThumbTitle title={result.noteTitle} color="teal" />
+                  <div className="flex items-center gap-1.5 mt-2">
+                    <span className="text-white/60 text-[8px] md:text-[10px] font-bold">Dr.いわたつ｜糖尿病専門医</span>
                   </div>
                 </div>
-                <div className="flex-shrink-0 w-[35%] h-full flex items-end justify-center">
-                  <img src="/dr-iwatatsu.png" alt="Dr.いわたつ" className="max-h-full object-contain drop-shadow-lg" style={{ maxHeight: "90%" }} />
+                <div className="flex-shrink-0 w-[30%] h-full flex items-end justify-center">
+                  <img src="/dr-pose-explain.png" alt="Dr.いわたつ" className="max-h-full object-contain drop-shadow-2xl" style={{ maxHeight: "95%", filter: "drop-shadow(0 4px 16px rgba(0,0,0,0.5))" }} />
                 </div>
               </div>
             </div>
@@ -292,21 +334,18 @@ export default function Home() {
               </div>
               {/* 一般向けサムネイル（オレンジ） */}
               <div className="rounded-xl overflow-hidden border border-gray-700 mb-3"
-                style={{ aspectRatio: "1280/670", background: "linear-gradient(135deg, #1a1207 0%, #2d1f0e 40%, #7c2d12 100%)" }}>
-                <div className="h-full flex items-center relative p-6">
-                  <div className="absolute top-3 left-3 w-24 h-24 rounded-full bg-orange-500/10 blur-2xl" />
-                  <div className="flex-1 pr-4 z-10">
-                    <div className="bg-orange-500/20 text-orange-300 border border-orange-500/30 text-[10px] font-black px-2 py-0.5 rounded-full mb-2 tracking-wider inline-block">やさしく解説｜一般の方向け</div>
-                    <div className="text-white font-black text-sm md:text-base leading-tight mb-2" style={{ wordBreak: "keep-all", overflowWrap: "anywhere" }}>{result.noteTitle}</div>
-                    <div className="flex items-center gap-1.5 mt-3">
-                      <div className="w-4 h-4 rounded-full bg-gradient-to-br from-orange-400 to-amber-500 flex items-center justify-center">
-                        <span className="text-[6px] font-black text-white">Dr</span>
-                      </div>
-                      <span className="text-gray-400 text-[9px] font-bold">Dr.いわたつ｜AIで医療アプリを作る糖尿病専門医</span>
+                style={{ aspectRatio: "1280/670", background: "linear-gradient(135deg, #1a1207 0%, #44250a 40%, #c2410c 100%)" }}>
+                <div className="h-full flex items-center relative p-4 md:p-6">
+                  <div className="absolute top-0 left-0 w-32 h-32 rounded-full bg-orange-400/20 blur-3xl" />
+                  <div className="absolute bottom-0 right-1/3 w-24 h-24 rounded-full bg-amber-400/10 blur-2xl" />
+                  <div className="flex-1 pr-2 z-10">
+                    <ThumbTitle title={result.noteTitle} color="orange" />
+                    <div className="flex items-center gap-1.5 mt-2">
+                      <span className="text-white/60 text-[8px] md:text-[10px] font-bold">Dr.いわたつ｜糖尿病専門医</span>
                     </div>
                   </div>
-                  <div className="flex-shrink-0 w-[35%] h-full flex items-end justify-center">
-                    <img src="/dr-iwatatsu.png" alt="Dr.いわたつ" className="max-h-full object-contain drop-shadow-lg" style={{ maxHeight: "90%" }} />
+                  <div className="flex-shrink-0 w-[30%] h-full flex items-end justify-center">
+                    <img src="/dr-pose-thumbsup.png" alt="Dr.いわたつ" className="max-h-full object-contain" style={{ maxHeight: "95%", filter: "drop-shadow(0 4px 16px rgba(0,0,0,0.5))" }} />
                   </div>
                 </div>
               </div>
