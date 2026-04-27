@@ -557,11 +557,9 @@ export function generateContent(topic: Topic): GeneratedResult {
       `こんにちは、糖尿病専門医のDr.いわたつです。\n\n` +
       `${intro}\n\n` +
       `${body}\n\n` +
-      `[🖼 Dr.いわたつイラスト挿入]\n\n` +
       `${data}\n\n` +
       `━━━━━━━━━━━━━━━\n■ 明日からの外来で使える実践ポイント\n━━━━━━━━━━━━━━━\n\n` +
       `${clinical}\n\n` +
-      `[🖼 Dr.いわたつイラスト挿入]\n\n` +
       `${refsBlock}` +
       `${authorBlock}`
     : // フォールバック: コンテンツ未生成の案内
