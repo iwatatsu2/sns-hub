@@ -195,15 +195,18 @@ export default function NoteThumbnail({ title, variant, category, subtitle }: No
           )}
 
           {/* Dr.いわたつ 著者表記 */}
-          <div className="mt-auto flex items-center gap-2">
+          <div className="mt-auto flex items-center gap-1.5" style={{ whiteSpace: "nowrap" }}>
             <div
-              className="w-6 h-6 rounded-md flex items-center justify-center text-xs font-black text-white"
+              className="w-5 h-5 rounded flex items-center justify-center text-[10px] font-black text-white flex-shrink-0"
               style={{ background: theme.brandColor }}
             >
               D
             </div>
-            <span className="text-sm font-bold text-white">
-              Dr.いわたつ<span className="text-gray-300 font-normal">｜AIで医療アプリを作る糖尿病専門医</span>
+            <span className="text-[11px] font-bold text-white">
+              Dr.いわたつ
+            </span>
+            <span className="text-[11px] text-gray-300">
+              ｜AIで医療アプリを作る糖尿病専門医
             </span>
           </div>
         </div>
