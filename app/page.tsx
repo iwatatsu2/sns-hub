@@ -325,18 +325,17 @@ export default function Home() {
               </div>
             </div>
             {/* 医師向けサムネイル（ティール） */}
-            <div className="rounded-xl overflow-hidden border border-gray-700 mb-3 max-w-lg"
-              style={{ aspectRatio: "1280/670", background: "linear-gradient(135deg, #0a2e2e 0%, #0d4a4a 40%, #14b8a6 100%)" }}>
-              <div className="h-full flex items-center relative p-4">
-                <div className="absolute top-0 left-0 w-20 h-20 rounded-full bg-teal-400/20 blur-3xl" />
-                <div className="flex-1 pr-3 z-10">
-                  <div className="text-white font-black text-sm leading-tight" style={{ wordBreak: "keep-all", overflowWrap: "anywhere" }}>{result.noteTitle}</div>
+            <div className="bg-gradient-to-br from-[#0a1a1a] to-[#132e2e] rounded-xl overflow-hidden border border-gray-700 mb-3 max-w-lg"
+              style={{ aspectRatio: "1280/670" }}>
+              <div className="h-full flex items-center relative p-6">
+                <div className="flex-1 pr-4 z-10">
+                  <div className="text-white font-black text-base leading-tight" style={{ wordBreak: "keep-all", overflowWrap: "anywhere" }}>{result.noteTitle}</div>
                   <div className="flex items-center gap-1 mt-2">
-                    <span className="text-white/60 text-[8px] font-bold">Dr.いわたつ｜糖尿病専門医</span>
+                    <span className="text-gray-400 text-[9px] font-bold">Dr.いわたつ｜糖尿病専門医</span>
                   </div>
                 </div>
-                <div className="flex-shrink-0 w-[35%] h-full flex items-end justify-center relative">
-                  <img src="/dr-pose-explain.png" alt="Dr.いわたつ" className="max-h-full object-contain relative z-10" style={{ maxHeight: "95%" }} />
+                <div className="flex-shrink-0 w-[30%] h-full flex items-end justify-center">
+                  <img src="/dr-iwatatsu.png" alt="Dr.いわたつ" className="max-h-[85%] object-contain" />
                 </div>
               </div>
             </div>
@@ -357,18 +356,17 @@ export default function Home() {
                 </div>
               </div>
               {/* 一般向けサムネイル（オレンジ） */}
-              <div className="rounded-xl overflow-hidden border border-gray-700 mb-3 max-w-lg"
-                style={{ aspectRatio: "1280/670", background: "linear-gradient(135deg, #1a1207 0%, #44250a 40%, #c2410c 100%)" }}>
-                <div className="h-full flex items-center relative p-4">
-                  <div className="absolute top-0 left-0 w-20 h-20 rounded-full bg-orange-400/20 blur-3xl" />
-                  <div className="flex-1 pr-3 z-10">
-                    <div className="text-white font-black text-sm leading-tight" style={{ wordBreak: "keep-all", overflowWrap: "anywhere" }}>{result.noteTitle}</div>
+              <div className="bg-gradient-to-br from-[#1a1207] to-[#2e1a0a] rounded-xl overflow-hidden border border-gray-700 mb-3 max-w-lg"
+                style={{ aspectRatio: "1280/670" }}>
+                <div className="h-full flex items-center relative p-6">
+                  <div className="flex-1 pr-4 z-10">
+                    <div className="text-white font-black text-base leading-tight" style={{ wordBreak: "keep-all", overflowWrap: "anywhere" }}>{result.noteTitle}</div>
                     <div className="flex items-center gap-1 mt-2">
-                      <span className="text-white/60 text-[8px] font-bold">Dr.いわたつ｜糖尿病専門医</span>
+                      <span className="text-gray-400 text-[9px] font-bold">Dr.いわたつ｜糖尿病専門医</span>
                     </div>
                   </div>
-                  <div className="flex-shrink-0 w-[35%] h-full flex items-end justify-center relative">
-                    <img src="/dr-pose-thumbsup.png" alt="Dr.いわたつ" className="max-h-full object-contain relative z-10" style={{ maxHeight: "95%" }} />
+                  <div className="flex-shrink-0 w-[30%] h-full flex items-end justify-center">
+                    <img src="/dr-iwatatsu.png" alt="Dr.いわたつ" className="max-h-[85%] object-contain" />
                   </div>
                 </div>
               </div>
