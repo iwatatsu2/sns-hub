@@ -410,42 +410,16 @@ export default function Home() {
                   HTMLダウンロード
                 </button>
               </div>
-              {/* スマホフレーム付きプレビュー */}
-              <div className="flex justify-center">
-                <div className="relative" style={{ width: "220px" }}>
-                  {/* スマホ外枠 */}
-                  <div className="rounded-[28px] border-[3px] border-gray-600 bg-black p-1.5 shadow-2xl shadow-purple-500/10">
-                    {/* ノッチ */}
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-5 bg-black rounded-b-2xl z-20" />
-                    {/* 画面 */}
-                    <div className="rounded-[22px] overflow-hidden bg-black" style={{ aspectRatio: "9/16" }}>
-                      <iframe
-                        srcDoc={result.reelHtml}
-                        style={{ width: "1080px", height: "1920px", transform: "scale(0.195)", transformOrigin: "top left", border: "none" }}
-                        sandbox="allow-scripts allow-same-origin"
-                        title="リールプレビュー"
-                      />
-                    </div>
-                    {/* ホームバー */}
-                    <div className="flex justify-center py-1.5">
-                      <div className="w-16 h-1 bg-gray-600 rounded-full" />
-                    </div>
-                  </div>
-                  {/* Instagram UI オーバーレイ */}
-                  <div className="absolute bottom-12 right-3 flex flex-col gap-3 z-10">
-                    <div className="text-white text-center text-[10px]">
-                      <div className="text-lg">♡</div>
-                    </div>
-                    <div className="text-white text-center text-[10px]">
-                      <div className="text-lg">💬</div>
-                    </div>
-                    <div className="text-white text-center text-[10px]">
-                      <div className="text-lg">↗</div>
-                    </div>
-                  </div>
-                </div>
+              {/* プレビュー（シンプル表示） */}
+              <div className="rounded-lg overflow-hidden border border-gray-700 bg-black" style={{ aspectRatio: "9/16", maxHeight: "400px" }}>
+                <iframe
+                  srcDoc={result.reelHtml}
+                  style={{ width: "1080px", height: "1920px", transform: "scale(0.2)", transformOrigin: "top left", border: "none" }}
+                  sandbox="allow-scripts allow-same-origin"
+                  title="リールプレビュー"
+                />
               </div>
-              <p className="text-gray-500 text-xs mt-3 text-center">HTMLをダウンロードしてフル解像度で確認できます</p>
+              <p className="text-gray-500 text-xs mt-2 text-center">HTMLをダウンロードしてフル解像度で確認できます</p>
             </div>
           )}
 
