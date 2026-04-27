@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import type { PlatformContent } from "@/lib/posts";
 import type { FactCheckItem, FactCheckLevel, SlideData } from "@/lib/content-types";
 import { POST_LINKS } from "@/lib/post-links";
+import NoteThumbnail from "@/components/NoteThumbnail";
 
 function AutoPostBtn({
   platform,
@@ -474,24 +475,10 @@ function AiNoteSection({ title, body: initialBody }: { title: string; body: stri
 function ThumbnailPreview({ topicId, title, subtitle }: { topicId: string; title?: string; subtitle?: string }) {
   return (
     <div className="border-l-4 border-yellow-500 bg-gray-800 rounded-lg p-4">
-      <span className="font-bold text-white text-sm mb-3 block">🖼 noteサムネイル</span>
-      <div className="rounded-xl overflow-hidden border border-gray-700 max-w-sm"
-        style={{ aspectRatio: "1280/670", background: "linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #312e81 100%)" }}
-      >
-        <div className="h-full flex items-center relative p-3">
-          <div className="absolute top-2 left-2 w-16 h-16 rounded-full bg-teal-500/10 blur-2xl" />
-          <div className="flex-1 pr-2 z-10">
-            <div className="bg-teal-500/20 text-teal-300 border border-teal-500/30 text-[8px] font-black px-1.5 py-0.5 rounded-full mb-1 tracking-wider inline-block">専門医が解説</div>
-            <div className="text-white font-black text-xs leading-tight mb-1" style={{ wordBreak: "keep-all", overflowWrap: "anywhere" }}>{title || topicId}</div>
-            <div className="flex items-center gap-1 mt-1.5">
-              <span className="text-gray-400 text-[7px] font-bold">Dr.いわたつ｜糖尿病専門医</span>
-            </div>
-          </div>
-          <div className="flex-shrink-0 w-[28%] h-full flex items-end justify-center relative">
-            <img src="/dr-iwatatsu.png" alt="Dr.いわたつ" className="max-h-full object-contain relative z-10 rounded-b-2xl" style={{ maxHeight: "90%" }} />
-          </div>
-        </div>
-      </div>
+      <span className="font-bold text-white text-sm mb-3 block">🖼 noteサムネイル（医師向け）</span>
+      <NoteThumbnail title={title || topicId} variant="medical" subtitle={subtitle} />
+      <span className="font-bold text-white text-sm mb-3 block mt-4">🖼 noteサムネイル（一般の方向け）</span>
+      <NoteThumbnail title={title || topicId} variant="public" subtitle={subtitle} />
     </div>
   );
 }

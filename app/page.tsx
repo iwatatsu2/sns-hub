@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import { POST_LINKS } from "@/lib/post-links";
+import NoteThumbnail from "@/components/NoteThumbnail";
 
 /* ---------- 型定義 ---------- */
 interface Topic {
@@ -324,21 +325,13 @@ export default function Home() {
                 <PostLink platform="note" />
               </div>
             </div>
-            {/* 医師向けサムネイル（ティール） */}
-            <div className="bg-gradient-to-br from-[#0a1a1a] to-[#132e2e] rounded-xl overflow-hidden border border-gray-700 mb-3 max-w-lg"
-              style={{ aspectRatio: "1280/670" }}>
-              <div className="h-full flex items-center relative p-6">
-                <div className="flex-1 pr-4 z-10">
-                  <div className="text-white font-black text-base leading-tight" style={{ wordBreak: "keep-all", overflowWrap: "anywhere" }}>{result.noteTitle}</div>
-                  <div className="flex items-center gap-1 mt-2">
-                    <span className="text-gray-400 text-[9px] font-bold">Dr.いわたつ｜糖尿病専門医</span>
-                  </div>
-                </div>
-                <div className="flex-shrink-0 w-[30%] h-full flex items-end justify-center">
-                  <img src="/dr-iwatatsu.png" alt="Dr.いわたつ" className="max-h-[85%] object-contain" />
-                </div>
-              </div>
-            </div>
+            {/* 医師向けサムネイル */}
+            <NoteThumbnail
+              title={result.noteTitle}
+              variant="medical"
+              category={selectedTopic?.category}
+              subtitle={selectedTopic?.hook}
+            />
             <div className="max-h-[400px] overflow-y-auto">
               <pre className="text-gray-300 text-sm whitespace-pre-wrap font-sans leading-relaxed">{result.noteBody}</pre>
             </div>
@@ -355,21 +348,13 @@ export default function Home() {
                   <PostLink platform="note" />
                 </div>
               </div>
-              {/* 一般向けサムネイル（オレンジ） */}
-              <div className="bg-gradient-to-br from-[#1a1207] to-[#2e1a0a] rounded-xl overflow-hidden border border-gray-700 mb-3 max-w-lg"
-                style={{ aspectRatio: "1280/670" }}>
-                <div className="h-full flex items-center relative p-6">
-                  <div className="flex-1 pr-4 z-10">
-                    <div className="text-white font-black text-base leading-tight" style={{ wordBreak: "keep-all", overflowWrap: "anywhere" }}>{result.noteTitle}</div>
-                    <div className="flex items-center gap-1 mt-2">
-                      <span className="text-gray-400 text-[9px] font-bold">Dr.いわたつ｜糖尿病専門医</span>
-                    </div>
-                  </div>
-                  <div className="flex-shrink-0 w-[30%] h-full flex items-end justify-center">
-                    <img src="/dr-iwatatsu.png" alt="Dr.いわたつ" className="max-h-[85%] object-contain" />
-                  </div>
-                </div>
-              </div>
+              {/* 一般向けサムネイル */}
+              <NoteThumbnail
+                title={result.noteTitle}
+                variant="public"
+                category={selectedTopic?.category}
+                subtitle={selectedTopic?.hook}
+              />
               <div className="max-h-[400px] overflow-y-auto">
                 <pre className="text-gray-300 text-sm whitespace-pre-wrap font-sans leading-relaxed">{result.noteBodyPublic}</pre>
               </div>
