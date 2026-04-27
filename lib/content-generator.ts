@@ -701,7 +701,7 @@ body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino San
 .summary-text{color:#e2e8f0;font-size:34px;line-height:1.5;font-weight:700;letter-spacing:0.3px}
 /* Scene 5: Follow CTA */
 .follow-container{text-align:center}
-.follow-avatar{width:280px;height:280px;margin:0 auto 24px;background:transparent}
+.follow-avatar{width:420px;height:420px;margin:0 auto 24px;background:transparent}
 .follow-avatar img{width:100%;height:100%;object-fit:contain;filter:brightness(1.25) saturate(1.5)}
 .follow-name{color:#fff;font-size:56px;font-weight:900;margin-bottom:12px;letter-spacing:2px}
 .follow-title{color:#94a3b8;font-size:30px;margin-bottom:40px;letter-spacing:0.5px}
