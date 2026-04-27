@@ -313,6 +313,11 @@ const topicDetails: Record<string, Partial<TopicDetail>> = {
   "topic-28": {
     reelHook: "HbA1cって何？",
     reelData: ["HbA1c=過去1-2ヶ月の平均血糖値", "6.5%以上で糖尿病と診断", "7.0%未満が治療目標の基本", "0.1%下がるだけで合併症リスク低下"],
+    xText: "HbA1c 6.5%で「糖尿病です」と言われた。でもその数字、本当に正しい？貧血・腎不全・異常ヘモグロビンでHbA1cは実際の血糖を反映しなくなる。専門医が解説。",
+    noteIntro: "「HbA1cが6.5%以上だったので糖尿病ですね」\n\n健康診断で突然こう言われて、頭が真っ白になった経験はありませんか？\n\nでもそもそも、HbA1cとは何なのか。なぜ6.5%が基準なのか。そしてHbA1cだけを見ていると危険なケースがあることをご存じですか？\n\n今日は、HbA1cの基礎から「HbA1cの落とし穴」まで、外来で即使える知識を体系的にまとめます。",
+    noteBody: "■ HbA1cとは何か？——赤血球が記録する血糖の歴史\n\nHbA1c（ヘモグロビンエーワンシー）は、赤血球中のヘモグロビンにグルコースが非酵素的に結合（糖化）したものです。\n\n血糖値が高い状態が続くと、ヘモグロビンに結合するグルコースの量が増えます。赤血球の寿命は約120日なので、HbA1cは過去1〜2ヶ月間の平均血糖値を反映する指標です。\n\n具体的なイメージ：\n・HbA1c 5.0% → 平均血糖 約97 mg/dL\n・HbA1c 6.0% → 平均血糖 約126 mg/dL\n・HbA1c 6.5% → 平均血糖 約140 mg/dL（糖尿病の診断基準）\n・HbA1c 7.0% → 平均血糖 約154 mg/dL（治療目標の基本）\n・HbA1c 8.0% → 平均血糖 約183 mg/dL\n・HbA1c 9.0% → 平均血糖 約212 mg/dL\n・HbA1c 10.0% → 平均血糖 約240 mg/dL\n\nこの換算式（eAG: estimated Average Glucose）は以下の通りです：\n平均血糖 (mg/dL) = 28.7 × HbA1c (%) − 46.7\n\n空腹時血糖が「その瞬間」のスナップショットなのに対し、HbA1cは「過去1〜2ヶ月の長期トレンド」を見ています。だからこそ糖尿病の診断と治療のモニタリングに使われるのです。\n\n\n■ なぜ6.5%が糖尿病の診断基準なのか\n\n2010年、ADA（米国糖尿病学会）がHbA1c 6.5%以上を糖尿病の診断基準に採用しました。日本糖尿病学会もこれに準じています。\n\nこの基準は、HbA1cと糖尿病合併症（特に網膜症）の発症率の関係から導かれました。\n\n疫学データを分析すると：\n・HbA1c 6.5%を超えるあたりから網膜症の発症率が急激に上昇する\n・つまり6.5%は「合併症リスクが明らかに高くなる閾値」\n\nただし注意が必要なのは、6.5%は「絶対的な線引き」ではないこと。HbA1c 6.4%と6.5%の間に臨床的な大きな差はありません。連続的なリスク上昇の中で、便宜上引かれた線です。\n\nまた、日本の糖尿病診断は以下のいずれかで行います：\n1. 空腹時血糖 ≧ 126 mg/dL\n2. 75g OGTT 2時間値 ≧ 200 mg/dL\n3. 随時血糖 ≧ 200 mg/dL\n4. HbA1c ≧ 6.5%\n\n血糖値（1〜3のいずれか）＋ HbA1c ≧ 6.5%の両方が同日に確認されれば、1回の検査で糖尿病と診断できます。片方だけの場合は再検査が必要です。\n\n\n■ HbA1cの落とし穴——信じすぎてはいけない5つのケース\n\nHbA1cは優れた指標ですが、万能ではありません。以下のケースでは実際の血糖コントロールを正しく反映しません。\n\n落とし穴1：鉄欠乏性貧血 → HbA1cが偽高値になる\n鉄欠乏で赤血球の寿命が延長すると、ヘモグロビンが糖化される時間が長くなり、HbA1cが実際の血糖より高く出ます。\n→ 貧血の治療（鉄剤投与）後にHbA1cが下がる（血糖は変わっていないのに）\n→ 若い女性の月経過多、妊婦、消化管出血の患者で特に注意\n\n落とし穴2：腎不全（CKD）→ 方向が複雑\n・腎性貧血で赤血球寿命が短縮 → HbA1cが偽低値\n・ESA（エリスロポエチン製剤）投与で若い赤血球が増加 → さらに偽低値\n・一方、尿毒症で糖化が促進される → 偽高値の要素も\n→ eGFR 30未満ではHbA1cの信頼性が大きく低下。GA（グリコアルブミン）の併用を推奨\n\n落とし穴3：溶血性貧血・大量出血後 → HbA1cが偽低値\n赤血球の回転が早いと、糖化が進む前に赤血球が壊れるため、HbA1cは低く出ます。\n→ 大量出血後の輸血、脾機能亢進症なども同様\n\n落とし穴4：異常ヘモグロビン → 測定値そのものが信頼できない\nHbS（鎌状赤血球症）、HbC、HbE、HbFが多い場合、HPLC法での測定に干渉します。\n→ 日本では稀だが、外国人患者を診る機会が増えている現在、頭に入れておく\n\n落とし穴5：血糖変動が大きい患者 → HbA1cは「平均」しか見ない\nHbA1c 7.0%の患者が2人いたとして：\n・Aさん：血糖 120-180 mg/dLで安定\n・Bさん：血糖 50-300 mg/dLで乱高下\n両者のHbA1cは同じ7.0%ですが、Bさんの方が低血糖・高血糖のリスクが高く、合併症リスクも高い。HbA1cだけでは「血糖の質」（variability）が見えません。\n→ CGM（持続血糖モニタリング）でTIR（Time in Range: 70-180mg/dLの割合）を確認すると、真のコントロール状態がわかる\n\n\n■ HbA1cの代替指標——GA・1,5-AG・CGM\n\nHbA1cが信頼できない場合の代替指標を整理します。\n\nGA（グリコアルブミン）：\n・アルブミンの糖化度を測定\n・過去2〜3週間の血糖を反映（HbA1cより短期間）\n・腎不全、肝硬変、甲状腺疾患の影響を受けにくい\n・GA 16%未満が正常、20%以上で糖尿病相当\n・ GA/HbA1c比が3.0以上なら食後高血糖が大きい可能性\n\n1,5-AG（1,5-アンヒドログルシトール）：\n・血糖が180mg/dLを超えると尿糖が出てReabsorptionが抑制され、血中1,5-AGが低下\n・直近数日〜1週間の食後高血糖の頻度を反映\n・SGLT2阻害薬使用中は解釈不能（尿糖排泄を促進するため常に低値）\n\nCGM（持続血糖モニタリング）：\n・皮下に小さなセンサーを装着し、5分ごとに間質液グルコースを測定\n・TIR（Time in Range）: 70-180mg/dLの割合。目標は70%以上\n・TBR（Time Below Range）: 70mg/dL未満の割合。目標は4%未満\n・TAR（Time Above Range）: 180mg/dL以上の割合\n・CV（変動係数）: 36%未満が安定したコントロールの目安\n→ HbA1cでは見えない「血糖の質」が一目瞭然",
+    noteData: "■ HbA1cの治療目標——年齢・合併症で変わる\n\n「HbA1c 7.0%未満」が糖尿病治療の基本目標ですが、全員に同じ目標を設定するのは間違いです。\n\n日本糖尿病学会の治療目標（熊本宣言2013ベース）：\n・合併症予防のための目標：HbA1c 7.0%未満\n・適切な食事・運動で達成可能な目標：HbA1c 6.0%未満\n・治療強化が困難な場合の目標：HbA1c 8.0%未満\n\n高齢者の目標（日本老年医学会・日本糖尿病学会合同）：\n\nカテゴリーI（認知機能正常＋ADL自立）：\n・重症低血糖リスクのない薬 → 7.0%未満\n・SU薬やインスリン使用 → 7.0%未満（下限6.5%）\n\nカテゴリーII（軽度認知障害〜手段的ADL低下）：\n・重症低血糖リスクのない薬 → 7.0%未満\n・SU薬やインスリン使用 → 8.0%未満（下限7.0%）\n\nカテゴリーIII（中等度以上の認知症〜基本的ADL低下）：\n・重症低血糖リスクのない薬 → 8.0%未満\n・SU薬やインスリン使用 → 8.5%未満（下限7.5%）\n\n重要なのは「下限」の存在です。高齢者でHbA1cを下げすぎると低血糖→転倒→骨折→寝たきりという最悪のシナリオが起こりえます。「HbA1cは低ければ低いほど良い」は間違いです。\n\n■ UKPDS Legacy Effect——早期介入の重要性\n\nUKPDS（United Kingdom Prospective Diabetes Study）の20年間の追跡調査で、「糖尿病診断後の早期に強化療法を行った群は、その後通常療法に戻しても合併症リスクが低いまま維持された」ことが示されました（Legacy Effect = 遺産効果）。\n\nつまり、糖尿病と診断された最初の数年間が最も重要。この時期にしっかりHbA1cを下げることが、10年後、20年後の合併症リスクに影響します。\n\n具体的には：\n・HbA1cが1%低下するごとに：\n  - 細小血管合併症（網膜症・腎症・神経障害）リスク 37%低下\n  - 心筋梗塞リスク 14%低下\n  - 糖尿病関連死 21%低下",
+    noteClinical: "■ 明日からの外来で使える実践ポイント\n\n1. HbA1cだけで安心しない\n「HbA1c 6.8%です、良かったですね」で終わらせない。貧血はないか？腎機能は？血糖変動は大きくないか？を必ず確認する\n\n2. HbA1cが「合わない」と感じたら代替指標を使う\n・SMBG（自己血糖測定）の値とHbA1cが乖離している\n・貧血がある、腎不全がある、最近輸血した\n→ GA（グリコアルブミン）を追加オーダー\n\n3. 患者への説明テンプレート\n「HbA1cは過去1〜2ヶ月の血糖の平均を見る検査です。例えるなら、血糖値がその日の天気だとすると、HbA1cは1ヶ月間の気温の平均みたいなものです。今日の天気が良くても、先月ずっと荒れていたらHbA1cには反映されます」\n\n4. 0.1%の変化に意味がある\n「7.2%が7.1%になりました」を軽視しない。UKPDSのデータでは、HbA1cが0.1%下がるごとに合併症リスクが約3-4%低下します。患者には「0.1%の改善は小さく見えますが、体の中では確実にいいことが起きています」と伝える\n\n5. 高齢者のHbA1c管理\n80歳の患者さんのHbA1cが8.2%。これを6.5%まで下げようとしてSU薬を増やす→夜間低血糖→転倒→大腿骨頸部骨折→入院→せん妄。このシナリオは現実に起きています。高齢者には「下げすぎない」ことも重要な治療戦略\n\n6. CGMが使える環境なら積極的に活用\nHbA1c 7.0%でもTIR 50%（血糖変動が激しい）の患者は要注意。CGMデータがあれば「この時間帯に高血糖が集中している」「週末に血糖が乱れる」など、具体的な改善ポイントが見つかる",
   },
   "topic-29": {
     reelHook: "痩せる注射の真実",
@@ -544,6 +549,8 @@ export function generateContent(topic: Topic): GeneratedResult {
     `━━━━━━━━━━━━━━━\n\n` +
     (topic.source ? `${topic.source}で注目されているテーマです。\n\n` : "") +
     `${body}\n\n` +
+    // 目の休み場: Dr.いわたつイラスト
+    `[🖼 Dr.いわたつイラスト挿入]\n\n` +
     // セクション: 臨床で使えるデータ
     `━━━━━━━━━━━━━━━\n` +
     `■ 臨床で押さえておくべきデータ\n` +
@@ -554,6 +561,8 @@ export function generateContent(topic: Topic): GeneratedResult {
     `■ 明日からの外来で使える実践ポイント\n` +
     `━━━━━━━━━━━━━━━\n\n` +
     `${clinical}\n\n` +
+    // 目の休み場: Dr.いわたつイラスト
+    `[🖼 Dr.いわたつイラスト挿入]\n\n` +
     // セクション: まとめ
     `━━━━━━━━━━━━━━━\n` +
     `■ まとめ\n` +
@@ -691,7 +700,7 @@ body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino San
 /* Scene 5: Follow CTA */
 .follow-container{text-align:center}
 .follow-avatar{width:280px;height:280px;margin:0 auto 24px;background:transparent}
-.follow-avatar img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.4))}
+.follow-avatar img{width:100%;height:100%;object-fit:contain;filter:brightness(1.25) saturate(1.5)}
 .follow-name{color:#fff;font-size:56px;font-weight:900;margin-bottom:12px;letter-spacing:2px}
 .follow-title{color:#94a3b8;font-size:30px;margin-bottom:40px;letter-spacing:0.5px}
 .follow-btn{background:linear-gradient(135deg,#14b8a6,#0d9488);color:#fff;font-size:44px;font-weight:900;padding:28px 80px;border-radius:20px;display:inline-block;letter-spacing:2px}
@@ -701,7 +710,7 @@ body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino San
 .follow-action-label{color:#fff;font-size:28px;font-weight:700;letter-spacing:1px}
 /* Dr.いわたつ 右下固定イラスト（Scene1-4） */
 .dr-avatar-fixed{position:absolute;bottom:40px;right:40px;width:400px;height:400px;z-index:10;pointer-events:none}
-.dr-avatar-fixed img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 16px rgba(0,0,0,0.5))}
+.dr-avatar-fixed img{width:100%;height:100%;object-fit:contain;filter:brightness(1.25) saturate(1.5)}
 </style></head><body>
 <div class="comp" id="comp">
 <div class="bg-circle bg-c1"></div>

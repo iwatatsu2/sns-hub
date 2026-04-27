@@ -307,8 +307,9 @@ function SlideCarousel({ slides }: { slides: SlideData[] }) {
         </div>
         {/* 右側: Dr.いわたつイラスト（1枚目のみ） */}
         {current === 0 && (
-          <div className="flex-shrink-0 w-[30%] h-full flex items-end justify-center">
-            <img src="/dr-iwatatsu.png" alt="Dr.いわたつ" className="max-h-[85%] object-contain drop-shadow-lg" />
+          <div className="flex-shrink-0 w-[30%] h-full flex items-end justify-center relative">
+            <div className="absolute bottom-0 w-full h-[80%] rounded-full bg-white/20" />
+            <img src="/dr-iwatatsu.png" alt="Dr.いわたつ" className="max-h-[85%] object-contain relative z-10" />
           </div>
         )}
         <div className="absolute bottom-2 left-3 right-3 flex justify-between text-[10px] text-gray-600">
@@ -475,25 +476,21 @@ function ThumbnailPreview({ topicId, title, subtitle }: { topicId: string; title
   return (
     <div className="border-l-4 border-yellow-500 bg-gray-800 rounded-lg p-4">
       <span className="font-bold text-white text-sm mb-3 block">🖼 noteサムネイル</span>
-      <div className="rounded-xl overflow-hidden border border-gray-700"
+      <div className="rounded-xl overflow-hidden border border-gray-700 max-w-sm"
         style={{ aspectRatio: "1280/670", background: "linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #312e81 100%)" }}
       >
-        <div className="h-full flex items-center relative p-6">
-          <div className="absolute top-3 left-3 w-24 h-24 rounded-full bg-teal-500/10 blur-2xl" />
-          <div className="absolute bottom-3 right-[30%] w-20 h-20 rounded-full bg-violet-500/10 blur-2xl" />
-          <div className="flex-1 pr-4 z-10">
-            <div className="bg-teal-500/20 text-teal-300 border border-teal-500/30 text-[10px] font-black px-2 py-0.5 rounded-full mb-2 tracking-wider inline-block">専門医が解説</div>
-            <div className="text-white font-black text-sm md:text-base leading-tight mb-2">{title || topicId}</div>
-            {subtitle && <div className="text-gray-400 text-[10px] leading-relaxed line-clamp-2">{subtitle}</div>}
-            <div className="flex items-center gap-1.5 mt-3">
-              <div className="w-4 h-4 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 flex items-center justify-center">
-                <span className="text-[6px] font-black text-white">Dr</span>
-              </div>
-              <span className="text-gray-400 text-[9px] font-bold">Dr.いわたつ｜AIで医療アプリを作る糖尿病専門医</span>
+        <div className="h-full flex items-center relative p-3">
+          <div className="absolute top-2 left-2 w-16 h-16 rounded-full bg-teal-500/10 blur-2xl" />
+          <div className="flex-1 pr-2 z-10">
+            <div className="bg-teal-500/20 text-teal-300 border border-teal-500/30 text-[8px] font-black px-1.5 py-0.5 rounded-full mb-1 tracking-wider inline-block">専門医が解説</div>
+            <div className="text-white font-black text-xs leading-tight mb-1" style={{ wordBreak: "keep-all", overflowWrap: "anywhere" }}>{title || topicId}</div>
+            <div className="flex items-center gap-1 mt-1.5">
+              <span className="text-gray-400 text-[7px] font-bold">Dr.いわたつ｜糖尿病専門医</span>
             </div>
           </div>
-          <div className="flex-shrink-0 w-[35%] h-full flex items-end justify-center relative">
-            <img src="/dr-iwatatsu.png" alt="Dr.いわたつ" className="max-h-full object-contain drop-shadow-lg" style={{ maxHeight: "90%" }} />
+          <div className="flex-shrink-0 w-[28%] h-full flex items-end justify-center relative">
+            <div className="absolute bottom-0 w-full h-[80%] rounded-full bg-white/30" />
+            <img src="/dr-iwatatsu.png" alt="Dr.いわたつ" className="max-h-full object-contain relative z-10" style={{ maxHeight: "90%" }} />
           </div>
         </div>
       </div>

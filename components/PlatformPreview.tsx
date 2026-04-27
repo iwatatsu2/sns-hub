@@ -106,6 +106,7 @@ function PlatformCard({
   } else if (platform === "note") {
     const n = content as PlatformContent["note"];
     displayText = `【${n.title}】\n\n${n.body}`;
+    // noteのイラストプレースホルダーは表示コンポーネントで画像化
   } else {
     const a = content as PlatformContent["antaa"];
     displayText = `タイトル: ${a.title}\n説明: ${a.description}\nタグ: ${a.tags.join(", ")}`;
@@ -148,9 +149,30 @@ function PlatformCard({
           </button>
         </div>
       </div>
-      <pre className="text-gray-300 text-sm whitespace-pre-wrap font-sans leading-relaxed">
-        {displayText}
-      </pre>
+      {platform === "note" ? (
+        <div className="text-gray-300 text-sm whitespace-pre-wrap font-sans leading-relaxed">
+          {displayText.split("[🖼 Dr.いわたつイラスト挿入]").map((part, i, arr) => (
+            <span key={i}>
+              {part}
+              {i < arr.length - 1 && (
+                <span className="block my-4 text-center">
+                  <img
+                    src="/dr-iwatatsu.png"
+                    alt="Dr.いわたつ"
+                    className="inline-block w-24 h-24 rounded-lg"
+                    style={{ filter: "brightness(1.25) saturate(1.5)" }}
+                  />
+                  <span className="block text-xs text-gray-500 mt-1">↑ noteにイラスト挿入</span>
+                </span>
+              )}
+            </span>
+          ))}
+        </div>
+      ) : (
+        <pre className="text-gray-300 text-sm whitespace-pre-wrap font-sans leading-relaxed">
+          {displayText}
+        </pre>
+      )}
     </div>
   );
 }

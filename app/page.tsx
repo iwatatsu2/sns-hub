@@ -124,6 +124,11 @@ export default function Home() {
   // 投稿チェック（localStorage）
   const [checks, setChecks] = useState<Record<string, boolean>>({});
 
+  // 投稿済みアーカイブ（localStorage）
+  interface PostedArchiveItem { id: string; title: string; postedAt: string }
+  const [postedArchive, setPostedArchive] = useState<PostedArchiveItem[]>([]);
+  const [showArchive, setShowArchive] = useState(false);
+
   // 初期データ取得
   useEffect(() => {
     const now = new Date();
@@ -152,7 +157,27 @@ export default function Home() {
       const saved = localStorage.getItem(`sns-hub-checks-${today}`);
       if (saved) setChecks(JSON.parse(saved));
     } catch { /* ignore */ }
+    // 投稿済みアーカイブ復元
+    try {
+      const arch = localStorage.getItem("sns-hub-posted-archive");
+      if (arch) setPostedArchive(JSON.parse(arch));
+    } catch { /* ignore */ }
   }, [today]);
+
+  // トピックを投稿済みに移動
+  const markAsPosted = useCallback((topicId: string, topicTitle: string) => {
+    const now = new Date();
+    const dateStr = `${now.getMonth() + 1}/${now.getDate()}`;
+    const newItem: PostedArchiveItem = { id: topicId, title: topicTitle, postedAt: dateStr };
+    const updated = [newItem, ...postedArchive.filter(a => a.id !== topicId)];
+    setPostedArchive(updated);
+    try { localStorage.setItem("sns-hub-posted-archive", JSON.stringify(updated)); } catch { /* ignore */ }
+    // ストックから除外
+    setTopics(prev => prev.filter(t => t.id !== topicId));
+    // 選択解除＆結果クリア
+    setSelectedId("");
+    setResult(null);
+  }, [postedArchive]);
 
   const saveChecks = useCallback((c: Record<string, boolean>) => {
     setChecks(c);
@@ -300,19 +325,19 @@ export default function Home() {
               </div>
             </div>
             {/* 医師向けサムネイル（ティール） */}
-            <div className="rounded-xl overflow-hidden border border-gray-700 mb-3"
+            <div className="rounded-xl overflow-hidden border border-gray-700 mb-3 max-w-sm"
               style={{ aspectRatio: "1280/670", background: "linear-gradient(135deg, #0a2e2e 0%, #0d4a4a 40%, #14b8a6 100%)" }}>
-              <div className="h-full flex items-center relative p-4 md:p-6">
-                <div className="absolute top-0 left-0 w-32 h-32 rounded-full bg-teal-400/20 blur-3xl" />
-                <div className="absolute bottom-0 right-1/3 w-24 h-24 rounded-full bg-cyan-400/10 blur-2xl" />
+              <div className="h-full flex items-center relative p-3">
+                <div className="absolute top-0 left-0 w-20 h-20 rounded-full bg-teal-400/20 blur-3xl" />
                 <div className="flex-1 pr-2 z-10">
-                  <ThumbTitle title={result.noteTitle} color="teal" />
-                  <div className="flex items-center gap-1.5 mt-2">
-                    <span className="text-white/60 text-[8px] md:text-[10px] font-bold">Dr.いわたつ｜糖尿病専門医</span>
+                  <div className="text-white font-black text-xs leading-tight" style={{ wordBreak: "keep-all", overflowWrap: "anywhere" }}>{result.noteTitle}</div>
+                  <div className="flex items-center gap-1 mt-1">
+                    <span className="text-white/60 text-[7px] font-bold">Dr.いわたつ｜糖尿病専門医</span>
                   </div>
                 </div>
-                <div className="flex-shrink-0 w-[30%] h-full flex items-end justify-center">
-                  <img src="/dr-pose-explain.png" alt="Dr.いわたつ" className="max-h-full object-contain drop-shadow-2xl" style={{ maxHeight: "95%", filter: "drop-shadow(0 4px 16px rgba(0,0,0,0.5))" }} />
+                <div className="flex-shrink-0 w-[28%] h-full flex items-end justify-center relative">
+                  <div className="absolute bottom-0 w-full h-[80%] rounded-full bg-white/30" />
+                  <img src="/dr-pose-explain.png" alt="Dr.いわたつ" className="max-h-full object-contain relative z-10" style={{ maxHeight: "90%" }} />
                 </div>
               </div>
             </div>
@@ -333,19 +358,19 @@ export default function Home() {
                 </div>
               </div>
               {/* 一般向けサムネイル（オレンジ） */}
-              <div className="rounded-xl overflow-hidden border border-gray-700 mb-3"
+              <div className="rounded-xl overflow-hidden border border-gray-700 mb-3 max-w-sm"
                 style={{ aspectRatio: "1280/670", background: "linear-gradient(135deg, #1a1207 0%, #44250a 40%, #c2410c 100%)" }}>
-                <div className="h-full flex items-center relative p-4 md:p-6">
-                  <div className="absolute top-0 left-0 w-32 h-32 rounded-full bg-orange-400/20 blur-3xl" />
-                  <div className="absolute bottom-0 right-1/3 w-24 h-24 rounded-full bg-amber-400/10 blur-2xl" />
+                <div className="h-full flex items-center relative p-3">
+                  <div className="absolute top-0 left-0 w-20 h-20 rounded-full bg-orange-400/20 blur-3xl" />
                   <div className="flex-1 pr-2 z-10">
-                    <ThumbTitle title={result.noteTitle} color="orange" />
-                    <div className="flex items-center gap-1.5 mt-2">
-                      <span className="text-white/60 text-[8px] md:text-[10px] font-bold">Dr.いわたつ｜糖尿病専門医</span>
+                    <div className="text-white font-black text-xs leading-tight" style={{ wordBreak: "keep-all", overflowWrap: "anywhere" }}>{result.noteTitle}</div>
+                    <div className="flex items-center gap-1 mt-1">
+                      <span className="text-white/60 text-[7px] font-bold">Dr.いわたつ｜糖尿病専門医</span>
                     </div>
                   </div>
-                  <div className="flex-shrink-0 w-[30%] h-full flex items-end justify-center">
-                    <img src="/dr-pose-thumbsup.png" alt="Dr.いわたつ" className="max-h-full object-contain" style={{ maxHeight: "95%", filter: "drop-shadow(0 4px 16px rgba(0,0,0,0.5))" }} />
+                  <div className="flex-shrink-0 w-[28%] h-full flex items-end justify-center relative">
+                    <div className="absolute bottom-0 w-full h-[80%] rounded-full bg-white/30" />
+                    <img src="/dr-pose-thumbsup.png" alt="Dr.いわたつ" className="max-h-full object-contain relative z-10" style={{ maxHeight: "90%" }} />
                   </div>
                 </div>
               </div>
@@ -404,15 +429,42 @@ export default function Home() {
                   HTMLダウンロード
                 </button>
               </div>
-              <div className="rounded-xl overflow-hidden border border-gray-700 bg-black mx-auto" style={{ width: "280px", height: "497px", position: "relative" }}>
-                <iframe
-                  srcDoc={result.reelHtml}
-                  style={{ width: "1080px", height: "1920px", transform: "scale(0.259)", transformOrigin: "top left", border: "none" }}
-                  sandbox="allow-scripts allow-same-origin"
-                  title="リールプレビュー"
-                />
+              {/* スマホフレーム付きプレビュー */}
+              <div className="flex justify-center">
+                <div className="relative" style={{ width: "220px" }}>
+                  {/* スマホ外枠 */}
+                  <div className="rounded-[28px] border-[3px] border-gray-600 bg-black p-1.5 shadow-2xl shadow-purple-500/10">
+                    {/* ノッチ */}
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-5 bg-black rounded-b-2xl z-20" />
+                    {/* 画面 */}
+                    <div className="rounded-[22px] overflow-hidden bg-black" style={{ aspectRatio: "9/16" }}>
+                      <iframe
+                        srcDoc={result.reelHtml}
+                        style={{ width: "1080px", height: "1920px", transform: "scale(0.195)", transformOrigin: "top left", border: "none" }}
+                        sandbox="allow-scripts allow-same-origin"
+                        title="リールプレビュー"
+                      />
+                    </div>
+                    {/* ホームバー */}
+                    <div className="flex justify-center py-1.5">
+                      <div className="w-16 h-1 bg-gray-600 rounded-full" />
+                    </div>
+                  </div>
+                  {/* Instagram UI オーバーレイ */}
+                  <div className="absolute bottom-12 right-3 flex flex-col gap-3 z-10">
+                    <div className="text-white text-center text-[10px]">
+                      <div className="text-lg">♡</div>
+                    </div>
+                    <div className="text-white text-center text-[10px]">
+                      <div className="text-lg">💬</div>
+                    </div>
+                    <div className="text-white text-center text-[10px]">
+                      <div className="text-lg">↗</div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <p className="text-gray-500 text-xs mt-2">※ HTMLファイルをダウンロードしてブラウザで開くとフル解像度（1080x1920）で確認できます</p>
+              <p className="text-gray-500 text-xs mt-3 text-center">HTMLをダウンロードしてフル解像度で確認できます</p>
             </div>
           )}
 
@@ -451,6 +503,39 @@ export default function Home() {
             igHashtags={result.igHashtags}
             today={today}
           />
+
+          {/* 投稿完了→アーカイブ移動 */}
+          {selectedTopic && (
+            <button
+              onClick={() => markAsPosted(selectedTopic.id, selectedTopic.title)}
+              className="w-full py-3 rounded-xl font-bold text-sm transition bg-green-700 hover:bg-green-600 text-white"
+            >
+              ✅ 投稿完了（ストックから削除）
+            </button>
+          )}
+        </div>
+      )}
+
+      {/* 投稿済みアーカイブ */}
+      {postedArchive.length > 0 && (
+        <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
+          <button
+            onClick={() => setShowArchive(!showArchive)}
+            className="flex justify-between items-center w-full"
+          >
+            <span className="font-bold text-white text-sm">✅ 投稿済み（{postedArchive.length}件）</span>
+            <span className="text-gray-500 text-xs">{showArchive ? "▲ 閉じる" : "▼ 開く"}</span>
+          </button>
+          {showArchive && (
+            <div className="mt-3 space-y-1.5">
+              {postedArchive.map((item) => (
+                <div key={item.id} className="flex justify-between items-center text-sm bg-gray-700/50 rounded-lg px-3 py-2">
+                  <span className="text-gray-300 truncate flex-1 mr-2">{item.title}</span>
+                  <span className="text-green-400 text-xs whitespace-nowrap">{item.postedAt} 投稿済み</span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
 
