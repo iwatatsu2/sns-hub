@@ -221,6 +221,7 @@ export default function NoteThumbnail({ title, variant, category, subtitle }: No
               maxHeight: "92%",
               maxWidth: "100%",
               marginBottom: "-1px",
+              filter: "drop-shadow(0 0 1px rgba(0,0,0,0.6))",
             }}
           />
         </div>
