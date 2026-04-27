@@ -308,7 +308,7 @@ function SlideCarousel({ slides }: { slides: SlideData[] }) {
         {/* 右側: Dr.いわたつイラスト（1枚目のみ） */}
         {current === 0 && (
           <div className="flex-shrink-0 w-[30%] h-full flex items-end justify-center relative">
-            <img src="/dr-iwatatsu.png" alt="Dr.いわたつ" className="max-h-[85%] object-contain relative z-10 rounded-b-2xl" style={{ filter: "drop-shadow(0 0 6px rgba(255,255,255,0.9)) drop-shadow(0 0 2px rgba(255,255,255,0.8))" }} />
+            <img src="/dr-iwatatsu.png" alt="Dr.いわたつ" className="max-h-[85%] object-contain relative z-10 rounded-b-2xl" style={{}} />
           </div>
         )}
         <div className="absolute bottom-2 left-3 right-3 flex justify-between text-[10px] text-gray-600">
@@ -488,7 +488,7 @@ function ThumbnailPreview({ topicId, title, subtitle }: { topicId: string; title
             </div>
           </div>
           <div className="flex-shrink-0 w-[28%] h-full flex items-end justify-center relative">
-            <img src="/dr-iwatatsu.png" alt="Dr.いわたつ" className="max-h-full object-contain relative z-10 rounded-b-2xl" style={{ maxHeight: "90%", filter: "drop-shadow(0 0 6px rgba(255,255,255,0.9)) drop-shadow(0 0 2px rgba(255,255,255,0.8))" }} />
+            <img src="/dr-iwatatsu.png" alt="Dr.いわたつ" className="max-h-full object-contain relative z-10 rounded-b-2xl" style={{ maxHeight: "90%" }} />
           </div>
         </div>
       </div>
