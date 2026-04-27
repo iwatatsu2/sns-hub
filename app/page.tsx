@@ -336,8 +336,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex-shrink-0 w-[28%] h-full flex items-end justify-center relative">
-                  <div className="absolute bottom-0 inset-x-0 h-[85%] bg-gradient-to-t from-white/50 to-white/20 rounded-full blur-sm" />
-                  <img src="/dr-pose-explain.png" alt="Dr.いわたつ" className="max-h-full object-contain relative z-10" style={{ maxHeight: "90%" }} />
+                  <img src="/dr-pose-explain.png" alt="Dr.いわたつ" className="max-h-full object-contain relative z-10 rounded-b-2xl" style={{ maxHeight: "90%", background: "radial-gradient(ellipse at center bottom, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.4) 60%, transparent 80%)" }} />
                 </div>
               </div>
             </div>
@@ -369,8 +368,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="flex-shrink-0 w-[28%] h-full flex items-end justify-center relative">
-                    <div className="absolute bottom-0 inset-x-0 h-[85%] bg-gradient-to-t from-white/50 to-white/20 rounded-full blur-sm" />
-                    <img src="/dr-pose-thumbsup.png" alt="Dr.いわたつ" className="max-h-full object-contain relative z-10" style={{ maxHeight: "90%" }} />
+                    <img src="/dr-pose-thumbsup.png" alt="Dr.いわたつ" className="max-h-full object-contain relative z-10 rounded-b-2xl" style={{ maxHeight: "90%", background: "radial-gradient(ellipse at center bottom, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.4) 60%, transparent 80%)" }} />
                   </div>
                 </div>
               </div>

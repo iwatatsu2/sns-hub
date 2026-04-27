@@ -556,7 +556,6 @@ export function generateContent(topic: Topic): GeneratedResult {
       `${topic.hook}\n\n` +
       `こんにちは、糖尿病専門医のDr.いわたつです。\n\n` +
       `${intro}\n\n` +
-      `━━━━━━━━━━━━━━━\n■ 本文\n━━━━━━━━━━━━━━━\n\n` +
       `${body}\n\n` +
       `[🖼 Dr.いわたつイラスト挿入]\n\n` +
       `${data}\n\n` +

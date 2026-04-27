@@ -308,8 +308,7 @@ function SlideCarousel({ slides }: { slides: SlideData[] }) {
         {/* 右側: Dr.いわたつイラスト（1枚目のみ） */}
         {current === 0 && (
           <div className="flex-shrink-0 w-[30%] h-full flex items-end justify-center relative">
-            <div className="absolute bottom-0 inset-x-0 h-[85%] bg-gradient-to-t from-white/40 to-white/15 rounded-full blur-sm" />
-            <img src="/dr-iwatatsu.png" alt="Dr.いわたつ" className="max-h-[85%] object-contain relative z-10" />
+            <img src="/dr-iwatatsu.png" alt="Dr.いわたつ" className="max-h-[85%] object-contain relative z-10 rounded-b-2xl" style={{ background: "radial-gradient(ellipse at center bottom, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.4) 60%, transparent 80%)" }} />
           </div>
         )}
         <div className="absolute bottom-2 left-3 right-3 flex justify-between text-[10px] text-gray-600">
@@ -489,8 +488,7 @@ function ThumbnailPreview({ topicId, title, subtitle }: { topicId: string; title
             </div>
           </div>
           <div className="flex-shrink-0 w-[28%] h-full flex items-end justify-center relative">
-            <div className="absolute bottom-0 inset-x-0 h-[85%] bg-gradient-to-t from-white/50 to-white/20 rounded-full blur-sm" />
-            <img src="/dr-iwatatsu.png" alt="Dr.いわたつ" className="max-h-full object-contain relative z-10" style={{ maxHeight: "90%" }} />
+            <img src="/dr-iwatatsu.png" alt="Dr.いわたつ" className="max-h-full object-contain relative z-10 rounded-b-2xl" style={{ maxHeight: "90%", background: "radial-gradient(ellipse at center bottom, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.4) 60%, transparent 80%)" }} />
           </div>
         </div>
       </div>
