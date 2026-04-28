@@ -5,7 +5,9 @@ import { getOodaData } from "@/lib/ooda";
 import fs from "fs";
 import path from "path";
 
-const client = new Anthropic();
+const client = new Anthropic({
+  apiKey: process.env.ANTHROPIC_API_KEY,
+});
 
 export async function POST(req: NextRequest) {
   try {
@@ -90,11 +92,15 @@ AI切り口: ${topic.aiAngle || "なし"}
 
     const generated = JSON.parse(jsonMatch[0]);
 
-    // ai-contentディレクトリに保存
-    const aiDir = path.join(process.cwd(), "data", "ai-content");
-    if (!fs.existsSync(aiDir)) fs.mkdirSync(aiDir, { recursive: true });
-    const aiPath = path.join(aiDir, `${topicId}.json`);
-    fs.writeFileSync(aiPath, JSON.stringify(generated, null, 2), "utf-8");
+    // ai-contentディレクトリに保存（ローカル開発時のみ、Vercelは読み取り専用）
+    try {
+      const aiDir = path.join(process.cwd(), "data", "ai-content");
+      if (!fs.existsSync(aiDir)) fs.mkdirSync(aiDir, { recursive: true });
+      const aiPath = path.join(aiDir, `${topicId}.json`);
+      fs.writeFileSync(aiPath, JSON.stringify(generated, null, 2), "utf-8");
+    } catch {
+      // Vercel等の読み取り専用環境では保存をスキップ
+    }
 
     return NextResponse.json(generated);
   } catch (e: unknown) {
