@@ -1,0 +1,80 @@
+{
+  "topicId": "topic-30",
+  "theme": "家族が糖尿病と診断されたら、まず読んでほしい記事",
+  "researchDate": "2026-04-28",
+  "keyFacts": [
+    {
+      "category": "遺伝リスク",
+      "fact": "両親ともに2型糖尿病の場合、子どもの発症確率は40〜50%。家族に糖尿病患者がいない人と比べ有病リスクは約20倍（新潟大学研究）",
+      "note": "ただし遺伝するのはインスリン抵抗性やβ細胞機能低下などの『体質』であり、病気そのものではない"
+    },
+    {
+      "category": "家族の心理的影響",
+      "fact": "配偶者が糖尿病だと、家族のうつ病リスクも上昇する。特に心血管合併症（脳卒中・心不全・心筋梗塞）を発症すると家族の精神的負担が顕著に増大（京都大学研究）",
+      "note": "ADA 2026 Standards of Careでも、糖尿病ディストレス・うつ・不安のルーチンスクリーニングを推奨"
+    },
+    {
+      "category": "家族がやるべきサポート",
+      "fact": "①患者の話に耳を傾け、そっと見守る姿勢が大切 ②定期受診の継続を無理なくサポート ③薬の管理が複雑になるため家族が一緒に把握 ④食事・運動の生活改善を一緒に取り組む",
+      "note": "糖尿病情報センター（NCGM）が推奨する家族向けガイダンスに準拠"
+    },
+    {
+      "category": "やってはいけないこと",
+      "fact": "①食事を厳しく監視・制限しすぎる（食事警察化）②「自己管理ができていない」と責める ③本人の意思を無視して治療方針に口を出す ④過度な心配で本人の自律性を奪う",
+      "note": "患者のセルフエフィカシー（自己効力感）を損なう行動は治療アドヒアランスを低下させる"
+    },
+    {
+      "category": "ADA 2026ガイドライン更新",
+      "fact": "Psychosocial Care（心理社会的ケア）セクションが改訂：行動健康専門家をチームに統合、食料不安・住居安定性・識字率・社会的サポートのルーチンスクリーニングを推奨",
+      "note": "家族中心のケア（family-centered care）の重要性が強調され、推奨度が引き上げられた"
+    },
+    {
+      "category": "家族自身の予防",
+      "fact": "家族歴がある人は①血糖値を急激に上げない食事 ②1日3食バランス良く ③適度な運動 ④良質な睡眠 ⑤ストレス管理で発症リスクを大幅に減らせる",
+      "note": "生活習慣の改善で、遺伝的素因があっても発症を防ぐ・遅らせることが可能"
+    },
+    {
+      "category": "テクノロジー活用",
+      "fact": "ADA 2026ではCGM（持続血糖モニタリング）とAID（自動インスリン供給）を診断後早期から推奨。家族向けの糖尿病管理サポートアプリ（通院リマインド・食事記録共有）も登場",
+      "note": "テクノロジーの活用で家族の見守り負担を軽減できる時代に"
+    }
+  ],
+  "references": [
+    {
+      "text": "糖尿病ネットワーク - 家族のこころの健康状態にも影響",
+      "url": "https://dm-net.co.jp/calendar/2025/038967.php"
+    },
+    {
+      "text": "Oasis Medical - 糖尿病のご家族へ知ってほしい重要3選",
+      "url": "https://oasismedical.or.jp/column/tonyobyo-kazoku"
+    },
+    {
+      "text": "糖尿病情報センター - 家族や大切な方が糖尿病といわれたら",
+      "url": "https://dmic.jihs.go.jp/general/about-dm/080/080/01.html"
+    },
+    {
+      "text": "ADA Standards of Care in Diabetes 2026 - Summary of Revisions",
+      "url": "https://diabetesjournals.org/care/article/49/Supplement_1/S6/163930/Summary-of-Revisions-Standards-of-Care-in-Diabetes"
+    },
+    {
+      "text": "ADA 2026 Standards of Care プレスリリース",
+      "url": "https://diabetes.org/newsroom/press-releases/american-diabetes-association-releases-standards-care-diabetes-2026"
+    },
+    {
+      "text": "ケアネット - 家族に糖尿病患者がいると20倍の発症リスク（新潟大）",
+      "url": "https://www.carenet.com/news/general/carenet/60113"
+    },
+    {
+      "text": "竹内内科小児科医院 - 親が糖尿病だと自分も？家族歴がある人の早期対策",
+      "url": "https://www.takeuchi-iin.jp/blog/diabetes-family-history-fh-2026/"
+    },
+    {
+      "text": "SMT - 糖尿病とうまく付き合う方法/家族のサポートとは？",
+      "url": "https://www.searchmytrial.com/disease/dm/life/"
+    },
+    {
+      "text": "diatribe - Your Guide to the 2026 ADA Standards of Care",
+      "url": "https://diatribe.org/diabetes-management/your-guide-2026-ada-standards-care"
+    }
+  ]
+}
