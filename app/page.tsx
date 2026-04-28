@@ -121,8 +121,6 @@ export default function Home() {
   const [generating, setGenerating] = useState(false);
   const [progress, setProgress] = useState("");
   const [result, setResult] = useState<GeneratedResult | null>(null);
-  const [generatingNote, setGeneratingNote] = useState(false);
-
   // 投稿チェック（localStorage）
   const [checks, setChecks] = useState<Record<string, boolean>>({});
 
@@ -246,30 +244,6 @@ export default function Home() {
     setGenerating(false);
   };
 
-  // note記事をAI生成
-  const handleGenerateNote = async () => {
-    if (!selectedId || !result) return;
-    setGeneratingNote(true);
-    try {
-      const res = await fetch("/api/topics/generate-note", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ topicId: selectedId }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "生成失敗");
-      setResult({
-        ...result,
-        noteBody: data.noteBody || result.noteBody,
-        noteBodyPublic: data.noteBodyPublic || result.noteBodyPublic,
-        xText: data.xText || result.xText,
-      });
-    } catch (e) {
-      alert(`note生成エラー: ${e instanceof Error ? e.message : String(e)}`);
-    }
-    setGeneratingNote(false);
-  };
-
   const selectedTopic = topics.find((t) => t.id === selectedId);
 
   return (
@@ -355,22 +329,14 @@ export default function Home() {
               </div>
             </div>
             {result.noteBody.includes("まだ生成されていません") ? (
-              <div className="text-center py-8">
-                <p className="text-gray-400 text-sm mb-4">note記事がまだ生成されていません</p>
-                <button
-                  onClick={handleGenerateNote}
-                  disabled={generatingNote}
-                  className="px-6 py-3 bg-teal-600 hover:bg-teal-500 disabled:bg-gray-600 text-white font-bold rounded-lg transition text-sm"
-                >
-                  {generatingNote ? (
-                    <span className="flex items-center gap-2">
-                      <span className="animate-spin inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
-                      AI生成中（1〜2分）...
-                    </span>
-                  ) : (
-                    "✨ AIでnote記事を生成"
-                  )}
-                </button>
+              <div className="py-6 px-4 bg-gray-900/50 rounded-lg border border-gray-700 text-center">
+                <div className="text-2xl mb-3">📝</div>
+                <p className="text-white font-bold text-sm mb-2">note記事は未生成です</p>
+                <p className="text-gray-400 text-xs mb-4">Claude Codeで以下を実行すると生成されます</p>
+                <div className="inline-block bg-gray-800 border border-teal-500/30 rounded-lg px-4 py-2.5 mb-3">
+                  <code className="text-teal-400 text-sm font-mono">/sns {selectedTopic?.title || "テーマ名"}</code>
+                </div>
+                <p className="text-gray-500 text-xs">生成後、自動的にこの画面に反映されます</p>
               </div>
             ) : (
               <>
