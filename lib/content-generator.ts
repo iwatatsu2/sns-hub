@@ -687,35 +687,35 @@ body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino San
 .bg-c1{width:600px;height:600px;background:#14b8a6;top:-200px;right:-200px}
 .bg-c2{width:500px;height:500px;background:#8b5cf6;bottom:-100px;left:-150px}
 /* Scene 1: Hook - 大きくインパクト、行間広め */
-.hook-text{color:#fff;font-size:120px;font-weight:900;text-align:center;line-height:1.4;letter-spacing:2px;max-width:960px}
-.hook-sub{color:#94a3b8;font-size:52px;margin-top:48px;text-align:center;letter-spacing:0.5px;line-height:1.6;max-width:900px}
+.hook-text{color:#fff;font-size:92px;font-weight:900;text-align:center;line-height:1.35;letter-spacing:2px;max-width:960px;word-break:keep-all;overflow-wrap:anywhere}
+.hook-sub{color:#94a3b8;font-size:40px;margin-top:48px;text-align:center;letter-spacing:0.5px;line-height:1.6;max-width:900px}
 /* Scene 2: Data cards - カード内テキスト読みやすく */
 .data-section{width:100%;max-width:940px}
-.data-title{color:#2dd4bf;font-size:64px;font-weight:900;text-align:center;margin-bottom:40px;letter-spacing:1px}
+.data-title{color:#2dd4bf;font-size:50px;font-weight:900;text-align:center;margin-bottom:40px;letter-spacing:1px}
 .data-card{background:rgba(20,184,166,0.08);border:2px solid rgba(20,184,166,0.25);border-radius:24px;padding:36px 40px;margin-bottom:24px;display:flex;align-items:center;gap:28px}
-.data-num{color:#2dd4bf;font-size:72px;font-weight:900;min-width:80px;text-align:center}
-.data-text{color:#e2e8f0;font-size:48px;line-height:1.5;font-weight:700;letter-spacing:0.3px}
+.data-num{color:#2dd4bf;font-size:58px;font-weight:900;min-width:80px;text-align:center}
+.data-text{color:#e2e8f0;font-size:40px;line-height:1.5;font-weight:700;letter-spacing:0.3px;overflow-wrap:anywhere}
 /* Scene 3: Explanation - 余白多め、段落分け */
 .explain-box{background:rgba(255,255,255,0.05);border-radius:28px;padding:56px 48px;width:100%;max-width:940px}
-.explain-title{color:#fff;font-size:64px;font-weight:900;margin-bottom:32px;text-align:center;letter-spacing:1px}
-.explain-text{color:#cbd5e1;font-size:52px;line-height:1.6;text-align:center;letter-spacing:0.3px}
+.explain-title{color:#fff;font-size:50px;font-weight:900;margin-bottom:32px;text-align:center;letter-spacing:1px}
+.explain-text{color:#cbd5e1;font-size:44px;line-height:1.6;text-align:center;letter-spacing:0.3px;overflow-wrap:anywhere}
 .source-badge{display:inline-block;background:rgba(20,184,166,0.15);color:#5eead4;font-size:36px;padding:14px 32px;border-radius:12px;margin-top:36px;letter-spacing:0.5px}
 /* Scene 4: Summary - 各項目の間隔広め */
 .summary-grid{display:grid;grid-template-columns:1fr;gap:24px;width:100%;max-width:940px}
 .summary-item{background:rgba(20,184,166,0.1);border-left:6px solid #14b8a6;border-radius:0 20px 20px 0;padding:32px 36px;display:flex;align-items:center;gap:24px}
-.summary-check{color:#2dd4bf;font-size:60px;font-weight:900}
-.summary-text{color:#e2e8f0;font-size:48px;line-height:1.5;font-weight:700;letter-spacing:0.3px}
+.summary-check{color:#2dd4bf;font-size:48px;font-weight:900}
+.summary-text{color:#e2e8f0;font-size:40px;line-height:1.5;font-weight:700;letter-spacing:0.3px;overflow-wrap:anywhere}
 /* Scene 5: Follow CTA */
 .follow-container{text-align:center}
 .follow-avatar{width:420px;height:420px;margin:0 auto 24px;background:transparent}
 .follow-avatar img{width:100%;height:100%;object-fit:contain;filter:brightness(1.25) saturate(1.5)}
-.follow-name{color:#fff;font-size:72px;font-weight:900;margin-bottom:12px;letter-spacing:2px}
-.follow-title{color:#94a3b8;font-size:44px;margin-bottom:40px;letter-spacing:0.5px}
-.follow-btn{background:linear-gradient(135deg,#14b8a6,#0d9488);color:#fff;font-size:56px;font-weight:900;padding:32px 88px;border-radius:20px;display:inline-block;letter-spacing:2px}
+.follow-name{color:#fff;font-size:64px;font-weight:900;margin-bottom:12px;letter-spacing:2px}
+.follow-title{color:#94a3b8;font-size:36px;margin-bottom:40px;letter-spacing:0.5px}
+.follow-btn{background:linear-gradient(135deg,#14b8a6,#0d9488);color:#fff;font-size:50px;font-weight:900;padding:32px 88px;border-radius:20px;display:inline-block;letter-spacing:2px}
 .follow-actions{display:flex;gap:32px;justify-content:center;margin-top:40px}
 .follow-action{background:rgba(255,255,255,0.08);border:2px solid rgba(255,255,255,0.15);border-radius:20px;padding:28px 44px;text-align:center}
-.follow-action-icon{font-size:64px;margin-bottom:10px}
-.follow-action-label{color:#fff;font-size:40px;font-weight:700;letter-spacing:1px}
+.follow-action-icon{font-size:56px;margin-bottom:10px}
+.follow-action-label{color:#fff;font-size:34px;font-weight:700;letter-spacing:1px}
 /* Dr.いわたつ 右下固定イラスト（Scene1-4） */
 .dr-avatar-fixed{position:absolute;bottom:40px;right:40px;width:400px;height:400px;z-index:10;pointer-events:none}
 .dr-avatar-fixed img{width:100%;height:100%;object-fit:contain;filter:brightness(1.25) saturate(1.5)}
@@ -745,7 +745,7 @@ body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino San
   <div class="explain-box">
     <div class="explain-title">知っておくべきポイント</div>
     <div class="explain-text">${addLineBreaks(escHtml(d[2] || topic.aiAngle || "専門医が最新エビデンスをもとに解説"))}</div>
-    <div style="color:#94a3b8;font-size:44px;line-height:1.6;text-align:center;margin-top:24px">${addLineBreaks(escHtml(d[3] || topic.appTieIn || ""))}</div>
+    <div style="color:#94a3b8;font-size:36px;line-height:1.6;text-align:center;margin-top:24px">${addLineBreaks(escHtml(d[3] || topic.appTieIn || ""))}</div>
     <div style="text-align:center"><span class="source-badge">${escHtml(src)}</span></div>
   </div>
   <div class="dr-avatar-fixed"><img src="${selectPose(topic, "insight")}" alt="Dr.いわたつ"></div>
@@ -753,7 +753,7 @@ body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino San
 
 <!-- Scene 4: Summary -->
 <div class="scene" id="s4">
-  <div style="color:#fff;font-size:56px;font-weight:900;text-align:center;margin-bottom:24px">まとめ</div>
+  <div style="color:#fff;font-size:44px;font-weight:900;text-align:center;margin-bottom:24px">まとめ</div>
   <div class="summary-grid">
     ${d.slice(0, 3).map((item) => `<div class="summary-item"><div class="summary-check">✓</div><div class="summary-text">${escHtml(item)}</div></div>`).join("\n    ")}
   </div>

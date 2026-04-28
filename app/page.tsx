@@ -138,7 +138,20 @@ export default function Home() {
 
     fetch("/api/topics?filter=pending")
       .then((r) => r.json())
-      .then((d) => { if (Array.isArray(d)) setTopics(d); })
+      .then((d) => {
+        if (Array.isArray(d)) {
+          // localStorage の投稿済みアーカイブを除外
+          try {
+            const arch = localStorage.getItem("sns-hub-posted-archive");
+            if (arch) {
+              const postedIds = new Set(JSON.parse(arch).map((a: { id: string }) => a.id));
+              setTopics(d.filter((t: Topic) => !postedIds.has(t.id)));
+              return;
+            }
+          } catch { /* ignore */ }
+          setTopics(d);
+        }
+      })
       .catch(() => {});
 
     fetch("/api/tasks")
