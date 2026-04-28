@@ -708,7 +708,7 @@ body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino San
 /* Scene 5: Follow CTA */
 .follow-container{text-align:center}
 .follow-avatar{width:420px;height:420px;margin:0 auto 24px;background:transparent}
-.follow-avatar img{width:100%;height:100%;object-fit:contain;filter:brightness(1.25) saturate(1.5)}
+.follow-avatar img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 4px #fff) drop-shadow(0 0 4px #fff) drop-shadow(0 0 2px #fff)}
 .follow-name{color:#fff;font-size:64px;font-weight:900;margin-bottom:12px;letter-spacing:2px}
 .follow-title{color:#94a3b8;font-size:36px;margin-bottom:40px;letter-spacing:0.5px}
 .follow-btn{background:linear-gradient(135deg,#14b8a6,#0d9488);color:#fff;font-size:50px;font-weight:900;padding:32px 88px;border-radius:20px;display:inline-block;letter-spacing:2px}
@@ -718,7 +718,7 @@ body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino San
 .follow-action-label{color:#fff;font-size:34px;font-weight:700;letter-spacing:1px}
 /* Dr.いわたつ 右下固定イラスト（Scene1-4） */
 .dr-avatar-fixed{position:absolute;bottom:40px;right:40px;width:400px;height:400px;z-index:10;pointer-events:none}
-.dr-avatar-fixed img{width:100%;height:100%;object-fit:contain;filter:brightness(1.25) saturate(1.5)}
+.dr-avatar-fixed img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 4px #fff) drop-shadow(0 0 4px #fff) drop-shadow(0 0 2px #fff)}
 </style></head><body>
 <div class="comp" id="comp">
 <div class="bg-circle bg-c1"></div>
