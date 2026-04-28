@@ -121,6 +121,7 @@ export default function Home() {
   const [generating, setGenerating] = useState(false);
   const [progress, setProgress] = useState("");
   const [result, setResult] = useState<GeneratedResult | null>(null);
+  const [generatingNote, setGeneratingNote] = useState(false);
 
   // 投稿チェック（localStorage）
   const [checks, setChecks] = useState<Record<string, boolean>>({});
@@ -245,6 +246,30 @@ export default function Home() {
     setGenerating(false);
   };
 
+  // note記事をAI生成
+  const handleGenerateNote = async () => {
+    if (!selectedId || !result) return;
+    setGeneratingNote(true);
+    try {
+      const res = await fetch("/api/topics/generate-note", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ topicId: selectedId }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "生成失敗");
+      setResult({
+        ...result,
+        noteBody: data.noteBody || result.noteBody,
+        noteBodyPublic: data.noteBodyPublic || result.noteBodyPublic,
+        xText: data.xText || result.xText,
+      });
+    } catch (e) {
+      alert(`note生成エラー: ${e instanceof Error ? e.message : String(e)}`);
+    }
+    setGeneratingNote(false);
+  };
+
   const selectedTopic = topics.find((t) => t.id === selectedId);
 
   return (
@@ -321,21 +346,46 @@ export default function Home() {
             <div className="flex flex-wrap justify-between items-center gap-2 mb-2">
               <span className="font-bold text-white text-sm">📝 note（医師向け）</span>
               <div className="flex gap-1.5 flex-wrap">
-                <CopyBtn text={`${result.noteTitle}\n\n${result.noteBody}`} />
-                <PostLink platform="note" />
+                {!result.noteBody.includes("まだ生成されていません") && (
+                  <>
+                    <CopyBtn text={`${result.noteTitle}\n\n${result.noteBody}`} />
+                    <PostLink platform="note" />
+                  </>
+                )}
               </div>
             </div>
-            {/* 医師向けサムネイル */}
-            <NoteThumbnail
-              title={result.noteTitle}
-              variant="medical"
-              category={selectedTopic?.category}
-              subtitle={selectedTopic?.hook}
-            />
-            <div className="max-h-[400px] overflow-y-auto">
-              <pre className="text-gray-300 text-sm whitespace-pre-wrap font-sans leading-relaxed">{result.noteBody}</pre>
-            </div>
-            <div className="text-xs text-gray-500 mt-1">{result.noteBody.length}文字</div>
+            {result.noteBody.includes("まだ生成されていません") ? (
+              <div className="text-center py-8">
+                <p className="text-gray-400 text-sm mb-4">note記事がまだ生成されていません</p>
+                <button
+                  onClick={handleGenerateNote}
+                  disabled={generatingNote}
+                  className="px-6 py-3 bg-teal-600 hover:bg-teal-500 disabled:bg-gray-600 text-white font-bold rounded-lg transition text-sm"
+                >
+                  {generatingNote ? (
+                    <span className="flex items-center gap-2">
+                      <span className="animate-spin inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
+                      AI生成中（1〜2分）...
+                    </span>
+                  ) : (
+                    "✨ AIでnote記事を生成"
+                  )}
+                </button>
+              </div>
+            ) : (
+              <>
+                <NoteThumbnail
+                  title={result.noteTitle}
+                  variant="medical"
+                  category={selectedTopic?.category}
+                  subtitle={selectedTopic?.hook}
+                />
+                <div className="max-h-[400px] overflow-y-auto">
+                  <pre className="text-gray-300 text-sm whitespace-pre-wrap font-sans leading-relaxed">{result.noteBody}</pre>
+                </div>
+                <div className="text-xs text-gray-500 mt-1">{result.noteBody.length}文字</div>
+              </>
+            )}
           </div>}
 
           {/* note 一般向け */}
