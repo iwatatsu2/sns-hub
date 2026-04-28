@@ -27,6 +27,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/posts" className="text-gray-400 hover:text-white text-xs sm:text-sm transition">
                 投稿一覧
               </Link>
+              <Link href="/ooda" className="text-gray-400 hover:text-white text-xs sm:text-sm transition">
+                🔄 OODA
+              </Link>
             </div>
           </div>
         </nav>
