@@ -1,0 +1,30 @@
+{
+  "topicId": "topic-36",
+  "theme": "オルホルグリプロンFDA承認：「飲む肥満症薬」の衝撃",
+  "researchDate": "2026-04-28",
+  "keyFacts": [
+    "FDA承認日: 2026年4月1日（肥満症適応）— CNPV制度により申請から50日で承認",
+    "商品名: Foundayo（ファウンダヨ）",
+    "開発: Eli Lilly（原薬は中外製薬が創製）",
+    "分類: 低分子化合物（非ペプチド）の経口GLP-1受容体作動薬",
+    "1日1回経口投与。食事・水分制限なし。いつでも服用可能",
+    "ATTAIN-1試験（NEJM掲載）: 36mg群で72週後に平均12.4%（27.3 lb = 約12.4 kg）体重減少（プラセボ: 0.9%）",
+    "10%以上減量達成率: 59.6%（プラセボ比）、15%以上: 39.6%",
+    "全BMIカテゴリ（過体重〜ClassIII肥満）で有効性確認",
+    "心血管リスクマーカー改善: non-HDL-C、TG、収縮期血圧低下",
+    "副作用はGLP-1 RA全般と同様（消化器症状が主）",
+    "ATTAIN-2試験（Lancet）: 2型糖尿病合併肥満でも有効性確認",
+    "注射薬からの切り替え試験: 注射GLP-1での減量効果を経口で維持可能",
+    "米国価格: 月$149〜（自費）、保険適用で月$25〜",
+    "日本: 中外製薬が日本での承認申請準備中、2026年度内発売見込み",
+    "リベルサス（経口セマグルチド）との違い: SNACを使わない低分子。食事制限不要"
+  ],
+  "references": [
+    { "text": "FDA News Release: FDA Approves First New Molecular Entity Under National Priority Voucher Program (2026)", "url": "https://www.fda.gov/news-events/press-announcements/fda-approves-first-new-molecular-entity-under-national-priority-voucher-program" },
+    { "text": "Eli Lilly Press Release: FDA approves Foundayo (orforglipron)", "url": "https://investor.lilly.com/news-releases/news-release-details/fda-approves-lillys-foundayotm-orforglipron-only-glp-1-pill" },
+    { "text": "Orforglipron, an Oral Small-Molecule GLP-1 Receptor Agonist for Obesity Treatment. N Engl J Med. 2026", "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2511774" },
+    { "text": "ATTAIN-2: Orforglipron for obesity in people with type 2 diabetes. Lancet. 2025", "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)02165-8/abstract" },
+    { "text": "中外製薬: 経口GLP-1受容体作動薬Foundayo（オルホルグリプロン）に関するEli Lilly社の発表について", "url": "https://www.chugai-pharm.co.jp/news/detail/20260402083000_1573.html" },
+    { "text": "JAMA: FDA Approves GLP-1 Obesity Pill Without Food or Water Restrictions", "url": "https://jamanetwork.com/journals/jama/fullarticle/2848076" }
+  ]
+}

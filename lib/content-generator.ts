@@ -351,11 +351,20 @@ const topicDetails: Record<string, Partial<TopicDetail>> = {
     reelHook: "ストレスで血糖上昇",
     reelData: ["コルチゾール分泌→インスリン抵抗性UP", "睡眠不足でHbA1cが0.3%悪化する報告", "マインドフルネスで血糖改善のRCTあり", "ストレス管理も立派な糖尿病治療"],
   },
+  "topic-36": {
+    reelHook: "飲むだけで痩せる\n新薬が承認",
+    reelData: [
+      "経口GLP-1薬 1日1回",
+      "72週で体重 -12.4%",
+      "食事・水の制限なし",
+      "価格は注射薬の約1/10",
+    ],
+  },
 };
 
 // エージェント生成コンテンツ（ビルド時にバンドルされる単一インデックス）
 import generatedIndexData from "../data/generated-index.json";
-const generatedData = generatedIndexData as Record<string, { note: Record<string, unknown> | null; reel: unknown; slides: unknown }>;
+const generatedData = generatedIndexData as unknown as Record<string, { note: Record<string, unknown> | null; reel: unknown; slides: unknown }>;
 
 // エージェント生成noteの正規化（構造がバラバラなため）
 interface NormalizedNote {
@@ -678,7 +687,7 @@ function generateReelHtml(topic: Topic, reelData: string[]): string {
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino Sans','Hiragino Kaku Gothic ProN',sans-serif}
-*{word-break:keep-all;overflow-wrap:break-word;line-break:strict}
+*{word-break:keep-all;overflow-wrap:break-word;line-break:strict;word-wrap:break-word}
 .comp{position:relative;width:1080px;height:1920px;transform-origin:top left;
   background:linear-gradient(180deg,#0f172a 0%,#1e293b 50%,#312e81 100%)}
 .scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 80px;opacity:0}
@@ -687,38 +696,38 @@ body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino San
 .bg-c1{width:600px;height:600px;background:#14b8a6;top:-200px;right:-200px}
 .bg-c2{width:500px;height:500px;background:#8b5cf6;bottom:-100px;left:-150px}
 /* Scene 1: Hook - 大きくインパクト、行間広め */
-.hook-text{color:#fff;font-size:92px;font-weight:900;text-align:center;line-height:1.35;letter-spacing:2px;max-width:960px;word-break:keep-all;overflow-wrap:anywhere}
-.hook-sub{color:#94a3b8;font-size:40px;margin-top:48px;text-align:center;letter-spacing:0.5px;line-height:1.6;max-width:900px}
-/* Scene 2: Data cards - カード内テキスト読みやすく */
+.hook-text{color:#fff;font-size:150px;font-weight:900;text-align:center;line-height:1.25;letter-spacing:2px;max-width:960px;word-break:keep-all;overflow-wrap:break-word}
+.hook-sub{color:#94a3b8;font-size:64px;margin-top:48px;text-align:center;letter-spacing:0.5px;line-height:1.5;max-width:900px}
+/* Scene 2: Data cards */
 .data-section{width:100%;max-width:940px}
-.data-title{color:#2dd4bf;font-size:50px;font-weight:900;text-align:center;margin-bottom:40px;letter-spacing:1px}
-.data-card{background:rgba(20,184,166,0.08);border:2px solid rgba(20,184,166,0.25);border-radius:24px;padding:36px 40px;margin-bottom:24px;display:flex;align-items:center;gap:28px}
-.data-num{color:#2dd4bf;font-size:58px;font-weight:900;min-width:80px;text-align:center}
-.data-text{color:#e2e8f0;font-size:40px;line-height:1.5;font-weight:700;letter-spacing:0.3px;overflow-wrap:anywhere}
-/* Scene 3: Explanation - 余白多め、段落分け */
-.explain-box{background:rgba(255,255,255,0.05);border-radius:28px;padding:56px 48px;width:100%;max-width:940px}
-.explain-title{color:#fff;font-size:50px;font-weight:900;margin-bottom:32px;text-align:center;letter-spacing:1px}
-.explain-text{color:#cbd5e1;font-size:44px;line-height:1.6;text-align:center;letter-spacing:0.3px;overflow-wrap:anywhere}
-.source-badge{display:inline-block;background:rgba(20,184,166,0.15);color:#5eead4;font-size:36px;padding:14px 32px;border-radius:12px;margin-top:36px;letter-spacing:0.5px}
-/* Scene 4: Summary - 各項目の間隔広め */
-.summary-grid{display:grid;grid-template-columns:1fr;gap:24px;width:100%;max-width:940px}
-.summary-item{background:rgba(20,184,166,0.1);border-left:6px solid #14b8a6;border-radius:0 20px 20px 0;padding:32px 36px;display:flex;align-items:center;gap:24px}
-.summary-check{color:#2dd4bf;font-size:48px;font-weight:900}
-.summary-text{color:#e2e8f0;font-size:40px;line-height:1.5;font-weight:700;letter-spacing:0.3px;overflow-wrap:anywhere}
+.data-title{color:#2dd4bf;font-size:84px;font-weight:900;text-align:center;margin-bottom:48px;letter-spacing:1px}
+.data-card{background:rgba(20,184,166,0.08);border:2px solid rgba(20,184,166,0.25);border-radius:24px;padding:40px 44px;margin-bottom:28px;display:flex;align-items:center;gap:28px}
+.data-num{color:#2dd4bf;font-size:88px;font-weight:900;min-width:100px;text-align:center}
+.data-text{color:#e2e8f0;font-size:64px;line-height:1.4;font-weight:700;letter-spacing:0.3px}
+/* Scene 3: Explanation */
+.explain-box{background:rgba(255,255,255,0.05);border-radius:28px;padding:60px 52px;width:100%;max-width:940px}
+.explain-title{color:#fff;font-size:84px;font-weight:900;margin-bottom:36px;text-align:center;letter-spacing:1px}
+.explain-text{color:#cbd5e1;font-size:64px;line-height:1.5;text-align:center;letter-spacing:0.3px}
+.source-badge{display:inline-block;background:rgba(20,184,166,0.15);color:#5eead4;font-size:50px;padding:16px 36px;border-radius:12px;margin-top:40px;letter-spacing:0.5px}
+/* Scene 4: Summary */
+.summary-grid{display:grid;grid-template-columns:1fr;gap:28px;width:100%;max-width:940px}
+.summary-item{background:rgba(20,184,166,0.1);border-left:8px solid #14b8a6;border-radius:0 20px 20px 0;padding:36px 40px;display:flex;align-items:center;gap:28px}
+.summary-check{color:#2dd4bf;font-size:72px;font-weight:900}
+.summary-text{color:#e2e8f0;font-size:64px;line-height:1.4;font-weight:700;letter-spacing:0.3px}
 /* Scene 5: Follow CTA */
 .follow-container{text-align:center}
-.follow-avatar{width:420px;height:420px;margin:0 auto 24px;background:transparent}
-.follow-avatar img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 4px #fff) drop-shadow(0 0 4px #fff) drop-shadow(0 0 2px #fff)}
-.follow-name{color:#fff;font-size:64px;font-weight:900;margin-bottom:12px;letter-spacing:2px}
-.follow-title{color:#94a3b8;font-size:36px;margin-bottom:40px;letter-spacing:0.5px}
-.follow-btn{background:linear-gradient(135deg,#14b8a6,#0d9488);color:#fff;font-size:50px;font-weight:900;padding:32px 88px;border-radius:20px;display:inline-block;letter-spacing:2px}
+.follow-avatar{width:460px;height:460px;margin:0 auto 28px;background:transparent}
+.follow-avatar img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 10px #fff) drop-shadow(0 0 10px #fff) drop-shadow(0 0 10px #fff) drop-shadow(0 0 10px #fff) drop-shadow(0 0 5px #fff) drop-shadow(0 0 5px #fff) drop-shadow(0 0 5px #fff) drop-shadow(0 0 3px #fff) drop-shadow(0 0 3px #fff) drop-shadow(0 0 3px #fff)}
+.follow-name{color:#fff;font-size:84px;font-weight:900;margin-bottom:16px;letter-spacing:2px}
+.follow-title{color:#94a3b8;font-size:52px;margin-bottom:40px;letter-spacing:0.5px}
+.follow-btn{background:linear-gradient(135deg,#14b8a6,#0d9488);color:#fff;font-size:64px;font-weight:900;padding:36px 96px;border-radius:24px;display:inline-block;letter-spacing:2px}
 .follow-actions{display:flex;gap:32px;justify-content:center;margin-top:40px}
 .follow-action{background:rgba(255,255,255,0.08);border:2px solid rgba(255,255,255,0.15);border-radius:20px;padding:28px 44px;text-align:center}
-.follow-action-icon{font-size:56px;margin-bottom:10px}
-.follow-action-label{color:#fff;font-size:34px;font-weight:700;letter-spacing:1px}
-/* Dr.いわたつ 右下固定イラスト（Scene1-4） */
+.follow-action-icon{font-size:72px;margin-bottom:12px}
+.follow-action-label{color:#fff;font-size:48px;font-weight:700;letter-spacing:1px}
+/* Dr.いわたつ 右下固定イラスト（Scene1-4）白縁取り */
 .dr-avatar-fixed{position:absolute;bottom:40px;right:40px;width:400px;height:400px;z-index:10;pointer-events:none}
-.dr-avatar-fixed img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 4px #fff) drop-shadow(0 0 4px #fff) drop-shadow(0 0 2px #fff)}
+.dr-avatar-fixed img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 8px #fff) drop-shadow(0 0 8px #fff) drop-shadow(0 0 8px #fff) drop-shadow(0 0 8px #fff) drop-shadow(0 0 4px #fff) drop-shadow(0 0 4px #fff) drop-shadow(0 0 4px #fff) drop-shadow(0 0 2px #fff) drop-shadow(0 0 2px #fff) drop-shadow(0 0 2px #fff)}
 </style></head><body>
 <div class="comp" id="comp">
 <div class="bg-circle bg-c1"></div>
@@ -726,7 +735,7 @@ body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino San
 
 <!-- Scene 1: Hook -->
 <div class="scene" id="s1">
-  <div class="hook-text">${escHtml(shortHook)}</div>
+  <div class="hook-text">${escHtml(shortHook).replace(/\n/g, "<br>")}</div>
   <div class="hook-sub">${escHtml(hookSub)}</div>
   <div class="dr-avatar-fixed"><img src="${selectPose(topic, "cover")}" alt="Dr.いわたつ"></div>
 </div>
@@ -734,7 +743,7 @@ body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino San
 <!-- Scene 2: Data -->
 <div class="scene" id="s2">
   <div class="data-section">
-    <div class="data-title">${escHtml(topic.title)}</div>
+    <div class="data-title">${escHtml(details?.reelHook ? shortHook.split("\n").join(" ") : topic.title.split("：")[0])}</div>
     ${d.slice(0, 4).map((item, i) => `<div class="data-card"><div class="data-num">${i + 1}</div><div class="data-text">${escHtml(item)}</div></div>`).join("\n    ")}
   </div>
   <div class="dr-avatar-fixed"><img src="${selectPose(topic, "problem")}" alt="Dr.いわたつ"></div>
@@ -744,8 +753,8 @@ body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino San
 <div class="scene" id="s3">
   <div class="explain-box">
     <div class="explain-title">知っておくべきポイント</div>
-    <div class="explain-text">${addLineBreaks(escHtml(d[2] || topic.aiAngle || "専門医が最新エビデンスをもとに解説"))}</div>
-    <div style="color:#94a3b8;font-size:36px;line-height:1.6;text-align:center;margin-top:24px">${addLineBreaks(escHtml(d[3] || topic.appTieIn || ""))}</div>
+    <div class="explain-text">${escHtml(d[2] || topic.aiAngle || "専門医が最新エビデンスをもとに解説")}</div>
+    <div style="color:#94a3b8;font-size:56px;line-height:1.5;text-align:center;margin-top:28px">${escHtml(d[3] || topic.appTieIn || "")}</div>
     <div style="text-align:center"><span class="source-badge">${escHtml(src)}</span></div>
   </div>
   <div class="dr-avatar-fixed"><img src="${selectPose(topic, "insight")}" alt="Dr.いわたつ"></div>
@@ -753,7 +762,7 @@ body{background:#0f172a;overflow:hidden;font-family:'Noto Sans JP','Hiragino San
 
 <!-- Scene 4: Summary -->
 <div class="scene" id="s4">
-  <div style="color:#fff;font-size:44px;font-weight:900;text-align:center;margin-bottom:24px">まとめ</div>
+  <div style="color:#fff;font-size:88px;font-weight:900;text-align:center;margin-bottom:36px">まとめ</div>
   <div class="summary-grid">
     ${d.slice(0, 3).map((item) => `<div class="summary-item"><div class="summary-check">✓</div><div class="summary-text">${escHtml(item)}</div></div>`).join("\n    ")}
   </div>
@@ -1056,12 +1065,11 @@ function generateSlideHtml(
 }
 
 // 日本語の句読点で改行を入れて読みやすくする
-function addLineBreaks(s: string): string {
-  return s.replace(/。/g, "。<br>").replace(/、/g, "、<br>");
-}
 
 function escHtml(s: string): string {
-  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;")
+    // アルファベット・数字の連続を改行不可にする（FDA, GLP-1 等が途中で切れるのを防止）
+    .replace(/[A-Za-z0-9][A-Za-z0-9.%\-/]+/g, m => `<span style="display:inline-block">${m}</span>`);
 }
 
 // --- topicDetailsがないトピック用のフォールバック文章生成 ---

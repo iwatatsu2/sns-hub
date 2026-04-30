@@ -1,53 +1,5 @@
 {
-  "topic_id": "topic-16",
-  "format": "reel",
-  "hook": "その倦怠感",
-  "scenes": [
-    {
-      "scene": 1,
-      "label": "フック",
-      "time": "0-4s",
-      "main_text": "その倦怠感",
-      "sub_text": "ストレスで片付けていませんか？"
-    },
-    {
-      "scene": 2,
-      "label": "データ提示",
-      "time": "4-9s",
-      "title": "甲状腺異常の実態",
-      "cards": [
-        "有病率 最大10%",
-        "潜在性低下症 4.7%",
-        "通常採血では発見不可",
-        "女性は男性の3倍"
-      ]
-    },
-    {
-      "scene": 3,
-      "label": "解説",
-      "time": "9-13s",
-      "title": "なぜ見逃される？",
-      "body": "一般血液検査にTSHは含まれていない。疑って検査しなければ絶対に見つからない。",
-      "source": "日本甲状腺学会GL 2024"
-    },
-    {
-      "scene": 4,
-      "label": "まとめ",
-      "time": "13-18s",
-      "items": [
-        "不定愁訴にはTSH追加",
-        "脂質異常・心房細動も疑う",
-        "甲状腺触診を習慣化"
-      ]
-    },
-    {
-      "scene": 5,
-      "label": "フォローCTA",
-      "time": "18-23s",
-      "name": "Dr.いわたつ",
-      "title": "糖尿病・内分泌専門医",
-      "cta": "フォローで明日の診療が変わる"
-    }
-  ],
-  "html": "<!DOCTYPE html><html lang=\"ja\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=1080,height=1920\"><title>Reel - Topic 16</title><link href=\"https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap\" rel=\"stylesheet\"><script src=\"https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js\"></script><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Noto Sans JP',sans-serif;overflow:hidden}.comp{width:1080px;height:1920px;position:relative;background:linear-gradient(180deg,#0f172a 0%,#1e293b 50%,#312e81 100%);overflow:hidden}.scene{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;opacity:0;padding:60px}.hook-text{font-size:100px;font-weight:900;color:#fff;text-align:center;line-height:1.3}.hook-sub{font-size:34px;font-weight:400;color:#94a3b8;text-align:center;margin-top:30px}.data-section{width:100%;padding:0 40px}.data-title{font-size:44px;font-weight:700;color:#2dd4bf;text-align:center;margin-bottom:50px}.data-card{background:rgba(20,184,166,0.1);border:2px solid rgba(20,184,166,0.3);border-radius:20px;padding:30px 40px;margin-bottom:24px;display:flex;align-items:center;opacity:0;transform:translateX(-60px)}.data-num{font-size:50px;font-weight:900;color:#14b8a6;min-width:80px}.data-text{font-size:36px;font-weight:700;color:#fff;margin-left:20px}.explain-box{background:rgba(255,255,255,0.05);border:2px solid rgba(20,184,166,0.3);border-radius:24px;padding:50px;width:90%;opacity:0;transform:translateY(40px)}.explain-title{font-size:44px;font-weight:700;color:#2dd4bf;margin-bottom:30px;text-align:center}.explain-text{font-size:38px;font-weight:400;color:#e2e8f0;line-height:1.7}.source-badge{display:inline-block;background:rgba(20,184,166,0.2);color:#2dd4bf;font-size:26px;padding:10px 24px;border-radius:30px;margin-top:30px}.summary-grid{width:90%}.summary-item{display:flex;align-items:center;background:rgba(255,255,255,0.05);border-left:6px solid #14b8a6;border-radius:0 16px 16px 0;padding:32px 36px;margin-bottom:28px;opacity:0;transform:translateX(-40px)}.summary-check{font-size:42px;color:#2dd4bf;margin-right:24px}.summary-text{font-size:34px;font-weight:700;color:#fff}.follow-section{display:flex;flex-direction:column;align-items:center}.follow-avatar{width:260px;height:260px;border-radius:50%;border:6px solid #14b8a6;overflow:hidden;margin-bottom:36px;opacity:0;transform:scale(0.5)}.follow-avatar img{width:100%;height:100%;object-fit:cover}.follow-name{font-size:56px;font-weight:900;color:#fff;margin-bottom:12px}.follow-title{font-size:30px;color:#94a3b8;margin-bottom:40px}.follow-btn{background:linear-gradient(135deg,#14b8a6,#2dd4bf);color:#0f172a;font-size:44px;font-weight:700;padding:24px 80px;border-radius:60px;cursor:pointer}.follow-actions{display:flex;gap:40px;margin-top:32px}.follow-action{color:#94a3b8;font-size:28px}</style></head><body><div class=\"comp\"><div class=\"scene\" id=\"scene1\"><div class=\"hook-text\">その倦怠感</div><div class=\"hook-sub\">ストレスで片付けていませんか？</div></div><div class=\"scene\" id=\"scene2\"><div class=\"data-section\"><div class=\"data-title\">甲状腺異常の実態</div><div class=\"data-card\"><div class=\"data-num\">1</div><div class=\"data-text\">有病率 最大10%</div></div><div class=\"data-card\"><div class=\"data-num\">2</div><div class=\"data-text\">潜在性低下症 4.7%</div></div><div class=\"data-card\"><div class=\"data-num\">3</div><div class=\"data-text\">通常採血では発見不可</div></div><div class=\"data-card\"><div class=\"data-num\">4</div><div class=\"data-text\">女性は男性の3倍</div></div></div></div><div class=\"scene\" id=\"scene3\"><div class=\"explain-box\"><div class=\"explain-title\">なぜ見逃される？</div><div class=\"explain-text\">一般血液検査にTSHは含まれていない。疑って検査しなければ絶対に見つからない。</div><div class=\"source-badge\">日本甲状腺学会GL 2024</div></div></div><div class=\"scene\" id=\"scene4\"><div class=\"summary-grid\"><div class=\"data-title\" style=\"margin-bottom:40px\">明日からの実践</div><div class=\"summary-item\"><div class=\"summary-check\">&#10003;</div><div class=\"summary-text\">不定愁訴にはTSH追加</div></div><div class=\"summary-item\"><div class=\"summary-check\">&#10003;</div><div class=\"summary-text\">脂質異常・心房細動も疑う</div></div><div class=\"summary-item\"><div class=\"summary-check\">&#10003;</div><div class=\"summary-text\">甲状腺触診を習慣化</div></div></div></div><div class=\"scene\" id=\"scene5\"><div class=\"follow-section\"><div class=\"follow-avatar\"><img src=\"/dr-iwatatsu.png\" alt=\"Dr.いわたつ\"></div><div class=\"follow-name\">Dr.いわたつ</div><div class=\"follow-title\">糖尿病・内分泌専門医</div><div class=\"follow-btn\">フォローする</div><div class=\"follow-actions\"><span class=\"follow-action\">保存</span><span class=\"follow-action\">シェア</span></div></div></div></div><script>const tl=gsap.timeline({repeat:-1});tl.to('#scene1',{opacity:1,duration:0.5}).from('.hook-text',{scale:0.8,opacity:0,duration:0.8,ease:'back.out(1.7)'}).from('.hook-sub',{opacity:0,y:20,duration:0.6},'-=0.3').to('#scene1',{opacity:0,duration:0.4},'+=2.5').to('#scene2',{opacity:1,duration:0.5}).from('.data-card',{x:-60,opacity:0,duration:0.6,stagger:0.8,ease:'power2.out'}).to('#scene2',{opacity:0,duration:0.4},'+=1.5').to('#scene3',{opacity:1,duration:0.5}).from('.explain-box',{y:40,opacity:0,duration:0.8,ease:'power2.out'}).to('#scene3',{opacity:0,duration:0.4},'+=2.5').to('#scene4',{opacity:1,duration:0.5}).from('.summary-item',{x:-40,opacity:0,duration:0.6,stagger:1.0,ease:'power2.out'}).to('#scene4',{opacity:0,duration:0.4},'+=2').to('#scene5',{opacity:1,duration:0.5}).from('.follow-avatar',{scale:0.5,opacity:0,duration:0.8,ease:'bounce.out'}).from('.follow-name',{opacity:0,y:20,duration:0.5}).from('.follow-title',{opacity:0,duration:0.4}).from('.follow-btn',{opacity:0,scale:0.9,duration:0.5}).from('.follow-actions',{opacity:0,duration:0.4}).to('#scene5',{opacity:0,duration:0.4},'+=3');</script></body></html>"
+  "reelHook": "甲状腺機能異常、内科外来で見逃さないために",
+  "reelData": [],
+  "reelHtml": ""
 }

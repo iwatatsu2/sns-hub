@@ -440,11 +440,11 @@ export default function Home() {
                 </button>
               </div>
               {/* プレビュー（シンプル表示） */}
-              <div className="rounded-lg overflow-hidden border border-gray-700 bg-black" style={{ aspectRatio: "9/16", maxHeight: "400px" }}>
+              <div className="rounded-lg overflow-hidden border border-gray-700 bg-black" style={{ aspectRatio: "9/16", maxHeight: "400px", position: "relative" }}>
                 <iframe
                   srcDoc={result.reelHtml}
-                  style={{ width: "1080px", height: "1920px", transform: "scale(0.2)", transformOrigin: "top left", border: "none" }}
-                  sandbox="allow-scripts allow-same-origin"
+                  style={{ width: "1080px", height: "1920px", transform: "scale(0.2)", transformOrigin: "top left", border: "none", pointerEvents: "none" }}
+                  sandbox="allow-scripts"
                   title="リールプレビュー"
                 />
               </div>

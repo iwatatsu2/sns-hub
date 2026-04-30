@@ -1,45 +1,5 @@
 {
-  "topicId": "topic-11",
-  "hook": "AI糖尿病管理\n10億ドル",
-  "scenes": [
-    {
-      "scene": 1,
-      "title": "フック",
-      "text": "AI糖尿病管理 10億ドル",
-      "subText": "2026年、約1500億円市場へ"
-    },
-    {
-      "scene": 2,
-      "title": "データ提示",
-      "items": [
-        "CGMデータのAI解析",
-        "処方支援AI（CDSS）",
-        "セルフケアAI",
-        "年成長率33%超"
-      ]
-    },
-    {
-      "scene": 3,
-      "title": "解説",
-      "text": "FreeDM2試験でLibre使用群はHbA1c 0.6%改善、TIR 2.5時間延長",
-      "source": "Abbott 2026"
-    },
-    {
-      "scene": 4,
-      "title": "まとめ",
-      "items": [
-        "AIは診療の「武器」になる",
-        "最終判断は医師が行う",
-        "CGMデータ活用が鍵"
-      ]
-    },
-    {
-      "scene": 5,
-      "title": "フォローCTA",
-      "name": "Dr.いわたつ",
-      "credential": "糖尿病専門医"
-    }
-  ],
-  "html": "<!DOCTYPE html><html lang=\"ja\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=1080,height=1920\"><script src=\"https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js\"></script><link href=\"https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap\" rel=\"stylesheet\"><style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1920px;overflow:hidden;font-family:'Noto Sans JP',sans-serif}.comp{width:1080px;height:1920px;position:relative;background:linear-gradient(180deg,#0f172a 0%,#1e293b 50%,#312e81 100%)}.scene{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;opacity:0;padding:60px}.hook-text{font-size:100px;font-weight:900;color:#fff;text-align:center;line-height:1.2;text-shadow:0 4px 20px rgba(0,0,0,0.5)}.hook-sub{font-size:34px;font-weight:400;color:#2dd4bf;margin-top:30px;text-align:center}.data-section{width:100%;padding:0 40px}.data-title{font-size:44px;font-weight:700;color:#2dd4bf;margin-bottom:40px;text-align:center}.data-card{background:rgba(255,255,255,0.08);border:1px solid rgba(45,212,191,0.3);border-radius:20px;padding:28px 36px;margin-bottom:20px;display:flex;align-items:center;gap:24px;opacity:0;transform:translateX(-60px)}.data-num{font-size:50px;font-weight:900;color:#14b8a6;min-width:60px}.data-text{font-size:36px;font-weight:700;color:#fff}.explain-box{background:rgba(20,184,166,0.1);border:2px solid rgba(45,212,191,0.4);border-radius:24px;padding:48px;margin:0 40px;max-width:960px}.explain-title{font-size:44px;font-weight:700;color:#2dd4bf;margin-bottom:24px;text-align:center}.explain-text{font-size:38px;font-weight:400;color:#fff;line-height:1.6;text-align:center}.source-badge{display:inline-block;background:rgba(45,212,191,0.2);border:1px solid #2dd4bf;border-radius:50px;padding:10px 24px;font-size:26px;color:#2dd4bf;margin-top:24px}.summary-grid{width:100%;padding:0 40px}.summary-item{background:rgba(255,255,255,0.05);border-left:6px solid #14b8a6;border-radius:0 16px 16px 0;padding:32px 36px;margin-bottom:24px;display:flex;align-items:center;gap:20px;opacity:0;transform:translateY(30px)}.summary-check{font-size:42px;color:#2dd4bf}.summary-text{font-size:34px;font-weight:700;color:#fff}.follow-section{display:flex;flex-direction:column;align-items:center;gap:24px}.follow-avatar{width:260px;height:260px;border-radius:50%;border:5px solid #14b8a6;overflow:hidden;opacity:0;transform:scale(0.5)}.follow-avatar img{width:100%;height:100%;object-fit:cover}.follow-name{font-size:56px;font-weight:900;color:#fff}.follow-title{font-size:30px;color:#94a3b8}.follow-btn{background:linear-gradient(135deg,#14b8a6,#2dd4bf);border:none;border-radius:50px;padding:20px 80px;font-size:44px;font-weight:700;color:#0f172a;cursor:pointer;margin-top:16px}.follow-actions{display:flex;gap:40px;margin-top:20px}.follow-action{font-size:28px;color:#94a3b8}</style></head><body><div class=\"comp\"><div class=\"scene\" id=\"scene1\"><div class=\"hook-text\">AI糖尿病管理<br>10億ドル</div><div class=\"hook-sub\">2026年、約1500億円市場へ</div></div><div class=\"scene\" id=\"scene2\"><div class=\"data-section\"><div class=\"data-title\">市場を支える3本柱+成長率</div><div class=\"data-card\" id=\"dc1\"><span class=\"data-num\">1</span><span class=\"data-text\">CGMデータのAI解析</span></div><div class=\"data-card\" id=\"dc2\"><span class=\"data-num\">2</span><span class=\"data-text\">処方支援AI（CDSS）</span></div><div class=\"data-card\" id=\"dc3\"><span class=\"data-num\">3</span><span class=\"data-text\">セルフケアAI</span></div><div class=\"data-card\" id=\"dc4\"><span class=\"data-num\">+</span><span class=\"data-text\">年成長率33%超</span></div></div></div><div class=\"scene\" id=\"scene3\"><div class=\"explain-box\"><div class=\"explain-title\">最新エビデンス</div><div class=\"explain-text\">FreeDM2試験で<br>Libre使用群は<br>HbA1c 0.6%改善<br>TIR 2.5時間延長</div><div style=\"text-align:center\"><span class=\"source-badge\">Abbott 2026</span></div></div></div><div class=\"scene\" id=\"scene4\"><div class=\"summary-grid\"><div class=\"data-title\" style=\"color:#fff;margin-bottom:48px\">Take Home Message</div><div class=\"summary-item\" id=\"si1\"><span class=\"summary-check\">&#10003;</span><span class=\"summary-text\">AIは診療の「武器」になる</span></div><div class=\"summary-item\" id=\"si2\"><span class=\"summary-check\">&#10003;</span><span class=\"summary-text\">最終判断は医師が行う</span></div><div class=\"summary-item\" id=\"si3\"><span class=\"summary-check\">&#10003;</span><span class=\"summary-text\">CGMデータ活用が鍵</span></div></div></div><div class=\"scene\" id=\"scene5\"><div class=\"follow-section\"><div class=\"follow-avatar\" id=\"avatar\"><img src=\"/dr-iwatatsu.png\" alt=\"Dr.いわたつ\"></div><div class=\"follow-name\">Dr.いわたつ</div><div class=\"follow-title\">糖尿病専門医</div><button class=\"follow-btn\">フォローする</button><div class=\"follow-actions\"><span class=\"follow-action\">&#9733; 保存</span><span class=\"follow-action\">&#8618; シェア</span></div></div></div></div><script>const tl=gsap.timeline({repeat:-1});tl.to('#scene1',{opacity:1,duration:0.5}).from('.hook-text',{scale:0.8,opacity:0,duration:0.8,ease:'back.out(1.7)'}).from('.hook-sub',{y:30,opacity:0,duration:0.6},'-=0.3').to('#scene1',{opacity:0,duration:0.4},'+=2.5').to('#scene2',{opacity:1,duration:0.5}).from('#dc1',{x:-60,opacity:0,duration:0.6,ease:'power2.out'}).from('#dc2',{x:-60,opacity:0,duration:0.6,ease:'power2.out'},'-=0').from('#dc3',{x:-60,opacity:0,duration:0.6,ease:'power2.out'},'-=0').from('#dc4',{x:-60,opacity:0,duration:0.6,ease:'power2.out'},'-=0').to('#scene2',{opacity:0,duration:0.4},'+=1.5').to('#scene3',{opacity:1,duration:0.5}).from('.explain-box',{y:40,opacity:0,duration:0.8,ease:'power2.out'}).to('#scene3',{opacity:0,duration:0.4},'+=3').to('#scene4',{opacity:1,duration:0.5}).from('#si1',{y:30,opacity:0,duration:0.6,ease:'power2.out'}).from('#si2',{y:30,opacity:0,duration:0.6,ease:'power2.out'},'-=0').from('#si3',{y:30,opacity:0,duration:0.6,ease:'power2.out'},'-=0').to('#scene4',{opacity:0,duration:0.4},'+=2').to('#scene5',{opacity:1,duration:0.5}).from('#avatar',{scale:0.5,opacity:0,duration:0.8,ease:'back.out(1.7)'}).from('.follow-name',{y:20,opacity:0,duration:0.5}).from('.follow-title',{y:20,opacity:0,duration:0.4}).from('.follow-btn',{scale:0.9,opacity:0,duration:0.5,ease:'back.out(1.7)'}).to('#scene5',{opacity:0,duration:0.4},'+=3');</script></body></html>",
-  "createdAt": "2026-04-22"
+  "reelHook": "AI糖尿病管理市場、2026年に10億ドル突破",
+  "reelData": [],
+  "reelHtml": ""
 }
