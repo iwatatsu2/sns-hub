@@ -439,12 +439,12 @@ export default function Home() {
                   HTMLダウンロード
                 </button>
               </div>
-              {/* プレビュー（シンプル表示） */}
+              {/* プレビュー（静止画・スクリプト無効） */}
               <div className="rounded-lg overflow-hidden border border-gray-700 bg-black" style={{ aspectRatio: "9/16", maxHeight: "400px", position: "relative" }}>
                 <iframe
-                  srcDoc={result.reelHtml}
+                  srcDoc={result.reelHtml.replace(/<script[\s\S]*?<\/script>/gi, "").replace('id="s1"', 'id="s1" style="opacity:1"')}
                   style={{ width: "1080px", height: "1920px", transform: "scale(0.2)", transformOrigin: "top left", border: "none", pointerEvents: "none" }}
-                  sandbox="allow-scripts"
+                  sandbox=""
                   title="リールプレビュー"
                 />
               </div>
