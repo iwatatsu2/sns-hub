@@ -1,0 +1,102 @@
+[
+  {
+    "id": "ta-001",
+    "name": "ひろつ先生",
+    "xHandle": "@hirotsuclinic",
+    "url": "https://x.com/hirotsuclinic",
+    "category": "医師AI",
+    "memo": "Claude Codeで35個のツール自作。同じレーンの先行者",
+    "lastReplied": null,
+    "followed": false
+  },
+  {
+    "id": "ta-002",
+    "name": "深津貴之",
+    "xHandle": "@fladdict",
+    "url": "https://x.com/fladdict",
+    "category": "テック",
+    "memo": "AI活用の第一人者。note CXO。ロールモデル的存在",
+    "lastReplied": null,
+    "followed": false
+  },
+  {
+    "id": "ta-003",
+    "name": "けんすう",
+    "xHandle": "@kensuu",
+    "url": "https://x.com/kensuu",
+    "category": "テック",
+    "memo": "アル株式会社代表。AI×プロダクトの発信多い",
+    "lastReplied": null,
+    "followed": false
+  },
+  {
+    "id": "ta-004",
+    "name": "しまだ先生",
+    "xHandle": "@shimada_and_ai",
+    "url": "https://x.com/shimada_and_ai",
+    "category": "医師AI",
+    "memo": "医師×AI発信者。Antaaウェビナー登壇",
+    "lastReplied": null,
+    "followed": false
+  },
+  {
+    "id": "ta-005",
+    "name": "田中大介",
+    "xHandle": "@DaisukeMAN",
+    "url": "https://x.com/DaisukeMAN",
+    "category": "テック",
+    "memo": "チューリングCOO。Claude Code活用を発信",
+    "lastReplied": null,
+    "followed": true
+  },
+  {
+    "id": "ta-006",
+    "name": "Naofumi Tsuchiya",
+    "xHandle": "@naofumit",
+    "url": "https://x.com/naofumit",
+    "category": "テック",
+    "memo": "Goodpatch代表。全社Claude Code導入で200アプリ",
+    "lastReplied": null,
+    "followed": false
+  },
+  {
+    "id": "ta-007",
+    "name": "血糖おじさん",
+    "xHandle": "",
+    "url": "",
+    "category": "医療",
+    "memo": "糖尿病発信の先行者。リプライで差別化する相手",
+    "lastReplied": null,
+    "followed": false
+  },
+  {
+    "id": "ta-008",
+    "name": "ぽちゃなーす",
+    "xHandle": "",
+    "url": "",
+    "category": "医療",
+    "memo": "医療系インフルエンサー。同ジャンルの参考",
+    "lastReplied": null,
+    "followed": false
+  },
+  {
+    "id": "ta-009",
+    "name": "上村侑太郎",
+    "xHandle": "@yu_py",
+    "url": "https://x.com/yu_py",
+    "category": "テック",
+    "memo": "Claude Codeの解説記事が話題。AI開発者",
+    "lastReplied": null,
+    "followed": true
+  },
+  {
+    "id": "ta-010",
+    "name": "Antaa公式",
+    "xHandle": "@antaborad",
+    "url": "https://x.com/antaborad",
+    "category": "医療",
+    "memo": "医師向けプラットフォーム。スライド投稿時に連携",
+    "lastReplied": null,
+    "followed": true
+  }
+]
