@@ -17,6 +17,14 @@ export interface SlideData {
   html?: string;
 }
 
+export interface AnalyticsInsight {
+  tier: "S" | "A" | "B" | "C" | "unknown";
+  avgLikes: number;
+  recommendedFormat: "carousel" | "reel";
+  suggestion: string;
+  strategyTips: string[];
+}
+
 export interface GeneratedResult {
   platforms: import("./posts").PlatformContent;
   reelScenes: string[];
@@ -25,4 +33,5 @@ export interface GeneratedResult {
   slideOutline: string[];
   references: string[];
   factChecks: FactCheckItem[];
+  analyticsInsight?: AnalyticsInsight;
 }

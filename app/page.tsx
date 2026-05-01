@@ -96,6 +96,14 @@ function PostLink({ platform }: { platform: keyof typeof POST_LINKS }) {
 }
 
 /* ---------- 生成結果の型 ---------- */
+interface AnalyticsInsight {
+  tier: "S" | "A" | "B" | "C" | "unknown";
+  avgLikes: number;
+  recommendedFormat: "carousel" | "reel";
+  suggestion: string;
+  strategyTips: string[];
+}
+
 interface GeneratedResult {
   noteTitle: string;
   noteBody: string;
@@ -105,6 +113,7 @@ interface GeneratedResult {
   noteBodyPublic: string;
   review: string;
   reelHtml: string;
+  analyticsInsight?: AnalyticsInsight;
 }
 
 /* ---------- メインページ ---------- */
@@ -242,6 +251,7 @@ export default function Home() {
         igHashtags,
         review: aiReview || "💡 高品質なレビューはClaude Codeで「/sns テーマ名」を実行すると生成されます",
         reelHtml: baseData.reelHtml || "",
+        analyticsInsight: baseData.analyticsInsight || undefined,
       });
 
       // トピックステータス更新
@@ -402,6 +412,35 @@ export default function Home() {
             </div>
             <pre className="text-gray-300 text-sm whitespace-pre-wrap font-sans">{result.xText}</pre>
           </div>
+
+          {/* Instagram Analytics Insight */}
+          {result.analyticsInsight && (
+            <div className="border-l-4 border-yellow-500 bg-gray-800 rounded-lg p-4">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="font-bold text-white text-sm">📈 インスタ解析インサイト</span>
+                <span className={`text-xs px-2 py-0.5 rounded font-bold ${
+                  result.analyticsInsight.tier === "S" ? "bg-green-700 text-green-200" :
+                  result.analyticsInsight.tier === "A" ? "bg-blue-700 text-blue-200" :
+                  result.analyticsInsight.tier === "B" ? "bg-yellow-700 text-yellow-200" :
+                  "bg-red-700 text-red-200"
+                }`}>
+                  Tier {result.analyticsInsight.tier} / 予測いいね {result.analyticsInsight.avgLikes}
+                </span>
+                <span className="text-xs bg-gray-700 text-gray-300 px-2 py-0.5 rounded">
+                  推奨: {result.analyticsInsight.recommendedFormat === "carousel" ? "カルーセル" : "リール"}
+                </span>
+              </div>
+              <p className="text-yellow-300 text-xs mb-2">{result.analyticsInsight.suggestion}</p>
+              <details className="text-xs text-gray-400">
+                <summary className="cursor-pointer hover:text-gray-200">戦略ヒント</summary>
+                <ul className="mt-1 space-y-1 ml-2">
+                  {result.analyticsInsight.strategyTips.map((tip, i) => (
+                    <li key={i}>{tip}</li>
+                  ))}
+                </ul>
+              </details>
+            </div>
+          )}
 
           {/* Instagram */}
           <div className="border-l-4 border-pink-500 bg-gray-800 rounded-lg p-4">

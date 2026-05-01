@@ -1,6 +1,7 @@
 import type { Topic } from "./topics";
 import type { PlatformContent } from "./posts";
 import { getBrandContext, isHotTopic, getRelatedTrends } from "./ooda";
+import { INSTAGRAM_ANALYTICS, getThemeRecommendation, getRecommendedFormat } from "../data/instagram-analytics";
 
 // OODAブランド戦略を自動参照
 const BRAND = getBrandContext();
@@ -105,6 +106,14 @@ export interface SlideData {
   html?: string; // antaa用の高品質HTMLスライド
 }
 
+export interface AnalyticsInsight {
+  tier: "S" | "A" | "B" | "C" | "unknown";
+  avgLikes: number;
+  recommendedFormat: "carousel" | "reel";
+  suggestion: string;
+  strategyTips: string[];
+}
+
 export interface GeneratedResult {
   platforms: PlatformContent;
   reelScenes: string[];
@@ -113,6 +122,7 @@ export interface GeneratedResult {
   slideOutline: string[];
   references: string[];
   factChecks: FactCheckItem[];
+  analyticsInsight?: AnalyticsInsight;
 }
 
 // テーマ別の参考文献（リンク付き）
@@ -462,6 +472,22 @@ interface GeneratedSlides {
   slides: SlideData[];
 }
 
+function buildAnalyticsInsight(topic: Topic): AnalyticsInsight {
+  const rec = getThemeRecommendation(`${topic.title} ${topic.hook}`);
+  const format = getRecommendedFormat(topic.title);
+  const tips: string[] = [];
+  for (const rule of INSTAGRAM_ANALYTICS.contentStrategy) {
+    tips.push(`${rule.rule}: ${rule.detail}`);
+  }
+  if (rec.tier === "C" || rec.tier === "B") {
+    tips.unshift("⚠️ このテーマは過去データでエンゲージメント低め。患者の実生活との接点を強調する切り口を検討");
+  }
+  if (format === "carousel") {
+    tips.unshift("📊 データ推奨: カルーセル形式（平均いいね37.0 vs リール19.4）");
+  }
+  return { tier: rec.tier, avgLikes: rec.avgLikes, recommendedFormat: format, suggestion: rec.suggestion, strategyTips: tips };
+}
+
 export function generateContent(topic: Topic): GeneratedResult {
   // エージェント生成コンテンツをインデックスから取得
   const entry = generatedData[topic.id];
@@ -491,6 +517,7 @@ export function generateContent(topic: Topic): GeneratedResult {
         level: "verified" as FactCheckLevel,
         note: "エージェントによるリサーチ済み",
       }],
+      analyticsInsight: buildAnalyticsInsight(topic),
     };
   }
 
@@ -671,6 +698,7 @@ export function generateContent(topic: Topic): GeneratedResult {
     slideOutline: reelScenes.map((s, i) => `Slide ${i + 1}: ${s.split("\n")[0]}`),
     references,
     factChecks,
+    analyticsInsight: buildAnalyticsInsight(topic),
   };
 }
 
