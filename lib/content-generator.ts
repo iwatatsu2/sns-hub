@@ -2,6 +2,7 @@ import type { Topic } from "./topics";
 import type { PlatformContent } from "./posts";
 import { getBrandContext, isHotTopic, getRelatedTrends } from "./ooda";
 import { INSTAGRAM_ANALYTICS, getThemeRecommendation, getRecommendedFormat } from "../data/instagram-analytics";
+import { generateReelByTemplate, selectReelTemplate } from "./reel-templates";
 
 // OODAブランド戦略を自動参照
 const BRAND = getBrandContext();
@@ -694,7 +695,9 @@ export function generateContent(topic: Topic): GeneratedResult {
   ];
 
   // --- リールHTML ---
-  const reelHtml = generateReelHtml(topic, reelData);
+  // テンプレートエンジンでリール生成（カテゴリ/キーワードで自動選択）
+  const reelResult = generateReelByTemplate(topic, reelData, generateReelHtml);
+  const reelHtml = reelResult.html;
 
   // --- スライドデータ ---
   const slides = generateSlides(topic, references, reelData, refs);
