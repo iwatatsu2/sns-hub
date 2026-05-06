@@ -167,6 +167,9 @@ const categoryHashtags: Record<string, string[]> = {
   ai: ["AI医療", "医療DX", "研修医"],
   endocrine: ["内分泌", "専門医", "内科"],
   app: ["医療アプリ", "DM_Compass", "研修医"],
+  metabolism: ["血糖値", "血糖スパイク", "健康管理", "代謝"],
+  "ai-medicine": ["AI医療", "医療アプリ", "医療DX", "プログラミング"],
+  "myth-busting": ["健康の常識", "医師が解説", "実は間違い"],
 };
 
 // テーマ別の詳細コンテンツマップ
@@ -556,15 +559,19 @@ export function generateContent(topic: Topic): GeneratedResult {
     });
   }
 
-  // --- X: ガイドライン準拠フック構造（OODA戦略反映） ---
+  // --- X: バズ構造対応フック（カテゴリ別テンプレート） ---
   const xBaseText = details?.xText || topic.hook;
   const hot = isHotTopic(topic.title);
   const trends = getRelatedTrends(topic.title);
   const trendNote = trends.length > 0 ? `\n\n📈 ${trends[0].split("—")[0].trim()}` : "";
+  const isGeneralTopic = ["metabolism", "ai-medicine", "myth-busting"].includes(topic.category);
+  const xCloser = isGeneralTopic
+    ? `糖尿病専門医が本音で語ります。`
+    : `糖尿病専門医が解説します。`;
   const xText = truncate(
     (hot ? `🔥 ` : "") +
       `${xBaseText}\n\n` +
-      `糖尿病専門医が解説します。` +
+      xCloser +
       trendNote + `\n\n` +
       (topic.source ? `📚 ${topic.source}\n\n` : "") +
       `👇 詳しくはプロフィールのリンクから\n` +
@@ -632,16 +639,23 @@ export function generateContent(topic: Topic): GeneratedResult {
       (topic.source ? `ソース: ${topic.source}\n` : "") +
       (topic.aiAngle ? `AI切り口: ${topic.aiAngle}\n` : "");
 
-  // --- Instagram: キャプション + ハッシュタグ ---
-  // --- IG: ガイドライン準拠（保存率重視CTA） ---
+  // --- Instagram: バズ構造対応キャプション ---
+  const igCta = isGeneralTopic
+    ? `━━━━━━━━━━━━━━━\n` +
+      `💾 友達にも教えたいなら【保存】\n` +
+      `📤 「知らなかった！」と思ったら【シェア】\n` +
+      `❤️ 参考になったら【いいね】\n` +
+      `👤 健康の新常識を知りたいなら【フォロー】\n` +
+      `━━━━━━━━━━━━━━━`
+    : `━━━━━━━━━━━━━━━\n` +
+      `💾 後で見返すなら【保存】\n` +
+      `❤️ 参考になったら【いいね】\n` +
+      `👤 もっと知りたいなら【フォロー】\n` +
+      `━━━━━━━━━━━━━━━`;
   const igCaption =
     `${topic.hook}\n\n` +
     (topic.source ? `📚 参考: ${topic.source}\n\n` : "") +
-    `━━━━━━━━━━━━━━━\n` +
-    `💾 後で見返すなら【保存】\n` +
-    `❤️ 参考になったら【いいね】\n` +
-    `👤 もっと知りたいなら【フォロー】\n` +
-    `━━━━━━━━━━━━━━━\n\n` +
+    igCta + `\n\n` +
     `${BRAND.tagline}\n` +
     `📍 プロフィールのリンクから詳しい記事が読めます`;
 
@@ -1110,11 +1124,24 @@ const categoryLabels: Record<string, string> = {
   ai: "AI医療",
   endocrine: "内分泌",
   app: "医療アプリ",
+  metabolism: "代謝・血糖管理",
+  "ai-medicine": "AI×医療",
+  "myth-busting": "医療の常識",
 };
 
 function generateFallbackIntro(topic: Topic): string {
   const cat = categoryLabels[topic.category] || "医療";
-  // ガイドライン準拠リード文: 悩み代弁→メリット→権威性→結論チラ見せ
+  const isGeneral = ["metabolism", "ai-medicine", "myth-busting"].includes(topic.category);
+
+  if (isGeneral) {
+    return (
+      `${topic.hook}\n\n` +
+      `こんにちは、糖尿病専門医のDr.いわたつです。\n\n` +
+      `今回は、多くの方が気になっているであろう「${topic.title}」について、専門医の視点からお話しします。\n\n` +
+      `ネットには色々な情報が溢れていますが、エビデンスに基づいた「本当のところ」をお伝えします。`
+    );
+  }
+
   return (
     `「${topic.title}って、結局どうなの？」——${cat}の外来で患者さんからもよく聞かれるテーマです。\n\n` +
     `SNSでは断片的な情報が飛び交っていますが、臨床に活かすには体系的な理解が必要です。\n\n` +

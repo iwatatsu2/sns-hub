@@ -80,30 +80,33 @@ export const INSTAGRAM_ANALYTICS: InstagramAnalytics = {
   ],
 
   insights: [
-    "カルーセル投稿（平均37.0いいね）がリール（平均19.4いいね）を大幅に上回る",
-    "インスリン関連・基礎知識テーマが最高エンゲージメント（81いいね）",
-    "HbA1c、TIR等の検査指標・最新指標テーマも高反応",
-    "シックデイ・旅行中など具体的な生活管理テーマが人気",
-    "アプリ直接宣伝はエンゲージメント低め（10-20台）",
-    "GLP-1薬のFDA承認など最新薬剤情報もエンゲージメント低め",
+    "既存フォロワー内ではカルーセル(37.0)>リール(19.4)だが、新規リーチはリールが圧倒的",
+    "インスリン・CGM・生活管理テーマが既存層に高反応 → カルーセルで維持",
+    "実験系・常識破壊・代謝ハックは未検証だが一般層バズの可能性大 → リールで攻める",
+    "GLP-1/薬剤情報は単体だと低反応。「専門医の本音」切り口なら一般層に刺さる",
+    "アプリ直接宣伝NG。課題解決ストーリーの文脈で紹介",
   ],
 
   contentStrategy: [
     {
-      rule: "基礎知識・生活管理を優先",
-      detail: "インスリンの種類、HbA1c、TIR等の基礎的テーマをカルーセルで定期発信。季節ごとの注意点や患者のよくある質問も効果的",
+      rule: "リール優先（新規リーチ重視）",
+      detail: "IGアルゴリズムがリール優遇。フォロワー外リーチはリールがカルーセルの10倍。週3リール+週2カルーセルの比率で運用",
     },
     {
-      rule: "カルーセル優先",
-      detail: "重要な医療情報はカルーセルで発信。リールは親しみやすさの演出やアプリ操作画面など用途を明確に分ける",
+      rule: "バズ構造を意識した企画設計",
+      detail: "保存・シェアされるのは①意外性（専門医が◯◯する理由）②対立構造（A vs B）③実験系（CGMつけて◯◯した結果）④常識破壊（◯◯は嘘）の4パターン",
     },
     {
-      rule: "アプリ紹介はストーリー仕立て",
-      detail: "アプリの直接宣伝ではなく、患者の具体的な困りごとを提示→解決手段としてアプリを紹介するストーリー形式に",
+      rule: "ターゲットを一般層に拡大",
+      detail: "糖尿病患者だけでなく、健康意識の高いビジネスパーソン・ダイエッターに刺さるテーマ（血糖スパイク、代謝ハック、食後の眠気）を7割に",
     },
     {
-      rule: "具体的な患者の声をテーマに",
-      detail: "実際の診療でよく聞かれる質問や困りごとをテーマにすると共感を生みやすい",
+      rule: "AI実装コンテンツで差別化",
+      detail: "自作アプリのデモ、AIで医療アプリを作る過程のリールは他の医師インフルエンサーとの最大の差別化ポイント。月2本以上",
+    },
+    {
+      rule: "フックは最初の1秒で決まる",
+      detail: "リールの冒頭・カルーセルの1枚目で「えっ？」と思わせるフック。数字・逆説・疑問形を活用",
     },
   ],
 };
@@ -116,7 +119,29 @@ export function getThemeRecommendation(themeKeywords: string): {
 } {
   const text = themeKeywords.toLowerCase();
 
-  // キーワードマッチでテーマ判定
+  // === 新戦略: バズ構造テーマを最優先 ===
+  // 実験系・CGM体験
+  if (/cgm.*つけて|つけて.*cgm|実験|検証|やってみた|してみた|した結果/.test(text)) {
+    return { tier: "S", avgLikes: 80, suggestion: "実験系は最高のバズ構造。リールで体験を見せる" };
+  }
+  // 常識破壊・myth-busting
+  if (/嘘|本当|実は|逆に|間違い|常識|誤解|やめない理由|勧めない/.test(text)) {
+    return { tier: "S", avgLikes: 75, suggestion: "常識を覆す切り口はシェアされやすい。リール推奨" };
+  }
+  // 代謝ハック・ビジネスパーソン向け
+  if (/血糖スパイク|眠気|集中力|パフォーマンス|代謝|ダイエット|痩せ/.test(text)) {
+    return { tier: "S", avgLikes: 70, suggestion: "一般層に刺さるテーマ。リールで短く解説" };
+  }
+  // AI×医療
+  if (/ai|claude|chatgpt|アプリ.*作|開発|プログラミング/.test(text)) {
+    return { tier: "S", avgLikes: 65, suggestion: "差別化の核。デモ動画リール or 開発過程カルーセル" };
+  }
+  // VS・比較系
+  if (/vs|比較|どっち|どちら|違い/.test(text)) {
+    return { tier: "S", avgLikes: 65, suggestion: "対立構造はエンゲージメント高。保存されやすい" };
+  }
+
+  // === 既存の高パフォーマンステーマ ===
   if (/インスリン.*(基礎|種類|使い分け)/.test(text) || /基礎知識.*インスリン/.test(text)) {
     return { tier: "S", avgLikes: 81, suggestion: "最高エンゲージメントテーマ。カルーセルで詳しく解説" };
   }
@@ -124,37 +149,37 @@ export function getThemeRecommendation(themeKeywords: string): {
     return { tier: "S", avgLikes: 66, suggestion: "高反応テーマ。患者教育の観点でカルーセル推奨" };
   }
   if (/tir|cgm|リブレ|デキスコム|血糖モニタ/.test(text)) {
-    return { tier: "S", avgLikes: 58, suggestion: "最新指標テーマは関心が高い。カルーセルで図解推奨" };
+    return { tier: "S", avgLikes: 58, suggestion: "最新指標テーマは関心が高い。リールで実体験を見せると◎" };
   }
   if (/シックデイ|旅行|低血糖.*対処|生活管理/.test(text)) {
-    return { tier: "S", avgLikes: 44, suggestion: "具体的な生活場面テーマは共感を得やすい。カルーセル推奨" };
+    return { tier: "A", avgLikes: 44, suggestion: "具体的な生活場面テーマは共感を得やすい" };
   }
   if (/食事|カーボ|糖質|栄養/.test(text)) {
-    return { tier: "A", avgLikes: 30, suggestion: "食事テーマは安定した関心。実践的な内容をカルーセルで" };
+    return { tier: "A", avgLikes: 30, suggestion: "食事テーマは安定した関心。実践的な内容を" };
   }
   if (/合併症|腎症|網膜|神経障害|フットケア/.test(text)) {
     return { tier: "A", avgLikes: 26, suggestion: "合併症テーマは一定の関心あり。予防の観点で" };
   }
   if (/家族|サポート/.test(text)) {
-    return { tier: "A", avgLikes: 26, suggestion: "家族向けテーマは共感を得やすい。カルーセル推奨" };
-  }
-  if (/アプリ|insucalc|dm compass/.test(text)) {
-    return { tier: "B", avgLikes: 18, suggestion: "アプリ紹介は直接宣伝を避け、患者の困りごと→解決策の構成で" };
+    return { tier: "A", avgLikes: 26, suggestion: "家族向けテーマは共感を得やすい" };
   }
   if (/glp-1|新薬|fda|承認/.test(text)) {
-    return { tier: "C", avgLikes: 10, suggestion: "最新薬剤情報は反応低め。患者の実生活への影響と絡めて" };
+    return { tier: "B", avgLikes: 15, suggestion: "薬剤情報単体は反応低め。「専門医の本音」「意外な事実」等の切り口で一般層に訴求" };
+  }
+  if (/アプリ|insucalc|dm compass/.test(text)) {
+    return { tier: "B", avgLikes: 18, suggestion: "直接宣伝NG。開発ストーリーや課題解決の文脈で" };
   }
 
-  return { tier: "unknown", avgLikes: 30, suggestion: "過去データなし。カルーセル形式で基礎知識寄りの切り口推奨" };
+  return { tier: "unknown", avgLikes: 30, suggestion: "過去データなし。意外性のあるフックをつけてリール推奨" };
 }
 
-// Instagram投稿生成時の推奨フォーマットを返す
+// Instagram投稿生成時の推奨フォーマットを返す（リール優先に転換）
 export function getRecommendedFormat(topic: string): "carousel" | "reel" {
   const text = topic.toLowerCase();
-  // リールが適するケース: アプリデモ、日常紹介、親しみやすさ演出
-  if (/アプリ.*デモ|操作画面|日常|vlog|ルーティン/.test(text)) {
-    return "reel";
+  // カルーセルが適するケース: 網羅的な基礎知識、比較表、チェックリスト
+  if (/基礎知識|種類.*一覧|チェックリスト|まとめ|ガイドライン/.test(text)) {
+    return "carousel";
   }
-  // それ以外は基本カルーセル推奨
-  return "carousel";
+  // それ以外は基本リール推奨（新規リーチ最大化）
+  return "reel";
 }

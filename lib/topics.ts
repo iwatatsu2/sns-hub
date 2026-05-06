@@ -3,7 +3,7 @@ import path from "path";
 
 const DATA_FILE = path.join(process.cwd(), "data", "topics.json");
 
-export type TopicCategory = "diabetes" | "obesity" | "ai" | "endocrine" | "app";
+export type TopicCategory = "diabetes" | "obesity" | "ai" | "endocrine" | "app" | "metabolism" | "ai-medicine" | "myth-busting";
 export type TopicStatus = "pending" | "approved" | "rejected" | "generated";
 
 export interface Topic {
