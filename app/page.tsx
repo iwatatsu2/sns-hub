@@ -234,23 +234,27 @@ export default function Home() {
       const igCaption = baseData.platforms?.instagram?.caption || "";
       const igHashtags = baseData.platforms?.instagram?.hashtags || [];
 
-      // AI生成コンテンツがあれば優先（Claude Codeで事前生成→generated-index.jsonに保存済み）
-      const aiNote = baseData.aiContent?.noteBody || "";
-      const aiNotePublic = baseData.aiContent?.noteBodyPublic || "";
-      const aiXText = baseData.aiContent?.xText || "";
-      const aiReview = baseData.aiContent?.review || "";
+      // AI生成コンテンツがあれば優先（note配下に格納）
+      const ai = baseData.aiContent;
+      const aiNote = ai?.note?.noteBody || ai?.noteBody || "";
+      const aiNoteTitle = ai?.note?.noteTitle || "";
+      const aiXText = ai?.note?.xText || ai?.xText || "";
+      const aiIgCaption = ai?.note?.igCaption || ai?.igCaption || "";
+      const aiIgHashtags = ai?.note?.igHashtags || ai?.igHashtags || [];
+      const aiReelHtml = ai?.reel?.reelHtml || ai?.reelHtml || "";
+      const aiReview = ai?.review || "";
 
       setProgress("完了！");
 
       setResult({
-        noteTitle: `【専門医が解説】${topic.title}`,
+        noteTitle: aiNoteTitle || `【専門医が解説】${topic.title}`,
         noteBody: aiNote || noteBody,
         xText: aiXText || xText,
-        noteBodyPublic: aiNotePublic,
-        igCaption,
-        igHashtags,
+        noteBodyPublic: "",
+        igCaption: aiIgCaption || igCaption,
+        igHashtags: (aiIgHashtags.length > 0 ? aiIgHashtags : igHashtags),
         review: aiReview || "💡 高品質なレビューはClaude Codeで「/sns テーマ名」を実行すると生成されます",
-        reelHtml: baseData.reelHtml || "",
+        reelHtml: aiReelHtml || baseData.reelHtml || "",
         analyticsInsight: baseData.analyticsInsight || undefined,
       });
 
