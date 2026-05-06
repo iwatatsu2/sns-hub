@@ -57,7 +57,7 @@ export function getPendingTopics(): Topic[] {
   } catch {
     savedTitles = new Set();
   }
-  return getAllTopics().filter((t) => t.status === "pending" && !savedTitles.has(t.title));
+  return getAllTopics().filter((t) => (t.status === "pending" || t.status === "approved") && !savedTitles.has(t.title));
 }
 
 export function getNextPendingTopic(): Topic | null {
