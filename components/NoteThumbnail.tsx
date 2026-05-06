@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useCallback } from "react";
 
 /* ---------- インパクトキーワード ---------- */
 const IMPACT_KEYWORDS_MEDICAL = [
@@ -113,6 +113,102 @@ export default function NoteThumbnail({ title, variant, category, subtitle }: No
   const pose = selectPoseFromTitle(title, category);
   const tags = keywords.filter(kw => title.includes(kw)).slice(0, 3);
 
+  const downloadPptx = useCallback(async () => {
+    const PptxGenJS = (await import("pptxgenjs")).default;
+    const pptx = new PptxGenJS();
+    pptx.layout = "LAYOUT_WIDE"; // 13.33 x 7.5 inches
+
+    const slide = pptx.addSlide();
+
+    // 背景
+    const bgColor = isMedical ? "0a1628" : "1a0a02";
+    slide.background = { color: bgColor };
+
+    // アクセントグロー（左上）
+    slide.addShape(pptx.ShapeType.ellipse, {
+      x: -0.5, y: -0.5, w: 3, h: 3,
+      fill: { color: isMedical ? "14b8a6" : "ea580c", transparency: 75 },
+      shadow: { type: "outer", blur: 40, color: isMedical ? "14b8a6" : "ea580c", opacity: 0.3, offset: 0, angle: 0 },
+    });
+
+    // バッジ
+    slide.addText(theme.badge, {
+      x: 0.6, y: 0.4, w: 2.5, h: 0.45,
+      fontSize: 14, fontFace: "Noto Sans JP", bold: true,
+      color: isMedical ? "5eead4" : "fdba74",
+      fill: { color: isMedical ? "14b8a6" : "ea580c", transparency: 80 },
+      align: "left", valign: "middle",
+    });
+
+    // タイトル
+    const titleRuns = segments.map(seg => ({
+      text: seg.text,
+      options: {
+        fontSize: 32,
+        fontFace: "Noto Sans JP",
+        bold: true,
+        color: seg.isImpact ? (isMedical ? "2dd4bf" : "fb923c") : "FFFFFF",
+      },
+    }));
+    slide.addText(titleRuns, {
+      x: 0.6, y: 1.1, w: 7.5, h: 3.5,
+      valign: "top", paraSpaceAfter: 6,
+      lineSpacingMultiple: 1.3,
+    });
+
+    // サブタイトル
+    if (subtitle) {
+      slide.addText(subtitle, {
+        x: 0.6, y: 4.5, w: 7.5, h: 1.2,
+        fontSize: 16, fontFace: "Noto Sans JP",
+        color: "d1d5db",
+        valign: "top",
+      });
+    }
+
+    // タグ
+    tags.forEach((tag, i) => {
+      slide.addText(tag, {
+        x: 0.6 + i * 1.8, y: 5.8, w: 1.6, h: 0.4,
+        fontSize: 11, fontFace: "Noto Sans JP", bold: true,
+        color: isMedical ? "99f6e4" : "fed7aa",
+        fill: { color: isMedical ? "14b8a6" : "ea580c", transparency: 85 },
+        align: "center", valign: "middle",
+        shape: pptx.ShapeType.roundRect, rectRadius: 0.05,
+      });
+    });
+
+    // 著者表記
+    slide.addText([
+      { text: "Dr.いわたつ", options: { fontSize: 13, bold: true, color: "FFFFFF", fontFace: "Noto Sans JP" } },
+      { text: " ｜AIで医療アプリを作る糖尿病専門医", options: { fontSize: 12, color: "d1d5db", fontFace: "Noto Sans JP" } },
+    ], {
+      x: 0.6, y: 6.6, w: 7, h: 0.5,
+      valign: "middle",
+    });
+
+    // Dr.いわたつイラスト（右側）
+    try {
+      const imgUrl = pose.startsWith("/") ? window.location.origin + pose : pose;
+      const resp = await fetch(imgUrl);
+      const blob = await resp.blob();
+      const reader = new FileReader();
+      const dataUrl = await new Promise<string>((resolve) => {
+        reader.onload = () => resolve(reader.result as string);
+        reader.readAsDataURL(blob);
+      });
+      slide.addImage({
+        data: dataUrl,
+        x: 8.5, y: 1.0, w: 4.2, h: 6.0,
+        sizing: { type: "contain", w: 4.2, h: 6.0 },
+      });
+    } catch { /* イラスト無しでも続行 */ }
+
+    // ダウンロード
+    const fileName = `note-thumbnail-${title.slice(0, 20).replace(/[^\w\u3000-\u9fff]/g, "")}.pptx`;
+    await pptx.writeFile({ fileName });
+  }, [title, subtitle, segments, tags, pose, isMedical, theme]);
+
   return (
     <div
       className="rounded-xl overflow-hidden border border-gray-700 mb-3 w-full max-w-xl"
@@ -210,6 +306,14 @@ export default function NoteThumbnail({ title, variant, category, subtitle }: No
             </span>
           </div>
         </div>
+
+        {/* PPTXダウンロードボタン */}
+        <button
+          onClick={downloadPptx}
+          className="absolute top-2 right-2 z-20 text-xs bg-white/20 hover:bg-white/30 text-white px-2 py-1 rounded transition backdrop-blur-sm"
+        >
+          PPTX
+        </button>
 
         {/* ===== 右側: Dr.いわたつイラスト (35%) ===== */}
         <div className="w-[35%] flex-shrink-0 flex items-end justify-center relative">
