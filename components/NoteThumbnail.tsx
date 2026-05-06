@@ -16,7 +16,32 @@ const IMPACT_KEYWORDS_PUBLIC = [
   "危険", "注意", "最新", "必須", "重要",
 ];
 
-/* ---------- ポーズ選択（記事内容に合わせる） ---------- */
+/* ---------- 文節改行マップ ---------- */
+// タイトルの意味の通る位置で明示的に改行を指定
+// キー: 元タイトル（部分一致）、値: 改行済みの行配列
+const TITLE_BREAKS: [string, string[]][] = [
+  ["糖尿病専門医が白米をやめない理由", ["糖尿病専門医が", "白米をやめない理由"]],
+  ["CGMつけてコンビニ飯1週間生活した結果", ["CGMつけて", "コンビニ飯1週間", "生活した結果"]],
+  ["食後に眠くなる人、それ血糖スパイクです", ["食後に眠くなる人、", "それ血糖スパイクです"]],
+  ["医師がClaude Codeで医療アプリを作ってみた", ["医師がClaude Codeで", "医療アプリを", "作ってみた"]],
+  ["ChatGPTに糖尿病の診断させてみた", ["ChatGPTに", "糖尿病の診断させてみた", "→専門医が採点"]],
+  ["「カロリーゼロなら太らない」は嘘", ["「カロリーゼロなら", "太らない」は嘘"]],
+  ["健康診断「異常なし」でも糖尿病になる理由", ["健康診断「異常なし」でも", "糖尿病になる理由"]],
+  ["朝食を抜くと痩せる？太る？", ["朝食を抜くと", "痩せる？太る？", "専門医の結論"]],
+  ["血糖値を制する者は仕事を制す", ["血糖値を制する者は", "仕事を制す"]],
+  ["CGMつけてサウナに入ったら血糖値が激変した", ["CGMつけて", "サウナに入ったら", "血糖値が激変した"]],
+  ["筋トレ vs 有酸素運動", ["筋トレ vs 有酸素運動、", "血糖値に効くのは", "どっち？"]],
+  ["GLP-1ダイエットを専門医が勧めない", ["GLP-1ダイエットを", "専門医が勧めない", "3つの理由"]],
+];
+
+function getTitleLines(title: string): string[] | null {
+  for (const [key, lines] of TITLE_BREAKS) {
+    if (title.includes(key)) return lines;
+  }
+  return null;
+}
+
+/* ---------- ポーズ選択 ---------- */
 const POSE_MAP: Record<string, string> = {
   explain: "/dr-pose-explain.png",
   think: "/dr-pose-think.png",
@@ -32,24 +57,24 @@ const POSE_MAP: Record<string, string> = {
 };
 
 function selectPoseFromTitle(title: string, category?: string): string {
-  if (category === "ai") return POSE_MAP.pc;
-  if (/危険|注意|見逃|誤診|リスク|警告|DKA|ケトアシドーシス/.test(title)) return POSE_MAP.warning;
-  if (/？|疑問|本当に|いいの|どう|落とし穴|罠/.test(title)) return POSE_MAP.think;
-  if (/最新|革命|ついに|発見|新薬|承認/.test(title)) return POSE_MAP.hello;
-  if (/ガイドライン|マニュアル|データ|診断|基準/.test(title)) return POSE_MAP.clipboard;
-  if (/おすすめ|良い|すごい|成功|改善|効果/.test(title)) return POSE_MAP.thumbsup;
-  if (/解説|知って|学|基本|入門/.test(title)) return POSE_MAP.point;
-  if (/自信|確実|プロ|専門/.test(title)) return POSE_MAP.confident;
+  if (category === "ai" || category === "ai-medicine") return POSE_MAP.pc;
+  if (/危険|注意|見逃|誤診|リスク|警告|DKA|ケトアシドーシス|勧めない/.test(title)) return POSE_MAP.warning;
+  if (/？|疑問|本当に|いいの|どう|落とし穴|罠|嘘/.test(title)) return POSE_MAP.think;
+  if (/最新|革命|ついに|発見|新薬|承認|激変/.test(title)) return POSE_MAP.hello;
+  if (/ガイドライン|マニュアル|データ|診断|基準|採点/.test(title)) return POSE_MAP.clipboard;
+  if (/おすすめ|良い|すごい|成功|改善|効果|制す/.test(title)) return POSE_MAP.thumbsup;
+  if (/解説|知って|学|基本|入門|理由/.test(title)) return POSE_MAP.point;
+  if (/自信|確実|プロ|専門|vs/.test(title)) return POSE_MAP.confident;
   return POSE_MAP.explain;
 }
 
-/* ---------- タイトルセグメント化 ---------- */
+/* ---------- タイトルセグメント化（1行ずつ） ---------- */
 interface TitleSegment {
   text: string;
   isImpact: boolean;
 }
 
-function segmentTitle(title: string, keywords: string[]): TitleSegment[] {
+function segmentLine(line: string, keywords: string[]): TitleSegment[] {
   const sortedKw = [...keywords].sort((a, b) => b.length - a.length);
   const pattern = new RegExp(`(${sortedKw.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join("|")})`, "g");
 
@@ -57,18 +82,18 @@ function segmentTitle(title: string, keywords: string[]): TitleSegment[] {
   let lastIndex = 0;
   let match: RegExpExecArray | null;
 
-  while ((match = pattern.exec(title)) !== null) {
+  while ((match = pattern.exec(line)) !== null) {
     if (match.index > lastIndex) {
-      segments.push({ text: title.slice(lastIndex, match.index), isImpact: false });
+      segments.push({ text: line.slice(lastIndex, match.index), isImpact: false });
     }
     segments.push({ text: match[1], isImpact: true });
     lastIndex = match.index + match[1].length;
   }
-  if (lastIndex < title.length) {
-    segments.push({ text: title.slice(lastIndex), isImpact: false });
+  if (lastIndex < line.length) {
+    segments.push({ text: line.slice(lastIndex), isImpact: false });
   }
 
-  return segments.length > 0 ? segments : [{ text: title, isImpact: false }];
+  return segments.length > 0 ? segments : [{ text: line, isImpact: false }];
 }
 
 /* ---------- コンポーネント ---------- */
@@ -109,22 +134,20 @@ export default function NoteThumbnail({ title, variant, category, subtitle }: No
       };
 
   const keywords = isMedical ? IMPACT_KEYWORDS_MEDICAL : IMPACT_KEYWORDS_PUBLIC;
-  const segments = segmentTitle(title, keywords);
+  const titleLines = getTitleLines(title);
   const pose = selectPoseFromTitle(title, category);
   const tags = keywords.filter(kw => title.includes(kw)).slice(0, 3);
 
   const downloadPptx = useCallback(async () => {
     const PptxGenJS = (await import("pptxgenjs")).default;
     const pptx = new PptxGenJS();
-    pptx.layout = "LAYOUT_WIDE"; // 13.33 x 7.5 inches
+    pptx.layout = "LAYOUT_WIDE";
 
     const slide = pptx.addSlide();
-
-    // 背景
     const bgColor = isMedical ? "0a1628" : "1a0a02";
     slide.background = { color: bgColor };
 
-    // アクセントグロー（左上）
+    // アクセントグロー
     slide.addShape(pptx.ShapeType.ellipse, {
       x: -0.5, y: -0.5, w: 3, h: 3,
       fill: { color: isMedical ? "14b8a6" : "ea580c", transparency: 75 },
@@ -140,16 +163,28 @@ export default function NoteThumbnail({ title, variant, category, subtitle }: No
       align: "left", valign: "middle",
     });
 
-    // タイトル
-    const titleRuns = segments.map(seg => ({
-      text: seg.text,
-      options: {
-        fontSize: 32,
-        fontFace: "Noto Sans JP",
-        bold: true,
-        color: seg.isImpact ? (isMedical ? "2dd4bf" : "fb923c") : "FFFFFF",
-      },
-    }));
+    // タイトル（文節改行対応）
+    const lines = titleLines || [title];
+    const titleRuns: { text: string; options: Record<string, unknown> }[] = [];
+    lines.forEach((line, lineIdx) => {
+      const segs = segmentLine(line, keywords);
+      segs.forEach(seg => {
+        titleRuns.push({
+          text: seg.text,
+          options: {
+            fontSize: 32,
+            fontFace: "Noto Sans JP",
+            bold: true,
+            color: seg.isImpact ? (isMedical ? "2dd4bf" : "fb923c") : "FFFFFF",
+            breakType: lineIdx === 0 && titleRuns.length === 0 ? undefined : undefined,
+          },
+        });
+      });
+      // 行末に改行を追加（最後の行以外）
+      if (lineIdx < lines.length - 1) {
+        titleRuns.push({ text: "\n", options: { fontSize: 32, fontFace: "Noto Sans JP", breakType: "break" as const } });
+      }
+    });
     slide.addText(titleRuns, {
       x: 0.6, y: 1.1, w: 7.5, h: 3.5,
       valign: "top", paraSpaceAfter: 6,
@@ -161,8 +196,7 @@ export default function NoteThumbnail({ title, variant, category, subtitle }: No
       slide.addText(subtitle, {
         x: 0.6, y: 4.5, w: 7.5, h: 1.2,
         fontSize: 16, fontFace: "Noto Sans JP",
-        color: "d1d5db",
-        valign: "top",
+        color: "d1d5db", valign: "top",
       });
     }
 
@@ -182,12 +216,9 @@ export default function NoteThumbnail({ title, variant, category, subtitle }: No
     slide.addText([
       { text: "Dr.いわたつ", options: { fontSize: 13, bold: true, color: "FFFFFF", fontFace: "Noto Sans JP" } },
       { text: " ｜AIで医療アプリを作る糖尿病専門医", options: { fontSize: 12, color: "d1d5db", fontFace: "Noto Sans JP" } },
-    ], {
-      x: 0.6, y: 6.6, w: 7, h: 0.5,
-      valign: "middle",
-    });
+    ], { x: 0.6, y: 6.6, w: 7, h: 0.5, valign: "middle" });
 
-    // Dr.いわたつイラスト（右側）
+    // Dr.いわたつイラスト
     try {
       const imgUrl = pose.startsWith("/") ? window.location.origin + pose : pose;
       const resp = await fetch(imgUrl);
@@ -204,10 +235,12 @@ export default function NoteThumbnail({ title, variant, category, subtitle }: No
       });
     } catch { /* イラスト無しでも続行 */ }
 
-    // ダウンロード
     const fileName = `note-thumbnail-${title.slice(0, 20).replace(/[^\w\u3000-\u9fff]/g, "")}.pptx`;
     await pptx.writeFile({ fileName });
-  }, [title, subtitle, segments, tags, pose, isMedical, theme]);
+  }, [title, subtitle, titleLines, keywords, tags, pose, isMedical, theme]);
+
+  // タイトル行の描画
+  const lines = titleLines || [title];
 
   return (
     <div
@@ -238,39 +271,47 @@ export default function NoteThumbnail({ title, variant, category, subtitle }: No
             </span>
           </div>
 
-          {/* タイトル（インパクトワード強調 + フォント大きめ） */}
+          {/* タイトル（文節改行 + インパクトワード強調） */}
           <div
-            className="font-black leading-[1.3] mb-3"
-            style={{ wordBreak: "keep-all", overflowWrap: "anywhere" }}
+            className="font-black leading-[1.4] mb-3"
+            style={{ wordBreak: "keep-all", lineBreak: "strict" }}
           >
-            {segments.map((seg, i) =>
-              seg.isImpact ? (
-                <span
-                  key={i}
-                  style={{
-                    color: theme.accentColor,
-                    background: theme.accentBg,
-                    padding: "2px 6px",
-                    borderRadius: "4px",
-                    boxShadow: theme.accentGlow,
-                    fontSize: "1.75rem",
-                    lineHeight: 1.4,
-                  }}
-                >
-                  {seg.text}
-                </span>
-              ) : (
-                <span key={i} className="text-white" style={{ fontSize: "1.25rem" }}>
-                  {seg.text}
-                </span>
-              )
-            )}
+            {lines.map((line, lineIdx) => {
+              const segs = segmentLine(line, keywords);
+              return (
+                <React.Fragment key={lineIdx}>
+                  {lineIdx > 0 && <br />}
+                  {segs.map((seg, i) =>
+                    seg.isImpact ? (
+                      <span
+                        key={i}
+                        style={{
+                          color: theme.accentColor,
+                          background: theme.accentBg,
+                          padding: "2px 6px",
+                          borderRadius: "4px",
+                          boxShadow: theme.accentGlow,
+                          fontSize: "1.75rem",
+                          lineHeight: 1.4,
+                        }}
+                      >
+                        {seg.text}
+                      </span>
+                    ) : (
+                      <span key={i} className="text-white" style={{ fontSize: "1.25rem" }}>
+                        {seg.text}
+                      </span>
+                    )
+                  )}
+                </React.Fragment>
+              );
+            })}
           </div>
 
           {/* サブタイトル（hook文） */}
           {subtitle && (
             <div className="text-sm text-gray-300 leading-snug mb-3 line-clamp-2"
-              style={{ wordBreak: "keep-all", overflowWrap: "anywhere" }}>
+              style={{ wordBreak: "keep-all", lineBreak: "strict" }}>
               {subtitle}
             </div>
           )}
