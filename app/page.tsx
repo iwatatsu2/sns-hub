@@ -482,16 +482,16 @@ export default function Home() {
                   HTMLダウンロード
                 </button>
               </div>
-              {/* プレビュー（静止画・スクリプト無効） */}
-              <div className="rounded-lg overflow-hidden border border-gray-700 bg-black" style={{ aspectRatio: "9/16", maxHeight: "400px", position: "relative" }}>
+              {/* プレビュー（アニメーション付き） */}
+              <div className="rounded-lg overflow-hidden border border-gray-700 bg-black mx-auto" style={{ width: "216px", height: "384px", position: "relative" }}>
                 <iframe
-                  srcDoc={result.reelHtml.replace(/<script[\s\S]*?<\/script>/gi, "").replace('id="s1"', 'id="s1" style="opacity:1"')}
+                  srcDoc={result.reelHtml}
                   style={{ width: "1080px", height: "1920px", transform: "scale(0.2)", transformOrigin: "top left", border: "none", pointerEvents: "none" }}
-                  sandbox=""
+                  sandbox="allow-scripts"
                   title="リールプレビュー"
                 />
               </div>
-              <p className="text-gray-500 text-xs mt-2 text-center">HTMLをダウンロードしてフル解像度で確認できます</p>
+              <p className="text-gray-500 text-xs mt-2 text-center">GSAPアニメーション付きプレビュー</p>
             </div>
           )}
 
