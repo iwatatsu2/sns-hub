@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WeeklyShot リール</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;display:flex;justify-content:center;align-items:center;min-height:100vh;font-family:'Noto Sans JP',sans-serif;overflow:hidden}
+.comp{position:relative;width:1080px;height:1920px;overflow:hidden;background:linear-gradient(180deg,#0f172a 0%,#1e293b 50%,#312e81 100%);transform-origin:top center}
+.scene{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:60px;opacity:0}
+
+/* Scene 1 */
+.hook-text{font-size:100px;font-weight:900;color:#fff;text-align:center;line-height:1.3;text-shadow:0 4px 24px rgba(0,0,0,.5)}
+.hook-sub{font-size:38px;color:#94a3b8;margin-top:30px;text-align:center;line-height:1.6}
+
+/* Scene 2: スクショ並べ */
+.screens-title{font-size:48px;font-weight:700;color:#2dd4bf;margin-bottom:48px;text-align:center}
+.screen-row{display:flex;gap:28px;justify-content:center;align-items:center}
+.screen-frame{border-radius:24px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.5);border:3px solid rgba(255,255,255,.15);opacity:0;transform:translateY(60px)}
+.screen-frame img{display:block;width:100%;height:100%;object-fit:cover}
+.screen-label{font-size:28px;color:#94a3b8;text-align:center;margin-top:16px;font-weight:500}
+
+/* Scene 3: LINE通知＆操作デモ */
+.demo-title{font-size:48px;font-weight:700;color:#2dd4bf;margin-bottom:36px;text-align:center}
+.demo-wrap{display:flex;gap:36px;align-items:center;justify-content:center}
+.demo-phone{border-radius:24px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.5);border:3px solid rgba(255,255,255,.15)}
+.demo-phone img{display:block;width:100%;height:100%;object-fit:cover}
+.demo-callouts{display:flex;flex-direction:column;gap:24px}
+.demo-callout{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:24px 32px;opacity:0;transform:translateX(40px)}
+.demo-callout-icon{font-size:36px;margin-bottom:4px}
+.demo-callout-text{font-size:32px;font-weight:700;color:#fff;line-height:1.4}
+.demo-callout-sub{font-size:26px;color:#94a3b8;margin-top:4px}
+.notify-highlight{background:rgba(45,212,191,.12);border:2px solid #2dd4bf}
+
+/* Scene 4: まとめ */
+.data-title{font-size:52px;font-weight:700;color:#2dd4bf;margin-bottom:48px;text-align:center}
+.summary-grid{width:100%}
+.summary-item{display:flex;align-items:center;gap:24px;padding:36px 40px;margin-bottom:20px;border-left:5px solid #2dd4bf;background:rgba(255,255,255,.06);border-radius:0 16px 16px 0;opacity:0;transform:translateY(30px)}
+.summary-check{font-size:46px;color:#2dd4bf;font-weight:900}
+.summary-text{font-size:42px;font-weight:700;color:#fff}
+.summary-url{font-size:44px;color:#2dd4bf;font-weight:900;margin-top:56px;text-align:center}
+.summary-badge{font-size:30px;color:#94a3b8;margin-top:20px;text-align:center}
+
+/* Scene 5: Follow CTA */
+.follow-wrap{display:flex;flex-direction:column;align-items:center;gap:20px}
+.follow-avatar{width:260px;height:auto;object-fit:contain;filter:drop-shadow(0 8px 32px rgba(0,0,0,.5));opacity:0;transform:scale(0.5)}
+.follow-name{font-size:56px;font-weight:900;color:#fff;text-shadow:0 4px 16px rgba(0,0,0,.4)}
+.follow-title{font-size:30px;color:#94a3b8;margin-top:-8px;text-align:center}
+.follow-btn{margin-top:24px;background:linear-gradient(135deg,#14b8a6,#2dd4bf);padding:20px 60px;border-radius:50px;font-size:44px;font-weight:900;color:#0f172a;box-shadow:0 8px 32px rgba(20,184,166,.4)}
+.follow-actions{display:flex;gap:40px;margin-top:30px}
+.follow-action{font-size:28px;color:#94a3b8}
+
+/* Watermark */
+.watermark-wrap{position:absolute;right:20px;bottom:120px;z-index:10;pointer-events:none;text-align:center;display:flex;flex-direction:column;align-items:center}
+.watermark-wrap img{height:400px;width:auto;object-fit:contain;filter:drop-shadow(0 4px 16px rgba(0,0,0,.4))}
+.watermark-name{font-size:24px;font-weight:700;color:#fff;margin-top:8px;text-shadow:0 2px 8px rgba(0,0,0,.5)}
+</style>
+</head>
+<body>
+<div class="comp" id="comp">
+
+  <!-- Watermark -->
+  <div class="watermark-wrap" id="watermark">
+    <img src="https://sns-hub-five.vercel.app/dr-iwatatsu.png" alt="Dr.いわたつ">
+    <div class="watermark-name">Dr.いわたつ</div>
+  </div>
+
+  <!-- Scene 1: Hook -->
+  <div class="scene" id="s1">
+    <div class="hook-text">週1注射<br>忘れません？</div>
+    <div class="hook-sub">注射当日にLINEで自動通知<br>もう打ち忘れません</div>
+  </div>
+
+  <!-- Scene 2: 実際の画面紹介 -->
+  <div class="scene" id="s2">
+    <div class="screens-title">実際の画面をご紹介</div>
+    <div class="screen-row">
+      <div>
+        <div class="screen-frame" id="sf1" style="width:280px;height:500px;">
+          <img src="/ws-screens/lp-hero.jpg" alt="LP">
+        </div>
+        <div class="screen-label">ランディングページ</div>
+      </div>
+      <div>
+        <div class="screen-frame" id="sf2" style="width:280px;height:500px;">
+          <img src="/ws-screens/setup.jpg" alt="設定画面">
+        </div>
+        <div class="screen-label">注射スケジュール設定</div>
+      </div>
+      <div>
+        <div class="screen-frame" id="sf3" style="width:280px;height:500px;">
+          <img src="/ws-screens/diary.jpg" alt="体重記録">
+        </div>
+        <div class="screen-label">体重記録 & BMI</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scene 3: LINE通知＆操作デモ -->
+  <div class="scene" id="s3">
+    <div class="demo-title">LINEで通知＆操作</div>
+    <div class="demo-wrap">
+      <div class="demo-phone" style="width:380px;height:680px;">
+        <img src="/ws-screens/line-chat.jpg" alt="LINEトーク">
+      </div>
+      <div class="demo-callouts">
+        <div class="demo-callout notify-highlight" id="dc1">
+          <div class="demo-callout-icon">🔔</div>
+          <div class="demo-callout-text">注射当日に<br>LINEで自動通知</div>
+          <div class="demo-callout-sub">前日にもお知らせ</div>
+        </div>
+        <div class="demo-callout" id="dc2">
+          <div class="demo-callout-icon">📊</div>
+          <div class="demo-callout-text">「体重」で<br>記録＆グラフ</div>
+        </div>
+        <div class="demo-callout" id="dc3">
+          <div class="demo-callout-icon">✅</div>
+          <div class="demo-callout-text">「打ちました」で<br>注射完了を記録</div>
+        </div>
+        <div class="demo-callout" id="dc4">
+          <div class="demo-callout-icon">💊</div>
+          <div class="demo-callout-text">用量変更も<br>かんたん記録</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scene 4: まとめ -->
+  <div class="scene" id="s4">
+    <div class="data-title">WeeklyShot</div>
+    <div class="summary-grid">
+      <div class="summary-item" id="sm1"><span class="summary-check">🔔</span><span class="summary-text">注射当日にLINE通知</span></div>
+      <div class="summary-item" id="sm2"><span class="summary-check">✓</span><span class="summary-text">完全無料・登録30秒</span></div>
+      <div class="summary-item" id="sm3"><span class="summary-check">✓</span><span class="summary-text">アプリ不要・LINE完結</span></div>
+      <div class="summary-item" id="sm4"><span class="summary-check">✓</span><span class="summary-text">BMI自動計算・用量記録</span></div>
+    </div>
+    <div class="summary-url">weekly-shot.vercel.app</div>
+    <div class="summary-badge">糖尿病・内分泌専門医が開発・監修</div>
+  </div>
+
+  <!-- Scene 5: Follow CTA -->
+  <div class="scene" id="s5">
+    <div class="follow-wrap">
+      <img class="follow-avatar" id="avatar" src="https://sns-hub-five.vercel.app/dr-iwatatsu.png" alt="Dr.いわたつ">
+      <div class="follow-name">Dr.いわたつ</div>
+      <div class="follow-title">糖尿病・内分泌専門医<br>AIで医療アプリを作る医師</div>
+      <div class="follow-btn">フォローする</div>
+      <div class="follow-actions">
+        <span class="follow-action">📌 保存</span>
+        <span class="follow-action">🔄 シェア</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// スマホ対応: .compを画面に収まるようスケーリング
+function fitToScreen() {
+  var comp = document.getElementById('comp');
+  var scaleW = window.innerWidth / 1080;
+  var scaleH = window.innerHeight / 1920;
+  var scale = Math.min(scaleW, scaleH);
+  comp.style.transform = 'scale(' + scale + ')';
+  comp.style.transformOrigin = 'top center';
+  // bodyを中央揃え
+  document.body.style.height = (1920 * scale) + 'px';
+}
+fitToScreen();
+window.addEventListener('resize', fitToScreen);
+
+const tl = gsap.timeline({repeat:-1});
+
+// Scene 1: Hook (0-6s) ゆっくり
+tl.to('#s1',{opacity:1,duration:0.6},0)
+  .from('.hook-text',{scale:0.7,opacity:0,duration:1.0,ease:'back.out(1.7)'},0.3)
+  .from('.hook-sub',{y:40,opacity:0,duration:0.8},1.2)
+  .to('#s1',{opacity:0,duration:0.5},5.5);
+
+// Scene 2: 実際の画面 (6-13s)
+tl.to('#s2',{opacity:1,duration:0.6},6)
+  .from('.screens-title',{y:-30,opacity:0,duration:0.6},6.3)
+  .to('#sf1',{opacity:1,y:0,duration:0.8,ease:'power2.out'},7.0)
+  .to('#sf2',{opacity:1,y:0,duration:0.8,ease:'power2.out'},8.0)
+  .to('#sf3',{opacity:1,y:0,duration:0.8,ease:'power2.out'},9.0)
+  .to('#s2',{opacity:0,duration:0.5},12.5);
+
+// Scene 3: LINE通知＆操作デモ (13-21s)
+tl.to('#s3',{opacity:1,duration:0.6},13)
+  .from('.demo-title',{y:-30,opacity:0,duration:0.6},13.3)
+  .from('.demo-phone',{x:-60,opacity:0,duration:0.8},13.8)
+  .to('#dc1',{opacity:1,x:0,duration:0.6,ease:'power2.out'},14.8)
+  .to('#dc2',{opacity:1,x:0,duration:0.6,ease:'power2.out'},16.0)
+  .to('#dc3',{opacity:1,x:0,duration:0.6,ease:'power2.out'},17.2)
+  .to('#dc4',{opacity:1,x:0,duration:0.6,ease:'power2.out'},18.4)
+  .to('#s3',{opacity:0,duration:0.5},20.5);
+
+// Scene 4: まとめ (21-29s)
+tl.to('#s4',{opacity:1,duration:0.6},21)
+  .to('#sm1',{opacity:1,y:0,duration:0.8,ease:'power2.out'},21.8)
+  .to('#sm2',{opacity:1,y:0,duration:0.8,ease:'power2.out'},23.0)
+  .to('#sm3',{opacity:1,y:0,duration:0.8,ease:'power2.out'},24.2)
+  .to('#sm4',{opacity:1,y:0,duration:0.8,ease:'power2.out'},25.4)
+  .from('.summary-url',{opacity:0,scale:0.8,duration:0.6},26.5)
+  .from('.summary-badge',{opacity:0,duration:0.5},27.2)
+  .to('#s4',{opacity:0,duration:0.5},28.5);
+
+// Hide watermark for Scene 5
+tl.to('#watermark',{opacity:0,duration:0.3},29);
+
+// Scene 5: Follow CTA (29-35s)
+tl.to('#s5',{opacity:1,duration:0.6},29)
+  .to('#avatar',{opacity:1,scale:1,duration:1.0,ease:'back.out(1.7)'},29.5)
+  .from('.follow-name',{y:30,opacity:0,duration:0.6},30.5)
+  .from('.follow-title',{y:20,opacity:0,duration:0.6},31.0)
+  .from('.follow-btn',{scale:0.8,opacity:0,duration:0.6,ease:'back.out(1.7)'},31.8)
+  .from('.follow-actions',{opacity:0,duration:0.5},32.5)
+  .to('#s5',{opacity:0,duration:0.5},34.5)
+  .to('#watermark',{opacity:1,duration:0.3},35);
+</script>
+</body>
+</html>
