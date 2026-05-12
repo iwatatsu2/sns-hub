@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TSLA PARK 紹介リール</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;display:flex;justify-content:center;align-items:center;min-height:100vh;font-family:'Noto Sans JP',sans-serif;overflow:hidden}
+.comp{position:relative;width:1080px;height:1920px;overflow:hidden;background:#0A0A0A;transform-origin:top center}
+.scene{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;padding:60px}
+
+/* Scene 1 */
+.hook-text{font-family:'Press Start 2P',monospace;font-size:72px;color:#2dd4bf;text-align:center;text-shadow:0 0 20px rgba(45,212,191,.6);letter-spacing:4px}
+.hook-sub{font-size:36px;color:#e2e8f0;margin-top:40px;text-align:center}
+.hook-cars{display:flex;gap:30px;margin-top:50px}
+.hook-cars img{height:80px;image-rendering:pixelated;opacity:0.9}
+
+/* Scene 2: App mockup */
+.app-frame{width:720px;border:3px solid rgba(45,212,191,.4);border-radius:24px;overflow:hidden;background:#0A0A0A;box-shadow:0 20px 60px rgba(0,0,0,.8)}
+.app-header{background:#111;padding:20px 30px;display:flex;align-items:center;gap:16px;border-bottom:1px solid rgba(255,255,255,.08)}
+.app-dot{width:12px;height:12px;border-radius:50%;background:#2dd4bf}
+.app-url{font-size:22px;color:#94a3b8;font-family:monospace}
+.app-body{padding:40px 30px}
+.app-logo{font-family:'Press Start 2P',monospace;font-size:28px;color:#2dd4bf;text-align:center;margin-bottom:20px}
+.app-tagline{font-size:20px;color:#64748b;text-align:center;margin-bottom:30px;letter-spacing:2px}
+.app-menu{display:flex;gap:12px;justify-content:center;margin-bottom:30px;flex-wrap:wrap}
+.app-menu-item{padding:10px 18px;background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.3);border-radius:8px;font-size:18px;color:#2dd4bf;font-weight:700}
+.app-model-row{display:flex;justify-content:space-between;padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.05)}
+.app-model-name{font-size:22px;color:#e2e8f0;font-weight:700}
+.app-model-days{font-size:22px;color:#2dd4bf}
+.scene2-title{font-size:40px;color:#fff;font-weight:700;margin-bottom:30px}
+
+/* Scene 3: Features */
+.feature-grid{width:100%;max-width:900px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.feature-card{background:rgba(255,255,255,.04);border:1px solid rgba(45,212,191,.2);border-radius:16px;padding:36px;text-align:center;opacity:0;transform:scale(0.8)}
+.feature-icon{font-size:60px;margin-bottom:16px}
+.feature-name{font-size:32px;color:#e2e8f0;font-weight:700}
+.feature-desc{font-size:24px;color:#94a3b8;margin-top:8px}
+
+/* Scene 4 */
+.point-title{font-size:44px;color:#2dd4bf;font-weight:900;margin-bottom:50px}
+.point-item{display:flex;align-items:center;gap:24px;padding:28px 36px;background:rgba(255,255,255,.04);border-left:4px solid #2dd4bf;border-radius:0 12px 12px 0;margin-bottom:24px;width:100%;max-width:860px;opacity:0;transform:translateX(-40px)}
+.point-num{font-family:'Press Start 2P',monospace;font-size:36px;color:#2dd4bf}
+.point-text{font-size:34px;color:#e2e8f0;font-weight:700}
+
+/* Scene 5: CTA */
+.cta-section{text-align:center}
+.cta-logo{font-family:'Press Start 2P',monospace;font-size:56px;color:#2dd4bf;text-shadow:0 0 30px rgba(45,212,191,.5)}
+.cta-tagline{font-size:28px;color:#94a3b8;margin-top:16px;letter-spacing:3px}
+.cta-url{font-size:32px;color:#fff;margin-top:40px;padding:20px 50px;border:2px solid #2dd4bf;border-radius:50px}
+.cta-actions{margin-top:40px;font-size:28px;color:#64748b}
+.cta-x{font-size:30px;color:#e2e8f0;margin-top:24px}
+</style>
+</head>
+<body>
+<div class="comp">
+
+<!-- Scene 1: Hook -->
+<div class="scene" id="scene1">
+  <div class="hook-text">TSLA PARK</div>
+  <div class="hook-sub">テスラオーナー専用コミュニティ</div>
+  <div class="hook-cars">
+    <img src="https://tsla-park2.vercel.app/illust-model-y.png" alt="Model Y">
+    <img src="https://tsla-park2.vercel.app/illust-cybertruck.png" alt="Cybertruck">
+    <img src="https://tsla-park2.vercel.app/illust-model-3.png" alt="Model 3">
+    <img src="https://tsla-park2.vercel.app/illust-optimus.png" alt="Optimus">
+  </div>
+</div>
+
+<!-- Scene 2: App Screen -->
+<div class="scene" id="scene2">
+  <div class="scene2-title">アプリ画面</div>
+  <div class="app-frame" id="appFrame">
+    <div class="app-header">
+      <div class="app-dot"></div>
+      <div class="app-url">tsla-park2.vercel.app</div>
+    </div>
+    <div class="app-body">
+      <div class="app-logo">TSLA PARK</div>
+      <div class="app-tagline">CHARGE · DELIVERY · SHARE</div>
+      <div class="app-menu">
+        <div class="app-menu-item">DELIVERY</div>
+        <div class="app-menu-item">FEED</div>
+        <div class="app-menu-item">NEWS</div>
+        <div class="app-menu-item">MAP</div>
+        <div class="app-menu-item">REFER</div>
+      </div>
+      <div class="app-model-row"><span class="app-model-name" style="color:#A0A0A0">Model Y</span><span class="app-model-days">平均 42日</span></div>
+      <div class="app-model-row"><span class="app-model-name" style="color:#10B981">Model YL</span><span class="app-model-days">平均 38日</span></div>
+      <div class="app-model-row"><span class="app-model-name" style="color:#3B82F6">Model 3</span><span class="app-model-days">平均 51日</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Scene 3: Features -->
+<div class="scene" id="scene3">
+  <div class="feature-grid">
+    <div class="feature-card" id="feat1">
+      <div class="feature-icon">📊</div>
+      <div class="feature-name">納車トラッカー</div>
+      <div class="feature-desc">モデル別の待ち日数</div>
+    </div>
+    <div class="feature-card" id="feat2">
+      <div class="feature-icon">💬</div>
+      <div class="feature-name">掲示板</div>
+      <div class="feature-desc">オーナー同士で交流</div>
+    </div>
+    <div class="feature-card" id="feat3">
+      <div class="feature-icon">🗺️</div>
+      <div class="feature-name">スポットMAP</div>
+      <div class="feature-desc">充電・撮影スポット</div>
+    </div>
+    <div class="feature-card" id="feat4">
+      <div class="feature-icon">📰</div>
+      <div class="feature-name">ニュース</div>
+      <div class="feature-desc">テスラ情報を自動収集</div>
+    </div>
+  </div>
+</div>
+
+<!-- Scene 4: Points -->
+<div class="scene" id="scene4">
+  <div class="point-title">TSLA PARKの特徴</div>
+  <div class="point-item" id="pt1"><span class="point-num">01</span><span class="point-text">完全無料・登録30秒</span></div>
+  <div class="point-item" id="pt2"><span class="point-num">02</span><span class="point-text">レトロゲーム風ドット絵UI</span></div>
+  <div class="point-item" id="pt3"><span class="point-num">03</span><span class="point-text">テスラ好きだけが集まる場所</span></div>
+</div>
+
+<!-- Scene 5: CTA -->
+<div class="scene" id="scene5">
+  <div class="cta-section">
+    <div class="cta-logo">TSLA PARK</div>
+    <div class="cta-tagline">CHARGE · DELIVERY · SHARE</div>
+    <div class="cta-url">tsla-park2.vercel.app</div>
+    <div class="cta-x">𝕏 @tslapark をフォロー</div>
+    <div class="cta-actions">💾 保存して納車待ちに備えよう</div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const tl = gsap.timeline({repeat:-1});
+
+// Scene 1: Hook (0-4s)
+tl.to('#scene1',{opacity:1,duration:0.5},0)
+  .from('.hook-text',{scale:0.3,opacity:0,duration:1,ease:'back.out(1.7)'},0.2)
+  .from('.hook-sub',{y:30,opacity:0,duration:0.6},1.3)
+  .from('.hook-cars',{y:40,opacity:0,duration:0.6},1.8)
+  .to('#scene1',{opacity:0,duration:0.4},3.6);
+
+// Scene 2: App (4-9s)
+tl.to('#scene2',{opacity:1,duration:0.5},4)
+  .from('#appFrame',{y:60,opacity:0,scale:0.9,duration:0.8,ease:'power2.out'},4.3)
+  .to('#scene2',{opacity:0,duration:0.4},8.6);
+
+// Scene 3: Features (9-13s)
+tl.to('#scene3',{opacity:1,duration:0.5},9)
+  .to('#feat1',{opacity:1,scale:1,duration:0.5},9.3)
+  .to('#feat2',{opacity:1,scale:1,duration:0.5},9.8)
+  .to('#feat3',{opacity:1,scale:1,duration:0.5},10.3)
+  .to('#feat4',{opacity:1,scale:1,duration:0.5},10.8)
+  .to('#scene3',{opacity:0,duration:0.4},12.6);
+
+// Scene 4: Points (13-18s)
+tl.to('#scene4',{opacity:1,duration:0.5},13)
+  .to('#pt1',{opacity:1,x:0,duration:0.6},13.5)
+  .to('#pt2',{opacity:1,x:0,duration:0.6},14.5)
+  .to('#pt3',{opacity:1,x:0,duration:0.6},15.5)
+  .to('#scene4',{opacity:0,duration:0.4},17.6);
+
+// Scene 5: CTA (18-23s)
+tl.to('#scene5',{opacity:1,duration:0.5},18)
+  .from('.cta-logo',{scale:0.5,opacity:0,duration:0.8,ease:'back.out(1.7)'},18.3)
+  .from('.cta-url',{y:20,opacity:0,duration:0.5},19.2)
+  .from('.cta-x',{y:20,opacity:0,duration:0.5},19.7)
+  .to('#scene5',{opacity:0,duration:0.4},22.6);
+</script>
+</body>
+</html>
