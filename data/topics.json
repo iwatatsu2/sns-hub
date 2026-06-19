@@ -238,5 +238,89 @@
     "status": "pending",
     "priority": 3,
     "createdAt": "2026-05-08T00:07:00Z"
+  },
+  {
+    "id": "topic-64",
+    "title": "週1回のインスリン注射「アウィクリ」がFDA承認——毎日の注射から解放される日",
+    "category": "diabetes",
+    "hook": "毎日打っていたインスリンが、週1回でよくなる。2026年3月FDA承認の「アウィクリ（インスリン イコデク）」は2型糖尿病のインスリン療法を根本から変える",
+    "source": "FDA承認 2026年3月26日、Novo Nordisk Awiqli (insulin icodec)",
+    "aiAngle": "AIが週1回インスリンの用量調整をサポートする未来。毎日の血糖パターンからAIが最適な週1用量を提案",
+    "appTieIn": "InsuCalcに週1回インスリン対応の計算機能を追加する可能性",
+    "status": "pending",
+    "priority": 5,
+    "createdAt": "2026-06-19T00:00:00Z"
+  },
+  {
+    "id": "topic-65",
+    "title": "1型糖尿病の進行を「遅らせる」薬がFDA承認——テプリズマブの衝撃",
+    "category": "diabetes",
+    "hook": "2026年6月12日、FDAが1型糖尿病の子ども（8-17歳）のインスリン産生低下を遅らせる薬「テプリズマブ（Tzield）」を承認。1型糖尿病治療の歴史が変わる瞬間",
+    "source": "FDA 2026年6月12日 Tzield (teplizumab) 小児適応追加承認",
+    "aiAngle": "早期診断AIと組み合わせれば、発症リスクの高い子どもを見つけて早期介入できる可能性",
+    "appTieIn": "T1Lifeでテプリズマブの情報共有コミュニティを立ち上げる",
+    "status": "pending",
+    "priority": 5,
+    "createdAt": "2026-06-19T00:01:00Z"
+  },
+  {
+    "id": "topic-66",
+    "title": "体に埋め込むインスリンポンプ「Portal Pump」がFDA画期的指定を取得",
+    "category": "diabetes",
+    "hook": "皮下ではなく門脈にインスリンを届ける完全埋め込み型ポンプがFDA Breakthrough指定。より生理的なインスリン投与で血糖変動が劇的に減少する可能性",
+    "source": "Portal Diabetes社 FDA Breakthrough Device Designation 2026年2月",
+    "aiAngle": "埋め込み型デバイスとAIが融合すれば、完全自動の人工膵臓が現実に近づく",
+    "appTieIn": "",
+    "status": "pending",
+    "priority": 5,
+    "createdAt": "2026-06-19T00:02:00Z"
+  },
+  {
+    "id": "topic-67",
+    "title": "Medtronic MiniMed Fit——チューブなし・画面なしの次世代パッチ式ポンプ",
+    "category": "diabetes",
+    "hook": "Medtronicの新型チューブレスパッチポンプ「MiniMed Fit」がFDA申請間近。オムニポッドの独壇場だったパッチ式ポンプ市場に本命参入",
+    "source": "ADA 2026 diabetes tech news、Medtronic MiniMed Fit/Flex",
+    "aiAngle": "複数ポンプの選択肢をAIで比較し、患者のライフスタイルに最適なデバイスを提案するツール",
+    "appTieIn": "MedApp Marketにデバイス比較ツールを追加する構想",
+    "status": "pending",
+    "priority": 5,
+    "createdAt": "2026-06-19T00:03:00Z"
+  },
+  {
+    "id": "topic-68",
+    "title": "夏の低血糖が危ない——暑さで薬の効きが変わる理由",
+    "category": "diabetes",
+    "hook": "気温30度超えると、インスリンの吸収速度が上がり低血糖リスクが増大する。夏場のインスリン管理で絶対やってはいけない3つのこと",
+    "source": "糖尿病診療ガイドライン、インスリン保管・吸収と気温の関連研究",
+    "aiAngle": "CGMデータと気温データをAIで相関分析し、暑い日に低血糖アラートを自動強化するシステム",
+    "appTieIn": "InsuCalcに気温補正機能を追加する構想",
+    "status": "pending",
+    "priority": 4,
+    "createdAt": "2026-06-19T00:04:00Z"
+  },
+  {
+    "id": "topic-69",
+    "title": "CGMで見つかる「夜間低血糖」の恐怖——寝ている間に血糖40台",
+    "category": "diabetes",
+    "hook": "CGMをつけて初めてわかった夜間低血糖。自覚症状ゼロなのに血糖値40mg/dL。放置すると何が起きるのか専門医が解説",
+    "source": "CGMと夜間低血糖検出の臨床研究、ADA Standards of Care 2026",
+    "aiAngle": "AIが夜間低血糖パターンを学習し、夕食・就寝前の行動で翌朝の低血糖を予測するアルゴリズム",
+    "appTieIn": "Glucose Diaryに夜間低血糖パターン検出機能を実装",
+    "status": "pending",
+    "priority": 4,
+    "createdAt": "2026-06-19T00:05:00Z"
+  },
+  {
+    "id": "topic-70",
+    "title": "Google Fitbit × AI が糖尿病管理を変える——食事写真から血糖予測",
+    "category": "ai-medicine",
+    "hook": "GoogleがFitbitアプリにAIコーチ機能を搭載。AbbottのLibre Assistは食事写真から血糖への影響を3段階で予測。CGM×AI時代の幕開け",
+    "source": "Google The Check Up 2026発表、Abbott Libre Assist",
+    "aiAngle": "食事写真→血糖予測→最適メニュー提案。医師が作るAIツールと企業の大規模AIの共存",
+    "appTieIn": "InsuCalcの食品データベースとAI血糖予測の連携可能性",
+    "status": "pending",
+    "priority": 4,
+    "createdAt": "2026-06-19T00:06:00Z"
   }
 ]
